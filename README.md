@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://plaxswap.io">
-      <img src="https://plaxswap.github.io/logo.png" height="128">
+      <img src="https://plaxswap.github.io/blockchain/logo.png" height="128">
   </a>
 </p>
 
