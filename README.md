@@ -1,4 +1,4 @@
-# 🥞 Pancake Frontend
+# 🥞 Plaxswap Frontend
 
 <p align="center">
   <a href="https://plaxswap.io">
