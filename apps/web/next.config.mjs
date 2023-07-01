@@ -67,6 +67,9 @@ const config = {
       },
     ],
   },
+  images: {
+    unoptimized: true
+},
   async rewrites() {
     return [
       {

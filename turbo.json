@@ -6,6 +6,10 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
     },
+    "export": {
+      "dependsOn": ["^export"],
+      "outputs": ["dist/**", "out/**"]
+    },
     "test": {
       "outputs": ["coverage/**"],
       "dependsOn": ["^build"]

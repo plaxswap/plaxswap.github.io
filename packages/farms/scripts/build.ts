@@ -2,8 +2,8 @@
 /* eslint-disable no-restricted-syntax */
 import path from 'path'
 import fs from 'fs'
-import farm137 from '../constants/80001'
-import farm80001 from '../constants/137'
+import farm137 from '../constants/137'
+import farm80001 from '../constants/80001'
 
 import lpHelpers80001 from '../constants/priceHelperLps/80001'
 import lpHelpers137 from '../constants/priceHelperLps/137'
