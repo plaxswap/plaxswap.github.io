@@ -1,5 +1,4 @@
 {
-  "homepage":"http://plaxswap.github.io",
   "name": "web",
   "version": "0.1.0",
   "private": true,
@@ -8,8 +7,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "test": "LC_ALL=\"en_US.UTF-8\" vitest --run",
     "test:watch": "LC_ALL=\"en_US.UTF-8\" vitest --watch",
     "test:config": "vitest --run --config vitest-config-test.config.ts",
