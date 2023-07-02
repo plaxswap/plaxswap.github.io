@@ -154,7 +154,7 @@ const CakeDataRow = () => {
 
         <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={99000000} />
       </StyledColumn>
-      {/* <StyledColumn noDesktopBorder style={{ gridArea: 'd' }}>
+      <StyledColumn noDesktopBorder style={{ gridArea: 'd' }}>
         <Text color="textSubtle">{t('Market cap')}</Text>
         {mcap?.gt(0) && mcapString ? (
           <Heading scale="lg">{t('$%marketCap%', { marketCap: mcapString })}</Heading>
@@ -169,7 +169,7 @@ const CakeDataRow = () => {
         ) : (
           <Skeleton height={24} width={126} my="4px" />
         )}
-      </StyledColumn> */}
+      </StyledColumn>
       <StyledColumn style={{ gridArea: 'f' }}>
         <Text color="textSubtle">{t('Current emissions')}</Text>
 
