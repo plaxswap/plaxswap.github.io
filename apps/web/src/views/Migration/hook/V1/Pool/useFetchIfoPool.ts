@@ -15,7 +15,7 @@ import { VaultKey } from 'state/types'
 import { fetchPublicVaultData } from './fetchPublicVaultData'
 
 export const ifoPoolV1Contract = '0x1B2A2f6ed4A1401E8C73B4c2B6172455ce2f78E8'
-export const cakeVaultAddress = '0xa80240Eb5d7E05d3F250cF000eEc0891d00b51CC'
+export const cakeVaultAddress = '0xfBc882545C732945ba7b1FBc7B869524aF295D91'
 
 const getCakeVaultContract = (signer?: Signer | Provider) => {
   const signerOrProvider = signer ?? bscRpcProvider

@@ -1,8 +1,8 @@
 import { ChainId } from '@pancakeswap/sdk'
 
 export const GRAPH_API_PROFILE = 'https://api.thegraph.com/subgraphs/name/pancakeswap/profile'
-export const GRAPH_API_PREDICTION_BNB = 'https://api.thegraph.com/subgraphs/name/pancakeswap/prediction-v2'
-export const GRAPH_API_PREDICTION_CAKE = 'https://api.thegraph.com/subgraphs/name/pancakeswap/prediction-cake'
+export const GRAPH_API_PREDICTION_BNB = ''
+export const GRAPH_API_PREDICTION_CAKE = ''
 
 export const GRAPH_API_LOTTERY = 'https://api.thegraph.com/subgraphs/name/pancakeswap/lottery'
 export const SNAPSHOT_BASE_URL = process.env.NEXT_PUBLIC_SNAPSHOT_BASE_URL
@@ -15,7 +15,7 @@ export const GRAPH_API_POTTERY = 'https://api.thegraph.com/subgraphs/name/pancak
 /**
  * V1 will be deprecated but is still used to claim old rounds
  */
-export const GRAPH_API_PREDICTION_V1 = 'https://api.thegraph.com/subgraphs/name/pancakeswap/prediction'
+export const GRAPH_API_PREDICTION_V1 = ''
 
 export const INFO_CLIENT = 'https://proxy-worker.pancake-swap.workers.dev/bsc-exchange'
 
@@ -29,7 +29,7 @@ export const GRAPH_HEALTH = 'https://api.thegraph.com/index-node/graphql'
 export const TC_MOBOX_SUBGRAPH = 'https://api.thegraph.com/subgraphs/name/pancakeswap/trading-competition-v3'
 export const TC_MOD_SUBGRAPH = 'https://api.thegraph.com/subgraphs/name/pancakeswap/trading-competition-v4'
 
-export const FARM_API = 'https://farms-api.pancakeswap.com'
+export const FARM_API = ''
 
 export const BIT_QUERY = 'https://graphql.bitquery.io'
 

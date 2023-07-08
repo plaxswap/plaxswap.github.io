@@ -17,6 +17,8 @@ const mappingNetwork: Record<number, string> = {
   5: 'eth-goerli',
   56: 'bsc-mainnet',
   97: 'bsc-testnet',
+  137: 'polygon',
+  80001: 'polygonMumbai',
 }
 
 export function getTrustWalletProvider() {

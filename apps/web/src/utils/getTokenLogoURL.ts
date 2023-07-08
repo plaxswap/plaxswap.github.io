@@ -9,7 +9,7 @@ const mapping = {
 const getTokenLogoURL = memoize(
   (token?: Token) => {
     if (token && mapping[token.chainId]) {
-      return `https://plaxswap.github.io/blockchains/${mapping[token.chainId]}/assets/${getAddress(
+      return `https://plaxswap.github.io/blockchain/${mapping[token.chainId]}/assets/${getAddress(
         token.address,
       )}/logo.png`
     }
@@ -21,7 +21,7 @@ const getTokenLogoURL = memoize(
 export const getTokenLogoURLByAddress = memoize(
   (address?: string, chainId?: number) => {
     if (address && chainId && mapping[chainId]) {
-      return `https://plaxswap.github.io/blockchains/${mapping[chainId]}/assets/${getAddress(address)}/logo.png`
+      return `https://plaxswap.github.io/blockchain/${mapping[chainId]}/assets/${getAddress(address)}/logo.png`
     }
     return null
   },
