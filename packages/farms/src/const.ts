@@ -8,7 +8,7 @@ export const FARM_AUCTION_HOSTING_IN_SECONDS = 0
 
 export const masterChefAddresses = {
   80001: '',
-  137: '0x78981FAc1d34e7775A1c6B907E69a0D065997a11',
+  137: '0xef8403528a3424bb4600C3f12C183aAf0848f47d',
 }
 
 export const nonBSCVaultAddresses = {

@@ -1,4 +1,4 @@
-import { bscTokens } from '@pancakeswap/tokens'
+// import { bscTokens } from '@pancakeswap/tokens'
 import { SerializedFarmConfig } from '../../types'
 
 const priceHelperLps: SerializedFarmConfig[] = [
