@@ -22,8 +22,8 @@ const initialData = {
     stakingToken: bscTokens.cake.serialize,
     earningToken: bscTokens.cake.serialize,
     contractAddress: {
-      97: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',
-      56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
+      80001: '',
+      137: '0xef8403528a3424bb4600C3f12C183aAf0848f47d',
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '10',

@@ -44,7 +44,7 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
     const farmsCanFetch = farmsToFetch.filter((f) => poolLength.gt(f.v1pid))
 
     // Add price helper farms
-    const priceHelperLpsConfig = getFarmsPriceHelperLpFiles(56)
+    const priceHelperLpsConfig = getFarmsPriceHelperLpFiles(137)
     const farmsWithPriceHelpers = farmsCanFetch.concat(priceHelperLpsConfig)
 
     const farms = await fetchFarms(farmsWithPriceHelpers)

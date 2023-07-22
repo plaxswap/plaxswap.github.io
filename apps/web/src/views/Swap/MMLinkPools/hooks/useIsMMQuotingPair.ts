@@ -12,7 +12,7 @@ import { useIsMMSupportChain } from './useIsMMSupportChain'
 
 const QUOTING_WHITE_LIST = {
   1: PANCAKE_ETH_MM,
-  56: PANCAKE_BSC_MM,
+  137: PANCAKE_BSC_MM,
 }
 
 export const useTokenList = (url?: string): Record<string, string> => {

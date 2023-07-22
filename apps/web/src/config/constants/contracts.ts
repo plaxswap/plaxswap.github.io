@@ -64,7 +64,7 @@ export default {
   },
   cakeVault: {
     137: '0x5BedCFCf267dB3EC03f90B5A324f4f83761A1146',
-    80001: '0x683433ba14e8F26774D43D3E90DA6Dd7a22044Fe',
+    80001: '',
   },
   cakeFlexibleSideVault: {
     137: '0x9524B654788207847eD72De9cf64d0bDB2d6b716',
@@ -151,17 +151,17 @@ export default {
     80001: '',
   },
   nonBscVault: {
-    137: '',
+    137: '0xE6c904424417D03451fADd6E3f5b6c26BcC43841',
     1: '0x2e71B2688019ebdFDdE5A45e6921aaebb15b25fb',
     5: '0xE6c904424417D03451fADd6E3f5b6c26BcC43841',
   },
   crossFarmingSender: {
-    137: '',
+    137: '0x327d26dE30f92600620A99043034e0A5FD9402C8',
     1: '0x8EA90Ef07f37c77137453C7A1B72B7886d51eCFb',
     5: '0x327d26dE30f92600620A99043034e0A5FD9402C8',
   },
   crossFarmingReceiver: {
-    137: '',
+    137: '0x0726a8C8206b9eC0AfB788df5adb36a8AEDB13c2',
     80001: '0xBab5d3B6bA24E185f216419f3ba07f03984bF983',
   },
   mmLinkedPool: {

@@ -1,6 +1,6 @@
 import { Flex, Link, LinkExternal, Skeleton, Text, TimerIcon, Balance, Pool } from '@pancakeswap/uikit'
 import AddToWalletButton, { AddToWalletTextOptions } from 'components/AddToWallet/AddToWalletButton'
-import { bsc } from 'wagmi/chains'
+import { polygon } from 'wagmi/chains'
 import { useTranslation } from '@pancakeswap/localization'
 import { Token } from '@pancakeswap/sdk'
 import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
@@ -140,7 +140,7 @@ const PoolStatsInfo: React.FC<React.PropsWithChildren<ExpandedFooterProps>> = ({
         <Flex mb="2px" justifyContent={alignLinksToRight ? 'flex-end' : 'flex-start'}>
           <LinkExternal
             isBscScan
-            href={`${bsc.blockExplorers.default.url}/address/${
+            href={`${polygon.blockExplorers.default.url}/address/${
               vaultKey ? cakeVaultContractAddress : poolContractAddress
             }`}
             bold={false}

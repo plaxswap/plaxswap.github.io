@@ -190,7 +190,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   const activeFarms = farmsLP.filter(
     (farm) =>
-      farm.lpAddress !== '0xB6040A9F294477dDAdf5543a24E5463B8F2423Ae' &&
+      farm.lpAddress !== '0x36842F8fb99D55477C0Da638aF5ceb6bBf86aA98' &&
       farm.pid !== 0 &&
       farm.multiplier !== '0X' &&
       (!poolLength || poolLength > farm.pid),
@@ -198,7 +198,7 @@ const Farms: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   const inactiveFarms = farmsLP.filter(
     (farm) =>
-      farm.lpAddress === '0xB6040A9F294477dDAdf5543a24E5463B8F2423Ae' || (farm.pid !== 0 && farm.multiplier === '0X'),
+      farm.lpAddress === '0x36842F8fb99D55477C0Da638aF5ceb6bBf86aA98' || (farm.pid !== 0 && farm.multiplier === '0X'),
   )
   const archivedFarms = farmsLP
 

@@ -31,7 +31,7 @@ export const StakingApy = memo(({ pool }: { pool: Pool.DeserializedPool<Token> }
         </Text>
         {flexibleApy ? (
           <AprLabelContainer alignItems="center" justifyContent="flex-start">
-            <Balance fontSize="16px" value={parseFloat(flexibleApy)} decimals={2} unit="%" bold />
+            <Balance fontSize="16px" value={parseFloat(flexibleApy)} decimals={6} unit="%" bold />
             <Button
               onClick={(e) => {
                 e.stopPropagation()
@@ -61,7 +61,7 @@ export const StakingApy = memo(({ pool }: { pool: Pool.DeserializedPool<Token> }
                 {t('Up to')}
               </Text>
               <AprLabelContainer alignItems="center">
-                <Balance fontSize="16px" value={parseFloat(lockedApy)} decimals={2} unit="%" bold />
+                <Balance fontSize="16px" value={parseFloat(lockedApy)} decimals={6} unit="%" bold />
                 <Button
                   onClick={(e) => {
                     e.stopPropagation()

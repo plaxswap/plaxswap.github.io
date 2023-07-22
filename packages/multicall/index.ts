@@ -9,7 +9,7 @@ import multicallAbi from './Multicall.json'
 export const multicallAddresses = {
   1: '0xcA11bde05977b3631167028862bE2a173976CA11',
   5: '0xcA11bde05977b3631167028862bE2a173976CA11',
-  137: '0x73F0B36EE4c99fA26110Dd1A8b79805312dc6F9D',
+  137: '0xcA11bde05977b3631167028862bE2a173976CA11',
   80001:'',
 }
 

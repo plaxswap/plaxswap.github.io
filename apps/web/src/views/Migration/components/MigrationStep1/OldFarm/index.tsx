@@ -35,7 +35,7 @@ const OldFarmStep1: React.FC<React.PropsWithChildren> = () => {
         }
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
         const { cakeRewardsApr, lpRewardsApr } = getFarmApr(
-          56,
+          137,
           new BigNumber(farm.poolWeight),
           cakePrice,
           totalLiquidity,

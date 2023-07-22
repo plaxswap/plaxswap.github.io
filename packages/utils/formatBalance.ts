@@ -92,8 +92,8 @@ export default formatLocalisedCompactNumber
 
 export const formatLpBalance = (balance: BigNumber, decimals: number) => {
   const stakedBalanceBigNumber = getBalanceAmount(balance, decimals)
-  if (stakedBalanceBigNumber.gt(0) && stakedBalanceBigNumber.lt(0.00001)) {
+  if (stakedBalanceBigNumber.gt(0) && stakedBalanceBigNumber.lt(0.00000000000001)) {
     return '< 0.00001'
   }
-  return stakedBalanceBigNumber.toFixed(5, BigNumber.ROUND_DOWN)
+  return stakedBalanceBigNumber.toFixed(10, BigNumber.ROUND_DOWN)
 }
