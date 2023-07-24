@@ -99,7 +99,7 @@ const StartPage: React.FC<React.PropsWithChildren<StartPageProps>> = ({ goToAppr
           <Message variant="warning" my="16px">
             <MessageText>
               {t(
-                "Before editing your profile, please make sure you've claimed all the unspent CAKE from previous IFOs!",
+                "Before editing your profile, please make sure you've claimed all the unspent PLASA from previous IFOs!",
               )}
             </MessageText>
           </Message>

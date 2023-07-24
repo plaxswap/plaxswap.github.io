@@ -41,7 +41,7 @@ export function PageNetworkSupportModal() {
   return (
     <Modal title={title || t('Check your network')} hideCloseButton headerBackground="gradientCardHeader">
       <Grid style={{ gap: '16px' }} maxWidth="360px">
-        <Text bold>{t('It’s a BNB Smart Chain only feature')}</Text>
+        <Text bold>{t('It’s a Polygon Chain only feature')}</Text>
 
         {image && (
           <Box mx="auto" my="8px" position="relative" width="100%" minHeight="250px">
@@ -50,7 +50,7 @@ export function PageNetworkSupportModal() {
         )}
         <Text small>
           {t(
-            'Our Pools, Limit, Trading Competition, Prediction, Lottery and NFTs features are currently available only on BNB Chain! Come over and join the community in the fun!',
+            'Our Pools, Limit, Trading Competition, Prediction, Lottery and NFTs features are currently available only on Polygon Chain! Come over and join the community in the fun!',
           )}
         </Text>
         {canSwitch ? (
@@ -59,7 +59,7 @@ export function PageNetworkSupportModal() {
             isLoading={isLoading}
             onClick={() => (isWrongNetwork ? switchNetworkLocal(ChainId.BSC) : switchNetworkAsync(ChainId.BSC))}
           >
-            {t('Switch to %chain%', { chain: 'BNB Smart Chain' })}
+            {t('Switch to %chain%', { chain: 'Polygon Chain' })}
           </Button>
         ) : (
           <Message variant="danger">

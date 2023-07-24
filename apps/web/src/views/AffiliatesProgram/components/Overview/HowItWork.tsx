@@ -82,9 +82,9 @@ const HowItWork = () => {
                 Earning
               </Text>
               <Text fontSize={['40px']} bold color="failure" lineHeight="110%">
-                CAKE
+                PLASA
               </Text>
-              <Text fontSize={['14px']}>Earn up to 20% referral commissions in CAKE</Text>
+              <Text fontSize={['14px']}>Earn up to 20% referral commissions in PLASA</Text>
             </Box>
           </Card>
         </Flex>

@@ -117,7 +117,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
           <Flex bg={COLORS.BNB} borderRadius="16px" pl="4px" pr="8px" py="2px">
             <ChainLogo chainId={ChainId.BSC} />
             <Text color="white" ml="4px">
-              BNB Smart Chain
+              Polygon Chain
             </Text>
           </Flex>
           <LinkExternal isBscScan href={getBlockExploreLink(account, 'address', ChainId.BSC)}>
@@ -125,7 +125,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
           </LinkExternal>
         </Flex>
         <Flex alignItems="center" justifyContent="space-between">
-          <Text color="textSubtle">BNB {t('Balance')}</Text>
+          <Text color="textSubtle">MATIC {t('Balance')}</Text>
           {!bnbBalance.isFetched ? (
             <Skeleton height="22px" width="60px" />
           ) : (
@@ -134,7 +134,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
         </Flex>
         {wBNBBalance.gt(0) && (
           <Flex alignItems="center" justifyContent="space-between">
-            <Text color="textSubtle">WBNB {t('Balance')}</Text>
+            <Text color="textSubtle">WMATIC {t('Balance')}</Text>
             {wBNBFetchStatus !== FetchStatus.Fetched ? (
               <Skeleton height="22px" width="60px" />
             ) : (
@@ -143,7 +143,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
           </Flex>
         )}
         <Flex alignItems="center" justifyContent="space-between">
-          <Text color="textSubtle">{t('CAKE Balance')}</Text>
+          <Text color="textSubtle">{t('PLASA Balance')}</Text>
           {cakeFetchStatus !== FetchStatus.Fetched ? (
             <Skeleton height="22px" width="60px" />
           ) : (

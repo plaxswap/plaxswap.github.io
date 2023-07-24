@@ -70,8 +70,8 @@ const ReviewStage: React.FC<React.PropsWithChildren<ReviewStageProps>> = ({
             scale="sm"
             variant="subtle"
           >
-            <ButtonMenuItem>BNB</ButtonMenuItem>
-            <ButtonMenuItem>WBNB</ButtonMenuItem>
+            <ButtonMenuItem>MATIC</ButtonMenuItem>
+            <ButtonMenuItem>WMATIC</ButtonMenuItem>
           </ButtonMenu>
           <Text small color="textSubtle">
             {t('Total payment')}
@@ -103,7 +103,7 @@ const ReviewStage: React.FC<React.PropsWithChildren<ReviewStageProps>> = ({
         )}
         <Flex alignItems="center">
           <Text my="16px" mr="4px">
-            {t('Convert between BNB and WBNB for free')}:
+            {t('Convert between MATIC and WMATIC for free')}:
           </Text>
           <Button
             as={Link}
@@ -111,7 +111,7 @@ const ReviewStage: React.FC<React.PropsWithChildren<ReviewStageProps>> = ({
             height="16px"
             external
             variant="text"
-            href="/swap?inputCurrency=BNB&outputCurrency=0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+            href="/swap?inputCurrency=MATIC&outputCurrency=0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270"
           >
             {t('Convert')}
           </Button>
@@ -126,7 +126,7 @@ const ReviewStage: React.FC<React.PropsWithChildren<ReviewStageProps>> = ({
         >
           {t('Checkout')}
         </Button>
-        <Button as={Link} external style={{ width: '100%' }} href="/swap?outputCurrency=BNB" variant="secondary">
+        <Button as={Link} external style={{ width: '100%' }} href="/swap?outputCurrency=MATIC" variant="secondary">
           {t('Get %symbol1% or %symbol2%', { symbol1: 'MATIC', symbol2: 'WMATIC' })}
         </Button>
       </Flex>

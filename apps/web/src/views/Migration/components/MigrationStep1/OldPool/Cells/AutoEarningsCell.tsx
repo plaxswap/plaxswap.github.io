@@ -22,7 +22,7 @@ const AutoEarningsCell: React.FC<React.PropsWithChildren<AutoEarningsCellProps>>
 }) => {
   const { t } = useTranslation()
   const { isMobile } = useMatchBreakpoints()
-  const labelText = t('Recent CAKE profit')
+  const labelText = t('Recent PLASA profit')
 
   return (
     <StyledCell role="cell">

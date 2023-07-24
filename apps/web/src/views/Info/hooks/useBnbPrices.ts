@@ -64,7 +64,7 @@ const fetchBnbPrices = async (
       },
     }
   } catch (error) {
-    console.error('Failed to fetch BNB prices', error)
+    console.error('Failed to fetch MATIC prices', error)
     return {
       error: true,
       bnbPrices: undefined,

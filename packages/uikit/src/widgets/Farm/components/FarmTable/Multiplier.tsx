@@ -40,12 +40,12 @@ const Multiplier: React.FunctionComponent<React.PropsWithChildren<FarmTableMulti
         <>
           <Text>
             {t(
-              "The Multiplier represents the proportion of CAKE rewards each farm receives, as a proportion of the CAKE produced each second."
+              "The Multiplier represents the proportion of PLASA rewards each farm receives, as a proportion of the PLASA produced each second."
             )}
           </Text>
           <Text my="24px">
             {" "}
-            {t("For example, if a 1x farm received 1 CAKE per second, a 40x farm would receive 40 CAKE per second.")}
+            {t("For example, if a 1x farm received 1 PLASA per second, a 40x farm would receive 40 PLASA per second.")}
           </Text>
           <Text>{t("This amount is already included in all APR calculations for the farm.")}</Text>
         </>
@@ -53,16 +53,16 @@ const Multiplier: React.FunctionComponent<React.PropsWithChildren<FarmTableMulti
         <>
           <Text>
             {t(
-              "The Multiplier represents the proportion of CAKE rewards each farm receives, as a proportion of the CAKE produced each block."
+              "The Multiplier represents the proportion of PLASA rewards each farm receives, as a proportion of the PLASA produced each block."
             )}
           </Text>
           <Text my="24px">
             {" "}
-            {t("For example, if a 1x farm received 1 CAKE per block, a 40x farm would receive 40 CAKE per block.")}
+            {t("For example, if a 1x farm received 1 PLASA per block, a 40x farm would receive 40 PLASA per block.")}
           </Text>
           <Text>
             {t(
-              "We have recently rebased multipliers by a factor of 10, this is only a visual change and does not affect the amount of CAKE each farm receives."
+              "We have recently rebased multipliers by a factor of 10, this is only a visual change and does not affect the amount of PLASA each farm receives."
             )}
           </Text>
           <Link

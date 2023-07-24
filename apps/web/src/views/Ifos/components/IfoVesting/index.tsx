@@ -115,7 +115,7 @@ const IfoVesting: React.FC<React.PropsWithChildren<IfoVestingProps>> = () => {
         {cardStatus.status === VestingStatus.NOT_TOKENS_CLAIM && (
           <IfoNotTokens
             participateText={t(
-              'Participate in our next IFO. and remember to lock your CAKE to increase your allocation!',
+              'Participate in our next IFO. and remember to lock your PLASA to increase your allocation!',
             )}
           />
         )}

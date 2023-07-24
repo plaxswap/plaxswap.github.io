@@ -48,13 +48,6 @@ const tierStyleMap = {
     },
     color: COLOR_BRONZE,
   },
-  [Tiers.SILVER]: {
-    icon: MedalSilverIcon,
-    label: {
-      text: 'Silver',
-    },
-    color: COLOR_SILVER,
-  },
   [Tiers.PURPLE]: {
     icon: MedalPurpleIcon,
     label: {
@@ -98,7 +91,7 @@ const EasterPrizesGrid = () => {
             <tr>
               <th>{t('Rank in team')}</th>
               <th>{t('Tier')}</th>
-              <th>{t('CAKE Prizes (Split)')}</th>
+              <th>{t('PLASA Prizes (Split)')}</th>
               <th>{t('Achievements')}</th>
               <th>{t('NFT')}</th>
             </tr>

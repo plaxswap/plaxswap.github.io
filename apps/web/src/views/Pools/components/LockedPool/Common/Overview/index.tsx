@@ -75,7 +75,7 @@ const Overview: React.FC<React.PropsWithChildren<OverviewPropsType>> = ({
           </Text>
         </Flex>
         <LightGreyCard>
-          <BalanceRow title={t('Cake to be locked')} value={lockedAmount} newValue={newLockedAmount} decimals={2} />
+          <BalanceRow title={t('PLASA to be locked')} value={lockedAmount} newValue={newLockedAmount} decimals={2} />
           <BalanceRow title="iCake" decimals={2} value={formattediCake} newValue={newFormattediCake} />
           <BalanceRow
             title="apr"
@@ -124,7 +124,7 @@ const Overview: React.FC<React.PropsWithChildren<OverviewPropsType>> = ({
         <Box mt="16px" maxWidth="370px">
           <Message variant="warning">
             <MessageText>
-              {t('You will be able to withdraw the staked CAKE and profit only when the staking position is unlocked')}
+              {t('You will be able to withdraw the staked PLASA and profit only when the staking position is unlocked')}
             </MessageText>
           </Message>
         </Box>

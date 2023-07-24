@@ -137,11 +137,11 @@ const LockedModalBody: React.FC<React.PropsWithChildren<LockedModalBodyPropsType
       {!needsApprove && cakeNeeded ? (
         hasEnoughBalanceToExtend ? (
           <Text fontSize="12px" mt="24px">
-            {t('0.0001 CAKE will be spent to extend')}
+            {t('0.0001 PLASA will be spent to extend')}
           </Text>
         ) : (
           <Message variant="warning" mt="24px">
-            <MessageText maxWidth="200px">{t('0.0001 CAKE required for enabling extension')}</MessageText>
+            <MessageText maxWidth="200px">{t('0.0001 PLASA required for enabling extension')}</MessageText>
           </Message>
         )
       ) : null}

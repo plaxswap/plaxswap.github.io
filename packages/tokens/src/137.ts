@@ -119,5 +119,13 @@ export const bscTokens = {
     'Mines of Dalarnia',
     'https://www.minesofdalarnia.com/',
   ),
+  pay: new ERC20Token(
+    ChainId.BSC,
+    '0x7Ab2b041E120DcA2a40d8F9524B618A854d3A617',
+    8,
+    'PAY',
+    'PLAXPAY',
+    'https://www.plaxpay.app/',
+  ),
 
 }
