@@ -11,18 +11,18 @@
   "keywords": ["pancake", "default"],
   "tokens": [
     {
-      "name": "Wrapped BNB",
-      "symbol": "WBNB",
-      "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
-      "chainId": 56,
+      "name": "Wrapped MATIC",
+      "symbol": "WMATIC",
+      "address": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
+      "chainId": 137,
       "decimals": 18,
-      "logoURI": "https://tokens.pancakeswap.finance/images/symbol/bnb.png"
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270/logo.png"
     },
     {
       "name": "BUSD Token",
       "symbol": "BUSD",
-      "address": "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
-      "chainId": 56,
+      "address": "0x9C9e5fD8bbc25984B178FdCE6117Defa39d2db39",
+      "chainId": 137,
       "decimals": 18,
       "logoURI": "https://tokens.pancakeswap.finance/images/symbol/busd.png"
     },
@@ -35,52 +35,60 @@
       "logoURI": "https://pancakeswap.finance/images/tokens/0x2170Ed0880ac9A755fd29B2688956BD959F933F8.png"
     },
     {
-      "name": "BTCB Token",
-      "symbol": "BTCB",
-      "address": "0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "https://tokens.pancakeswap.finance/images/symbol/wbtc.png"
+      "name": "Rupiah Token",
+      "symbol": "IDRT",
+      "address": "0x554cd6bdD03214b10AafA3e0D4D42De0C5D2937b",
+      "chainId": 137,
+      "decimals": 6,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x554cd6bdD03214b10AafA3e0D4D42De0C5D2937b/logo.png"
     },
     {
       "name": "Tether USD",
       "symbol": "USDT",
-      "address": "0x55d398326f99059fF775485246999027B3197955",
-      "chainId": 56,
-      "decimals": 18,
+      "address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+      "chainId": 137,
+      "decimals": 6,
       "logoURI": "https://tokens.pancakeswap.finance/images/symbol/usdt.png"
     },
     {
-      "name": "PancakeSwap Token",
-      "symbol": "CAKE",
-      "address": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.png"
+      "name": "USD Coin",
+      "symbol": "USDC",
+      "address": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+      "chainId": 137,
+      "decimals": 6,
+      "logoURI": "https://tokens.pancakeswap.finance/images/symbol/usdc.png"
     },
     {
-      "name": "Venus",
-      "symbol": "XVS",
-      "address": "0xcF6BB5389c92Bdda8a3747Ddb454cB7a64626C63",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0xcF6BB5389c92Bdda8a3747Ddb454cB7a64626C63.png"
+      "name": "Plaxswap Token",
+      "symbol": "PLASA",
+      "address": "0x7972De0F17Ae5dC02385A863595CC74168F6D550",
+      "chainId": 137,
+      "decimals": 8,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x7972De0F17Ae5dC02385A863595CC74168F6D550/logo.png"
     },
     {
-      "name": "VAI Stablecoin",
-      "symbol": "VAI",
-      "address": "0x4BD17003473389A42DAF6a0a729f6Fdb328BbBd7",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x4BD17003473389A42DAF6a0a729f6Fdb328BbBd7.png"
+      "name": "IDRX",
+      "symbol": "IDRX",
+      "address": "0x649a2DA7B28E0D54c13D5eFf95d3A660652742cC",
+      "chainId": 137,
+      "decimals": 0,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x649a2DA7B28E0D54c13D5eFf95d3A660652742cC/logo.png"
     },
     {
-      "name": "Alpaca",
-      "symbol": "ALPACA",
-      "address": "0x8F0528cE5eF7B51152A59745bEfDD91D97091d2F",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0x8F0528cE5eF7B51152A59745bEfDD91D97091d2F.png"
+      "name": "PLAXPAY",
+      "symbol": "PAY",
+      "address": "0x7Ab2b041E120DcA2a40d8F9524B618A854d3A617",
+      "chainId": 137,
+      "decimals": 8,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x7Ab2b041E120DcA2a40d8F9524B618A854d3A617/logo.png"
+    },
+    {
+      "name": "WESMEUP",
+      "symbol": "SME",
+      "address": "0xcD9c386c9CE5987A8336C4Db5c6A17750ea0e339",
+      "chainId": 137,
+      "decimals": 8,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xcD9c386c9CE5987A8336C4Db5c6A17750ea0e339/logo.png"
     },
     {
       "name": "Belt",

@@ -22,8 +22,8 @@ const Page: React.FC<
   const { t } = useTranslation()
   const { chainId } = useActiveChainId()
   const isBSC = chainId === ChainId.BSC
-  const externalText = isBSC ? t('Bridge assets to BNB Chain') : ''
-  const externalLinkUrl = isBSC ? 'https://bridge.pancakeswap.finance/' : ''
+  // const externalText = isBSC ? t('Bridge assets to BNB Chain') : ''
+  // const externalLinkUrl = isBSC ? 'https://bridge.pancakeswap.finance/' : ''
 
   return (
     <>
@@ -32,8 +32,8 @@ const Page: React.FC<
         noMinHeight={noMinHeight}
         hideFooterOnDesktop={hideFooterOnDesktop}
         helpUrl={helpUrl}
-        externalText={externalText}
-        externalLinkUrl={externalLinkUrl}
+        // externalText={externalText}
+        // externalLinkUrl={externalLinkUrl}
         {...props}
       >
         {children}
