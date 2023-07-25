@@ -15,8 +15,8 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: bscTokens.wbnb,
   },
   {
-    pid: 2,
-    v1pid: 1,
+    pid: 1,
+    // v1pid: 1,
     lpSymbol: 'PLASA-MATIC LP',
     lpAddress: CAKE_BNB_LP_MAINNET,
     token: bscTokens.cake,
@@ -24,8 +24,8 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
-    pid: 3,
-    v1pid: 2,
+    pid: 2,
+    // v1pid: 2,
     lpSymbol: 'PLASA-USDT LP',
     lpAddress: '0x5D7FD43A2cf8Db74E2604825dB4bC70571798b41',
     // boosted: true,
@@ -33,8 +33,8 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: bscTokens.usdt,
   },
   {
-    pid: 4,
-    v1pid: 3,
+    pid: 3,
+    // v1pid: 3,
     lpSymbol: 'PLASA-USDC LP',
     lpAddress: '0xE10ea4E991F19BF3d61bfc2Ea72EC75b4c02Eca4',
     token: bscTokens.cake,
@@ -42,8 +42,8 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
-    pid: 5,
-    v1pid: 4,
+    pid: 4,
+    // v1pid: 4,
     lpSymbol: 'USDT-MATIC LP',
     lpAddress: '0x32f7392d7CF0Be17229006D371f02508D3B33866',
     token: bscTokens.usdt,
