@@ -206,7 +206,7 @@ export enum PredictionStatus {
 
 export enum PredictionSupportedSymbol {
   BNB = 'MATIC',
-  CAKE = 'CAKE',
+  CAKE = 'PLASA',
 }
 
 export enum PredictionsChartView {

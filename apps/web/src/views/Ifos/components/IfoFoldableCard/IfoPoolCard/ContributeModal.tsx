@@ -168,7 +168,7 @@ const ContributeModal: React.FC<React.PropsWithChildren<Props>> = ({
             <Flex flexGrow={1} justifyContent="flex-end">
               <Image
                 src={
-                  ifo.currency.symbol === 'CAKE'
+                  ifo.currency.symbol === 'PLASA'
                     ? '/images/cake.svg'
                     : `/images/farms/${currency.symbol.split(' ')[0].toLowerCase()}.svg`
                 }

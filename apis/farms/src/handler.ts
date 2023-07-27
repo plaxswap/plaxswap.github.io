@@ -156,7 +156,7 @@ const chainlinkAbi = [
 ]
 
 export async function fetchCakePrice() {
-  const address = '0xB6064eD41d4f67e353768aA239cA86f4F73665a1'
+  const address = '0xAB594600376Ec9fD91F8e885dADF0CE036862dE0'
   const chainlinkOracleContract = new Contract(address, chainlinkAbi, bscProvider)
 
   const latestAnswer = await chainlinkOracleContract.latestAnswer()

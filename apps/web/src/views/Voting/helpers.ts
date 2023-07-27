@@ -44,9 +44,9 @@ export interface Message {
 }
 
 const STRATEGIES = [
-  { name: 'cake', params: { symbol: 'CAKE', address: bscTokens.cake.address, decimals: 18, max: 300 } },
+  { name: 'plasa', params: { symbol: 'PLASA', address: bscTokens.cake.address, decimals: 18, max: 300 } },
 ]
-const NETWORK = '56'
+const NETWORK = '137'
 
 /**
  * Generates metadata required by snapshot to validate payload

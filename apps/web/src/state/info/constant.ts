@@ -17,7 +17,7 @@ import {
 export type MultiChainName = 'BSC' | 'ETH'
 
 export const multiChainQueryMainToken = {
-  BSC: 'BNB',
+  BSC: 'MATIC',
   ETH: 'ETH',
 }
 
