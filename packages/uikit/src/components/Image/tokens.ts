@@ -3,13 +3,13 @@
  */
 const tokens = {
   cake: {
-    symbol: "CAKE",
+    symbol: "PLASA",
     address: {
-      56: "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
+      137: "0x7972De0F17Ae5dC02385A863595CC74168F6D550",
       97: "0xFa60D973F7642B748046464e165A65B7323b0DEE",
     },
-    decimals: 18,
-    projectLink: "https://pancakeswap.finance/",
+    decimals: 8,
+    projectLink: "https://plaxswap.io/",
   },
   txl: {
     symbol: "TXL",
@@ -435,9 +435,9 @@ const tokens = {
     projectLink: "https://venus.io/",
   },
   wbnb: {
-    symbol: "wBNB",
+    symbol: "wMATIC",
     address: {
-      56: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+      137: "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
       97: "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd",
     },
     decimals: 18,
@@ -608,11 +608,11 @@ const tokens = {
   busd: {
     symbol: "BUSD",
     address: {
-      56: "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+      137: "0x9C9e5fD8bbc25984B178FdCE6117Defa39d2db39",
       97: "",
     },
     decimals: 18,
-    projectLink: "https://www.paxos.com/busd/",
+    projectLink: "https://www.binance/en/busd",
   },
   eth: {
     symbol: "ETH",
@@ -680,10 +680,10 @@ const tokens = {
   usdc: {
     symbol: "USDC",
     address: {
-      56: "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d",
+      137: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
       97: "0xaB1a4d4f1D656d2450692D237fdD6C7f9146e814",
     },
-    decimals: 18,
+    decimals: 6,
     projectLink: "https://www.centre.io/usdc",
   },
   dai: {
@@ -743,10 +743,10 @@ const tokens = {
   usdt: {
     symbol: "USDT",
     address: {
-      56: "0x55d398326f99059fF775485246999027B3197955",
+      137: "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
       97: "0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5",
     },
-    decimals: 18,
+    decimals: 6,
     projectLink: "https://tether.to/",
   },
   btcb: {

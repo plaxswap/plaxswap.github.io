@@ -12,7 +12,7 @@ import {
   WETH9,
 } from '@pancakeswap/sdk'
 import { FAST_INTERVAL } from 'config/constants'
-import { BUSD, CAKE, USDC } from '@pancakeswap/tokens'
+import { USDT, CAKE, USDC } from '@pancakeswap/tokens'
 import { useMemo } from 'react'
 import useSWR from 'swr'
 import useSWRImmutable from 'swr/immutable'
@@ -32,7 +32,7 @@ export default function useBUSDPrice(currency?: Currency): Price<Currency, Curre
   const { chainId } = useActiveChainId()
   const wrapped = currency?.wrapped
   const wnative = WNATIVE[chainId]
-  const stable = BUSD[chainId] || USDC[chainId]
+  const stable = USDT[chainId] || USDC[chainId]
 
   const tokenPairs: [Currency | undefined, Currency | undefined][] = useMemo(
     () => [
@@ -192,7 +192,7 @@ export const useCakeBusdPrice = (
   const isTestnet = !forceMainnet && isChainTestnet(chainId)
   // Return bsc testnet cake if chain is testnet
   const cake: Token = isTestnet ? CAKE[ChainId.BSC_TESTNET] : CAKE[ChainId.BSC]
-  return usePriceByPairs(BUSD[cake.chainId], cake)
+  return usePriceByPairs(USDT[cake.chainId], cake)
 }
 
 // @Note: only fetch from one pair
@@ -203,5 +203,5 @@ export const useBNBBusdPrice = (
   const isTestnet = !forceMainnet && isChainTestnet(chainId)
   // Return bsc testnet wbnb if chain is testnet
   const wbnb: Token = isTestnet ? WBNB[ChainId.BSC_TESTNET] : WBNB[ChainId.BSC]
-  return usePriceByPairs(BUSD[wbnb.chainId], wbnb)
+  return usePriceByPairs(USDT[wbnb.chainId], wbnb)
 }
