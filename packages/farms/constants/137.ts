@@ -72,6 +72,20 @@ const farms: SerializedFarmConfig[] = [
     token: bscTokens.busd,
     quoteToken: bscTokens.wbnb,
   },
+  {
+    pid: 8,
+    lpSymbol: 'USDT-SME LP',
+    lpAddress: '0xB4C4Cd512d60F0E589fBcC58353C1e6225f9a1BB',
+    token: bscTokens.sme,
+    quoteToken: bscTokens.usdt,
+  },
+  {
+    pid: 9,
+    lpSymbol: 'USDC-PAY LP',
+    lpAddress: '0x28A2861188B196269366964CbDbA0473819C6467',
+    token: bscTokens.pay,
+    quoteToken: bscTokens.usdc,
+  },
   //    * V3 by order of release (some may be out of PID order due to multiplier boost)
 ].map((p) => ({ ...p, token: p.token.serialize, quoteToken: p.quoteToken.serialize }))
 

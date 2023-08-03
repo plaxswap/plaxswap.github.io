@@ -127,5 +127,13 @@ export const bscTokens = {
     'PLAXPAY',
     'https://www.plaxpay.app/',
   ),
+  sme: new ERC20Token(
+    ChainId.BSC,
+    '0xcD9c386c9CE5987A8336C4Db5c6A17750ea0e339',
+    8,
+    'SME',
+    'WESMEUP',
+    'https://www.wesmeup.net/',
+  ),
 
 }
