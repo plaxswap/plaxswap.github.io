@@ -61,7 +61,7 @@ const DepositAction: React.FC<React.PropsWithChildren<DepositActionProps>> = ({ 
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t(
-      'PLASA deposit will be diverted to the fixed-term staking pool. Please note that PLASA deposited can ONLY be withdrawn after 10 weeks.',
+      'PLASA deposit will be diverted to the fixed-term staking pool. Please note that PLAX deposited can ONLY be withdrawn after 10 weeks.',
     ),
     {
       placement: 'bottom',
@@ -122,7 +122,7 @@ const DepositAction: React.FC<React.PropsWithChildren<DepositActionProps>> = ({ 
           {t('Deposit')}
         </Text>
         <Text fontSize="12px" ml="4px" color="textSubtle" bold as="span">
-          PLASA
+          PLAX
         </Text>
       </Box>
       <InputPanel>
@@ -150,14 +150,14 @@ const DepositAction: React.FC<React.PropsWithChildren<DepositActionProps>> = ({ 
         </Container>
         {isLessThanOneCake && (
           <Text color="failure" fontSize="14px" textAlign="right">
-            {t('Please deposit at least 1 PLASA to participate in the Pottery')}
+            {t('Please deposit at least 1 PLAX to participate in the Pottery')}
           </Text>
         )}
       </InputPanel>
       <Flex>
         <Flex ml="auto">
           <Text fontSize="12px" color="textSubtle">
-            {t('Deposited PLASA will be locked for 10 weeks')}
+            {t('Deposited PLAX will be locked for 10 weeks')}
           </Text>
           <Flex ref={targetRef}>
             {tooltipVisible && tooltip}

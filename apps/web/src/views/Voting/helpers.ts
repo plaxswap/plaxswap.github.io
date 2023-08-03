@@ -44,7 +44,7 @@ export interface Message {
 }
 
 const STRATEGIES = [
-  { name: 'plasa', params: { symbol: 'PLASA', address: bscTokens.cake.address, decimals: 18, max: 300 } },
+  { name: 'plax', params: { symbol: 'PLAX', address: bscTokens.cake.address, decimals: 18, max: 300 } },
 ]
 const NETWORK = '137'
 

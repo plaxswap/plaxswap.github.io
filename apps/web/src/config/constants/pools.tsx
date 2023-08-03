@@ -14,7 +14,7 @@ export const DURATION_FACTOR = BigNumber.from('31536000')
 
 export const vaultPoolConfig = {
   [VaultKey.CakeVaultV1]: {
-    name: <Trans>Auto PLASA</Trans>,
+    name: <Trans>Auto PLAX</Trans>,
     description: <Trans>Automatic restaking</Trans>,
     autoCompoundFrequency: 5000,
     gasLimit: 380000,
@@ -24,7 +24,7 @@ export const vaultPoolConfig = {
     },
   },
   [VaultKey.CakeVault]: {
-    name: <Trans>Stake PLASA</Trans>,
+    name: <Trans>Stake PLAX</Trans>,
     description: <Trans>Stake, Earn – And more!</Trans>,
     autoCompoundFrequency: 5000,
     gasLimit: 600000,
@@ -34,7 +34,7 @@ export const vaultPoolConfig = {
     },
   },
   [VaultKey.CakeFlexibleSideVault]: {
-    name: <Trans>Flexible PLASA</Trans>,
+    name: <Trans>Flexible PLAX</Trans>,
     description: <Trans>Flexible staking on the side.</Trans>,
     autoCompoundFrequency: 5000,
     gasLimit: 500000,
@@ -44,8 +44,8 @@ export const vaultPoolConfig = {
     },
   },
   [VaultKey.IfoPool]: {
-    name: 'IFO PLASA',
-    description: <Trans>Stake PLASA to participate in IFOs</Trans>,
+    name: 'IFO PLAX',
+    description: <Trans>Stake PLAX to participate in IFOs</Trans>,
     autoCompoundFrequency: 1,
     gasLimit: 500000,
     tokenImage: {
@@ -62,7 +62,7 @@ export const livePools: Pool.SerializedPoolConfig<SerializedWrappedToken>[] = [
     earningToken: bscTokens.cake,
     contractAddress: {
       80001: '',
-      137: '0x78981FAc1d34e7775A1c6B907E69a0D065997a11',
+      137: '0x40747E35d159829Bb26e4651a75C779b557bd305',
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '10',

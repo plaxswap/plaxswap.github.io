@@ -60,7 +60,7 @@ export const useVaultApprove = (vaultKey: VaultKey, setLastUpdated: () => void) 
   return useCakeApprove(
     setLastUpdated,
     vaultPoolContract?.address,
-    t('You can now stake in the %symbol% vault!', { symbol: 'PLASA' }),
+    t('You can now stake in the %symbol% vault!', { symbol: 'PLAX' }),
   )
 }
 

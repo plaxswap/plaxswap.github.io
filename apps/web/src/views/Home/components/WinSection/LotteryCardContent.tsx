@@ -35,7 +35,7 @@ const LotteryCardContent = () => {
     },
   )
 
-  const cakePrizesText = t('%cakePrizeInUsd% in PLASA prizes this round', { cakePrizeInUsd: cakePriceBusd.toString() })
+  const cakePrizesText = t('%cakePrizeInUsd% in PLAX prizes this round', { cakePrizeInUsd: cakePriceBusd.toString() })
   const [pretext, prizesThisRound] = cakePrizesText.split(cakePriceBusd.toString())
   const amountCollectedInCake = currentLottery ? parseFloat(currentLottery.amountCollectedInCake) : null
   const currentLotteryPrize = amountCollectedInCake ? cakePriceBusd.times(amountCollectedInCake) : null

@@ -224,8 +224,8 @@ const V3Banner = () => {
       <S.Inner>
         <S.LeftWrapper>
           <Title>{t('PancakeSwap V3')}</Title>
-          <StyledSubheading data-text={t('Swap Plasa Token')}>
-            {t('Swap Plasa Token')}
+          <StyledSubheading data-text={t('Swap PLAX Token')}>
+            {t('Swap PLAX Token')}
           </StyledSubheading>
           <NextLinkFromReactRouter
             target="_blank"

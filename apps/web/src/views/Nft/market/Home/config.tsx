@@ -26,10 +26,10 @@ const config = (t: ContextApi['t']) => {
       title: t('What are the fees?'),
       description: [
         t(
-          '100% of all platform fees taken by PlaxSwap from sales are used to buy back and BURN PLASA tokens in our weekly PLASA burns.',
+          '100% of all platform fees taken by PlaxSwap from sales are used to buy back and BURN PLAX tokens in our weekly PLAX burns.',
         ),
         t(
-          'Platform fees: 2% is subtracted from NFT sales on the market. Subject to change.Collection fees: Additional fees may be taken by collection creators, once those collections are live. These will not contribute to the PLASA burns.',
+          'Platform fees: 2% is subtracted from NFT sales on the market. Subject to change.Collection fees: Additional fees may be taken by collection creators, once those collections are live. These will not contribute to the PLAX burns.',
         ),
       ],
     },

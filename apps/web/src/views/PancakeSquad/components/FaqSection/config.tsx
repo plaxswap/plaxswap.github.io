@@ -36,7 +36,7 @@ const config = ({ t }: FAQsType) => [
   },
   {
     title: t('Where do the fees go?'),
-    description: [t('100% of PLASA spent on Plaxswap Squad NFTs will be burned as part of our weekly PLASA burn.')],
+    description: [t('100% of PLAX spent on Plaxswap Squad NFTs will be burned as part of our weekly PLAX burn.')],
   },
   {
     title: t('How are the NFTs randomly distributed?'),

@@ -3,15 +3,15 @@ import { multicallAddresses } from '@pancakeswap/multicall'
 export default {
   masterChef: {
     80001: '',
-    137: '0x78981FAc1d34e7775A1c6B907E69a0D065997a11',
+    137: '0x40747E35d159829Bb26e4651a75C779b557bd305',
   },
   masterChefV1: {
     80001: '',
-    137: '0xef8403528a3424bb4600C3f12C183aAf0848f47d',
+    137: '0x641084ecc9Ddb557BbA1eE3dE5fCcAf5E88159ED',
   },
   sousChef: {
     80001: '',
-    137: '0xeA7FB3f3d8Ee07AD58F6bDeD31ca0540C0d37d79',
+    137: '0xf026Ed6209fD445450dAe20DaaAD0C4ED98953C8',
   },
   lotteryV2: {
     80001: '',
@@ -63,7 +63,7 @@ export default {
     80001: '',
   },
   cakeVault: {
-    137: '0x5BedCFCf267dB3EC03f90B5A324f4f83761A1146',
+    137: '0xf508a363AE60213cdc360FA232bc781ed39DaF7b',
     80001: '',
   },
   cakeFlexibleSideVault: {

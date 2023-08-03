@@ -72,7 +72,7 @@ const ContributeModal: React.FC<React.PropsWithChildren<Props>> = ({
   const raisingTokenContractApprover = useERC20(currency.address)
   const { t } = useTranslation()
   const valueWithTokenDecimals = new BigNumber(value).times(DEFAULT_TOKEN_DECIMAL)
-  const label = currency === bscTokens.cake ? t('Max. PLASA entry') : t('Max. token entry')
+  const label = currency === bscTokens.cake ? t('Max. PLAX entry') : t('Max. token entry')
 
   const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove, handleConfirm } =
     useApproveConfirmTransaction({
@@ -129,17 +129,17 @@ const ContributeModal: React.FC<React.PropsWithChildren<Props>> = ({
   }, [maximumTokenEntry, userCurrencyBalance])
 
   const basicTooltipContent = t(
-    'For the private sale, each eligible participant will be able to commit any amount of PLASA up to the maximum commit limit, which is published along with the IFO voting proposal.',
+    'For the private sale, each eligible participant will be able to commit any amount of PLAX up to the maximum commit limit, which is published along with the IFO voting proposal.',
   )
 
   const unlimitedToolipContent = (
     <Box>
-      <Text display="inline">{t('For the public sale, Max PLASA entry is capped by')} </Text>
+      <Text display="inline">{t('For the public sale, Max PLAX entry is capped by')} </Text>
       <Text bold display="inline">
         {t('the number of iCAKE.')}{' '}
       </Text>
       <Text display="inline">
-        {t('Lock more PLASA for longer durations to increase the maximum number of PLASA you can commit to the sale.')}
+        {t('Lock more PLAX for longer durations to increase the maximum number of PLAX you can commit to the sale.')}
       </Text>
     </Box>
   )
@@ -168,7 +168,7 @@ const ContributeModal: React.FC<React.PropsWithChildren<Props>> = ({
             <Flex flexGrow={1} justifyContent="flex-end">
               <Image
                 src={
-                  ifo.currency.symbol === 'PLASA'
+                  ifo.currency.symbol === 'PLAX'
                     ? '/images/cake.svg'
                     : `/images/farms/${currency.symbol.split(' ')[0].toLowerCase()}.svg`
                 }
@@ -201,7 +201,7 @@ const ContributeModal: React.FC<React.PropsWithChildren<Props>> = ({
             >
               {valueWithTokenDecimals.isGreaterThan(userCurrencyBalance)
                 ? t('Insufficient Balance')
-                : t('Exceeded max PLASA entry')}
+                : t('Exceeded max PLAX entry')}
             </Text>
           )}
           <Text color="textSubtle" textAlign="right" fontSize="12px" mb="16px">
@@ -225,7 +225,7 @@ const ContributeModal: React.FC<React.PropsWithChildren<Props>> = ({
           {vestingInformation.percentage > 0 && <IfoHasVestingNotice url={articleUrl} />}
           <Text color="textSubtle" fontSize="12px" mb="24px">
             {t(
-              'If you don’t commit enough PLASA, you may not receive a meaningful amount of IFO tokens, or you may not receive any IFO tokens at all.',
+              'If you don’t commit enough PLAX, you may not receive a meaningful amount of IFO tokens, or you may not receive any IFO tokens at all.',
             )}
             <Link
               fontSize="12px"

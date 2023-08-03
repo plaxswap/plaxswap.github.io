@@ -74,7 +74,7 @@ export const V3SwapPromotionIcon: React.FC<{ wrapperStyle?: React.CSSProperties 
     tooltip: campaignTooltip,
     tooltipVisible: campaignTooltipVisible,
     targetRef: campaignTargetRef,
-  } = useTooltip(<Text>{t('Swap Plasa Token')}</Text>, {
+  } = useTooltip(<Text>{t('Swap PLAX Token')}</Text>, {
     placement: 'top',
     trigger: 'hover',
     avoidToStopPropagation: true,

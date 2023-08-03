@@ -103,7 +103,7 @@ const SetPositionCard: React.FC<React.PropsWithChildren<SetPositionCardProps>> =
     return TOKEN_BALANCE_CONFIG[token.symbol]
   }, [token.symbol])
 
-  const { isVaultApproved, setLastUpdated } = useCakeApprovalStatus(token.symbol === 'PLASA' ? predictionsAddress : null)
+  const { isVaultApproved, setLastUpdated } = useCakeApprovalStatus(token.symbol === 'PLAX' ? predictionsAddress : null)
   const { handleApprove, pendingTx } = useCakeApprove(
     setLastUpdated,
     predictionsAddress,
@@ -168,14 +168,14 @@ const SetPositionCard: React.FC<React.PropsWithChildren<SetPositionCardProps>> =
   const handleEnterPosition = async () => {
     const betMethod = position === BetPosition.BULL ? 'betBull' : 'betBear'
     const callOptions =
-      token.symbol === 'PLASA'
+      token.symbol === 'PLAX'
         ? {
             gasLimit: 300000,
             value: 0,
           }
         : { value: valueAsBn.toString() }
 
-    const args = token.symbol === 'PLASA' ? [epoch, valueAsBn.toString()] : [epoch]
+    const args = token.symbol === 'PLAX' ? [epoch, valueAsBn.toString()] : [epoch]
 
     const receipt = await fetchWithCatchTxError(() => {
       return callWithGasPrice(predictionsContract, betMethod, args, callOptions)

@@ -72,7 +72,7 @@ function MyApp(props: AppProps<{ initialReduxState: any }>) {
         />
         <meta
           name="description"
-          content="Cheaper and faster than Uniswap? Discover Plaxswap, the leading DEX on Polygon Chain (Polygon) with the best farms in DeFi and a lottery for PLASA."
+          content="Cheaper and faster than Uniswap? Discover Plaxswap, the leading DEX on Polygon Chain (Polygon) with the best farms in DeFi and a lottery for PLAX."
         />
         <meta name="theme-color" content="#1FC7D4" />
         {(Component as NextPageWithLayout).mp && (

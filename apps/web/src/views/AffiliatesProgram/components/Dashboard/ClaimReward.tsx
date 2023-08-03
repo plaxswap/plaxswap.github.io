@@ -62,7 +62,7 @@ const ClaimReward = () => {
                     Rewards earned
                   </Text>
                   <Text bold fontSize="14px">
-                    500 PLASA
+                    500 PLAX
                   </Text>
                 </Flex>
               </LightGreyCard>
@@ -84,7 +84,7 @@ const ClaimReward = () => {
                     Rewards earned
                   </Text>
                   <Text bold fontSize="14px">
-                    500 PLASA
+                    500 PLAX
                   </Text>
                 </Flex>
               </LightGreyCard>

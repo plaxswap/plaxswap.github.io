@@ -6,10 +6,10 @@ import { useMemo } from 'react'
 
 export const useUserEnoughCakeValidator = (cakeAmount: string, stakingTokenBalance: BigNumber) => {
   const { t } = useTranslation()
-  const errorMessage = t('Insufficient PLASA balance')
+  const errorMessage = t('Insufficient PLAX balance')
 
   const userNotEnoughCake = useMemo(() => {
-    if (new BigNumber(cakeAmount).gt(getBalanceAmount(stakingTokenBalance, 18))) return true
+    if (new BigNumber(cakeAmount).gt(getBalanceAmount(stakingTokenBalance, 8))) return true
     return false
   }, [cakeAmount, stakingTokenBalance])
   return { userNotEnoughCake, notEnoughErrorMessage: errorMessage }

@@ -91,7 +91,7 @@ const DetailsView: React.FC<React.PropsWithChildren<DetailsViewProps>> = ({
                   'Your vCAKE boosting was expired at the snapshot block. Renew your fixed-term staking position to activate the boost for future voting proposals.',
                 )
               : t(
-                  'Voting power is calculated using the staking amount and remaining staking duration of the fixed-term PLASA staking position at the block.',
+                  'Voting power is calculated using the staking amount and remaining staking duration of the fixed-term PLAX staking position at the block.',
                 )}
           </Text>
           <Text bold m="10px 0">
@@ -110,7 +110,7 @@ const DetailsView: React.FC<React.PropsWithChildren<DetailsViewProps>> = ({
     <ModalInner mb="0">
       <Text as="p" mb="24px" fontSize="14px" color="textSubtle">
         {t(
-          'Your voting power is determined by the amount of PLASA you held and the remaining duration on the fixed-term staking position (if you have one) at the block detailed below. PLASA held in other places does not contribute to your voting power.',
+          'Your voting power is determined by the amount of PLAX you held and the remaining duration on the fixed-term staking position (if you have one) at the block detailed below. PLAX held in other places does not contribute to your voting power.',
         )}
       </Text>
       <Text color="secondary" textTransform="uppercase" mb="4px" bold fontSize="14px">
@@ -141,7 +141,7 @@ const DetailsView: React.FC<React.PropsWithChildren<DetailsViewProps>> = ({
       {Number.isFinite(cakeVaultBalance) && (
         <Flex alignItems="center" justifyContent="space-between" mb="4px">
           <Text color="textSubtle" fontSize="16px">
-            {t('Flexible PLASA Staking')}
+            {t('Flexible PLAX Staking')}
           </Text>
           <Text textAlign="right">{formatNumber(cakeVaultBalance, 0, 3)}</Text>
         </Flex>
@@ -152,7 +152,7 @@ const DetailsView: React.FC<React.PropsWithChildren<DetailsViewProps>> = ({
             <Flex alignItems="center" justifyContent="space-between" mb="4px">
               <Flex>
                 <Text color="textSubtle" fontSize="16px">
-                  {t('Fixed Term PLASA Staking')}
+                  {t('Fixed Term PLAX Staking')}
                 </Text>
                 {tooltipVisible && tooltip}
                 <Flex ref={targetRef}>
@@ -168,7 +168,7 @@ const DetailsView: React.FC<React.PropsWithChildren<DetailsViewProps>> = ({
               <FixedTermCardInner expired={isBoostingExpired}>
                 <Flex>
                   <Text color="textSubtle" fontSize="16px" mr="auto">
-                    {t('Fixed Term PLASA Staking')}
+                    {t('Fixed Term PLAX Staking')}
                   </Text>
                   {tooltipVisible && tooltip}
                   <Flex ref={targetRef}>

@@ -52,7 +52,7 @@ const AutoHarvestAction: React.FunctionComponent<React.PropsWithChildren<Pool.De
 
   const actionTitle = (
     <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
-      {t('Recent PLASA profit')}
+      {t('Recent PLAX profit')}
     </Text>
   )
 

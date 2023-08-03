@@ -65,7 +65,7 @@ const SetPriceStage: React.FC<React.PropsWithChildren<SetPriceStageProps>> = ({
       {creatorFeeAsNumber > 0 && (
         <Text>{t('%percentage%% royalties to the collection owner', { percentage: creatorFee })}</Text>
       )}
-      <Text>{t('%percentage%% trading fee will be used to buy & burn PLASA', { percentage: tradingFee })}</Text>
+      <Text>{t('%percentage%% trading fee will be used to buy & burn PLAX', { percentage: tradingFee })}</Text>
     </>,
   )
 

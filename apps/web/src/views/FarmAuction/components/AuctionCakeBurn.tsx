@@ -32,7 +32,7 @@ const AuctionCakeBurn: React.FC<React.PropsWithChildren> = () => {
         const amountAsBN = ethersToBigNumber(amount)
         setBurnedCakeAmount(getBalanceNumber(amountAsBN))
       } catch (error) {
-        console.error('Failed to fetch burned auction plasa', error)
+        console.error('Failed to fetch burned auction plax', error)
       }
     }
     if (isIntersecting && burnedCakeAmount === 0) {

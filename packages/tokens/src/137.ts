@@ -65,9 +65,9 @@ export const bscTokens = {
   ),
   syrup: new ERC20Token(
     ChainId.BSC,
-    '0x56302564754E433539CBb617cbE91845fa63f8bB',
+    '0x7cbbC91c05c64c5E5b12Da6F090F8f11480deA64',
     18,
-    'PLXBAR',
+    'PLAXBAR',
     'PlasaBar Token',
     'https://pancakeswap.finance/',
   ),

@@ -48,23 +48,23 @@ const HowToPlay: React.FC<React.PropsWithChildren> = () => {
   const steps: Step[] = [
     {
       label: t('Step %number%', { number: 1 }),
-      title: t('Deposit PLASA'),
+      title: t('Deposit PLAX'),
       subtitle: t(
-        'Deposit PLASA on the monthly subscription date -- first Monday of each Month. Your chance of winning depends on how many PLASA you deposit compared to the total pool. Your PLASA deposit will be locked for 10 weeks. There will be a monthly TVL cap in the beta product stage.',
+        'Deposit PLAX on the monthly subscription date -- first Monday of each Month. Your chance of winning depends on how many PLAX you deposit compared to the total pool. Your PLAX deposit will be locked for 10 weeks. There will be a monthly TVL cap in the beta product stage.',
       ),
     },
     {
       label: t('Step %number%', { number: 2 }),
       title: t('Wait for the Draw'),
       subtitle: t(
-        'A portion of the staking rewards from the PLASA deposited will fill the prize pot and there will be one weekly draw. There will be eight (8) winners each week. Check your chance of winning, add more PLASA on the monthly subscription date to increase your odds!',
+        'A portion of the staking rewards from the PLAX deposited will fill the prize pot and there will be one weekly draw. There will be eight (8) winners each week. Check your chance of winning, add more PLAX on the monthly subscription date to increase your odds!',
       ),
     },
     {
       label: t('Step %number%', { number: 3 }),
       title: t('Claim & Withdrawal'),
       subtitle: t(
-        "You can claim any winnings that you may have once the weekly draw is completed. Your PLASA can be withdrawn after 10 weeks but they won't be providing any winning odds anymore.",
+        "You can claim any winnings that you may have once the weekly draw is completed. Your PLAX can be withdrawn after 10 weeks but they won't be providing any winning odds anymore.",
       ),
     },
   ]
@@ -76,7 +76,7 @@ const HowToPlay: React.FC<React.PropsWithChildren> = () => {
       </Text>
       <Text textAlign="center">
         {t(
-          'Deposit PLASA to get your Pottery tickets. More PLASA deposited, higher the chance of winning (and of course, higher the rewards)!',
+          'Deposit PLAX to get your Pottery tickets. More PLAX deposited, higher the chance of winning (and of course, higher the rewards)!',
         )}
       </Text>
       <Text mb="40px">{t('Simple!')}</Text>

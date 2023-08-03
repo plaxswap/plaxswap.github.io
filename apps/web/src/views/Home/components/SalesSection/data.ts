@@ -20,7 +20,7 @@ export const swapSectionData = (t: TranslateFunction): SalesSectionProps => ({
     attributes: [
       { src: 'MATIC', alt: t('MATIC token') },
       { src: 'BTC', alt: t('BTC token') },
-      { src: 'PLASA', alt: t('PLASA token') },
+      { src: 'PLAX', alt: t('PLAX token') },
     ],
   },
 })
@@ -56,8 +56,8 @@ export const cakeSectionData = (t: TranslateFunction): SalesSectionProps => ({
   ),
   reverse: false,
   primaryButton: {
-    to: '/swap?outputCurrency=0x7972De0F17Ae5dC02385A863595CC74168F6D550&chainId=137',
-    text: t('Buy PLASA'),
+    to: '/swap?outputCurrency=0x328801B0b580eAdd83eA841638865eA41Dc6fb25&chainId=137',
+    text: t('Buy PLAX'),
     external: false,
   },
   secondaryButton: {

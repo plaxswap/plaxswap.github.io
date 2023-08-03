@@ -225,7 +225,7 @@ const HowToPlay: React.FC<React.PropsWithChildren> = () => {
     {
       label: t('Step %number%', { number: 1 }),
       title: t('Buy Tickets'),
-      subtitle: t('Prices are set when the round starts, equal to 5 USD in PLASA per ticket.'),
+      subtitle: t('Prices are set when the round starts, equal to 5 USD in PLAX per ticket.'),
     },
     {
       label: t('Step %number%', { number: 2 }),
@@ -307,7 +307,7 @@ const HowToPlay: React.FC<React.PropsWithChildren> = () => {
           <BulletList>
             <li>
               <Text display="inline" color="textSubtle">
-                {t('100% of the PLASA paid by people buying tickets that round goes back into the prize pools.')}
+                {t('100% of the PLAX paid by people buying tickets that round goes back into the prize pools.')}
               </Text>
             </li>
           </BulletList>
@@ -318,7 +318,7 @@ const HowToPlay: React.FC<React.PropsWithChildren> = () => {
             <li>
               <Text display="inline" color="textSubtle">
                 {t(
-                  'After every round, if nobody wins in one of the prize brackets, the unclaimed PLASA for that bracket rolls over into the next round and are redistributed among the prize pools.',
+                  'After every round, if nobody wins in one of the prize brackets, the unclaimed PLAX for that bracket rolls over into the next round and are redistributed among the prize pools.',
                 )}
               </Text>
             </li>
@@ -330,7 +330,7 @@ const HowToPlay: React.FC<React.PropsWithChildren> = () => {
             <li>
               <Text display="inline" color="textSubtle">
                 {t(
-                  'An average total of 35,000 PLASA from the treasury is added to lottery rounds over the course of a week. This PLASA is of course also included in rollovers! Read more in our guide to ',
+                  'An average total of 35,000 PLAX from the treasury is added to lottery rounds over the course of a week. This PLAX is of course also included in rollovers! Read more in our guide to ',
                 )}
                 <InlineLink href="https://docs.pancakeswap.finance/tokenomics/cake/cake-tokenomics">
                   {t('PLASA Tokenomics')}

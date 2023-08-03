@@ -37,7 +37,7 @@ const DepositButton: React.FC<React.PropsWithChildren<DepositButtonProps>> = ({
       endIcon={isPending ? <AutoRenewIcon spin color="currentColor" /> : null}
       onClick={onClickDeposit}
     >
-      {t('Deposit PLASA')}
+      {t('Deposit PLAX')}
     </Button>
   )
 }

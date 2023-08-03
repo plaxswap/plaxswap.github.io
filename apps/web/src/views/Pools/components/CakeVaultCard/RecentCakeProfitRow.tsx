@@ -32,7 +32,7 @@ const RecentCakeProfitCountdownRow = ({ pool }: { pool: Pool.DeserializedPool<To
 
   return (
     <Flex alignItems="center" justifyContent="space-between">
-      <Text fontSize="14px">{`${t('Recent PLASA profit')}:`}</Text>
+      <Text fontSize="14px">{`${t('Recent PLAX profit')}:`}</Text>
       {hasAutoEarnings && <RecentCakeProfitBalance cakeToDisplay={autoCakeToDisplay} pool={pool} account={account} />}
     </Flex>
   )

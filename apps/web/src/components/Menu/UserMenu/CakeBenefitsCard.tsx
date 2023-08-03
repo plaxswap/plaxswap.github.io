@@ -63,7 +63,7 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
   } = useTooltip(
     <>
       <Text>
-        {t(`%lockedCake% PLASA (including rewards) are locked in the PLASA Pool until %lockedEndTime%`, {
+        {t(`%lockedCake% PLAX (including rewards) are locked in the PLAX Pool until %lockedEndTime%`, {
           lockedCake: cakeBenefits?.lockedCake,
           lockedEndTime: cakeBenefits?.lockedEndTime,
         })}
@@ -87,7 +87,7 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
   } = useTooltip(
     <>
       <Text>
-        {t(`iCAKE allows you to participate in the IFO public sales and commit up to %iCake% amount of PLASA.`, {
+        {t(`iCAKE allows you to participate in the IFO public sales and commit up to %iCake% amount of PLAX.`, {
           iCake: cakeBenefits?.iCake,
         })}
       </Text>
@@ -153,7 +153,7 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
             <Tag variant="secondary" mr="auto">
               <Flex alignItems="center">
                 <Box as={LockIcon} mr="4px" />
-                {t('No PLASA locked')}
+                {t('No PLAX locked')}
               </Flex>
             </Tag>
             <Text fontSize="16px">{cakeBenefits?.lockedCake}</Text>
@@ -161,7 +161,7 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
           <Message mt="8px" mb="16px" variant="warning">
             <MessageText maxWidth="200px">
               {t(
-                'Lock PLASA to enjoy the benefits of farm yield boosting, participating in IFOs, voting power boosts, and so much more!',
+                'Lock PLAX to enjoy the benefits of farm yield boosting, participating in IFOs, voting power boosts, and so much more!',
               )}{' '}
               <NextLinkFromReactRouter
                 style={{ textDecoration: 'underline', fontWeight: 'bold' }}

@@ -39,15 +39,15 @@ const TotalStaked: React.FC<React.PropsWithChildren<MultiplierProps>> = ({ multi
     <>
       <Text>
         {t(
-          'The Multiplier represents the proportion of PLASA rewards each farm receives, as a proportion of the PLASA produced each block.',
+          'The Multiplier represents the proportion of PLAX rewards each farm receives, as a proportion of the PLAX produced each block.',
         )}
       </Text>
       <Text my="24px">
-        {t('For example, if a 1x farm received 1 PLASA per block, a 40x farm would receive 40 PLASA per block.')}
+        {t('For example, if a 1x farm received 1 PLAX per block, a 40x farm would receive 40 PLAX per block.')}
       </Text>
       <Text>
         {t(
-          'We have recently rebased multipliers by a factor of 10, this is only a visual change and does not affect the amount of PLASA each farm receives.',
+          'We have recently rebased multipliers by a factor of 10, this is only a visual change and does not affect the amount of PLAX each farm receives.',
         )}
       </Text>
       <Link

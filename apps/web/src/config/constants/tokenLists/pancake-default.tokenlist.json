@@ -67,6 +67,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x7972De0F17Ae5dC02385A863595CC74168F6D550/logo.png"
     },
     {
+      "name": "Plaxswap Token",
+      "symbol": "PLAX",
+      "address": "0x328801B0b580eAdd83eA841638865eA41Dc6fb25",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x328801B0b580eAdd83eA841638865eA41Dc6fb25/logo.png"
+    },
+    {
       "name": "IDRX",
       "symbol": "IDRX",
       "address": "0x649a2DA7B28E0D54c13D5eFf95d3A660652742cC",

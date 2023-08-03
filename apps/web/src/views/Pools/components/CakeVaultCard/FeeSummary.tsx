@@ -32,7 +32,7 @@ const FeeSummary: React.FC<React.PropsWithChildren<FeeSummaryProps>> = ({
       </Text>
       <Text>
         {t(
-          'Only applies within %num% days of staking. Unstaking after %num% days will not include a fee. Timer resets every time you stake new PLASA in the pool.',
+          'Only applies within %num% days of staking. Unstaking after %num% days will not include a fee. Timer resets every time you stake new PLAX in the pool.',
           {
             num: withdrawalDayPeriod,
           },

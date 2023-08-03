@@ -6,7 +6,7 @@ import { ASSET_CDN } from './endpoints'
 export const DEFAULT_META: PageMeta = {
   title: 'Plaxswap',
   description:
-    'The most popular AMM on Polygon by user count! Earn PLASA through yield farming or win it in the Lottery, then stake it in Syrup Pools to earn more tokens! Initial Farm Offerings (new token launch model pioneered by Plaxswap), NFTs, and more, on a platform you can trust.',
+    'The most popular AMM on Polygon by user count! Earn PLAX through yield farming or win it in the Lottery, then stake it in Syrup Pools to earn more tokens! Initial Farm Offerings (new token launch model pioneered by Plaxswap), NFTs, and more, on a platform you can trust.',
   image: `${ASSET_CDN}/web/og/hero.jpg`,
 }
 

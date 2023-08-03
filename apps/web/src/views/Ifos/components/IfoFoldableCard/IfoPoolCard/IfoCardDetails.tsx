@@ -67,33 +67,33 @@ const MaxTokenEntry = ({ maxToken, ifo, poolId }: { maxToken: number; ifo: Ifo; 
   const basicTooltipContent =
     ifo.version >= 3.1
       ? t(
-          'For the private sale, each eligible participant will be able to commit any amount of PLASA up to the maximum commit limit, which is published along with the IFO voting proposal.',
+          'For the private sale, each eligible participant will be able to commit any amount of PLAX up to the maximum commit limit, which is published along with the IFO voting proposal.',
         )
       : t(
-          'For the basic sale, Max PLASA entry is capped by minimum between your average PLASA balance in the iCAKE, or the pool’s hard cap. To increase the max entry, Stake more PLASA into the iCAKE',
+          'For the basic sale, Max PLAX entry is capped by minimum between your average PLAX balance in the iCAKE, or the pool’s hard cap. To increase the max entry, Stake more PLAX into the iCAKE',
         )
 
   const unlimitedToolipContent =
     ifo.version >= 3.1 ? (
       <Box>
-        <Text display="inline">{t('For the public sale, Max PLASA entry is capped by')} </Text>
+        <Text display="inline">{t('For the public sale, Max PLAX entry is capped by')} </Text>
         <Text bold display="inline">
           {t('the number of iCAKE.')}{' '}
         </Text>
         <Text display="inline">
-          {t('Lock more PLASA for longer durations to increase the maximum number of PLASA you can commit to the sale.')}
+          {t('Lock more PLAX for longer durations to increase the maximum number of PLAX you can commit to the sale.')}
         </Text>
       </Box>
     ) : (
       t(
-        'For the unlimited sale, Max PLASA entry is capped by your average PLASA balance in the iCake. To increase the max entry, Stake more PLASA into the iCake',
+        'For the unlimited sale, Max PLAX entry is capped by your average PLAX balance in the iCake. To increase the max entry, Stake more PLAX into the iCake',
       )
     )
 
   const tooltipContent = poolId === PoolIds.poolBasic ? basicTooltipContent : unlimitedToolipContent
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, { placement: 'bottom-start' })
-  const label = isCurrencyCake ? t('Max. PLASA entry') : t('Max. token entry')
+  const label = isCurrencyCake ? t('Max. PLAX entry') : t('Max. token entry')
   const price = useBUSDPrice(ifo.currency)
 
   const dollarValueOfToken = multiplyPriceByAmount(price, maxToken, ifo.currency.decimals)

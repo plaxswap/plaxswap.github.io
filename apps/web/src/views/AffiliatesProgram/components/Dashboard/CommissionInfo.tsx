@@ -77,7 +77,7 @@ const CommissionInfo = () => {
                   40.1%
                 </Text>
                 <Text color="textSubtle" fontSize={['14px']}>
-                  (494 PLASA)
+                  (494 PLAX)
                 </Text>
               </Box>
             </Flex>

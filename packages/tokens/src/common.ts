@@ -2,9 +2,9 @@ import { ChainId, ERC20Token } from '@pancakeswap/sdk'
 
 export const CAKE_MAINNET = new ERC20Token(
   ChainId.BSC,
-  '0x7972De0F17Ae5dC02385A863595CC74168F6D550',
-  8,
-  'PLASA',
+  '0x328801B0b580eAdd83eA841638865eA41Dc6fb25',
+  18,
+  'PLAX',
   'Plaxswap Token',
   'https://www.plaxswap.io/',
 )

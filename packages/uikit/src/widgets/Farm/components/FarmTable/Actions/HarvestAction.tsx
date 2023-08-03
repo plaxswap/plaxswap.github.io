@@ -51,7 +51,7 @@ const HarvestAction: React.FunctionComponent<React.PropsWithChildren<HarvestActi
     <ActionContainer style={{ minHeight: 124.5 }}>
       <ActionTitles>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-          PLASA
+          PLAX
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {t("Earned")}

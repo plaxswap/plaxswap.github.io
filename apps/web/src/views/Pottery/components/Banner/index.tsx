@@ -125,7 +125,7 @@ const Banner: React.FC<React.PropsWithChildren<BannerProps>> = ({ handleScroll }
           ) : null}
           <Box style={{ marginTop: '30px' }}>
             <Text color="white" bold as="span">
-              {t('Deposit PLASA for')}
+              {t('Deposit PLAX for')}
             </Text>
             <DarkTextStyle ml="3px" bold as="span">
               {t('10 Weeks')}

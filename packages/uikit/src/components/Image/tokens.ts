@@ -3,6 +3,15 @@
  */
 const tokens = {
   cake: {
+    symbol: "PLAX",
+    address: {
+      137: "0x328801B0b580eAdd83eA841638865eA41Dc6fb25",
+      97: "0xFa60D973F7642B748046464e165A65B7323b0DEE",
+    },
+    decimals: 8,
+    projectLink: "https://plaxswap.io/",
+  },
+  plasa: {
     symbol: "PLASA",
     address: {
       137: "0x7972De0F17Ae5dC02385A863595CC74168F6D550",
@@ -579,9 +588,9 @@ const tokens = {
     projectLink: "https://compound.finance/",
   },
   syrup: {
-    symbol: "PLXBAR",
+    symbol: "PLAXBAR",
     address: {
-      137: "0x56302564754E433539CBb617cbE91845fa63f8bB",
+      137: "0x7cbbC91c05c64c5E5b12Da6F090F8f11480deA64",
       97: "0xfE1e507CeB712BDe086f3579d2c03248b2dB77f9",
     },
     decimals: 18,

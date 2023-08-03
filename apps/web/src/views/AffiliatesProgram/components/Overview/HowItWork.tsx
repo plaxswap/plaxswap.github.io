@@ -82,9 +82,9 @@ const HowItWork = () => {
                 Earning
               </Text>
               <Text fontSize={['40px']} bold color="failure" lineHeight="110%">
-                PLASA
+              PLAX
               </Text>
-              <Text fontSize={['14px']}>Earn up to 20% referral commissions in PLASA</Text>
+              <Text fontSize={['14px']}>Earn up to 20% referral commissions in PLAX</Text>
             </Box>
           </Card>
         </Flex>

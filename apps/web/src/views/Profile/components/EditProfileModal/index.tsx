@@ -19,7 +19,7 @@ const viewTitle = (t: ContextApi['t'], currentView: Views) => {
     case Views.REMOVE:
       return t('Remove Profile Pic')
     case Views.APPROVE:
-      return t('Enable PLASA')
+      return t('Enable PLAX')
     default:
       return ''
   }
