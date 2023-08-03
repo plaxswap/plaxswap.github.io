@@ -61,7 +61,7 @@ const DepositAction: React.FC<React.PropsWithChildren<DepositActionProps>> = ({ 
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t(
-      'PLASA deposit will be diverted to the fixed-term staking pool. Please note that PLAX deposited can ONLY be withdrawn after 10 weeks.',
+      'PLAX deposit will be diverted to the fixed-term staking pool. Please note that PLAX deposited can ONLY be withdrawn after 10 weeks.',
     ),
     {
       placement: 'bottom',
@@ -144,7 +144,7 @@ const DepositAction: React.FC<React.PropsWithChildren<DepositActionProps>> = ({ 
                 </Button>
               )}
               <LogoRoundIcon m="0 4px" width="24px" height="24px" />
-              <Text>PLASA</Text>
+              <Text>PLAX</Text>
             </Flex>
           </Flex>
         </Container>

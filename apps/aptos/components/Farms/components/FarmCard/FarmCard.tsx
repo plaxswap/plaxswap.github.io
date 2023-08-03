@@ -69,7 +69,7 @@ const FarmCard: React.FC<React.PropsWithChildren<FarmCardProps>> = ({
     tokenAddress: farm.token?.address,
   })
   const addLiquidityUrl = `/add/${liquidityUrlPathParts}`
-  const isPromotedFarm = farm.token?.symbol === 'PLASA'
+  const isPromotedFarm = farm.token?.symbol === 'PLAX'
 
   const toggleExpandableSection = useCallback(() => {
     setShowExpandableSection((prev) => !prev)

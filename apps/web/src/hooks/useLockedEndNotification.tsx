@@ -49,7 +49,7 @@ const useLockedEndNotification = () => {
 
   useEffect(() => {
     if (toastInfo && isUserLockedEnd && lockedNotificationShow) {
-      toastInfo(t('Plasa Syrup Pool'), <LockedEndDescription />)
+      toastInfo(t('PLAX Syrup Pool'), <LockedEndDescription />)
       setLockedNotificationShow(false) // show once
     }
   }, [isUserLockedEnd, toastInfo, lockedNotificationShow, setLockedNotificationShow, t])

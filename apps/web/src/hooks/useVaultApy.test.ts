@@ -47,7 +47,7 @@ describe('useVaultApy', () => {
       },
       {
         wrapper: createSWRWrapper({
-          'masterChef-total-plasa-pool-emission': cases.emission,
+          'masterChef-total-cake-pool-emission': cases.emission,
         }),
       },
     )

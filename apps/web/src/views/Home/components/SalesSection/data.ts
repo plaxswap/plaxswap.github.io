@@ -50,9 +50,9 @@ export const earnSectionData = (t: TranslateFunction): SalesSectionProps => ({
 })
 
 export const cakeSectionData = (t: TranslateFunction): SalesSectionProps => ({
-  headingText: t('PLASA makes our world go round.'),
+  headingText: t('PLAX makes our world go round.'),
   bodyText: t(
-    'PLASA token is at the heart of the PlaxSwap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!',
+    'PLAX token is at the heart of the PlaxSwap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!',
   ),
   reverse: false,
   primaryButton: {
@@ -71,7 +71,7 @@ export const cakeSectionData = (t: TranslateFunction): SalesSectionProps => ({
     attributes: [
       { src: 'bottom-right-mini', alt: t('Small 3d robot') },
       { src: 'top-right-mini', alt: t('Small 3d robot') },
-      { src: 'coin-plasa', alt: t('PLASA token') },
+      { src: 'coin-plax', alt: t('PLAX token') },
       { src: 'top-left-mini', alt: t('Small 3d robot') },
     ],
   },

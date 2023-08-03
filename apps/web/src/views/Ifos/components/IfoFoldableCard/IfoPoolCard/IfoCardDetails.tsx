@@ -197,7 +197,7 @@ const IfoCardDetails: React.FC<React.PropsWithChildren<IfoCardDetailsProps>> = (
         <>
           {tokenEntry}
           <FooterEntry label={t('Funds to raise:')} value={ifo[poolId].raiseAmount} />
-          {raisingTokenToBurn && <FooterEntry label={t('PLASA to burn:')} value={raisingTokenToBurn} />}
+          {raisingTokenToBurn && <FooterEntry label={t('PLAX to burn:')} value={raisingTokenToBurn} />}
           <FooterEntry
             label={t('Price per %symbol%:', { symbol: ifo.token.symbol })}
             value={`$${ifo.tokenOfferingPrice}`}
@@ -224,7 +224,7 @@ const IfoCardDetails: React.FC<React.PropsWithChildren<IfoCardDetailsProps>> = (
           )}
           <FooterEntry label={t('Total committed:')} value={currencyPriceInUSD.gt(0) ? totalCommitted : null} />
           <FooterEntry label={t('Funds to raise:')} value={ifo[poolId].raiseAmount} />
-          {raisingTokenToBurn && <FooterEntry label={t('PLASA to burn:')} value={raisingTokenToBurn} />}
+          {raisingTokenToBurn && <FooterEntry label={t('PLAX to burn:')} value={raisingTokenToBurn} />}
           {ifo.version >= 3.2 && poolCharacteristic.vestingInformation.percentage > 0 && (
             <>
               <FooterEntry
@@ -260,7 +260,7 @@ const IfoCardDetails: React.FC<React.PropsWithChildren<IfoCardDetailsProps>> = (
           {poolId === PoolIds.poolUnlimited && <FooterEntry label={t('Additional fee:')} value={taxRate} />}
           <FooterEntry label={t('Total committed:')} value={currencyPriceInUSD.gt(0) ? totalCommitted : null} />
           <FooterEntry label={t('Funds to raise:')} value={ifo[poolId].raiseAmount} />
-          {raisingTokenToBurn && <FooterEntry label={t('PLASA to burn:')} value={raisingTokenToBurn} />}
+          {raisingTokenToBurn && <FooterEntry label={t('PLAX to burn:')} value={raisingTokenToBurn} />}
           {ifo.version > 1 && (
             <FooterEntry
               label={t('Price per %symbol%:', { symbol: ifo.token.symbol })}

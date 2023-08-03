@@ -324,7 +324,7 @@ const HowToPlay: React.FC<React.PropsWithChildren> = () => {
             </li>
           </BulletList>
           <Heading my="16px" scale="md">
-            {t('PLASA Injections')}
+            {t('PLAX Injections')}
           </Heading>
           <BulletList>
             <li>
@@ -333,7 +333,7 @@ const HowToPlay: React.FC<React.PropsWithChildren> = () => {
                   'An average total of 35,000 PLAX from the treasury is added to lottery rounds over the course of a week. This PLAX is of course also included in rollovers! Read more in our guide to ',
                 )}
                 <InlineLink href="https://docs.pancakeswap.finance/tokenomics/cake/cake-tokenomics">
-                  {t('PLASA Tokenomics')}
+                  {t('PLAX Tokenomics')}
                 </InlineLink>
               </Text>
             </li>

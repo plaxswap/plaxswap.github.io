@@ -84,7 +84,7 @@ const LockedStakingApy: React.FC<React.PropsWithChildren<LockedStakingApyProps>>
       <Flex justifyContent="space-between" mb="16px">
         <Box>
           <Text color="textSubtle" textTransform="uppercase" bold fontSize="12px">
-            {t('PLASA locked')}
+            {t('PLAX locked')}
           </Text>
           <BalanceWithLoading color="text" bold fontSize="16px" value={currentLockedAmount} decimals={5} />
           <BalanceWithLoading

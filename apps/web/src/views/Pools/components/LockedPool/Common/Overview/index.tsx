@@ -75,7 +75,7 @@ const Overview: React.FC<React.PropsWithChildren<OverviewPropsType>> = ({
           </Text>
         </Flex>
         <LightGreyCard>
-          <BalanceRow title={t('PLASA to be locked')} value={lockedAmount} newValue={newLockedAmount} decimals={2} />
+          <BalanceRow title={t('PLAX to be locked')} value={lockedAmount} newValue={newLockedAmount} decimals={2} />
           <BalanceRow title="iCake" decimals={2} value={formattediCake} newValue={newFormattediCake} />
           <BalanceRow
             title="apr"

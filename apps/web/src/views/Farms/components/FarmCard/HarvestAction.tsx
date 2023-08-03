@@ -56,7 +56,7 @@ const HarvestAction: React.FC<React.PropsWithChildren<FarmCardActionsProps>> = (
   const tooltipBalance = rawEarningsBalance.isGreaterThan(FARMS_SMALL_AMOUNT_THRESHOLD) ? displayBalance : '< 0.00001'
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     `${tooltipBalance} ${t(
-      `PLASA has been harvested to the farm booster contract and will be automatically sent to your wallet upon the next harvest.`,
+      `PLAX has been harvested to the farm booster contract and will be automatically sent to your wallet upon the next harvest.`,
     )}`,
     {
       placement: 'bottom',
