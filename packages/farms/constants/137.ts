@@ -52,7 +52,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 5,
-    // v1pid: 4,
+    v1pid: 4,
     lpSymbol: 'USDT-MATIC LP',
     lpAddress: '0x32f7392d7CF0Be17229006D371f02508D3B33866',
     token: bscTokens.usdt,

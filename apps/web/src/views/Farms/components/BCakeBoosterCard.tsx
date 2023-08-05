@@ -24,7 +24,7 @@ import { useBCakeProxyContractAddress } from '../hooks/useBCakeProxyContractAddr
 import useBCakeProxyBalance from '../hooks/useBCakeProxyBalance'
 import { useUserBoosterStatus } from '../hooks/useUserBoosterStatus'
 import { useUserLockedCakeStatus } from '../hooks/useUserLockedCakeStatus'
-import boosterCardImage from '../images/boosterCardImage.png'
+// import boosterCardImage from '../images/boosterCardImage.png'
 import CreateProxyButton from './YieldBooster/components/CreateProxyButton'
 
 export const CardWrapper = styled.div`
@@ -119,7 +119,7 @@ export const BCakeBoosterCard = () => {
   return (
     <CardWrapper>
       <ImageWrapper>
-        <Image src={boosterCardImage} alt="boosterCardImage" width={99} height={191} placeholder="blur" />
+        <Image src="https://plaxswap.github.io/apps/web/public/images/boosterCardImage.png" alt="boosterCardImage" width={99} height={191}/>
       </ImageWrapper>
       <Card p="0px" style={{ zIndex: 1 }}>
         <StyledCardBody style={{ padding: '15px 24px' }}>
