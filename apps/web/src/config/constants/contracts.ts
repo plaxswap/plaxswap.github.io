@@ -19,7 +19,7 @@ export default {
   },
   multiCall: multicallAddresses,
   pancakeProfile: {
-    137: '0xAC8a89229F91Ed46B0b0EEF9622a1e7979382984',
+    137: '0x8aa8951ACfC78c7324E822cE86DD90B12CbF9737',
     80001: '',
   },
   pancakeBunnies: {

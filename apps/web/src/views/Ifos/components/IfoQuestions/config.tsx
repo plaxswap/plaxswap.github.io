@@ -17,11 +17,11 @@ const config = [
         no participation fee.
       </Trans>,
       <Trans>
-        In the Public Sale, everyone with an active PancakeSwap profile can commit. However the maximum amount of PLAX
-        users can commit, is equal to the number of iCAKE they have.
+        In the Public Sale, everyone with an active PlaxSwap profile can commit. However the maximum amount of PLAX
+        users can commit, is equal to the number of iPLAX they have.
       </Trans>,
       <>
-        <Trans>Learn more about iCAKE</Trans>
+        <Trans>Learn more about iPLAX</Trans>
         <InlineLink ml="4px" external href="https://docs.pancakeswap.finance/products/ifo-initial-farm-offering/icake">
           <Trans>here</Trans>
         </InlineLink>
@@ -37,7 +37,7 @@ const config = [
         We recommend you to check if you are eligible to participate in the Private Sale first. In the Public Sale, if
         the amount you commit is too small, you may not receive a meaningful amount of IFO tokens.
       </Trans>,
-      <Trans>Just remember you need an active PancakeSwap Profile in order to participate.</Trans>,
+      <Trans>Just remember you need an active PlaxSwap Profile in order to participate.</Trans>,
     ],
   },
   {

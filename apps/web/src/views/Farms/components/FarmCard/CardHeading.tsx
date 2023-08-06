@@ -1,7 +1,7 @@
 import { Token } from '@pancakeswap/sdk'
 import { Box, Farm as FarmUI, Flex, Heading, Skeleton, Tag } from '@pancakeswap/uikit'
 import { TokenPairImage } from 'components/TokenImage'
-import { v3PromotionFarms, V3SwapPromotionIcon } from 'components/V3SwapPromotionIcon'
+// import { v3PromotionFarms, V3SwapPromotionIcon } from 'components/V3SwapPromotionIcon'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import styled from 'styled-components'
 import BoostedTag from '../YieldBooster/components/BoostedTag'
@@ -52,7 +52,7 @@ const CardHeading: React.FC<React.PropsWithChildren<ExpandableSectionProps>> = (
       <Flex flexDirection="column" alignItems="flex-end">
         {isReady ? (
           <Heading mb="4px">
-            {v3PromotionFarms?.[chainId]?.[pid] && <V3SwapPromotionIcon />} {lpLabel.split(' ')[0]}
+            {/* {v3PromotionFarms?.[chainId]?.[pid] && <V3SwapPromotionIcon />} {lpLabel.split(' ')[0]} */}
           </Heading>
         ) : (
           <Skeleton mb="4px" width={60} height={18} />

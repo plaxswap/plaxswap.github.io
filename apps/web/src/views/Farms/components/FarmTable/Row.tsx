@@ -14,7 +14,7 @@ import {
   useMatchBreakpoints,
 } from '@pancakeswap/uikit'
 import { useActiveChainId } from 'hooks/useActiveChainId'
-import { v3PromotionFarms, V3SwapPromotionIcon } from 'components/V3SwapPromotionIcon'
+// import { v3PromotionFarms, V3SwapPromotionIcon } from 'components/V3SwapPromotionIcon'
 import { createElement, useEffect, useRef, useState } from 'react'
 import { useFarmUser } from 'state/farms/hooks'
 import styled from 'styled-components'
@@ -181,7 +181,7 @@ const Row: React.FunctionComponent<React.PropsWithChildren<RowPropsWithLoading>>
                     <CellInner>
                       <CellLayout label={t(tableSchema[columnIndex].label)}>
                         {createElement(cells[key], { ...props[key], userDataReady })}
-                        {v3PromotionFarms?.[chainId]?.[details.pid] && key === 'farm' && <V3SwapPromotionIcon />}
+                        {/* {v3PromotionFarms?.[chainId]?.[details.pid] && key === 'farm' && <V3SwapPromotionIcon />} */}
                       </CellLayout>
                     </CellInner>
                   </td>
@@ -198,7 +198,7 @@ const Row: React.FunctionComponent<React.PropsWithChildren<RowPropsWithLoading>>
           <FarmMobileCell colSpan={3}>
             <Flex justifyContent="space-between" alignItems="center">
               <Farm {...props.farm} />
-              {v3PromotionFarms?.[chainId]?.[details.pid] && <V3SwapPromotionIcon />}
+              {/* {v3PromotionFarms?.[chainId]?.[details.pid] && <V3SwapPromotionIcon />} */}
               {props.type === 'community' ? (
                 <FarmAuctionTag marginRight="16px" scale="sm" />
               ) : (

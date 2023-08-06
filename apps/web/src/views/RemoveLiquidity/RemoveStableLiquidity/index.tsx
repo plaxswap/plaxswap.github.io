@@ -29,7 +29,7 @@ import styled from 'styled-components'
 import { transactionErrorToUserReadableMessage } from 'utils/transactionErrorToUserReadableMessage'
 import { StableConfigContext } from 'views/Swap/StableSwap/hooks/useStableConfig'
 
-import { V3SwapPromotionIcon } from 'components/V3SwapPromotionIcon'
+// import { V3SwapPromotionIcon } from 'components/V3SwapPromotionIcon'
 import { AppBody, AppHeader } from '../../../components/App'
 import { LightGreyCard } from '../../../components/Card'
 import ConnectWalletButton from '../../../components/ConnectWalletButton'
@@ -347,7 +347,7 @@ export default function RemoveStableLiquidity({ currencyA, currencyB, currencyId
             assetB: currencyB?.symbol ?? '',
           })}
           noConfig
-          IconSlot={<V3SwapPromotionIcon wrapperStyle={{ marginRight: '10px' }} />}
+          // IconSlot={<V3SwapPromotionIcon wrapperStyle={{ marginRight: '10px' }} />}
         />
 
         <CardBody>

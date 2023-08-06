@@ -19,7 +19,7 @@ import {
 } from '@pancakeswap/uikit'
 import { CommitButton } from 'components/CommitButton'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
-import { V3SwapPromotionIcon } from 'components/V3SwapPromotionIcon'
+// import { V3SwapPromotionIcon } from 'components/V3SwapPromotionIcon'
 import { ROUTER_ADDRESS } from 'config/constants/exchange'
 import { SUPPORT_ZAP } from 'config/constants/supportChains'
 import { useIsTransactionUnsupported, useIsTransactionWarning } from 'hooks/Trades'
@@ -598,7 +598,7 @@ export default function AddLiquidity({ currencyA, currencyB }) {
                 'Liquidity providers earn a 0.17% trading fee on all trades made for that token pair, proportional to their share of the liquidity pair.',
               )}
               backTo={canZap ? () => setSteps(Steps.Choose) : '/liquidity'}
-              IconSlot={<V3SwapPromotionIcon wrapperStyle={{ marginRight: '10px' }} />}
+              // IconSlot={<V3SwapPromotionIcon wrapperStyle={{ marginRight: '10px' }} />}
             />
             <CardBody>
               <AutoColumn gap="20px">

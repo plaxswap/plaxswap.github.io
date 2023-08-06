@@ -88,7 +88,7 @@ export const V3SwapPromotionIcon: React.FC<{ wrapperStyle?: React.CSSProperties 
           display="flex"
           style={{ justifyContent: 'center', textDecoration: 'none' }}
         >
-          {/* <Text
+          <Text
             fontSize="20px"
             onClick={() => {
               window.open(
@@ -99,7 +99,7 @@ export const V3SwapPromotionIcon: React.FC<{ wrapperStyle?: React.CSSProperties 
             }}
           >
             🎁
-          </Text> */}
+          </Text>
         </TooltipText>
       </ColoredIconButton>
       {campaignTooltipVisible && campaignTooltip}

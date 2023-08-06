@@ -18,7 +18,7 @@ import {
 import TransactionsModal from 'components/App/Transactions/TransactionsModal'
 import GlobalSettings from 'components/Menu/GlobalSettings'
 import RefreshIcon from 'components/Svg/RefreshIcon'
-import { V3SwapPromotionIcon } from 'components/V3SwapPromotionIcon'
+// import { V3SwapPromotionIcon } from 'components/V3SwapPromotionIcon'
 import { useSwapHotTokenDisplay } from 'hooks/useSwapHotTokenDisplay'
 import { useAtom } from 'jotai'
 import { ReactElement, useCallback, useContext, useEffect, useState } from 'react'
@@ -99,7 +99,7 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
         <Swap.CurrencyInputHeaderSubTitle>{subtitle}</Swap.CurrencyInputHeaderSubTitle>
       </Flex>
       <Flex width="100%" justifyContent="end">
-        <V3SwapPromotionIcon />
+        {/* <V3SwapPromotionIcon /> */}
         {isChartSupported && setIsChartDisplayed && (
           <ColoredIconButton
             onClick={() => {
