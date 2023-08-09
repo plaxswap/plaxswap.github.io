@@ -332,7 +332,7 @@ const HowToPlay: React.FC<React.PropsWithChildren> = () => {
                 {t(
                   'An average total of 35,000 PLAX from the treasury is added to lottery rounds over the course of a week. This PLAX is of course also included in rollovers! Read more in our guide to ',
                 )}
-                <InlineLink href="https://docs.pancakeswap.finance/tokenomics/cake/cake-tokenomics">
+                <InlineLink href="https://docs.plaxswap.io/tokenomic">
                   {t('PLAX Tokenomics')}
                 </InlineLink>
               </Text>

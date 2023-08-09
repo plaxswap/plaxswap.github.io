@@ -92,18 +92,18 @@ export const livePools: Pool.SerializedPoolConfig<SerializedWrappedToken>[] = [
     tokenPerBlock: '0.000000001',
     // version: 3,
   },
-//   {
-//     sousId: 322,
-//     stakingToken: bscTokens.cake,
-//     earningToken: bscTokens.pstake,
-//     contractAddress: {
-//       56: '0x98AC153577d65f2eEF2256f3AeF8ba9D7E4B756B',
-//       97: '',
-//     },
-//     poolCategory: PoolCategory.CORE,
-//     tokenPerBlock: '0.1186',
-//     version: 3,
-//   },
+  // {
+  //   sousId: 322,
+  //   stakingToken: bscTokens.ttk,
+  //   earningToken: bscTokens.ttk,
+  //   contractAddress: {
+  //     137: '0xDeD3fb5e1A5776d62D156E9457dB89660Cd8253a',
+  //     97: '',
+  //   },
+  //   poolCategory: PoolCategory.CORE,
+  //   tokenPerBlock: '1000000',
+  //   // version: 3,
+  // },
 //   {
 //     sousId: 321,
 //     stakingToken: bscTokens.cake,
