@@ -93,6 +93,13 @@ const farms: SerializedFarmConfig[] = [
     token: bscTokens.usdc,
     quoteToken: bscTokens.usdt,
   },
+  {
+    pid: 11,
+    lpSymbol: 'IDRT-IDRX LP',
+    lpAddress: '0x73e02e59F522109a52d86B7A791FB818c863B75c',
+    token: bscTokens.idrt,
+    quoteToken: bscTokens.idrx,
+  },
   //    * V3 by order of release (some may be out of PID order due to multiplier boost)
 ].map((p) => ({ ...p, token: p.token.serialize, quoteToken: p.quoteToken.serialize }))
 
