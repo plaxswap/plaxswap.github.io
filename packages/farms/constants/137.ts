@@ -51,6 +51,20 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
+    pid: 13,
+    lpSymbol: 'PAY-USDT LP',
+    lpAddress: '0x7Fa11bb242CbBa853f634BEF02Fc24A3A13f916d',
+    token: bscTokens.pay,
+    quoteToken: bscTokens.usdt,
+  },
+  {
+    pid: 9,
+    lpSymbol: 'USDC-PAY LP',
+    lpAddress: '0x28A2861188B196269366964CbDbA0473819C6467',
+    token: bscTokens.pay,
+    quoteToken: bscTokens.usdc,
+  },
+  {
     pid: 5,
     v1pid: 4,
     lpSymbol: 'USDT-MATIC LP',
@@ -80,25 +94,11 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: bscTokens.usdt,
   },
   {
-    pid: 9,
-    lpSymbol: 'USDC-PAY LP',
-    lpAddress: '0x28A2861188B196269366964CbDbA0473819C6467',
-    token: bscTokens.pay,
-    quoteToken: bscTokens.usdc,
-  },
-  {
     pid: 10,
     lpSymbol: 'USDC-USDT LP',
     lpAddress: '0x33919208EFB4530819e9769a51FE4Cf2524f56B1',
     token: bscTokens.usdc,
     quoteToken: bscTokens.usdt,
-  },
-  {
-    pid: 11,
-    lpSymbol: 'IDRT-IDRX LP',
-    lpAddress: '0x73e02e59F522109a52d86B7A791FB818c863B75c',
-    token: bscTokens.idrt,
-    quoteToken: bscTokens.idrx,
   },
   {
     pid: 12,
@@ -108,12 +108,13 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: bscTokens.usdt,
   },
   {
-    pid: 13,
-    lpSymbol: 'PAY-USDT LP',
-    lpAddress: '0x7Fa11bb242CbBa853f634BEF02Fc24A3A13f916d',
-    token: bscTokens.pay,
-    quoteToken: bscTokens.usdt,
+    pid: 11,
+    lpSymbol: 'IDRT-IDRX LP',
+    lpAddress: '0x73e02e59F522109a52d86B7A791FB818c863B75c',
+    token: bscTokens.idrt,
+    quoteToken: bscTokens.idrx,
   },
+  
   //    * V3 by order of release (some may be out of PID order due to multiplier boost)
 ].map((p) => ({ ...p, token: p.token.serialize, quoteToken: p.quoteToken.serialize }))
 
