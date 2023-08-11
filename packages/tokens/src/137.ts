@@ -1,5 +1,5 @@
 import { ChainId, WBNB, ERC20Token } from '@pancakeswap/sdk'
-import { BUSD_BSC, CAKE_MAINNET, USDT_BSC } from './common'
+import { BUSD_BSC, CAKE_MAINNET, USDC_BSC, USDT_BSC } from './common'
 
 export const bscTokens = {
   wbnb: WBNB[ChainId.BSC],
@@ -55,14 +55,7 @@ export const bscTokens = {
     'Stader (PoS)',
     'https://www.staderlabs.com/',
   ),
-  usdc: new ERC20Token(
-    ChainId.BSC,
-    '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
-    18,
-    'USDC',
-    'Binance-Peg USD Coin',
-    'https://www.centre.io/usdc',
-  ),
+  usdc: USDC_BSC,
   syrup: new ERC20Token(
     ChainId.BSC,
     '0x7cbbC91c05c64c5E5b12Da6F090F8f11480deA64',
