@@ -135,5 +135,21 @@ export const bscTokens = {
     'WESMEUP',
     'https://www.wesmeup.net/',
   ),
+  idrt: new ERC20Token(
+    ChainId.BSC,
+    '0x554cd6bdD03214b10AafA3e0D4D42De0C5D2937b',
+    6,
+    'IDRT',
+    'RUPIAH TOKEN',
+    'https://rupiahtoken.com',
+  ),
+  idrx: new ERC20Token(
+    ChainId.BSC,
+    '0x649a2DA7B28E0D54c13D5eFf95d3A660652742cC',
+    0,
+    'IDRX',
+    'IDRX',
+    'https://idrx.co',
+  ),
 
 }

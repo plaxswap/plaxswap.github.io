@@ -207,7 +207,7 @@ const config: (
         },
         {
           label: t('Lottery (Coming Soon)'),
-          href: '#',
+          href: '/lottery',
           image: '/images/decorations/lottery.png',
         },
         {

@@ -15,7 +15,7 @@ export default {
   },
   lotteryV2: {
     80001: '',
-    137: '0x22B05595ACEecD37E4fD7d065155330293Fb1176',
+    137: '0x9E13CFB9de11323d19e8a35b0e10dc9589Af289e',
   },
   multiCall: multicallAddresses,
   pancakeProfile: {
@@ -67,7 +67,7 @@ export default {
     80001: '',
   },
   cakeFlexibleSideVault: {
-    137: '0x9524B654788207847eD72De9cf64d0bDB2d6b716',
+    137: '0xAc3bBFEE9f177d7473E12498e88d4d52E260151d',
     80001: '',
   },
   predictionsBNB: {
@@ -143,11 +143,11 @@ export default {
     80001: '',
   },
   bCakeFarmBooster: {
-    137: '0x70370cCfC6F9Fa17d5870ed3A44fB8f1a16d7cd3',
+    137: '0xb31f9221916a0633151eFde6391a3ce876766F25',
     80001: '',
   },
   bCakeFarmBoosterProxyFactory: {
-    137: '0xf8AAaf08E86136a4955a3fE6534c50B42790a6d3',
+    137: '0xf1b16C6E62dED8C46D30b29bB3b8456bcF539Ae1',
     80001: '',
   },
   nonBscVault: {
