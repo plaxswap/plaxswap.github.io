@@ -108,6 +108,13 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: bscTokens.usdt,
   },
   {
+    pid: 15,
+    lpSymbol: 'IDRT-USDT LP',
+    lpAddress: '0x1a96fB8699Bd9e5767aca72E840C17d69BBb7Db1',
+    token: bscTokens.idrt,
+    quoteToken: bscTokens.usdt,
+  },
+  {
     pid: 12,
     lpSymbol: 'IDRX-USDT LP',
     lpAddress: '0xd556e9D67D182eb2E0F8d7486CB4814E6b21acB7',
