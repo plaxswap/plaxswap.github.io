@@ -206,7 +206,7 @@ const config: (
           image: '/images/decorations/prediction.png',
         },
         {
-          label: t('Lottery (Coming Soon)'),
+          label: t('Lottery'),
           href: '/lottery',
           image: '/images/decorations/lottery.png',
         },
