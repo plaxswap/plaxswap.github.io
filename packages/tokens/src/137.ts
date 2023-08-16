@@ -150,5 +150,7 @@ export const bscTokens = {
     18,
     'QUICK',
     'QUICKSWAP',
-    'https://quickswap.exchange/',
+    'https://quickswap.exchange',
   ),
+
+}
