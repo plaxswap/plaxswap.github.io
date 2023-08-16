@@ -99,6 +99,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xB5C064F955D8e7F38fE0460C556a72987494eE17/logo.png"
     },
     {
+      "name": "AAVE",
+      "symbol": "AAVE",
+      "address": "0xD6DF932A45C0f255f85145f286eA0b292B21C90B",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xD6DF932A45C0f255f85145f286eA0b292B21C90B/logo.png"
+    },
+    {
       "name": "Belt",
       "symbol": "BELT",
       "address": "0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f",

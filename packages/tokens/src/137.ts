@@ -152,5 +152,13 @@ export const bscTokens = {
     'QUICKSWAP',
     'https://quickswap.exchange',
   ),
+  aave: new ERC20Token(
+    ChainId.BSC,
+    '0xD6DF932A45C0f255f85145f286eA0b292B21C90B',
+    18,
+    'AAVE',
+    'AAVE',
+    'https://aave.com',
+  ),
 
 }
