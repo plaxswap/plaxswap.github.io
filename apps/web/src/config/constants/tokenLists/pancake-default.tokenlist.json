@@ -91,6 +91,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xcD9c386c9CE5987A8336C4Db5c6A17750ea0e339/logo.png"
     },
     {
+      "name": "QUICKSWAP",
+      "symbol": "QUICK",
+      "address": "0xB5C064F955D8e7F38fE0460C556a72987494eE17",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://github.com/QuickSwap/interface-v2/blob/master/public/logo_circle.png"
+    },
+    {
       "name": "Belt",
       "symbol": "BELT",
       "address": "0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f",

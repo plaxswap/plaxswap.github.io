@@ -144,5 +144,11 @@ export const bscTokens = {
     'IDRX',
     'https://idrx.co',
   ),
-
-}
+  quick: new ERC20Token(
+    ChainId.BSC,
+    '0xB5C064F955D8e7F38fE0460C556a72987494eE17',
+    18,
+    'QUICK',
+    'QUICKSWAP',
+    'https://quickswap.exchange/',
+  ),
