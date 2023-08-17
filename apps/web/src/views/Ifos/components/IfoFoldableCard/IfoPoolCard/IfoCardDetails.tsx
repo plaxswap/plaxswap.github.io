@@ -70,7 +70,7 @@ const MaxTokenEntry = ({ maxToken, ifo, poolId }: { maxToken: number; ifo: Ifo; 
           'For the private sale, each eligible participant will be able to commit any amount of PLAX up to the maximum commit limit, which is published along with the IFO voting proposal.',
         )
       : t(
-          'For the basic sale, Max PLAX entry is capped by minimum between your average PLAX balance in the iCAKE, or the pool’s hard cap. To increase the max entry, Stake more PLAX into the iCAKE',
+          'For the basic sale, Max PLAX entry is capped by minimum between your average PLAX balance in the iPLAX, or the pool’s hard cap. To increase the max entry, Stake more PLAX into the iPLAX',
         )
 
   const unlimitedToolipContent =
@@ -78,7 +78,7 @@ const MaxTokenEntry = ({ maxToken, ifo, poolId }: { maxToken: number; ifo: Ifo; 
       <Box>
         <Text display="inline">{t('For the public sale, Max PLAX entry is capped by')} </Text>
         <Text bold display="inline">
-          {t('the number of iCAKE.')}{' '}
+          {t('the number of iPLAX.')}{' '}
         </Text>
         <Text display="inline">
           {t('Lock more PLAX for longer durations to increase the maximum number of PLAX you can commit to the sale.')}
@@ -86,7 +86,7 @@ const MaxTokenEntry = ({ maxToken, ifo, poolId }: { maxToken: number; ifo: Ifo; 
       </Box>
     ) : (
       t(
-        'For the unlimited sale, Max PLAX entry is capped by your average PLAX balance in the iCake. To increase the max entry, Stake more PLAX into the iCake',
+        'For the unlimited sale, Max PLAX entry is capped by your average PLAX balance in the iPlax. To increase the max entry, Stake more PLAX into the iPlax',
       )
     )
 

@@ -136,7 +136,7 @@ const ContributeModal: React.FC<React.PropsWithChildren<Props>> = ({
     <Box>
       <Text display="inline">{t('For the public sale, Max PLAX entry is capped by')} </Text>
       <Text bold display="inline">
-        {t('the number of iCAKE.')}{' '}
+        {t('the number of iPLAX.')}{' '}
       </Text>
       <Text display="inline">
         {t('Lock more PLAX for longer durations to increase the maximum number of PLAX you can commit to the sale.')}
@@ -230,7 +230,7 @@ const ContributeModal: React.FC<React.PropsWithChildren<Props>> = ({
             <Link
               fontSize="12px"
               display="inline"
-              href="https://docs.pancakeswap.finance/products/ifo-initial-farm-offering"
+              href="https://docs.plaxswap.io/products/ifo-initial-farm-offering"
               external
             >
               {t('Read more')}

@@ -87,7 +87,7 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
   } = useTooltip(
     <>
       <Text>
-        {t(`iCAKE allows you to participate in the IFO public sales and commit up to %iCake% amount of PLAX.`, {
+        {t(`iPLAX allows you to participate in the IFO public sales and commit up to %iCake% amount of PLAX.`, {
           iCake: cakeBenefits?.iCake,
         })}
       </Text>
@@ -216,7 +216,7 @@ const CakeBenefitsCard: React.FC<React.PropsWithChildren<CakeBenefitsCardProps>>
             </Flex>
             <Flex mt="10px" flexDirection="row" alignItems="center">
               <TooltipText ref={iCakeTargetRef} color="textSubtle" fontSize="16px" mr="auto">
-                iCAKE
+                iPLAX
               </TooltipText>
               {iCakeTooltipVisible && iCakeTooltip}
               {cakeBenefits?.iCake}

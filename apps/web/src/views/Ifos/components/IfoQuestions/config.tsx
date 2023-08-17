@@ -22,7 +22,7 @@ const config = [
       </Trans>,
       <>
         <Trans>Learn more about iPLAX</Trans>
-        <InlineLink ml="4px" external href="https://docs.pancakeswap.finance/products/ifo-initial-farm-offering/icake">
+        <InlineLink ml="4px" external href="https://docs.plaxswap.io/products/ifo-initial-farm-offering/iplax">
           <Trans>here</Trans>
         </InlineLink>
       </>,
