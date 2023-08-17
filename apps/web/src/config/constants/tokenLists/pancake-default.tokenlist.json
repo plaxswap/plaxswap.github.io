@@ -123,6 +123,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xCf66EB3D546F0415b368d98A95EAF56DeD7aA752/logo.png"
     },
     {
+      "name": "Uniswap",
+      "symbol": "UNI",
+      "address": "0xb33EaAd8d922B1083446DC23f610c2567fB5180f",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xb33EaAd8d922B1083446DC23f610c2567fB5180f/logo.png"
+    },
+    {
       "name": "Belt",
       "symbol": "BELT",
       "address": "0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f",

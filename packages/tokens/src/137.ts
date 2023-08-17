@@ -176,5 +176,13 @@ export const bscTokens = {
     'DFORCE USD',
     'https://dforce.network/',
   ),
+  uni: new ERC20Token(
+    ChainId.BSC,
+    '0xb33EaAd8d922B1083446DC23f610c2567fB5180f',
+    18,
+    'UNI',
+    'UNISWAP',
+    'https://uniswap.org/',
+  ),
 
 }
