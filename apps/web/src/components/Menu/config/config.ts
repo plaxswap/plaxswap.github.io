@@ -194,51 +194,51 @@ const config: (
     //       type: DropdownMenuItemType.EXTERNAL_LINK,
     //     },
     {
-      label: t('Win'),
-      href: '#',
+      label: t('Lottery'),
+      href: '/lottery',
       icon: TrophyIcon,
       fillIcon: TrophyFillIcon,
       supportChainIds: SUPPORT_ONLY_BSC,
       items: [
-        {
-          label: t('Prediction (Coming Soon)'),
-          href: '#',
-          image: '/images/decorations/prediction.png',
-        },
-        {
-          label: t('Lottery'),
-          href: '/lottery',
-          image: '/images/decorations/lottery.png',
-        },
-        {
-          label: t('Pottery ((Coming Soon)'),
-          href: '#',
-          image: '/images/decorations/lottery.png',
-        },
+        // {
+        //   label: t('Prediction (Coming Soon)'),
+        //   href: '#',
+        //   image: '/images/decorations/prediction.png',
+        // },
+        // {
+        //   label: t('Lottery'),
+        //   href: '/lottery',
+        //   image: '/images/decorations/lottery.png',
+        // },
+        // {
+        //   label: t('Pottery ((Coming Soon)'),
+        //   href: '#',
+        //   image: '/images/decorations/lottery.png',
+        // },
       ],
     },
-    {
-      label: t('NFT (Coming Soon)'),
-      href: `#`,
-      icon: NftIcon,
-      fillIcon: NftFillIcon,
-      supportChainIds: SUPPORT_ONLY_BSC,
-      image: '/images/decorations/nft.png',
-      items: [
-        {
-          label: t('Overview'),
-          href: `#`,
-        },
-        {
-          label: t('Collections'),
-          href: `#`,
-        },
-        {
-          label: t('Activity'),
-          href: `#`,
-        },
-      ],
-    },
+    // {
+    //   label: t('NFT (Coming Soon)'),
+    //   href: `#`,
+    //   icon: NftIcon,
+    //   fillIcon: NftFillIcon,
+    //   supportChainIds: SUPPORT_ONLY_BSC,
+    //   image: '/images/decorations/nft.png',
+    //   items: [
+    //     {
+    //       label: t('Overview'),
+    //       href: `#`,
+    //     },
+    //     {
+    //       label: t('Collections'),
+    //       href: `#`,
+    //     },
+    //     {
+    //       label: t('Activity'),
+    //       href: `#`,
+    //     },
+    //   ],
+    // },
     {
       label: '',
       href: '#',
