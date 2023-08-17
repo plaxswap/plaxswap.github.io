@@ -160,5 +160,13 @@ export const bscTokens = {
     'AAVE',
     'https://aave.com',
   ),
+  dforce: new ERC20Token(
+    ChainId.BSC,
+    '0x08C15FA26E519A78a666D19CE5C646D55047e0a3',
+    18,
+    'DF',
+    'DFORCE',
+    'https://dforce.network/',
+  ),
 
 }
