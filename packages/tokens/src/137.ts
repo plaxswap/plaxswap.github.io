@@ -184,5 +184,13 @@ export const bscTokens = {
     'UNISWAP',
     'https://uniswap.org/',
   ),
+  knc: new ERC20Token(
+    ChainId.BSC,
+    '0x1C954E8fe737F99f68Fa1CCda3e51ebDB291948C',
+    18,
+    'KNC',
+    'KYBER NETWORK CRYSTAL',
+    'https://kyber.network',
+  ),
 
 }
