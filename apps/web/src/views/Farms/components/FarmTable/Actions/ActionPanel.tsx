@@ -200,9 +200,9 @@ const ActionPanel: React.FunctionComponent<React.PropsWithChildren<ActionPanelPr
             </StakeContainer>
           </Flex>
         )}
-        <Flex mb="2px" justifyContent={alignLinksToRight ? 'flex-end' : 'flex-start'}>
+        {/* <Flex mb="2px" justifyContent={alignLinksToRight ? 'flex-end' : 'flex-start'}>
           <StyledLinkExternal href={infoUrl}>{t('See Pair Info')}</StyledLinkExternal>
-        </Flex>
+        </Flex> */}
         <Flex mb="2px" justifyContent={alignLinksToRight ? 'flex-end' : 'flex-start'}>
           <StyledLinkExternal isBscScan href={bsc}>
             {t('View Contract')}

@@ -66,7 +66,7 @@ export const DetailsSection: React.FC<React.PropsWithChildren<ExpandableSectionP
       )}
       {infoAddress && (
         <Flex mb="2px" justifyContent={alignLinksToRight ? "flex-end" : "flex-start"}>
-          <StyledLinkExternal href={infoAddress}>{t("See Pair Info")}</StyledLinkExternal>
+          {/* <StyledLinkExternal href={infoAddress}>{t("See Pair Info")}</StyledLinkExternal> */}
         </Flex>
       )}
       {scanAddressLink && (
