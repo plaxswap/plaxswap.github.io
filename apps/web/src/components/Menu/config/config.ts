@@ -7,13 +7,13 @@ import {
   EarnIcon,
   TrophyIcon,
   TrophyFillIcon,
-  NftIcon,
-  NftFillIcon,
+  // NftIcon,
+  // NftFillIcon,
   MoreIcon,
   DropdownMenuItems,
 } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
+// import { nftsBaseUrl } from 'views/Nft/market/constants'
 // import { getPerpetualUrl } from 'utils/getPerpetualUrl'
 import { SUPPORT_ONLY_BSC } from 'config/constants/supportChains'
 
@@ -199,23 +199,24 @@ const config: (
       icon: TrophyIcon,
       fillIcon: TrophyFillIcon,
       supportChainIds: SUPPORT_ONLY_BSC,
-      // items: [
-      //   {
-      //     label: t('Prediction (Coming Soon)'),
-      //     href: '#',
-      //     image: '/images/decorations/prediction.png',
-      //   },
-      //   {
-      //     label: t('Lottery'),
-      //     href: '/lottery',
-      //     image: '/images/decorations/lottery.png',
-      //   },
-      //   {
-      //     label: t('Pottery ((Coming Soon)'),
-      //     href: '#',
-      //     image: '/images/decorations/lottery.png',
-      //   },
-      // ],
+      showItemsOnMobile: false,
+      items: [
+        // {
+        //   label: t('Prediction (Coming Soon)'),
+        //   href: '#',
+        //   image: '/images/decorations/prediction.png',
+        // },
+        // {
+        //   label: t('Lottery'),
+        //   href: '/lottery',
+        //   image: '/images/decorations/lottery.png',
+        // },
+        // {
+        //   label: t('Pottery ((Coming Soon)'),
+        //   href: '#',
+        //   image: '/images/decorations/lottery.png',
+        // },
+      ],
     },
     // {
     //   label: t('NFT (Coming Soon)'),
