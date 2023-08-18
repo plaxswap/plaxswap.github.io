@@ -117,15 +117,15 @@ const WinSection = () => {
               mr={[null, null, null, '24px']}
               mb={['32px', null, null, '0']}
             >
-              <IconCard {...PredictionCardData}>
-                <PredictionCardContent />
-              </IconCard>
-            </Flex>
-            <Flex flex="1" maxWidth={['275px', null, null, '100%']}>
               <IconCard {...LotteryCardData}>
                 <LotteryCardContent />
               </IconCard>
             </Flex>
+            {/* <Flex flex="1" maxWidth={['275px', null, null, '100%']}>
+              <IconCard {...LotteryCardData}>
+                <LotteryCardContent />
+              </IconCard>
+            </Flex> */}
           </Flex>
         </Flex>
       </TransparentFrame>

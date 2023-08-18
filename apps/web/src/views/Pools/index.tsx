@@ -62,16 +62,18 @@ const Pools: React.FC<React.PropsWithChildren> = () => {
         <PoolControls pools={pools}>
           {({ chosenPools, viewMode, stakedOnly, normalizedUrlSearch, showFinishedPools }) => (
             <>
-              {showFinishedPools && (
-                <FinishedTextContainer>
-                  <Text fontSize={['16px', null, '20px']} color="failure" pr="4px">
-                    {t('Looking for v1 PLAX syrup pools?')}
-                  </Text>
-                  <FinishedTextLink href="/migration" fontSize={['16px', null, '20px']} color="failure">
-                    {t('Go to migration page')}.
-                  </FinishedTextLink>
-                </FinishedTextContainer>
-              )}
+              {showFinishedPools 
+              // && (
+              //   <FinishedTextContainer>
+              //     <Text fontSize={['16px', null, '20px']} color="failure" pr="4px">
+              //       {t('Looking for v1 PLAX syrup pools?')}
+              //     </Text>
+              //     <FinishedTextLink href="/migration" fontSize={['16px', null, '20px']} color="failure">
+              //       {t('Go to migration page')}.
+              //     </FinishedTextLink>
+              //   </FinishedTextContainer>
+              // )
+              }
               {account && !userDataLoaded && stakedOnly && (
                 <Flex justifyContent="center" mb="4px">
                   <Loading />
