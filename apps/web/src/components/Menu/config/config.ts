@@ -199,23 +199,23 @@ const config: (
       icon: TrophyIcon,
       fillIcon: TrophyFillIcon,
       supportChainIds: SUPPORT_ONLY_BSC,
-      items: [
-        // {
-        //   label: t('Prediction (Coming Soon)'),
-        //   href: '#',
-        //   image: '/images/decorations/prediction.png',
-        // },
-        // {
-        //   label: t('Lottery'),
-        //   href: '/lottery',
-        //   image: '/images/decorations/lottery.png',
-        // },
-        // {
-        //   label: t('Pottery ((Coming Soon)'),
-        //   href: '#',
-        //   image: '/images/decorations/lottery.png',
-        // },
-      ],
+      // items: [
+      //   {
+      //     label: t('Prediction (Coming Soon)'),
+      //     href: '#',
+      //     image: '/images/decorations/prediction.png',
+      //   },
+      //   {
+      //     label: t('Lottery'),
+      //     href: '/lottery',
+      //     image: '/images/decorations/lottery.png',
+      //   },
+      //   {
+      //     label: t('Pottery ((Coming Soon)'),
+      //     href: '#',
+      //     image: '/images/decorations/lottery.png',
+      //   },
+      // ],
     },
     // {
     //   label: t('NFT (Coming Soon)'),
