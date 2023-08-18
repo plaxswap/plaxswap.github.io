@@ -94,7 +94,7 @@ const NextDrawCard = () => {
             bold
             prefix="~$"
             value={getBalanceNumber(prizeInBusd)}
-            decimals={0}
+            decimals={2}
           />
         )}
         {prizeInBusd.isNaN() ? (

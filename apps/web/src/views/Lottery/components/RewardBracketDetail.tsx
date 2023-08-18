@@ -27,7 +27,7 @@ const RewardBracketDetail: React.FC<React.PropsWithChildren<RewardBracketDetailP
   const getRewardText = () => {
     const numberMatch = rewardBracket + 1
     if (isBurn) {
-      return t('Burn')
+      return t('Pool')
     }
     if (rewardBracket === 5) {
       return t('Match all %numberMatch%', { numberMatch })
