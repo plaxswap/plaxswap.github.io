@@ -192,5 +192,13 @@ export const bscTokens = {
     'KYBER NETWORK CRYSTAL',
     'https://kyber.network',
   ),
+  crv: new ERC20Token(
+    ChainId.BSC,
+    '0x172370d5Cd63279eFa6d502DAB29171933a610AF',
+    18,
+    'CRV',
+    'CURVE DAO',
+    'https://www.curve.fi/',
+  ),
 
 }
