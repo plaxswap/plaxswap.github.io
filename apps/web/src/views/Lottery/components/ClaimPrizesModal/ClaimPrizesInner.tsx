@@ -170,7 +170,7 @@ const ClaimInnerContainer: React.FC<React.PropsWithChildren<ClaimInnerProps>> = 
             fontSize="44px"
             bold
             color="secondary"
-            unit=" CAKE!"
+            unit=" PLAX"
           />
           <PresentWonIcon ml={['0', null, '12px']} width="64px" />
         </Flex>
