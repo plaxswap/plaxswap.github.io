@@ -200,5 +200,13 @@ export const bscTokens = {
     'CURVE DAO',
     'https://www.curve.fi/',
   ),
+  rr: new ERC20Token(
+    ChainId.BSC,
+    '0x91Faa9fA243EaF35981f5563ec67e9bF0d8DFAEE',
+    18,
+    'RR',
+    'RFIDR',
+    'https://www.dogrowth.club/',
+  ),
 
 }
