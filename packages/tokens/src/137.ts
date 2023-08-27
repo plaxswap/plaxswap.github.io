@@ -208,5 +208,13 @@ export const bscTokens = {
     'RFIDR',
     'https://www.dogrowth.club/',
   ),
+  fif: new ERC20Token(
+    ChainId.BSC,
+    '0xbaEF7137D3cEC6282a83dd954eA6376d464f7780',
+    18,
+    'FIF',
+    'FREEDOM INITIAL FUND',
+    'https://www.freedomcommunity.network',
+  ),
 
 }
