@@ -216,5 +216,13 @@ export const bscTokens = {
     'FREEDOM INITIAL FUND',
     'https://www.freedomcommunity.network',
   ),
+  burn: new ERC20Token(
+    ChainId.BSC,
+    '0xF84F0C7D675728D7fadD0D9dd97AbE26EB14642c',
+    18,
+    'BURN',
+    'BULLDOG REBORN',
+    'https://www.dogrowth.club/',
+  ),
 
 }
