@@ -232,5 +232,13 @@ export const bscTokens = {
     'Wrapped BTC',
     'https://www.wbtc.network/',
   ),
+  weth: new ERC20Token(
+    ChainId.BSC,
+    '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
+    18,
+    'wETH',
+    'Wrapped Ether',
+    'https://ethereum.org/',
+  ),
 
 }
