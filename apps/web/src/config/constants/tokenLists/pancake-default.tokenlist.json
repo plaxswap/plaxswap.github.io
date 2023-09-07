@@ -171,14 +171,6 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xF84F0C7D675728D7fadD0D9dd97AbE26EB14642c/logo.png"
     },
     {
-      "name": "Wrapped BTC",
-      "symbol": "WBTC",
-      "address": "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6",
-      "chainId": 1,
-      "decimals": 8,
-      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6/logo.png"
-    },
-    {
       "name": "Belt",
       "symbol": "BELT",
       "address": "0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f",
@@ -305,6 +297,6 @@
       "chainId": 1,
       "decimals": 8,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6/logo.png"
-    },
+    }
   ]
 }
