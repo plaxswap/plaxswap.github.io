@@ -224,5 +224,13 @@ export const bscTokens = {
     'BULLDOG REBORN',
     'https://www.dogrowth.club/',
   ),
+  wbtc: new ERC20Token(
+    ChainId.BSC,
+    '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
+    8,
+    'WBTC',
+    'Wrapped BTC',
+    'https://www.wbtc.network/',
+  ),
 
 }
