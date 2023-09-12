@@ -240,5 +240,13 @@ export const bscTokens = {
     'Wrapped Ether',
     'https://ethereum.org/',
   ),
+  aro: new ERC20Token(
+    ChainId.BSC,
+    '0xb36D96fbAe9cb7A203871820a004c8969C4A34d4',
+    18,
+    'wETH',
+    'Aroliex',
+    'https://aroliex.co/',
+  ),
 
 }
