@@ -56,7 +56,7 @@ const farms: SerializedFarmConfig[] = [
     lpAddress: '0x7Fa11bb242CbBa853f634BEF02Fc24A3A13f916d',
     token: bscTokens.pay,
     quoteToken: bscTokens.usdt,
-    // boosted: true,
+    boosted: true,
   },
   {
     pid: 14,
