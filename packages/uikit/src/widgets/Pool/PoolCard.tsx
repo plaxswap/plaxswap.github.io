@@ -26,7 +26,7 @@ export function PoolCard<T>({ pool, cardContent, aprRow, isStaked, cardFooter, t
     <StyledCard
       isActive={isCakePool}
       isFinished={isFinished && sousId !== 0}
-      isUpcoming={isUpcomming && sousId !== 0}
+      isUpcoming={isUpcoming && sousId !== 0}
       ribbon={isFinished && <CardRibbon variantColor="textDisabled" text={t("Finished")} />}
       ribbon={isUpcoming && <CardRibbon variantColor="secondary" text={t("Upcoming")} />}
     >
