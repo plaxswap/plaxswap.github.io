@@ -27,8 +27,12 @@ export function PoolCard<T>({ pool, cardContent, aprRow, isStaked, cardFooter, t
       isActive={isCakePool}
       isFinished={isFinished && sousId !== 0}
       isUpcoming={isUpcoming && sousId !== 0}
-      ribbon={isFinished && <CardRibbon variantColor="textDisabled" text={t("Finished")} />}
-      ribbon={isUpcoming && <CardRibbon variantColor="secondary" text={t("Upcoming")} />}
+      ribbon={
+        <>
+          {isFinished && <CardRibbon variantColor="textDisabled" text={t("Finished")} />}
+          {isUpcomming && <CardRibbon variantColor="secondary" text={t("Upcoming")} />}
+        </>
+        }
     >
       <PoolCardHeader isStaking={isStaked} isFinished={isFinished && sousId !== 0}>
         {totalStaked && totalStaked.gte(0) ? (
