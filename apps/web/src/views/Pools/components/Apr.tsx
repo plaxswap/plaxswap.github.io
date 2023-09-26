@@ -17,7 +17,7 @@ const withShownApr = (AprComp) => (props) => {
   return (
     <AprComp
       {...props}
-      shouldShowApr={hasPoolStarted || !shouldShowBlockCountdown}
+      shouldShowApr={!hasPoolStarted || hasPoolStarted || !shouldShowBlockCountdown}
       account={account}
       autoCompoundFrequency={autoCompoundFrequency}
     />
