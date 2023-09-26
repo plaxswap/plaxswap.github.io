@@ -30,7 +30,7 @@ export function PoolCard<T>({ pool, cardContent, aprRow, isStaked, cardFooter, t
       ribbon={
         <>
           {isFinished && <CardRibbon variantColor="textDisabled" text={t("Finished")} />}
-          {isUpcomming && <CardRibbon variantColor="secondary" text={t("Upcoming")} />}
+          {isUpcoming && <CardRibbon variantColor="secondary" text={t("Upcoming")} />}
         </>
         }
     >
