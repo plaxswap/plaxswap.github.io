@@ -17,7 +17,7 @@ interface PoolCardPropsType<T> {
 }
 
 export function PoolCard<T>({ pool, cardContent, aprRow, isStaked, cardFooter, tokenPairImage }: PoolCardPropsType<T>) {
-  const { sousId, stakingToken, earningToken, isFinished, totalStaked } = pool;
+  const { sousId, stakingToken, earningToken, isFinished, isUpcoming, totalStaked } = pool;
   const { t } = useTranslation();
 
   const isCakePool = earningToken?.symbol === "PLAX" && stakingToken?.symbol === "PLAX";
@@ -26,7 +26,9 @@ export function PoolCard<T>({ pool, cardContent, aprRow, isStaked, cardFooter, t
     <StyledCard
       isActive={isCakePool}
       isFinished={isFinished && sousId !== 0}
+      isUpcoming={isUpcomming && sousId !== 0}
       ribbon={isFinished && <CardRibbon variantColor="textDisabled" text={t("Finished")} />}
+      ribbon={isUpcoming && <CardRibbon variantColor="secondary" text={t("Upcoming")} />}
     >
       <PoolCardHeader isStaking={isStaked} isFinished={isFinished && sousId !== 0}>
         {totalStaked && totalStaked.gte(0) ? (

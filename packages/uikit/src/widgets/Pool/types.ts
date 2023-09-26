@@ -17,6 +17,7 @@ export interface PoolConfigBaseProps {
   poolCategory: PoolCategory;
   tokenPerBlock: string;
   isFinished?: boolean;
+  isUpcoming?: boolean;
   enableEmergencyWithdraw?: boolean;
   version?: number;
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Card } from "../../components";
 
-export const StyledCard = styled(Card)<{ isFinished?: boolean }>`
+export const StyledCard = styled(Card)<{ isFinished?: boolean, isUpcoming?: boolean }>`
   min-width: 280px;
   max-width: 100%;
   margin: 0 0 24px 0;
@@ -11,6 +11,7 @@ export const StyledCard = styled(Card)<{ isFinished?: boolean }>`
   align-self: baseline;
   position: relative;
   color: ${({ isFinished, theme }) => theme.colors[isFinished ? "textDisabled" : "secondary"]};
+  color: ${({ isUpcoming, theme }) => theme.colors[isUpcoming ? "textDisabled" : "secondary"]};
 
   ${({ theme }) => theme.mediaQueries.sm} {
     max-width: 350px;
