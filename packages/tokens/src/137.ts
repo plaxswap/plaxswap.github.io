@@ -242,10 +242,10 @@ export const bscTokens = {
   ),
   aro: new ERC20Token(
     ChainId.BSC,
-    '0xb36D96fbAe9cb7A203871820a004c8969C4A34d4',
+    '0xa7D3aA3206425EeC18D9C8bC7A8b7ee922666bdF',
     18,
-    'wETH',
-    'Aroliex',
+    'ARO',
+    'AroLiex',
     'https://aroliex.co/',
   ),
 
