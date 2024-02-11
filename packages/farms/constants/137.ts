@@ -60,10 +60,10 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 14,
-    lpSymbol: 'MATIC-PAY LP',
+    lpSymbol: 'PAY-MATIC LP',
     lpAddress: '0xE4Dd13E722D74da9ED5DcFCF9Dc94D86BF2C3daF',
-    token: bscTokens.wbnb,
-    quoteToken: bscTokens.pay,
+    token: bscTokens.pay,
+    quoteToken: bscTokens.wbnb,
     // boosted: true,
   },
   {
