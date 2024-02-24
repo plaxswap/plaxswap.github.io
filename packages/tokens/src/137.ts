@@ -206,7 +206,7 @@ export const bscTokens = {
     18,
     'RR',
     'RFIDR',
-    'https://www.dogrowth.club/',
+    'https://www.rfidr.net/',
   ),
   fif: new ERC20Token(
     ChainId.BSC,
@@ -222,7 +222,7 @@ export const bscTokens = {
     18,
     'BURN',
     'BULLDOG REBORN',
-    'https://www.dogrowth.club/',
+    'https://www.bullreborn.co/',
   ),
   wbtc: new ERC20Token(
     ChainId.BSC,
@@ -247,6 +247,22 @@ export const bscTokens = {
     'ARO',
     'AroLiex',
     'https://aroliex.co/',
+  ),
+  pps: new ERC20Token(
+    ChainId.BSC,
+    '0x5e4d5A1C3470d38b030af2AeA2ADA046Fc34cac6',
+    18,
+    'PPS',
+    'Private Pool Share',
+    'https://www.dogrowth.club/',
+  ),
+  bcatt: new ERC20Token(
+    ChainId.BSC,
+    '0x4A780Bb9D55173426f77D494aA8645273653924E',
+    18,
+    'BCATT',
+    'Boss Cat',
+    'https://www.bcatt.fun/',
   ),
 
 }
