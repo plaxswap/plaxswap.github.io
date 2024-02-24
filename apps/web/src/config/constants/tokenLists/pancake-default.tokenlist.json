@@ -179,6 +179,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xa7D3aA3206425EeC18D9C8bC7A8b7ee922666bdF/logo.png"
     },
     {
+      "name": "Boss Catt",
+      "symbol": "BCATT",
+      "address": "0x4A780Bb9D55173426f77D494aA8645273653924E",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x4A780Bb9D55173426f77D494aA8645273653924E/logo.png"
+    },
+    {
       "name": "Private Pool Share",
       "symbol": "PPS",
       "address": "0x5e4d5A1C3470d38b030af2AeA2ADA046Fc34cac6",
