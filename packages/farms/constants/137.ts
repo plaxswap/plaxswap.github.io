@@ -68,7 +68,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 9,
-    lpSymbol: 'USDC-PAY LP',
+    lpSymbol: 'PAY-USDC LP',
     lpAddress: '0x28A2861188B196269366964CbDbA0473819C6467',
     token: bscTokens.pay,
     quoteToken: bscTokens.usdc,
