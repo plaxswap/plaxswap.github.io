@@ -75,6 +75,14 @@ const farms: SerializedFarmConfig[] = [
     boosted: true,
   },
   {
+    pid: 8,
+    lpSymbol: 'SME-USDT LP',
+    lpAddress: '0xB4C4Cd512d60F0E589fBcC58353C1e6225f9a1BB',
+    token: bscTokens.sme,
+    quoteToken: bscTokens.usdt,
+    boosted: true,
+  },
+  {
     pid: 5,
     v1pid: 4,
     lpSymbol: 'USDT-MATIC LP',
@@ -98,14 +106,6 @@ const farms: SerializedFarmConfig[] = [
     token: bscTokens.busd,
     quoteToken: bscTokens.wbnb,
     // boosted: true,
-  },
-  {
-    pid: 8,
-    lpSymbol: 'USDT-SME LP',
-    lpAddress: '0xB4C4Cd512d60F0E589fBcC58353C1e6225f9a1BB',
-    token: bscTokens.sme,
-    quoteToken: bscTokens.usdt,
-    boosted: true,
   },
   {
     pid: 10,
