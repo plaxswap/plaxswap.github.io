@@ -83,6 +83,14 @@ const farms: SerializedFarmConfig[] = [
     boosted: true,
   },
   {
+    pid: 17,
+    lpSymbol: 'PPS-MATIC LP',
+    lpAddress: '0xA458AaDE6ff5dD092340bF1Ed7d87a2Bb0235299',
+    token: bscTokens.pps,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
     pid: 5,
     v1pid: 4,
     lpSymbol: 'USDT-MATIC LP',
