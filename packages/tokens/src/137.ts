@@ -176,6 +176,14 @@ export const bscTokens = {
     'DFORCE USD',
     'https://dforce.network/',
   ),
+  usdc: new ERC20Token(
+    ChainId.BSC,
+    '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
+    6,
+    'USDC',
+    'USD COIN',
+    'https://www.circle.com/en/usdc/',
+  ),
   uni: new ERC20Token(
     ChainId.BSC,
     '0xb33EaAd8d922B1083446DC23f610c2567fB5180f',
@@ -254,7 +262,7 @@ export const bscTokens = {
     18,
     'PPS',
     'Private Pool Share',
-    'https://polygonscan.com/token/0x5e4d5a1c3470d38b030af2aea2ada046fc34cac6#code/',
+    'https://polygonscan.com/token/0x5e4d5a1c3470d38b030af2aea2ada046fc34cac6#code',
   ),
   bcatt: new ERC20Token(
     ChainId.BSC,
