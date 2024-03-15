@@ -254,7 +254,7 @@ export const bscTokens = {
     18,
     'PPS',
     'Private Pool Share',
-    'https://www.dogrowth.club/',
+    'https://polygonscan.com/token/0x5e4d5a1c3470d38b030af2aea2ada046fc34cac6#code/',
   ),
   bcatt: new ERC20Token(
     ChainId.BSC,
