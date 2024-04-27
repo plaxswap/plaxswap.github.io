@@ -75,6 +75,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x649a2DA7B28E0D54c13D5eFf95d3A660652742cC/logo.png"
     },
     {
+      "name": "XIDR",
+      "symbol": "XIDR",
+      "address": "0x2c826035c1C36986117A0e949bD6ad4baB54afE2",
+      "chainId": 137,
+      "decimals": 6,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x2c826035c1C36986117A0e949bD6ad4baB54afE2/logo.png"
+    },
+    {
       "name": "PLAXPAY",
       "symbol": "PAY",
       "address": "0x7Ab2b041E120DcA2a40d8F9524B618A854d3A617",

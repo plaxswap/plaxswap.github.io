@@ -144,6 +144,14 @@ export const bscTokens = {
     'IDRX',
     'https://idrx.co',
   ),
+  xidr: new ERC20Token(
+    ChainId.BSC,
+    '0x2c826035c1C36986117A0e949bD6ad4baB54afE2',
+    6,
+    'XIDR',
+    'XIDR',
+    'https://www.straitsx.com/id/xidr',
+  ),
   quick: new ERC20Token(
     ChainId.BSC,
     '0xB5C064F955D8e7F38fE0460C556a72987494eE17',
