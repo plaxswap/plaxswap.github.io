@@ -174,7 +174,7 @@
       "name": "Bulldog Reborn",
       "symbol": "BURN",
       "address": "0xF84F0C7D675728D7fadD0D9dd97AbE26EB14642c",
-      "chainId": 1,
+      "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xF84F0C7D675728D7fadD0D9dd97AbE26EB14642c/logo.png"
     },
