@@ -41,19 +41,19 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
-    pid: 18,
-    lpSymbol: 'XIDR-MATIC LP',
-    lpAddress: '0x51DbF4DE80155A48C8a553AD986E88b47072125D',
-    token: bscTokens.xidr,
-    quoteToken: bscTokens.wbnb,
-    // boosted: true,
-  },
-  {
     pid: 10,
     lpSymbol: 'USDC-USDT LP',
     lpAddress: '0x33919208EFB4530819e9769a51FE4Cf2524f56B1',
     token: bscTokens.usdc,
     quoteToken: bscTokens.usdt,
+    // boosted: true,
+  },
+  {
+    pid: 18,
+    lpSymbol: 'XIDR-MATIC LP',
+    lpAddress: '0x51DbF4DE80155A48C8a553AD986E88b47072125D',
+    token: bscTokens.xidr,
+    quoteToken: bscTokens.wbnb,
     // boosted: true,
   },
   {
