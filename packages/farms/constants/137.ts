@@ -97,6 +97,14 @@ const farms: SerializedFarmConfig[] = [
     boosted: true,
   },
   {
+    pid: 21,
+    lpSymbol: 'XIDR-IDRT LP',
+    lpAddress: '0x8fD658D4caB11995cE783C6aEBc9c72B3e42e911',
+    token: bscTokens.xidr,
+    quoteToken: bscTokens.idrt,
+    boosted: true,
+  },
+  {
     pid: 2,
     v1pid: 6,
     lpSymbol: 'PLAX-MATIC LP',
