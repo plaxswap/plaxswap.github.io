@@ -33,6 +33,14 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
+    pid: 22,
+    lpSymbol: 'DAI-MATIC LP',
+    lpAddress: '0x08D917A84e4c8f49B07d41CBB62Ed541b8e7Ca72',
+    token: bscTokens.dai,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
     pid: 6,
     lpSymbol: 'USDC-MATIC LP',
     lpAddress: '0xD4bdB68aD7490149587c1117f9AA20D862105D14',
