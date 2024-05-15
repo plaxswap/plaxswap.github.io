@@ -59,6 +59,14 @@
       "logoURI": "https://tokens.pancakeswap.finance/images/symbol/usdc.png"
     },
     {
+      "name": "Dai Stablecoin",
+      "symbol": "DAI",
+      "address": "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063/logo.png"
+    },
+    {
       "name": "Plaxswap Token",
       "symbol": "PLAX",
       "address": "0x328801B0b580eAdd83eA841638865eA41Dc6fb25",
@@ -102,7 +110,7 @@
       "name": "QUICKSWAP",
       "symbol": "QUICK",
       "address": "0xB5C064F955D8e7F38fE0460C556a72987494eE17",
-      "chainId": 137,
+      "chainId": 56,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xB5C064F955D8e7F38fE0460C556a72987494eE17/logo.png"
     },
@@ -110,7 +118,7 @@
       "name": "AAVE",
       "symbol": "AAVE",
       "address": "0xD6DF932A45C0f255f85145f286eA0b292B21C90B",
-      "chainId": 137,
+      "chainId": 56,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xD6DF932A45C0f255f85145f286eA0b292B21C90B/logo.png"
     },
@@ -118,7 +126,7 @@
       "name": "dForce",
       "symbol": "DF",
       "address": "0x08C15FA26E519A78a666D19CE5C646D55047e0a3",
-      "chainId": 137,
+      "chainId": 56,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x08C15FA26E519A78a666D19CE5C646D55047e0a3/logo.png"
     },
@@ -126,7 +134,7 @@
       "name": "dForce USD",
       "symbol": "USX",
       "address": "0xCf66EB3D546F0415b368d98A95EAF56DeD7aA752",
-      "chainId": 137,
+      "chainId": 56,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xCf66EB3D546F0415b368d98A95EAF56DeD7aA752/logo.png"
     },
@@ -134,7 +142,7 @@
       "name": "Uniswap",
       "symbol": "UNI",
       "address": "0xb33EaAd8d922B1083446DC23f610c2567fB5180f",
-      "chainId": 137,
+      "chainId": 56,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xb33EaAd8d922B1083446DC23f610c2567fB5180f/logo.png"
     },
@@ -142,7 +150,7 @@
       "name": "Kyber Network Crystal",
       "symbol": "KNC",
       "address": "0x1C954E8fe737F99f68Fa1CCda3e51ebDB291948C",
-      "chainId": 137,
+      "chainId": 56,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x1C954E8fe737F99f68Fa1CCda3e51ebDB291948C/logo.png"
     },
@@ -150,7 +158,7 @@
       "name": "Curve DAO",
       "symbol": "CRV",
       "address": "0x172370d5Cd63279eFa6d502DAB29171933a610AF",
-      "chainId": 137,
+      "chainId": 56,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x172370d5Cd63279eFa6d502DAB29171933a610AF/logo.png"
     },
@@ -206,7 +214,7 @@
       "name": "Wrapped BTC",
       "symbol": "WBTC",
       "address": "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6",
-      "chainId": 1,
+      "chainId": 56,
       "decimals": 8,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6/logo.png"
     },
@@ -214,7 +222,7 @@
       "name": "Wrapped Ether",
       "symbol": "WETH",
       "address": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
-      "chainId": 1,
+      "chainId": 56,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619/logo.png"
     },
