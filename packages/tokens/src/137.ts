@@ -272,5 +272,13 @@ export const bscTokens = {
     'Boss Cat',
     'https://www.bcatt.fun/',
   ),
+  daz: new ERC20Token(
+    ChainId.BSC,
+    '0xB5f6ca3CDC4d42A57eF85f22Ca98AD4D222D7F4E',
+    18,
+    'DAZ',
+    'BITZAURA',
+    'https://www.bitzaura.org/',
+  ),
 
 }
