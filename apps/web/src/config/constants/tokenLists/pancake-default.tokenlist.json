@@ -211,6 +211,30 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xB5f6ca3CDC4d42A57eF85f22Ca98AD4D222D7F4E/logo.png"
     },
     {
+      "name": "Bitzaura-X",
+      "symbol": "DAX",
+      "address": "0x78Dcb158C18cFF931D188Fe179128e5A8068aE8d",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x78Dcb158C18cFF931D188Fe179128e5A8068aE8d/logo.png"
+    },
+    {
+      "name": "CLABS REWARD",
+      "symbol": "CPOIN",
+      "address": "0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367",
+      "chainId": 1,
+      "decimals": 0,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367/logo.png"
+    },
+    {
+      "name": "CrowdTech Fund",
+      "symbol": "CTF",
+      "address": "0x2eB8556dB957a0C9394cedE2f5B11064824Dd060",
+      "chainId": 1,
+      "decimals": 0,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x2eB8556dB957a0C9394cedE2f5B11064824Dd060/logo.png"
+    },
+    {
       "name": "Private Pool Share",
       "symbol": "PPS",
       "address": "0x5e4d5A1C3470d38b030af2AeA2ADA046Fc34cac6",

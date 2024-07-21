@@ -280,5 +280,29 @@ export const bscTokens = {
     'BITZAURA',
     'https://www.bitzaura.org/',
   ),
+  dax: new ERC20Token(
+    ChainId.BSC,
+    '0x78Dcb158C18cFF931D188Fe179128e5A8068aE8d',
+    18,
+    'DAX',
+    'BITZAURA-X',
+    'https://www.bitzaura.pro/',
+  ),
+  cpoin: new ERC20Token(
+    ChainId.BSC,
+    '0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367',
+    0,
+    'CPOIN',
+    'CLABS REWARD',
+    'https://www.cpoin.net/',
+  ),
+  ctf: new ERC20Token(
+    ChainId.BSC,
+    '0x2eB8556dB957a0C9394cedE2f5B11064824Dd060',
+    0,
+    'CTF',
+    'CrowdTech Fund',
+    'https://polygonscan.com/token/0x2eB8556dB957a0C9394cedE2f5B11064824Dd060#code',
+  ),
 
 }
