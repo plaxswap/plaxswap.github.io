@@ -180,6 +180,22 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
+    pid: 23,
+    lpSymbol: 'DAX-MATIC LP',
+    lpAddress: '0x8f7497Ca2245c45a5d56cD7E1ED2F64e572844CA',
+    token: bscTokens.dax,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
+    pid: 24,
+    lpSymbol: 'CPOIN-MATIC LP',
+    lpAddress: '0x1Aa7FB0be0e16D66430A57D1D17A2917608dfAa8',
+    token: bscTokens.cpoin,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
     pid: 17,
     lpSymbol: 'PPS-MATIC LP',
     lpAddress: '0xA458AaDE6ff5dD092340bF1Ed7d87a2Bb0235299',
