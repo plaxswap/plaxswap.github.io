@@ -235,6 +235,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x2eB8556dB957a0C9394cedE2f5B11064824Dd060/logo.png"
     },
     {
+      "name": "Bulldog Racing Club",
+      "symbol": "BRC",
+      "address": "0x580b956f9828225647C154E13569A2409e0AAd27",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x580b956f9828225647C154E13569A2409e0AAd27/logo.png"
+    },
+    {
       "name": "Private Pool Share",
       "symbol": "PPS",
       "address": "0x5e4d5A1C3470d38b030af2AeA2ADA046Fc34cac6",
