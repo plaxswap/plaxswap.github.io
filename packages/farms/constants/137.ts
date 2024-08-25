@@ -141,7 +141,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 25,
-    lpSymbol: 'PLAXUSDT-MATIC LP',
+    lpSymbol: 'PLAXusdt-MATIC LP',
     lpAddress: '0x38Bfc5df1095c8980576dCd6c7a7aECc218A6026',
     token: bscTokens.plaxusdt,
     quoteToken: bscTokens.wbnb,
@@ -173,7 +173,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 26,
-    lpSymbol: 'PAYUSDT-MATIC LP',
+    lpSymbol: 'PAYusdt-MATIC LP',
     lpAddress: '0x1ED334DbF6C9d4e5830f1c0F87dA5c16E2fbbdb1',
     token: bscTokens.payusdt,
     quoteToken: bscTokens.wbnb,
@@ -185,6 +185,14 @@ const farms: SerializedFarmConfig[] = [
     lpAddress: '0xB4C4Cd512d60F0E589fBcC58353C1e6225f9a1BB',
     token: bscTokens.sme,
     quoteToken: bscTokens.usdt,
+    boosted: true,
+  },
+  {
+    pid: 27,
+    lpSymbol: 'SMEusdt-MATIC LP',
+    lpAddress: '0x3Ac5E936FC50652009Ec97Bc522CFf4e221F5201',
+    token: bscTokens.smeusdt,
+    quoteToken: bscTokens.wbnb,
     boosted: true,
   },
   {

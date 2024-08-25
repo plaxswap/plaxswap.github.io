@@ -236,7 +236,7 @@
     },
     {
       "name": "PLAX-USDT LP",
-      "symbol": "PLAXUSDT",
+      "symbol": "PLAXusdt",
       "address": "0x8ae534F07f08422d00Ed00a2Be1335e411Fb9DA0",
       "chainId": 137,
       "decimals": 18,
@@ -244,11 +244,19 @@
     },
     {
       "name": "PAY-USDT LP",
-      "symbol": "PAYUSDT",
+      "symbol": "PAYusdt",
       "address": "0x7Fa11bb242CbBa853f634BEF02Fc24A3A13f916d",
       "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x7Fa11bb242CbBa853f634BEF02Fc24A3A13f916d/logo.png"
+    },
+    {
+      "name": "SME-USDT LP",
+      "symbol": "SMEusdt",
+      "address": "0xB4C4Cd512d60F0E589fBcC58353C1e6225f9a1BB",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xB4C4Cd512d60F0E589fBcC58353C1e6225f9a1BB/logo.png"
     },
     {
       "name": "Bulldog Racing Club",
