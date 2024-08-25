@@ -204,6 +204,14 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
+    pid: 28,
+    lpSymbol: 'FIF-MATIC LP',
+    lpAddress: '0x9f4a6aE8cb1950135D500818Ce77123E354A5A95',
+    token: bscTokens.fif,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
     pid: 23,
     lpSymbol: 'DAX-MATIC LP',
     lpAddress: '0x8f7497Ca2245c45a5d56cD7E1ED2F64e572844CA',

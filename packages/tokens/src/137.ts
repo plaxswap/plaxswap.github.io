@@ -218,7 +218,7 @@ export const bscTokens = {
   ),
   fif: new ERC20Token(
     ChainId.BSC,
-    '0xbaEF7137D3cEC6282a83dd954eA6376d464f7780',
+    '0x9f4a6aE8cb1950135D500818Ce77123E354A5A95',
     18,
     'FIF',
     'FREEDOM INITIAL FUND',
