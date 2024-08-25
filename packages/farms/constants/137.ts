@@ -172,6 +172,14 @@ const farms: SerializedFarmConfig[] = [
     boosted: true,
   },
   {
+    pid: 25,
+    lpSymbol: 'PLAXUSDT-MATIC LP',
+    lpAddress: '0x38Bfc5df1095c8980576dCd6c7a7aECc218A6026',
+    token: bscTokens.plaxusdt,
+    quoteToken: bscTokens.wbnb,
+    boosted: true,
+  },
+  {
     pid: 19,
     lpSymbol: 'BURN-MATIC LP',
     lpAddress: '0x4E9971C1a292D25342986CA95eC81752C0c56c96',
