@@ -236,7 +236,7 @@
     },
     {
       "name": "PLAX-USDT LP",
-      "symbol": "PLAXUSDT-LP",
+      "symbol": "PLAX-USDT",
       "address": "0x8ae534F07f08422d00Ed00a2Be1335e411Fb9DA0",
       "chainId": 1,
       "decimals": 18,
