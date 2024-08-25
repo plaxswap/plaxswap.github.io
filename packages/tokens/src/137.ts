@@ -308,8 +308,8 @@ export const bscTokens = {
     ChainId.BSC,
     '0x8ae534F07f08422d00Ed00a2Be1335e411Fb9DA0',
     0,
-    'PLASA-LP',
-    'PLAX-USDT LP',
+    'PLAXUSDT',
+    'PLAX USDT LP',
     'https://polygonscan.com/token/0x8ae534F07f08422d00Ed00a2Be1335e411Fb9DA0#code',
   ),
   brc: new ERC20Token(

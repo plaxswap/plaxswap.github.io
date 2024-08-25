@@ -235,8 +235,8 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x2eB8556dB957a0C9394cedE2f5B11064824Dd060/logo.png"
     },
     {
-      "name": "PLAX-USDT LP",
-      "symbol": "PLASA-LP",
+      "name": "PLAX USDT LP",
+      "symbol": "PLAXUSDT",
       "address": "0x8ae534F07f08422d00Ed00a2Be1335e411Fb9DA0",
       "chainId": 1,
       "decimals": 18,
