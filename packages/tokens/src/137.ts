@@ -312,6 +312,14 @@ export const bscTokens = {
     'PLAX-USDT LP',
     'https://polygonscan.com/token/0x8ae534F07f08422d00Ed00a2Be1335e411Fb9DA0#code',
   ),
+  payusdt: new ERC20Token(
+    ChainId.BSC,
+    '0x7Fa11bb242CbBa853f634BEF02Fc24A3A13f916d',
+    18,
+    'PAYUSDT',
+    'PAY-USDT LP',
+    'https://polygonscan.com/token/0x7Fa11bb242CbBa853f634BEF02Fc24A3A13f916d#code',
+  ),
   brc: new ERC20Token(
     ChainId.BSC,
     '0x580b956f9828225647C154E13569A2409e0AAd27',

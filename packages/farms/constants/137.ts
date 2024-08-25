@@ -172,6 +172,14 @@ const farms: SerializedFarmConfig[] = [
     boosted: true,
   },
   {
+    pid: 26,
+    lpSymbol: 'PAYUSDT-MATIC LP',
+    lpAddress: '0x1ED334DbF6C9d4e5830f1c0F87dA5c16E2fbbdb1',
+    token: bscTokens.payusdt,
+    quoteToken: bscTokens.wbnb,
+    boosted: true,
+  },
+  {
     pid: 8,
     lpSymbol: 'SME-USDT LP',
     lpAddress: '0xB4C4Cd512d60F0E589fBcC58353C1e6225f9a1BB',
