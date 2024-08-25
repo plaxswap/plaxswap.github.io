@@ -304,6 +304,14 @@ export const bscTokens = {
     'CrowdTech Fund',
     'https://polygonscan.com/token/0x2eB8556dB957a0C9394cedE2f5B11064824Dd060#code',
   ),
+  plaxusdt: new ERC20Token(
+    ChainId.BSC,
+    '0x8ae534F07f08422d00Ed00a2Be1335e411Fb9DA0',
+    0,
+    'PLAXUSDT-LP',
+    'PLAX-USDT LP',
+    'https://polygonscan.com/token/0x8ae534F07f08422d00Ed00a2Be1335e411Fb9DA0#code',
+  ),
   brc: new ERC20Token(
     ChainId.BSC,
     '0x580b956f9828225647C154E13569A2409e0AAd27',
