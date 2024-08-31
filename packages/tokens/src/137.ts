@@ -336,6 +336,14 @@ export const bscTokens = {
     'Bulldog Racing Club',
     'https://www.bullreborn.club/',
   ),
+  doa: new ERC20Token(
+    ChainId.BSC,
+    '0x058E73a591FF67ed31D92679db27950eb2546ca1',
+    18,
+    'DOA',
+    'ALIRI',
+    'https://polygonscan.com/token/0x058E73a591FF67ed31D92679db27950eb2546ca1',
+  ),
   
 
 }
