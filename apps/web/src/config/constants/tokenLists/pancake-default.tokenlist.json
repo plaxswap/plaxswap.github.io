@@ -214,7 +214,7 @@
       "name": "Bitzaura-X",
       "symbol": "DAX",
       "address": "0x78Dcb158C18cFF931D188Fe179128e5A8068aE8d",
-      "chainId": 1,
+      "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x78Dcb158C18cFF931D188Fe179128e5A8068aE8d/logo.png"
     },
@@ -222,7 +222,7 @@
       "name": "CLABS REWARD",
       "symbol": "CPOIN",
       "address": "0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367",
-      "chainId": 1,
+      "chainId": 137,
       "decimals": 0,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367/logo.png"
     },
@@ -281,6 +281,38 @@
       "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x058E73a591FF67ed31D92679db27950eb2546ca1/logo.png"
+    },
+    {
+      "name": "ALIRI FINANCE",
+      "symbol": "ALIFI",
+      "address": "0x38e009e25A3B6459345e9c07B93ea41E05AC0990",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x38e009e25A3B6459345e9c07B93ea41E05AC0990/logo.png"
+    },
+    {
+      "name": "ALIRI CREATIVE INDUSTRY",
+      "symbol": "ALICIA",
+      "address": "0x1B6e0561f053830e34349111af458Dc130937928",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x1B6e0561f053830e34349111af458Dc130937928/logo.png"
+    },
+    {
+      "name": "Freedom Auto Revshare",
+      "symbol": "FARM",
+      "address": "0x4490d8Dca8a1dbD10c084bFe8EA286c7fa62373A",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x4490d8Dca8a1dbD10c084bFe8EA286c7fa62373A/logo.png"
+    },
+    {
+      "name": "Freedom Crowdfunding Expert",
+      "symbol": "FACE",
+      "address": "0xe9716d7D7248ad22Ac94Fb36DC28Bbbf45E11958",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xe9716d7D7248ad22Ac94Fb36DC28Bbbf45E11958/logo.png"
     },
     {
       "name": "Wrapped BTC",
