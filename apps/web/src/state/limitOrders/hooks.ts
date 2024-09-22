@@ -100,7 +100,7 @@ export const useOrderActionHandlers = (): {
       dispatch(
         selectCurrency({
           field,
-          currencyId: currency.isToken ? currency.address : currency.isNative ? 'MATIC' : '',
+          currencyId: currency.isToken ? currency.address : currency.isNative ? 'POL' : '',
         }),
       )
     },
@@ -455,8 +455,8 @@ function parseCurrencyFromURLParameter(urlParam: any): string {
   if (typeof urlParam === 'string') {
     const valid = isAddress(urlParam)
     if (valid) return valid
-    if (urlParam.toUpperCase() === 'MATIC') return 'MATIC'
-    if (valid === false) return 'MATIC'
+    if (urlParam.toUpperCase() === 'POL') return 'POL'
+    if (valid === false) return 'POL'
   }
   return ''
 }

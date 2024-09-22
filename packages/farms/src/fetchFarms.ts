@@ -12,12 +12,12 @@ import { getFullDecimalMultiplier } from './getFullDecimalMultiplier'
 const evmNativeStableLpMap = {
   [ChainId.BSC]: {
     address: '0x32f7392d7CF0Be17229006D371f02508D3B33866',
-    wNative: 'WMATIC',
+    wNative: 'WPOL',
     stable: 'USDT',
   },
   [ChainId.BSC_TESTNET]: {
     address: '0x4E96D2e92680Ca65D58A0e2eB5bd1c0f44cAB897',
-    wNative: 'WMATIC',
+    wNative: 'WPOL',
     stable: 'BUSD',
   },
 }

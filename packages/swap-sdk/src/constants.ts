@@ -64,8 +64,8 @@ export const WBNB = {
     ChainId.BSC,
     '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
     18,
-    'WMATIC',
-    'Wrapped MATIC',
+    'WPOL',
+    'Wrapped POL',
     'https://polygon.technology/'
   ),
   [ChainId.BSC_TESTNET]: new ERC20Token(
@@ -96,8 +96,8 @@ export const NATIVE: Record<
   [ChainId.ETHEREUM]: { name: 'Ether', symbol: 'ETH', decimals: 18 },
   [ChainId.GOERLI]: { name: 'Goerli Ether', symbol: 'GOR', decimals: 18 },
   [ChainId.BSC]: {
-    name: 'Matic',
-    symbol: 'MATIC',
+    name: 'Polygon Ecosystem Token',
+    symbol: 'POL',
     decimals: 18,
   },
   [ChainId.BSC_TESTNET]: {

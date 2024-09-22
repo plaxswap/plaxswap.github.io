@@ -27,7 +27,7 @@ export default function useGasOverhead(
   const requiredGas = formatUnits(gasPrice ? BigNumber.from(gasPrice).mul(GENERIC_GAS_LIMIT_ORDER_EXECUTION) : '0')
   const requiredGasAsCurrencyAmount = tryParseAmount(requiredGas, native)
 
-  const inputIsBNB = inputAmount?.currency.symbol === 'MATIC'
+  const inputIsBNB = inputAmount?.currency.symbol === 'POL'
 
   const gasCostInInputTokens = useTradeExactIn(requiredGasAsCurrencyAmount, inputIsBNB ? null : inputAmount?.currency)
 

@@ -14,7 +14,7 @@ const BnbWbnbNotice: React.FC<React.PropsWithChildren<BnbWbnbNoticeProps>> = ({ 
     <StyledPriceChart $isDark={isDark} $isExpanded={isChartExpanded} p="24px">
       <Flex justifyContent="center" alignItems="center" height="100%" flexDirection="column">
         <Text mb={['8px', '8px', '0px']} textAlign="center">
-          {t('You can swap WMATIC for MATIC (and vice versa) with no trading fees.')}
+          {t('You can swap WPOL for POL (and vice versa) with no trading fees.')}
         </Text>
         <Text mb={['8px', '8px', '0px']} textAlign="center">
           {t('Exchange rate is always 1 to 1.')}

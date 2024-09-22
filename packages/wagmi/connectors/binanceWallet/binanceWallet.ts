@@ -127,7 +127,7 @@ export class BinanceWalletConnector extends InjectedConnector {
             id: chainId,
             name: `Chain ${id}`,
             network: `${id}`,
-            nativeCurrency: { decimals: 18, name: 'MATIC', symbol: 'MATIC' },
+            nativeCurrency: { decimals: 18, name: 'POL', symbol: 'POL' },
             rpcUrls: { default: { http: [''] } },
           }
         )

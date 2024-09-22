@@ -62,9 +62,9 @@ const FarmResult: React.FC<React.PropsWithChildren<FarmInfoProps>> = ({ pickedDa
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <Flex flexDirection="column">
-      <ListStyle>{t('You have received 0.0005 MATIC as a first-time Polygon Chain user')}</ListStyle>
+      <ListStyle>{t('You have received 0.0005 POL as a first-time Polygon Chain user')}</ListStyle>
       <ListStyle>
-        {t('You can swap more MATIC on')}
+        {t('You can swap more POL on')}
         <LinkStyle href="/swap">{t('Swap.')}</LinkStyle>
       </ListStyle>
       <ListStyle>
@@ -93,7 +93,7 @@ const FarmResult: React.FC<React.PropsWithChildren<FarmInfoProps>> = ({ pickedDa
           <Flex>
             <Box display="inline-flex">
               <Text bold as="span">
-                0.005 MATIC
+                0.005 POL
               </Text>
               {tooltipVisible && tooltip}
               <Box m="0 4px" ref={targetRef}>

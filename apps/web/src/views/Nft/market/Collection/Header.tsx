@@ -63,7 +63,7 @@ const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({ collection }) 
               stat={numberTokensListed ? formatNumber(Number(numberTokensListed), 0, 0) : '0'}
             />
             <LowestPriceStatBoxItem collectionAddress={collection.address} />
-            <StatBoxItem title={t('Vol. (%symbol%)', { symbol: 'MATIC' })} stat={volume} />
+            <StatBoxItem title={t('Vol. (%symbol%)', { symbol: 'POL' })} stat={volume} />
           </StatBox>
         </MarketPageTitle>
       </MarketPageHeader>

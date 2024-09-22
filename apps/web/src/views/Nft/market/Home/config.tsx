@@ -4,12 +4,12 @@ import { ContextApi } from '@pancakeswap/localization'
 const config = (t: ContextApi['t']) => {
   return [
     {
-      title: t('I sold an NFT, where’s my MATIC?'),
+      title: t('I sold an NFT, where’s my POL?'),
       description: [
         t(
-          'Trades are settled in WMATIC, which is a wrapped version of MATIC used on Polygon Chain. That means that when you sell an item, WMATIC is sent to your wallet instead of MATIC.',
+          'Trades are settled in WPOL, which is a wrapped version of POL used on Polygon Chain. That means that when you sell an item, WPOL is sent to your wallet instead of POL.',
         ),
-        t('You can instantly swap your WMATIC for MATIC with no trading fees on PlaxSwap.'),
+        t('You can instantly swap your WPOL for POL with no trading fees on PlaxSwap.'),
       ],
     },
     {

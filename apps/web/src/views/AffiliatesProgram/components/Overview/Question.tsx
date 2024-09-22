@@ -76,7 +76,7 @@ const Question = () => {
                 {t('Pairs must be in “PancakeSwap Extended” official token list')}
               </StyledListText>
               <StyledListText color="textSubtle">
-                {t('Pairs must include 1 major token (MATIC, BNB, BTC, BUSD, ETH, USDT and USDC)')}
+                {t('Pairs must include 1 major token (POL, BNB, BTC, BUSD, ETH, USDT and USDC)')}
               </StyledListText>
             </FoldableText>
             <FoldableText title={t('How will I receive my commissions and how often will I be paid?')} mt="24px">

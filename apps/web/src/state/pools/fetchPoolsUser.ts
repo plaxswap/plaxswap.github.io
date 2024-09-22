@@ -10,8 +10,8 @@ import multiCallAbi from 'config/abi/Multicall.json'
 
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
 // BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
-const nonBnbPools = poolsConfig.filter((pool) => pool.stakingToken.symbol !== 'MATIC')
-const bnbPools = poolsConfig.filter((pool) => pool.stakingToken.symbol === 'MATIC')
+const nonBnbPools = poolsConfig.filter((pool) => pool.stakingToken.symbol !== 'POL')
+const bnbPools = poolsConfig.filter((pool) => pool.stakingToken.symbol === 'POL')
 const nonMasterPools = poolsConfig.filter((pool) => pool.sousId !== 0)
 
 const multicallAddress = getMulticallAddress()

@@ -205,7 +205,7 @@ export enum PredictionStatus {
 }
 
 export enum PredictionSupportedSymbol {
-  BNB = 'MATIC',
+  BNB = 'POL',
   CAKE = 'PLAX',
 }
 

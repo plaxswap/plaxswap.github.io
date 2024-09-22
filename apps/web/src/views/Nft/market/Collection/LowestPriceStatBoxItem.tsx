@@ -27,7 +27,7 @@ const LowestPriceStatBoxItem: React.FC<React.PropsWithChildren<LowestPriceStatBo
         : '-'
       : null
 
-  return <StatBoxItem title={t('Lowest (%symbol%)', { symbol: 'MATIC' })} stat={formattedLowestPrice} {...props} />
+  return <StatBoxItem title={t('Lowest (%symbol%)', { symbol: 'POL' })} stat={formattedLowestPrice} {...props} />
 }
 
 export default LowestPriceStatBoxItem
