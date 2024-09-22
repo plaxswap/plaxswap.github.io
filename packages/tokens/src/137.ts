@@ -8,8 +8,8 @@ export const bscTokens = {
     ChainId.BSC,
     '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
     18,
-    'MATIC',
-    'MATIC',
+    'POL',
+    'Polygon Ecosystem Token',
     'https://polygon.technology/',
   ),
   cake: CAKE_MAINNET,
@@ -344,6 +344,39 @@ export const bscTokens = {
     'ALIRI',
     'https://polygonscan.com/token/0x058E73a591FF67ed31D92679db27950eb2546ca1',
   ),
+  alifi: new ERC20Token(
+    ChainId.BSC,
+    '0x38e009e25A3B6459345e9c07B93ea41E05AC0990',
+    18,
+    'ALIRI FINANCE',
+    'ALIFI',
+    'https://polygonscan.com/token/0x38e009e25A3B6459345e9c07B93ea41E05AC0990',
+  ),
+  alicia: new ERC20Token(
+    ChainId.BSC,
+    '0x1B6e0561f053830e34349111af458Dc130937928',
+    18,
+    'ALIRI CREATIVE INDUSTRY',
+    'ALICIA',
+    'https://polygonscan.com/token/0x1B6e0561f053830e34349111af458Dc130937928',
+  ),
+  farm: new ERC20Token(
+    ChainId.BSC,
+    '0x4490d8Dca8a1dbD10c084bFe8EA286c7fa62373A',
+    18,
+    'FREEDOM AUTO REVSHARE',
+    'FARM',
+    'https://polygonscan.com/token/0x4490d8Dca8a1dbD10c084bFe8EA286c7fa62373A',
+  ),
+  face: new ERC20Token(
+    ChainId.BSC,
+    '0xe9716d7D7248ad22Ac94Fb36DC28Bbbf45E11958',
+    18,
+    'FREEDOM CROWDFUNDING EXPERT',
+    'FACE',
+    'https://polygonscan.com/token/0xe9716d7D7248ad22Ac94Fb36DC28Bbbf45E11958',
+  ),
+
   
 
 }

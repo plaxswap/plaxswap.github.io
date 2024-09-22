@@ -26,7 +26,7 @@ const farms: SerializedFarmConfig[] = [
   {
     pid: 5,
     v1pid: 4,
-    lpSymbol: 'USDT-MATIC LP',
+    lpSymbol: 'USDT-POL LP',
     lpAddress: '0x32f7392d7CF0Be17229006D371f02508D3B33866',
     token: bscTokens.usdt,
     quoteToken: bscTokens.wbnb,
@@ -34,7 +34,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 22,
-    lpSymbol: 'DAI-MATIC LP',
+    lpSymbol: 'DAI-POL LP',
     lpAddress: '0x08D917A84e4c8f49B07d41CBB62Ed541b8e7Ca72',
     token: bscTokens.dai,
     quoteToken: bscTokens.wbnb,
@@ -42,7 +42,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 6,
-    lpSymbol: 'USDC-MATIC LP',
+    lpSymbol: 'USDC-POL LP',
     lpAddress: '0xD4bdB68aD7490149587c1117f9AA20D862105D14',
     token: bscTokens.usdc,
     quoteToken: bscTokens.wbnb,
@@ -58,7 +58,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 20,
-    lpSymbol: 'IDRT-MATIC LP',
+    lpSymbol: 'IDRT-POL LP',
     lpAddress: '0x5770F5f29A846fc4E26d4E0CC72cf48942eB4e93',
     token: bscTokens.idrt,
     quoteToken: bscTokens.wbnb,
@@ -98,7 +98,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 18,
-    lpSymbol: 'XIDR-MATIC LP',
+    lpSymbol: 'XIDR-POL LP',
     lpAddress: '0x51DbF4DE80155A48C8a553AD986E88b47072125D',
     token: bscTokens.xidr,
     quoteToken: bscTokens.wbnb,
@@ -115,7 +115,7 @@ const farms: SerializedFarmConfig[] = [
   {
     pid: 2,
     v1pid: 6,
-    lpSymbol: 'PLAX-MATIC LP',
+    lpSymbol: 'PLAX-POL LP',
     lpAddress: CAKE_BNB_LP_MAINNET,
     token: bscTokens.cake,
     quoteToken: bscTokens.wbnb,
@@ -141,7 +141,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 25,
-    lpSymbol: 'PLAXusdt-MATIC LP',
+    lpSymbol: 'PLAXusdt-POL LP',
     lpAddress: '0x38Bfc5df1095c8980576dCd6c7a7aECc218A6026',
     token: bscTokens.plaxusdt,
     quoteToken: bscTokens.wbnb,
@@ -149,7 +149,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 14,
-    lpSymbol: 'PAY-MATIC LP',
+    lpSymbol: 'PAY-POL LP',
     lpAddress: '0xE4Dd13E722D74da9ED5DcFCF9Dc94D86BF2C3daF',
     token: bscTokens.pay,
     quoteToken: bscTokens.wbnb,
@@ -173,7 +173,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 26,
-    lpSymbol: 'PAYusdt-MATIC LP',
+    lpSymbol: 'PAYusdt-POL LP',
     lpAddress: '0x1ED334DbF6C9d4e5830f1c0F87dA5c16E2fbbdb1',
     token: bscTokens.payusdt,
     quoteToken: bscTokens.wbnb,
@@ -189,7 +189,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 27,
-    lpSymbol: 'SMEusdt-MATIC LP',
+    lpSymbol: 'SMEusdt-POL LP',
     lpAddress: '0x3Ac5E936FC50652009Ec97Bc522CFf4e221F5201',
     token: bscTokens.smeusdt,
     quoteToken: bscTokens.wbnb,
@@ -197,7 +197,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 19,
-    lpSymbol: 'BURN-MATIC LP',
+    lpSymbol: 'BURN-POL LP',
     lpAddress: '0x4E9971C1a292D25342986CA95eC81752C0c56c96',
     token: bscTokens.burn,
     quoteToken: bscTokens.wbnb,
@@ -205,7 +205,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 28,
-    lpSymbol: 'FIF-MATIC LP',
+    lpSymbol: 'FIF-POL LP',
     lpAddress: '0x9f4a6aE8cb1950135D500818Ce77123E354A5A95',
     token: bscTokens.fif,
     quoteToken: bscTokens.wbnb,
@@ -213,7 +213,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 23,
-    lpSymbol: 'DAX-MATIC LP',
+    lpSymbol: 'DAX-POL LP',
     lpAddress: '0x8f7497Ca2245c45a5d56cD7E1ED2F64e572844CA',
     token: bscTokens.dax,
     quoteToken: bscTokens.wbnb,
@@ -221,7 +221,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 24,
-    lpSymbol: 'CPOIN-MATIC LP',
+    lpSymbol: 'CPOIN-POL LP',
     lpAddress: '0x1Aa7FB0be0e16D66430A57D1D17A2917608dfAa8',
     token: bscTokens.cpoin,
     quoteToken: bscTokens.wbnb,
@@ -229,7 +229,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 17,
-    lpSymbol: 'PPS-MATIC LP',
+    lpSymbol: 'PPS-POL LP',
     lpAddress: '0xA458AaDE6ff5dD092340bF1Ed7d87a2Bb0235299',
     token: bscTokens.pps,
     quoteToken: bscTokens.wbnb,
@@ -237,7 +237,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 7,
-    lpSymbol: 'BUSD-MATIC LP',
+    lpSymbol: 'BUSD-POL LP',
     lpAddress: '0x3D51830AcCfB5598D2542750eCef2f959B08F8B1',
     token: bscTokens.busd,
     quoteToken: bscTokens.wbnb,
