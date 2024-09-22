@@ -236,6 +236,22 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
+    pid: 31,
+    lpSymbol: 'ALIFI-POL LP',
+    lpAddress: '0x02Bf2126B39c8F535FEcFf55254529E5CA250BB1',
+    token: bscTokens.alifi,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
+    pid: 32,
+    lpSymbol: 'ALICIA-POL LP',
+    lpAddress: '0xB2034F530E2752B4FD95081382f56FF960044cB2',
+    token: bscTokens.alicia,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
     pid: 24,
     lpSymbol: 'CPOIN-POL LP',
     lpAddress: '0x1Aa7FB0be0e16D66430A57D1D17A2917608dfAa8',
