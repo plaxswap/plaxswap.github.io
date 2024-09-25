@@ -219,6 +219,22 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x78Dcb158C18cFF931D188Fe179128e5A8068aE8d/logo.png"
     },
     {
+      "name": "Bitzaura Association",
+      "symbol": "DASS",
+      "address": "0xda432286FEd68F40f5aF28F1E005b2378146B8Cc",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xda432286FEd68F40f5aF28F1E005b2378146B8Cc/logo.png"
+    },
+    {
+      "name": "Bitzaura Gold",
+      "symbol": "DGOLD",
+      "address": "0x7aE71763B5Cc70BA3932D05352Da3Af591ed4fEa",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x7aE71763B5Cc70BA3932D05352Da3Af591ed4fEa/logo.png"
+    },
+    {
       "name": "CLABS REWARD",
       "symbol": "CPOIN",
       "address": "0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367",

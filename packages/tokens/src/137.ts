@@ -288,6 +288,22 @@ export const bscTokens = {
     'BITZAURA-X',
     'https://www.bitzaura.pro/',
   ),
+  dass: new ERC20Token(
+    ChainId.BSC,
+    '0xda432286FEd68F40f5aF28F1E005b2378146B8Cc',
+    18,
+    'DASS',
+    'BitZaura Association',
+    'https://www.bitzaura.pro/',
+  ),
+  dgold: new ERC20Token(
+    ChainId.BSC,
+    '0x7aE71763B5Cc70BA3932D05352Da3Af591ed4fEa',
+    18,
+    'DGOLD',
+    'BitZaura Gold',
+    'https://www.bitzaura.pro/',
+  ),
   cpoin: new ERC20Token(
     ChainId.BSC,
     '0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367',
