@@ -304,6 +304,14 @@ export const bscTokens = {
     'BitZaura Gold',
     'https://www.bitzaura.pro/',
   ),
+  paxg: new ERC20Token(
+    ChainId.BSC,
+    '0x553d3D295e0f695B9228246232eDF400ed3560B5',
+    18,
+    'PAXG',
+    'PAX Gold',
+    'https://paxos.com/paxgold/',
+  ),
   cpoin: new ERC20Token(
     ChainId.BSC,
     '0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367',
