@@ -236,6 +236,22 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
+    pid: 34,
+    lpSymbol: 'DASS-POL LP',
+    lpAddress: '0x8c648E300851d36aD66c5161177eE2967d25Ccc4',
+    token: bscTokens.dass,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,  
+  },
+  {
+    pid: 33,
+    lpSymbol: 'DGOLD-POL LP',
+    lpAddress: '0x84632B53Ddc308eee8385D8B165c92414896887D',
+    token: bscTokens.dgold,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,  
+  },
+  {
     pid: 31,
     lpSymbol: 'ALIFI-POL LP',
     lpAddress: '0x02Bf2126B39c8F535FEcFf55254529E5CA250BB1',
