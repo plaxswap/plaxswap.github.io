@@ -179,14 +179,6 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xbaEF7137D3cEC6282a83dd954eA6376d464f7780/logo.png"
     },
     {
-      "name": "Bulldog Reborn",
-      "symbol": "BURN",
-      "address": "0xF84F0C7D675728D7fadD0D9dd97AbE26EB14642c",
-      "chainId": 137,
-      "decimals": 18,
-      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xF84F0C7D675728D7fadD0D9dd97AbE26EB14642c/logo.png"
-    },
-    {
       "name": "AroLiex",
       "symbol": "ARO",
       "address": "0xa7D3aA3206425EeC18D9C8bC7A8b7ee922666bdF",
@@ -251,12 +243,60 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367/logo.png"
     },
     {
+      "name": "BitFind",
+      "symbol": "BTF",
+      "address": "0x9b3d2aFc6fDfeF566a224E2786bAfC854fAf6800",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x9b3d2aFc6fDfeF566a224E2786bAfC854fAf6800/logo.png"
+    },
+    {
       "name": "CrowdTech Fund",
       "symbol": "CTF",
       "address": "0x2eB8556dB957a0C9394cedE2f5B11064824Dd060",
-      "chainId": 1,
+      "chainId": 137,
       "decimals": 0,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x2eB8556dB957a0C9394cedE2f5B11064824Dd060/logo.png"
+    },
+    {
+      "name": "BitFind Camp",
+      "symbol": "BTFC",
+      "address": "0x2721098562f5b3dc79917730C2646877F5F374F9",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x2721098562f5b3dc79917730C2646877F5F374F9/logo.png"
+    },
+    {
+      "name": "Defi Project",
+      "symbol": "DAPPS",
+      "address": "0xC8C16304f6B722F910fb3A74bee55F7F4Dfd36dF",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xC8C16304f6B722F910fb3A74bee55F7F4Dfd36dF/logo.png"
+    },
+    {
+      "name": "Real Project Finance",
+      "symbol": "RSI",
+      "address": "0x467C3603BEE6F43e9497afA93720d55586213dFE",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x467C3603BEE6F43e9497afA93720d55586213dFE/logo.png"
+    },
+    {
+      "name": "BitGands",
+      "symbol": "BTGS",
+      "address": "0x230f5A4dC8A12698bC65373a47061A50C270D343",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x230f5A4dC8A12698bC65373a47061A50C270D343/logo.png"
+    },
+    {
+      "name": "BitParts",
+      "symbol": "BTPS",
+      "address": "0xCcdc94871f1945F8eE75369e14E7D7f7edD371A7",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xCcdc94871f1945F8eE75369e14E7D7f7edD371A7/logo.png"
     },
     {
       "name": "PLAX-USDT LP",
@@ -281,6 +321,14 @@
       "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xB4C4Cd512d60F0E589fBcC58353C1e6225f9a1BB/logo.png"
+    },
+    {
+      "name": "Bulldog Reborn",
+      "symbol": "BURN",
+      "address": "0xF84F0C7D675728D7fadD0D9dd97AbE26EB14642c",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xF84F0C7D675728D7fadD0D9dd97AbE26EB14642c/logo.png"
     },
     {
       "name": "Bulldog Racing Club",
