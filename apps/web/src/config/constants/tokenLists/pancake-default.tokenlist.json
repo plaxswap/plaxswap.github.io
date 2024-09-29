@@ -323,6 +323,22 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xB4C4Cd512d60F0E589fBcC58353C1e6225f9a1BB/logo.png"
     },
     {
+      "name": "Bulldog Core",
+      "symbol": "BCORE",
+      "address": "0xA830a38CeAC7BFe3568D229945A45121730fbb91",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xA830a38CeAC7BFe3568D229945A45121730fbb91/logo.png"
+    },
+    {
+      "name": "Bulldog Racing Club",
+      "symbol": "BRC",
+      "address": "0x580b956f9828225647C154E13569A2409e0AAd27",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x580b956f9828225647C154E13569A2409e0AAd27/logo.png"
+    },
+    {
       "name": "Bulldog Reborn",
       "symbol": "BURN",
       "address": "0xF84F0C7D675728D7fadD0D9dd97AbE26EB14642c",
@@ -331,12 +347,20 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xF84F0C7D675728D7fadD0D9dd97AbE26EB14642c/logo.png"
     },
     {
-      "name": "Bulldog Racing Club",
-      "symbol": "BRC",
-      "address": "0x580b956f9828225647C154E13569A2409e0AAd27",
-      "chainId": 1,
+      "name": "Bulldog Alliance",
+      "symbol": "BALL",
+      "address": "0xCC135a9d941d2a1f40d55a04eb6A90d9835dA7d7",
+      "chainId": 137,
       "decimals": 18,
-      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x580b956f9828225647C154E13569A2409e0AAd27/logo.png"
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xCC135a9d941d2a1f40d55a04eb6A90d9835dA7d7/logo.png"
+    },
+    {
+      "name": "Bulldog Brand",
+      "symbol": "BRAND",
+      "address": "0xb0de690CA7C204608062765507e280d0163D452C",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xb0de690CA7C204608062765507e280d0163D452C/logo.png"
     },
     {
       "name": "Private Pool Share",
