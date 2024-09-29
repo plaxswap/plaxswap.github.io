@@ -350,7 +350,7 @@
       "name": "Bulldog Alliance",
       "symbol": "BALL",
       "address": "0xCC135a9d941d2a1f40d55a04eb6A90d9835dA7d7",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xCC135a9d941d2a1f40d55a04eb6A90d9835dA7d7/logo.png"
     },
@@ -358,7 +358,7 @@
       "name": "Bulldog Brand",
       "symbol": "BRAND",
       "address": "0xb0de690CA7C204608062765507e280d0163D452C",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xb0de690CA7C204608062765507e280d0163D452C/logo.png"
     },
