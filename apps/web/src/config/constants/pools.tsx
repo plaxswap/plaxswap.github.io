@@ -379,6 +379,32 @@ export const livePools: Pool.SerializedPoolConfig<SerializedWrappedToken>[] = [
     // version: 3,
   },
   {
+    sousId: 348,
+    stakingToken: bscTokens.rsi,
+    earningToken: bscTokens.btgs,
+    contractAddress: {
+      137: '0x7bfaCFcEd3F1B5a372B509A89F16d31442149142',
+      80001: '',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '0.000462962962962963',
+    isUpcoming: false,
+    // version: 3,
+  },
+  {
+    sousId: 349,
+    stakingToken: bscTokens.rsi,
+    earningToken: bscTokens.btps,
+    contractAddress: {
+      137: '0xB6495660Bc013673685b0bFF347388055839329d',
+      80001: '',
+    },
+    poolCategory: PoolCategory.CORE,
+    tokenPerBlock: '0.000462962962962963',
+    isUpcoming: false,
+    // version: 3,
+  },
+  {
     sousId: 325,
     stakingToken: bscTokens.pay,
     earningToken: bscTokens.sme,
@@ -617,7 +643,7 @@ const finishedPools = [
 //   {
 //     sousId: 300,
 //     stakingToken: bscTokens.cake,
-//     earningToken: bscTokens.arv,0.462963
+//     earningToken: bscTokens.arv,
 //     contractAddress: {
 //       56: '0x420Cd06440d8845FBcde9a396d9Aa211FE78C03d',
 //       97: '',
