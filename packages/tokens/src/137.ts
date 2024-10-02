@@ -474,11 +474,11 @@ export const bscTokens = {
   ),
   fgold: new ERC20Token(
     ChainId.BSC,
-    '0x3C8FD1d4e30a430c52b637Ab46Db64Ee0d732E6F',
-    6,
+    '0x38A33Cf60164EaC333400aB0ee7DeeBe92f968dB',
+    18,
     'FGOLD',
     'FREEGOLD',
-    'https://polygonscan.com/token/0x3C8FD1d4e30a430c52b637Ab46Db64Ee0d732E6F',
+    'https://polygonscan.com/token/0x38A33Cf60164EaC333400aB0ee7DeeBe92f968dB',
   ),
 
   

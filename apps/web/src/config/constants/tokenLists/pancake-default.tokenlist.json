@@ -411,12 +411,12 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xe9716d7D7248ad22Ac94Fb36DC28Bbbf45E11958/logo.png"
     },
     {
-      "name": "FreeGold",
+      "name": "FREEGOLD",
       "symbol": "FGOLD",
-      "address": "0x3C8FD1d4e30a430c52b637Ab46Db64Ee0d732E6F",
+      "address": "0x38A33Cf60164EaC333400aB0ee7DeeBe92f968dB",
       "chainId": 137,
-      "decimals": 6,
-      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x3C8FD1d4e30a430c52b637Ab46Db64Ee0d732E6F/logo.png"
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x38A33Cf60164EaC333400aB0ee7DeeBe92f968dB/logo.png"
     },
     {
       "name": "Wrapped BTC",

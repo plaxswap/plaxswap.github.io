@@ -235,14 +235,14 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: bscTokens.wbnb,
     // boosted: true,
   },
-  {
-    pid: 42,
-    lpSymbol: 'FGOLD-POL LP',
-    lpAddress: '0xF64A4AE174211ab4702e02650207b5ed3B085D27',
-    token: bscTokens.fgold,
-    quoteToken: bscTokens.wbnb,
+  // {
+    // pid: 42,
+    // lpSymbol: 'FGOLD-POL LP',
+    // lpAddress: '0xF64A4AE174211ab4702e02650207b5ed3B085D27',
+    // token: bscTokens.rsi,
+    // quoteToken: bscTokens.wbnb,
     // boosted: true,
-  },
+  // },
   {
     pid: 36,
     lpSymbol: 'CTF-POL LP',
