@@ -222,7 +222,7 @@ export const bscTokens = {
     18,
     'FIF',
     'FREEDOM INITIAL FUND',
-    'https://www.freedomcommunity.network',
+    'https://sites.google.com/view/fif-report/lock-staking/fif-freebiz-class?authuser=0',
   ),
   bcore: new ERC20Token(
     ChainId.BSC,
@@ -396,7 +396,7 @@ export const bscTokens = {
     ChainId.BSC,
     '0x230f5A4dC8A12698bC65373a47061A50C270D343',
     18,
-    'BITGS',
+    'BTGS',
     'BitGands',
     'https://bitfind.co',
   ),
@@ -462,7 +462,7 @@ export const bscTokens = {
     18,
     'FREEDOM AUTO REVSHARE',
     'FARM',
-    'https://polygonscan.com/token/0x4490d8Dca8a1dbD10c084bFe8EA286c7fa62373A',
+    'https://sites.google.com/view/fif-report/lock-staking/farm-pamm?authuser=0',
   ),
   face: new ERC20Token(
     ChainId.BSC,
@@ -470,7 +470,15 @@ export const bscTokens = {
     18,
     'FREEDOM CROWDFUNDING EXPERT',
     'FACE',
-    'https://polygonscan.com/token/0xe9716d7D7248ad22Ac94Fb36DC28Bbbf45E11958',
+    'https://sites.google.com/view/fif-report/lock-staking/face-backer?authuser=0',
+  ),
+  fgold: new ERC20Token(
+    ChainId.BSC,
+    '0x3C8FD1d4e30a430c52b637Ab46Db64Ee0d732E6F',
+    6,
+    'FREEGOLD',
+    'FGOLD',
+    'https://polygonscan.com/token/0x3C8FD1d4e30a430c52b637Ab46Db64Ee0d732E6F',
   ),
 
   
