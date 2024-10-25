@@ -480,6 +480,22 @@ export const bscTokens = {
     'FREEGOLD',
     'https://polygonscan.com/token/0x38A33Cf60164EaC333400aB0ee7DeeBe92f968dB',
   ),
+  clk: new ERC20Token(
+    ChainId.BSC,
+    '0x1EdC86d411AD224f97b6Ad89C4446683C1b0BAaE',
+    8,
+    'CLK',
+    'COINLUCK',
+    'https://polygonscan.com/token/0x1EdC86d411AD224f97b6Ad89C4446683C1b0BAaE',
+  ),
+  tba: new ERC20Token(
+    ChainId.BSC,
+    '0x25481b64c8733475fD17C57e24082Ef938cc40D5',
+    18,
+    'TBA',
+    'THUBA',
+    'https://polygonscan.com/token/0x25481b64c8733475fD17C57e24082Ef938cc40D5',
+  ),
 
   
 
