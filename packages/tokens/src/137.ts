@@ -230,7 +230,7 @@ export const bscTokens = {
     18,
     'BCORE',
     'Bulldog Core',
-    'https://www.bullreborn.site/',
+    'https://www.bullclub.site/',
   ),
   brc: new ERC20Token(
     ChainId.BSC,
@@ -238,7 +238,7 @@ export const bscTokens = {
     18,
     'BRC',
     'Bulldog Racing Club',
-    'https://www.bullreborn.club/',
+    'https://www.bullclub.online/',
   ),
   burn: new ERC20Token(
     ChainId.BSC,
@@ -246,7 +246,7 @@ export const bscTokens = {
     18,
     'BURN',
     'BULLDOG REBORN',
-    'https://www.bullreborn.site/',
+    'https://www.bullclub.site/',
   ),
   ball: new ERC20Token(
     ChainId.BSC,
@@ -254,7 +254,7 @@ export const bscTokens = {
     18,
     'BALL',
     'BULLDOG ALLIANCE',
-    'https://www.bullreborn.site/',
+    'https://www.bullclub.site/',
   ),
   brand: new ERC20Token(
     ChainId.BSC,
@@ -262,7 +262,7 @@ export const bscTokens = {
     18,
     'BRAND',
     'BULLDOG BRAND',
-    'https://www.bullreborn.site/',
+    'https://www.bullclub.site/',
   ),
   wbtc: new ERC20Token(
     ChainId.BSC,
