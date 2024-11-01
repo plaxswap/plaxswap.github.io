@@ -220,6 +220,22 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
+    pid: 45,
+    lpSymbol: 'BALL-POL LP',
+    lpAddress: '0x8Cf00f3Ff11De1819bC73d3CC1a768D93b908Cfa',
+    token: bscTokens.ball,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
+    pid: 46,
+    lpSymbol: 'BRAND-POL LP',
+    lpAddress: '0x53566ded58E08e7CaA818d5f6773c7a6f27f6D1e',
+    token: bscTokens.brand,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
     pid: 28,
     lpSymbol: 'FIF-POL LP',
     lpAddress: '0x9f4a6aE8cb1950135D500818Ce77123E354A5A95',
