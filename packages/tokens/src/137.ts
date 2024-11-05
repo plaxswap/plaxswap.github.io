@@ -120,6 +120,14 @@ export const bscTokens = {
     'PLAXPAY',
     'https://www.plaxpay.app/',
   ),
+  tpay: new ERC20Token(
+    ChainId.BSC,
+    '0x8DF4c954C51E5ccBa51b8a21cC3fF6347760b31a',
+    18,
+    'TPAY',
+    'PAYMATIC',
+    'https://www.paymatic.cloud/',
+  ),
   sme: new ERC20Token(
     ChainId.BSC,
     '0xcD9c386c9CE5987A8336C4Db5c6A17750ea0e339',

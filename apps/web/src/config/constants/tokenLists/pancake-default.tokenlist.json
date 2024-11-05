@@ -99,6 +99,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x7Ab2b041E120DcA2a40d8F9524B618A854d3A617/logo.png"
     },
     {
+      "name": "PAYMATIC",
+      "symbol": "TPAY",
+      "address": "0x8DF4c954C51E5ccBa51b8a21cC3fF6347760b31a",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x8DF4c954C51E5ccBa51b8a21cC3fF6347760b31a/logo.png"
+    },
+    {
       "name": "WESMEUP",
       "symbol": "SME",
       "address": "0xcD9c386c9CE5987A8336C4Db5c6A17750ea0e339",
