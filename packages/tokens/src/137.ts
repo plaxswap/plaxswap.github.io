@@ -360,6 +360,14 @@ export const bscTokens = {
     'CLABS REWARD',
     'https://www.cpoin.net/',
   ),
+  cpoinx: new ERC20Token(
+    ChainId.BSC,
+    '0xE7A3eEDDd6c4F339D4219aFBAE5605CA3DF9DDD1',
+    18,
+    'CPOIN-X',
+    'CLABS POOL',
+    'https://www.cpoin.net/',
+  ),
   btf: new ERC20Token(
     ChainId.BSC,
     '0x9b3d2aFc6fDfeF566a224E2786bAfC854fAf6800',
@@ -504,6 +512,7 @@ export const bscTokens = {
     'THUBA',
     'https://polygonscan.com/token/0x25481b64c8733475fD17C57e24082Ef938cc40D5',
   ),
+  
 
   
 

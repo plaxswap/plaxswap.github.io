@@ -251,6 +251,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367/logo.png"
     },
     {
+      "name": "CLABS POOL",
+      "symbol": "CPOIN-X",
+      "address": "0xE7A3eEDDd6c4F339D4219aFBAE5605CA3DF9DDD1",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xE7A3eEDDd6c4F339D4219aFBAE5605CA3DF9DDD1/logo.png"
+    },
+    {
       "name": "BitFind",
       "symbol": "BTF",
       "address": "0x9b3d2aFc6fDfeF566a224E2786bAfC854fAf6800",
