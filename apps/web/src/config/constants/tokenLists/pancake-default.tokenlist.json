@@ -131,6 +131,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xD6DF932A45C0f255f85145f286eA0b292B21C90B/logo.png"
     },
     {
+      "name": "SOLANA",
+      "symbol": "SOL",
+      "address": "0xd93f7E271cB87c23AaA73edC008A79646d1F9912",
+      "chainId": 137,
+      "decimals": 9,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xd93f7E271cB87c23AaA73edC008A79646d1F9912/logo.png"
+    },
+    {
       "name": "dForce",
       "symbol": "DF",
       "address": "0x08C15FA26E519A78a666D19CE5C646D55047e0a3",

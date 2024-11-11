@@ -288,6 +288,14 @@ export const bscTokens = {
     'Wrapped Ether',
     'https://ethereum.org/',
   ),
+  sol: new ERC20Token(
+    ChainId.BSC,
+    '0xd93f7E271cB87c23AaA73edC008A79646d1F9912',
+    9,
+    'SOL',
+    'SOLANA',
+    'https://solana.com/',
+  ),
   aro: new ERC20Token(
     ChainId.BSC,
     '0xa7D3aA3206425EeC18D9C8bC7A8b7ee922666bdF',
