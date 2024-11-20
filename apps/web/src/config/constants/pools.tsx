@@ -468,7 +468,6 @@ export const livePools: Pool.SerializedPoolConfig<SerializedWrappedToken>[] = [
     tokenPerBlock: '0.000000393518518519',
     isUpcoming: false,
     // version: 3,
-    
   },
   {
     sousId: 351,
