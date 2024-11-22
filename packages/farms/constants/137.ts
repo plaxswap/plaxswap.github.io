@@ -180,6 +180,14 @@ const farms: SerializedFarmConfig[] = [
     boosted: true,
   },
   {
+    pid: 48,
+    lpSymbol: 'SME-POL LP',
+    lpAddress: '0x7F23Ab99C97D57Ee51c3d3b99dE7Dd498Dc71b8d',
+    token: bscTokens.sme,
+    quoteToken: bscTokens.wbnb,
+    boosted: true,
+  },
+  {
     pid: 8,
     lpSymbol: 'SME-USDT LP',
     lpAddress: '0xB4C4Cd512d60F0E589fBcC58353C1e6225f9a1BB',
