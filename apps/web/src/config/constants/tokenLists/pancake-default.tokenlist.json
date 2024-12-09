@@ -459,6 +459,22 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x25481b64c8733475fD17C57e24082Ef938cc40D5/logo.png"
     },
     {
+      "name": "RECOIN ASSET",
+      "symbol": "RCA",
+      "address": "0x4042bA2085eDfA4b68106b2eec5d5007F1D36DdE",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x4042bA2085eDfA4b68106b2eec5d5007F1D36DdE/logo.png"
+    },
+    {
+      "name": "RECOIN RENT",
+      "symbol": "RCR",
+      "address": "0xfB70D564b875A9745a956E135D69e70B59C3905B",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xfB70D564b875A9745a956E135D69e70B59C3905B/logo.png"
+    },
+    {
       "name": "Wrapped BTC",
       "symbol": "WBTC",
       "address": "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6",

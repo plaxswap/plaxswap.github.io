@@ -520,6 +520,22 @@ export const bscTokens = {
     'THUBA',
     'https://polygonscan.com/token/0x25481b64c8733475fD17C57e24082Ef938cc40D5',
   ),
+  rca: new ERC20Token(
+    ChainId.BSC,
+    '0x4042bA2085eDfA4b68106b2eec5d5007F1D36DdE',
+    18,
+    'RCA',
+    'RECOIN ASSET',
+    'https://polygonscan.com/token/0x4042bA2085eDfA4b68106b2eec5d5007F1D36DdE',
+  ),
+  rcr: new ERC20Token(
+    ChainId.BSC,
+    '0xfB70D564b875A9745a956E135D69e70B59C3905B',
+    18,
+    'RCR',
+    'RECOIN RENT',
+    'https://polygonscan.com/token/0xfB70D564b875A9745a956E135D69e70B59C3905B',
+  ),
   
 
   
