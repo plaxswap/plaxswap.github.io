@@ -91,6 +91,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x2c826035c1C36986117A0e949bD6ad4baB54afE2/logo.png"
     },
     {
+      "name": "XSGD",
+      "symbol": "XSGD",
+      "address": "0xDC3326e71D45186F113a2F448984CA0e8D201995",
+      "chainId": 137,
+      "decimals": 6,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xDC3326e71D45186F113a2F448984CA0e8D201995/logo.png"
+    },
+    {
       "name": "PLAXPAY",
       "symbol": "PAY",
       "address": "0x7Ab2b041E120DcA2a40d8F9524B618A854d3A617",

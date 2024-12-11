@@ -113,6 +113,14 @@ const farms: SerializedFarmConfig[] = [
     boosted: true,
   },
   {
+    pid: 49,
+    lpSymbol: 'XSGD-POL LP',
+    lpAddress: '0xabC2D0dF25114cd8E954028EF45a3D53fb1D2954',
+    token: bscTokens.xsgd,
+    quoteToken: bscTokens.wbnb,
+    boosted: true,
+  },
+  {
     pid: 2,
     v1pid: 6,
     lpSymbol: 'PLAX-POL LP',

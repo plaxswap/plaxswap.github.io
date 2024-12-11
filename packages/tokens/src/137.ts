@@ -160,6 +160,14 @@ export const bscTokens = {
     'XIDR',
     'https://www.straitsx.com/id/xidr',
   ),
+  xsgd: new ERC20Token(
+    ChainId.BSC,
+    '0xDC3326e71D45186F113a2F448984CA0e8D201995',
+    6,
+    'XSGD',
+    'XSGD',
+    'https://www.straitsx.com/id/xsgd',
+  ),
   quick: new ERC20Token(
     ChainId.BSC,
     '0xB5C064F955D8e7F38fE0460C556a72987494eE17',
