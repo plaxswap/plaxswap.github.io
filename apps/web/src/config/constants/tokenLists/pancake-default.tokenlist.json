@@ -478,7 +478,7 @@
       "name": "RECOIN RENT",
       "symbol": "RCR",
       "address": "0xfB70D564b875A9745a956E135D69e70B59C3905B",
-      "chainId": 1,
+      "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xfB70D564b875A9745a956E135D69e70B59C3905B/logo.png"
     },

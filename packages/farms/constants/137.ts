@@ -388,6 +388,22 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
+    pid: 50,
+    lpSymbol: 'RCA-POL LP',
+    lpAddress: '0x4211fb084C006E9A19E4c7c7Df62dfD4dC9cdEAE',
+    token: bscTokens.rca,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
+    pid: 51,
+    lpSymbol: 'RCR-POL LP',
+    lpAddress: '0xFFAA060a067Ecda55510D1Ad0503B5Fdf8E122Df',
+    token: bscTokens.rcr,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
     pid: 24,
     lpSymbol: 'CPOIN-POL LP',
     lpAddress: '0x1Aa7FB0be0e16D66430A57D1D17A2917608dfAa8',
