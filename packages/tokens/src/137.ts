@@ -446,7 +446,7 @@ export const bscTokens = {
     18,
     'PLAXusdt',
     'PLAX-USDT LP',
-    'https://polygonscan.com/token/0x8ae534F07f08422d00Ed00a2Be1335e411Fb9DA0#code',
+    'https://plaxswaap.io',
   ),
   payusdt: new ERC20Token(
     ChainId.BSC,
@@ -454,7 +454,7 @@ export const bscTokens = {
     18,
     'PAYusdt',
     'PAY-USDT LP',
-    'https://polygonscan.com/token/0x7Fa11bb242CbBa853f634BEF02Fc24A3A13f916d#code',
+    'https://www.plaxpay.app/',
   ),
   smeusdt: new ERC20Token(
     ChainId.BSC,
@@ -462,7 +462,7 @@ export const bscTokens = {
     18,
     'SMEusdt',
     'SME-USDT LP',
-    'https://polygonscan.com/token/0xB4C4Cd512d60F0E589fBcC58353C1e6225f9a1BB#code',
+    'https://www.wesmeup.net/',
   ),
   doa: new ERC20Token(
     ChainId.BSC,
@@ -470,7 +470,7 @@ export const bscTokens = {
     18,
     'DOA',
     'ALIRI',
-    'https://polygonscan.com/token/0x058E73a591FF67ed31D92679db27950eb2546ca1',
+    'https://aliri.org/',
   ),
   alifi: new ERC20Token(
     ChainId.BSC,
@@ -478,7 +478,7 @@ export const bscTokens = {
     18,
     'ALIFI',
     'ALIRI FINANCE',
-    'https://polygonscan.com/token/0x38e009e25A3B6459345e9c07B93ea41E05AC0990',
+    'https://aliri.vip/',
   ),
   alicia: new ERC20Token(
     ChainId.BSC,
@@ -486,7 +486,7 @@ export const bscTokens = {
     18,
     'ALICIA',
     'ALIRI CREATIVE INDUSTRY',
-    'https://polygonscan.com/token/0x1B6e0561f053830e34349111af458Dc130937928',
+    'https://aliri.vip/',
   ),
   farm: new ERC20Token(
     ChainId.BSC,
@@ -518,7 +518,7 @@ export const bscTokens = {
     8,
     'CLK',
     'COINLUCK',
-    'https://polygonscan.com/token/0x1EdC86d411AD224f97b6Ad89C4446683C1b0BAaE',
+    'https://coinluck.site/',
   ),
   tba: new ERC20Token(
     ChainId.BSC,
@@ -526,7 +526,7 @@ export const bscTokens = {
     18,
     'TBA',
     'THUBA',
-    'https://polygonscan.com/token/0x25481b64c8733475fD17C57e24082Ef938cc40D5',
+    'https://coinluck.site/',
   ),
   rca: new ERC20Token(
     ChainId.BSC,
@@ -534,7 +534,7 @@ export const bscTokens = {
     18,
     'RCA',
     'RECOIN ASSET',
-    'https://polygonscan.com/token/0x4042bA2085eDfA4b68106b2eec5d5007F1D36DdE',
+    'https://recoins.org/',
   ),
   rcr: new ERC20Token(
     ChainId.BSC,
@@ -542,7 +542,7 @@ export const bscTokens = {
     18,
     'RCR',
     'RECOIN RENT',
-    'https://polygonscan.com/token/0xfB70D564b875A9745a956E135D69e70B59C3905B',
+    'https://recoins.org/',
   ),
   
 
