@@ -483,6 +483,30 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xfB70D564b875A9745a956E135D69e70B59C3905B/logo.png"
     },
     {
+      "name": "VINDEX",
+      "symbol": "VINDEX",
+      "address": "0x9cE83AECC84836d3a95E63a48664Eb82a369960b",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x9cE83AECC84836d3a95E63a48664Eb82a369960b/logo.png"
+    },
+    {
+      "name": "VREEDEX",
+      "symbol": "VREEDEX",
+      "address": "0x931ea97a2E2baB7571CE9C1B6b8148a53f8997bD",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x931ea97a2E2baB7571CE9C1B6b8148a53f8997bD/logo.png"
+    },
+    {
+      "name": "YUHUU",
+      "symbol": "YUHUU",
+      "address": "0x613B617dBb9fC94Bc13febf7113AE8fa1C678cE1",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x613B617dBb9fC94Bc13febf7113AE8fa1C678cE1/logo.png"
+    },
+    {
       "name": "Wrapped BTC",
       "symbol": "WBTC",
       "address": "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6",

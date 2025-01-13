@@ -544,6 +544,30 @@ export const bscTokens = {
     'RECOIN RENT',
     'https://recoins.org/',
   ),
+  vindex: new ERC20Token(
+    ChainId.BSC,
+    '0x9cE83AECC84836d3a95E63a48664Eb82a369960b',
+    18,
+    'VINDEX',
+    'VINDEX',
+    'https://polygonscan.com/token/0x9cE83AECC84836d3a95E63a48664Eb82a369960b#code/',
+  ),
+  vreedex: new ERC20Token(
+    ChainId.BSC,
+    '0x931ea97a2E2baB7571CE9C1B6b8148a53f8997bD',
+    18,
+    'VREEDEX',
+    'VREEDEX',
+    'https://polygonscan.com/token/0x931ea97a2E2baB7571CE9C1B6b8148a53f8997bD#code/',
+  ),
+  yuhuu: new ERC20Token(
+    ChainId.BSC,
+    '0x613B617dBb9fC94Bc13febf7113AE8fa1C678cE1',
+    18,
+    'YUHUU',
+    'YUHUU',
+    'https://polygonscan.com/token/0x613B617dBb9fC94Bc13febf7113AE8fa1C678cE1#code/',
+  ),
   
 
   
