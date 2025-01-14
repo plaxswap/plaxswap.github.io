@@ -344,6 +344,14 @@ export const bscTokens = {
     'BITZAURA-X',
     'https://www.bitzaura.pro/',
   ),
+  dca: new ERC20Token(
+    ChainId.BSC,
+    '0xD079128bb5D552E5AA310e252aF535cF0572943D',
+    18,
+    'DCA',
+    'BITZAURA CAMP',
+    'https://www.bitzaura.pro/',
+  ),
   dass: new ERC20Token(
     ChainId.BSC,
     '0xda432286FEd68F40f5aF28F1E005b2378146B8Cc',
