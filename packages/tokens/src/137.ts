@@ -232,6 +232,14 @@ export const bscTokens = {
     'RFIDR',
     'https://www.rfidr.net/',
   ),
+  rfc: new ERC20Token(
+    ChainId.BSC,
+    '0x9947d87c811e6033A1eEAFf3D25f6b4A94A8A1a7',
+    18,
+    'RFC',
+    'RFIDC',
+    'https://www.rfidr.net/',
+  ),
   fif: new ERC20Token(
     ChainId.BSC,
     '0xbaEF7137D3cEC6282a83dd954eA6376d464f7780',
