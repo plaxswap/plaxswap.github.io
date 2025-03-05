@@ -195,12 +195,28 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x91Faa9fA243EaF35981f5563ec67e9bF0d8DFAEE/logo.png"
     },
     {
+      "name": "RFIDM",
+      "symbol": "RFC",
+      "address": "0x04488963B02447B1ba926DBa6AD3a5f57fD855f1",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x04488963B02447B1ba926DBa6AD3a5f57fD855f1/logo.png"
+    },
+    {
       "name": "RFIDC",
       "symbol": "RFC",
       "address": "0x9947d87c811e6033A1eEAFf3D25f6b4A94A8A1a7",
       "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x9947d87c811e6033A1eEAFf3D25f6b4A94A8A1a7/logo.png"
+    },
+    {
+      "name": "RFIDX",
+      "symbol": "RFX",
+      "address": "0x8439cc930D330427D8A4BBABC335F5927A52fa87",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x8439cc930D330427D8A4BBABC335F5927A52fa87/logo.png"
     },
     {
       "name": "Freedom Initial Fund",
