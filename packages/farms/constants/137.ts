@@ -404,6 +404,22 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
+    pid: 52,
+    lpSymbol: 'TBA-POL LP',
+    lpAddress: '0x8b4C67c3C285342a6e26689C876A7B13A69a3c31',
+    token: bscTokens.tba,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
+    pid: 53,
+    lpSymbol: 'CLK-POL LP',
+    lpAddress: '0x64dBaB85143E6Ad6f29b77C54F302Bd84B1d5426',
+    token: bscTokens.clk,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
     pid: 24,
     lpSymbol: 'CPOIN-POL LP',
     lpAddress: '0x1Aa7FB0be0e16D66430A57D1D17A2917608dfAa8',

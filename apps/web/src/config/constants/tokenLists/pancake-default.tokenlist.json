@@ -486,7 +486,7 @@
       "name": "COINLUCK",
       "symbol": "CLK",
       "address": "0x1EdC86d411AD224f97b6Ad89C4446683C1b0BAaE",
-      "chainId": 1,
+      "chainId": 137,
       "decimals": 8,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x1EdC86d411AD224f97b6Ad89C4446683C1b0BAaE/logo.png"
     },
@@ -494,7 +494,7 @@
       "name": "THUBA",
       "symbol": "TBA",
       "address": "0x25481b64c8733475fD17C57e24082Ef938cc40D5",
-      "chainId": 1,
+      "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x25481b64c8733475fD17C57e24082Ef938cc40D5/logo.png"
     },
