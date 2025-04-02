@@ -390,7 +390,7 @@
       "name": "Bulldog Core",
       "symbol": "BCORE",
       "address": "0xA830a38CeAC7BFe3568D229945A45121730fbb91",
-      "chainId": 1,
+      "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xA830a38CeAC7BFe3568D229945A45121730fbb91/logo.png"
     },
