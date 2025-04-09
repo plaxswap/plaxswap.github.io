@@ -278,7 +278,7 @@ export const bscTokens = {
     18,
     'BRC',
     'Bulldog Racing Club',
-    'https://www.bullclub.online/',
+    'https://fairlaunch.cloud/bullclub/?refId=0x178A29F79eD22f9cc4fE1FAB1Dc9c095dC58d844/',
   ),
   burn: new ERC20Token(
     ChainId.BSC,
