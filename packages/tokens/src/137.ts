@@ -600,6 +600,14 @@ export const bscTokens = {
     'YUHUU',
     'https://polygonscan.com/token/0x613B617dBb9fC94Bc13febf7113AE8fa1C678cE1#code',
   ),
+  list: new ERC20Token(
+    ChainId.BSC,
+    '0x9ffAEb136E3793B5B9D1E3a49012D55D22E7Fa3f',
+    18,
+    'LIST',
+    'LIQUID STAKE',
+    'https://liquidstake.net',
+  ),
   
 
   

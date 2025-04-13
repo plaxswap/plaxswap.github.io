@@ -539,6 +539,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x613B617dBb9fC94Bc13febf7113AE8fa1C678cE1/logo.png"
     },
     {
+      "name": "LIQUID STAKE",
+      "symbol": "LIST",
+      "address": "0x9ffAEb136E3793B5B9D1E3a49012D55D22E7Fa3f",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x9ffAEb136E3793B5B9D1E3a49012D55D22E7Fa3f/logo.png"
+    },
+    {
       "name": "Wrapped BTC",
       "symbol": "WBTC",
       "address": "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6",
