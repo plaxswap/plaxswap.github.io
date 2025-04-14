@@ -262,7 +262,7 @@ export const bscTokens = {
     18,
     'FIF',
     'FREEDOM INITIAL FUND',
-    'https://sites.google.com/view/fif-report/lock-staking/fif-freebiz-class?authuser=0',
+    'https://freetech.site',
   ),
   bcore: new ERC20Token(
     ChainId.BSC,
@@ -526,7 +526,7 @@ export const bscTokens = {
     18,
     'FARM',
     'FREEDOM AUTO REVSHARE',
-    'https://sites.google.com/view/fif-report/lock-staking/farm-pamm?authuser=0',
+    'https://freetech.site',
   ),
   face: new ERC20Token(
     ChainId.BSC,
@@ -534,7 +534,7 @@ export const bscTokens = {
     18,
     'FACE',
     'FREEDOM CROWDFUNDING EXPERT',
-    'https://sites.google.com/view/fif-report/lock-staking/face-backer?authuser=0',
+    'https://freetech.site',
   ),
   fgold: new ERC20Token(
     ChainId.BSC,
