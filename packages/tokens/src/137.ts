@@ -605,11 +605,11 @@ export const bscTokens = {
     '0x9ffAEb136E3793B5B9D1E3a49012D55D22E7Fa3f',
     18,
     'LIST',
-    'LIQUID STAKE',
+    'LIQUD STAKE',
     'https://liquidstake.net',
   ),
   
 
-  
+
 
 }
