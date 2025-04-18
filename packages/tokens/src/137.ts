@@ -328,6 +328,14 @@ export const bscTokens = {
     'SOLANA',
     'https://solana.com/',
   ),
+  shib: new ERC20Token(
+    ChainId.BSC,
+    '0x6f8a06447Ff6FcF75d803135a7de15CE88C1d4ec',
+    18,
+    'SHIB',
+    'SHIBA INU',
+    'https://shibatoken.com/',
+  ),
   aro: new ERC20Token(
     ChainId.BSC,
     '0xa7D3aA3206425EeC18D9C8bC7A8b7ee922666bdF',
@@ -608,8 +616,5 @@ export const bscTokens = {
     'LIQUD STAKE',
     'https://liquidstake.net',
   ),
-  
-
-
 
 }
