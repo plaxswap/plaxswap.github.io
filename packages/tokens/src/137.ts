@@ -336,6 +336,22 @@ export const bscTokens = {
     'SHIBA INU',
     'https://shibatoken.com/',
   ),
+  cro: new ERC20Token(
+    ChainId.BSC,
+    '0xAdA58DF0F643D959C2A47c9D4d4c1a4deFe3F11C',
+    8,
+    'CRO',
+    'CRONOS',
+    'https://cronos-pos.org/',
+  ),
+  woo: new ERC20Token(
+    ChainId.BSC,
+    '0x1B815d120B3eF02039Ee11dC2d33DE7aA4a8C603',
+    18,
+    'WOO',
+    'WOO',
+    'https://woo.org/',
+  ),
   aro: new ERC20Token(
     ChainId.BSC,
     '0xa7D3aA3206425EeC18D9C8bC7A8b7ee922666bdF',
