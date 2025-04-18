@@ -352,6 +352,14 @@ export const bscTokens = {
     'WOO',
     'https://woo.org/',
   ),
+  elon: new ERC20Token(
+    ChainId.BSC,
+    '0xE0339c80fFDE91F3e20494Df88d4206D86024cdF',
+    18,
+    'ELON',
+    'Dogelon Mars',
+    'https://dogelonmars.com/',
+  ),
   aro: new ERC20Token(
     ChainId.BSC,
     '0xa7D3aA3206425EeC18D9C8bC7A8b7ee922666bdF',
