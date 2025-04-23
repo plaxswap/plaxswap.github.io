@@ -158,7 +158,7 @@
       "name": "CRONOS",
       "symbol": "CRO",
       "address": "0xAdA58DF0F643D959C2A47c9D4d4c1a4deFe3F11C",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 8,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xAdA58DF0F643D959C2A47c9D4d4c1a4deFe3F11C/logo.png"
     },
@@ -166,7 +166,7 @@
       "name": "WOO",
       "symbol": "WOO",
       "address": "0x1B815d120B3eF02039Ee11dC2d33DE7aA4a8C603",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x1B815d120B3eF02039Ee11dC2d33DE7aA4a8C603/logo.png"
     },
@@ -174,9 +174,17 @@
       "name": "Dogelon Mars",
       "symbol": "ELON",
       "address": "0xE0339c80fFDE91F3e20494Df88d4206D86024cdF",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xE0339c80fFDE91F3e20494Df88d4206D86024cdF/logo.png"
+    },
+    {
+      "name": "Bonk Coin",
+      "symbol": "BONK",
+      "address": "0xe5b49820e5a1063f6f4ddf851327b5e8b2301048",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xe5b49820e5a1063f6f4ddf851327b5e8b2301048/logo.png"
     },
     {
       "name": "dForce",

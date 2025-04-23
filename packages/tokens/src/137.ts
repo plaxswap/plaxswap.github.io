@@ -360,6 +360,14 @@ export const bscTokens = {
     'Dogelon Mars',
     'https://dogelonmars.com/',
   ),
+  bonk: new ERC20Token(
+    ChainId.BSC,
+    '0xe5b49820e5a1063f6f4ddf851327b5e8b2301048',
+    5,
+    'BONK',
+    'Bonk Coin',
+    'https://bonkcoin.com/',
+  ),
   aro: new ERC20Token(
     ChainId.BSC,
     '0xa7D3aA3206425EeC18D9C8bC7A8b7ee922666bdF',
@@ -582,7 +590,7 @@ export const bscTokens = {
     18,
     'GIDR',
     'Gold Indonesia Republic',
-    'https://polygonscan.com/token/0x0a40ff165736f5989e9F40fFbEd24A640c760754',
+    'https://gidr.co.id/',
   ),
   clk: new ERC20Token(
     ChainId.BSC,
