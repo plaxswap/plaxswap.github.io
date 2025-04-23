@@ -179,6 +179,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xE0339c80fFDE91F3e20494Df88d4206D86024cdF/logo.png"
     },
     {
+      "name": "Bonk Coin",
+      "symbol": "BONK",
+      "address": "0xe5B49820e5A1063F6F4DdF851327b5E8B2301048",
+      "chainId": 1,
+      "decimals": 5,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xe5B49820e5A1063F6F4DdF851327b5E8B2301048/logo.png"
+    },
+    {
       "name": "dForce",
       "symbol": "DF",
       "address": "0x08C15FA26E519A78a666D19CE5C646D55047e0a3",
