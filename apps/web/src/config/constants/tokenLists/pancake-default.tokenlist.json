@@ -183,7 +183,7 @@
       "symbol": "BONK",
       "address": "0xe5b49820e5a1063f6f4ddf851327b5e8b2301048",
       "chainId": 1,
-      "decimals": 18,
+      "decimals": 5,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xe5b49820e5a1063f6f4ddf851327b5e8b2301048/logo.png"
     },
     {
