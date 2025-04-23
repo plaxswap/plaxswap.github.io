@@ -360,14 +360,6 @@ export const bscTokens = {
     'Dogelon Mars',
     'https://dogelonmars.com/',
   ),
-  bonk: new ERC20Token(
-    ChainId.BSC,
-    '0xe5b49820e5a1063f6f4ddf851327b5e8b2301048',
-    5,
-    'BONK',
-    'Bonk Coin',
-    'https://bonkcoin.com/',
-  ),
   aro: new ERC20Token(
     ChainId.BSC,
     '0xa7D3aA3206425EeC18D9C8bC7A8b7ee922666bdF',
