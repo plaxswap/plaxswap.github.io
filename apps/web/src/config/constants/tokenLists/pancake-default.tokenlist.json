@@ -515,6 +515,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x38A33Cf60164EaC333400aB0ee7DeeBe92f968dB/logo.png"
     },
     {
+      "name": "Gold Indonesia Republic",
+      "symbol": "GIDR",
+      "address": "0x0a40ff165736f5989e9F40fFbEd24A640c760754",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x0a40ff165736f5989e9F40fFbEd24A640c760754/logo.png"
+    },
+    {
       "name": "COINLUCK",
       "symbol": "CLK",
       "address": "0x1EdC86d411AD224f97b6Ad89C4446683C1b0BAaE",

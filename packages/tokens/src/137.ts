@@ -576,6 +576,14 @@ export const bscTokens = {
     'FREEGOLD',
     'https://polygonscan.com/token/0x38A33Cf60164EaC333400aB0ee7DeeBe92f968dB',
   ),
+  gidr: new ERC20Token(
+    ChainId.BSC,
+    '0x0a40ff165736f5989e9F40fFbEd24A640c760754',
+    18,
+    'GIDR',
+    'Gold Indonesia Republic',
+    'https://polygonscan.com/token/0x0a40ff165736f5989e9F40fFbEd24A640c760754',
+  ),
   clk: new ERC20Token(
     ChainId.BSC,
     '0x1EdC86d411AD224f97b6Ad89C4446683C1b0BAaE',
