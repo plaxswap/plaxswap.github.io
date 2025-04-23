@@ -336,6 +336,14 @@ export const bscTokens = {
     'SHIBA INU',
     'https://shibatoken.com/',
   ),
+  bonk: new ERC20Token(
+    ChainId.BSC,
+    '0xe5B49820e5A1063F6F4DdF851327b5E8B2301048',
+    5,
+    'BONK',
+    'BONK',
+    'https://bonkcoin.com/',
+  ),
   cro: new ERC20Token(
     ChainId.BSC,
     '0xAdA58DF0F643D959C2A47c9D4d4c1a4deFe3F11C',

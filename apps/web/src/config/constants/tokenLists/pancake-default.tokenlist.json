@@ -155,6 +155,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x6f8a06447Ff6FcF75d803135a7de15CE88C1d4ec/logo.png"
     },
     {
+      "name": "BONK",
+      "symbol": "BONK",
+      "address": "0xe5B49820e5A1063F6F4DdF851327b5E8B2301048",
+      "chainId": 1,
+      "decimals": 5,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xe5B49820e5A1063F6F4DdF851327b5E8B2301048/logo.png"
+    },
+    {
       "name": "CRONOS",
       "symbol": "CRO",
       "address": "0xAdA58DF0F643D959C2A47c9D4d4c1a4deFe3F11C",
