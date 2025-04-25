@@ -182,7 +182,7 @@
       "name": "Dogelon Mars",
       "symbol": "ELON",
       "address": "0xE0339c80fFDE91F3e20494Df88d4206D86024cdF",
-      "chainId": 1,
+      "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xE0339c80fFDE91F3e20494Df88d4206D86024cdF/logo.png"
     },

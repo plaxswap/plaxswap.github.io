@@ -236,6 +236,14 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,  
   },
   {
+    pid: 57,
+    lpSymbol: 'ELON-POL LP',
+    lpAddress: '0xC84a9374fEe1A0932d49B1B4aEe37A8ff3BDec10',
+    token: bscTokens.elon,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,  
+  },
+  {
     pid: 35,
     lpSymbol: 'PAXG-POL LP',
     lpAddress: '0x1dA2651759e81541ec1FC09aaDA24fE61cdD1114',
