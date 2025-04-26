@@ -206,7 +206,7 @@ export const bscTokens = {
     18,
     'UNI',
     'UNISWAP',
-    'https://uniswap.org/',
+    'https://app.uniswap.org/',
   ),
   knc: new ERC20Token(
     ChainId.BSC,

@@ -214,7 +214,7 @@
       "name": "Uniswap",
       "symbol": "UNI",
       "address": "0xb33EaAd8d922B1083446DC23f610c2567fB5180f",
-      "chainId": 56,
+      "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xb33EaAd8d922B1083446DC23f610c2567fB5180f/logo.png"
     },
