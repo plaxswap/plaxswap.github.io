@@ -598,7 +598,7 @@ export const bscTokens = {
     8,
     'CLK',
     'COINLUCK',
-    'https://coinluck.site/',
+    'https://coinluck.biz/',
   ),
   tba: new ERC20Token(
     ChainId.BSC,
@@ -606,7 +606,7 @@ export const bscTokens = {
     18,
     'TBA',
     'THUBA',
-    'https://coinluck.site/',
+    'https://coinluck.biz/',
   ),
   rca: new ERC20Token(
     ChainId.BSC,
