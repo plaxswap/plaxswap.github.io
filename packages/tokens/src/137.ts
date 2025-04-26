@@ -328,6 +328,14 @@ export const bscTokens = {
     'SOLANA',
     'https://solana.com/',
   ),
+  inch: new ERC20Token(
+    ChainId.BSC,
+    '0x9c2C5fd7b07E95EE044DDeba0E97a665F142394f',
+    18,
+    '1INCH',
+    '1INCH',
+    'https://1inch.io/',
+  ),
   shib: new ERC20Token(
     ChainId.BSC,
     '0x6f8a06447Ff6FcF75d803135a7de15CE88C1d4ec',
