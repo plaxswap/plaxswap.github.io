@@ -422,7 +422,7 @@ export const bscTokens = {
     18,
     'DCA',
     'BITZAURA CAMP',
-    'https://www.bitzaura.pro/',
+    'https://www.bitzaura.org/',
   ),
   dass: new ERC20Token(
     ChainId.BSC,
@@ -438,7 +438,7 @@ export const bscTokens = {
     18,
     'DGOLD',
     'BitZaura Gold',
-    'https://www.bitzaura.pro/',
+    'https://www.bitzaura.org/',
   ),
   paxg: new ERC20Token(
     ChainId.BSC,
