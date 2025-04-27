@@ -388,6 +388,22 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
+    pid: 58,
+    lpSymbol: 'DAZ-POL LP',
+    lpAddress: '0x66CeCbFd570E8f07848ec303AC913a271c106eD6',
+    token: bscTokens.daz,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,  
+  },
+  {
+    pid: 59,
+    lpSymbol: 'DCA-POL LP',
+    lpAddress: '0x0E991B7B10c07444f866343844a12C25c7A8e202',
+    token: bscTokens.dca,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,  
+  },
+  {
     pid: 23,
     lpSymbol: 'DAX-POL LP',
     lpAddress: '0x8f7497Ca2245c45a5d56cD7E1ED2F64e572844CA',
