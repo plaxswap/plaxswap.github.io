@@ -2,7 +2,7 @@ import { StaticJsonRpcProvider } from '@ethersproject/providers'
 
 export const bscProvider = new StaticJsonRpcProvider(
   {
-    url: 'https://polygon-mainnet.infura.io/v3/f2ef88e31ec94569a04c1dd3aeddafa5',
+    url: 'https://polygon-rpc.com',
     skipFetchSetup: true,
   },
   137,
