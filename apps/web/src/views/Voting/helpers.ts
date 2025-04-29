@@ -113,7 +113,7 @@ interface GetVotingPowerType {
   lockedEndTime?: number
 }
 
-const nodeRealProvider = new JsonRpcProvider('https://polygon-mainnet.nodereal.io/v1/cfa24e72f5924d7c9fd51bfc092a9323', 137)
+const nodeRealProvider = new JsonRpcProvider('https://polygon-mainnet.infura.io/v3/f2ef88e31ec94569a04c1dd3aeddafa5', 137)
 
 export const getVotingPower = async (
   account: string,
