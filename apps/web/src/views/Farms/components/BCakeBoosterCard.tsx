@@ -119,7 +119,7 @@ export const BCakeBoosterCard = () => {
   return (
     <CardWrapper>
       <ImageWrapper>
-        <Image src="https://plaxswap.github.io/apps/web/public/images/boosterCardImage.png" alt="boosterCardImage" width={99} height={191}/>
+        <Image src="https://plaxswap.github.io/blockchain/boosterCardImage.png" alt="boosterCardImage" width={99} height={191}/>
       </ImageWrapper>
       <Card p="0px" style={{ zIndex: 1 }}>
         <StyledCardBody style={{ padding: '15px 24px' }}>

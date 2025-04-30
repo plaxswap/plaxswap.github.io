@@ -8,7 +8,7 @@ const Spinner: React.FC<React.PropsWithChildren<SpinnerProps>> = ({ size = 128 }
       <Image
         width={size}
         height={size * 1.197}
-        src="https://plaxswap.github.io/apps/web/public/images/pancake-3d-spinner-v2.gif"
+        src="https://plaxswap.github.io/blockchain/pancake-3d-spinner-v2.gif"
         alt="pancake-3d-spinner"
       />
     </Box>
