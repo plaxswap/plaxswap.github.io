@@ -414,7 +414,7 @@ export const bscTokens = {
     18,
     'DAX',
     'BITZAURA-X',
-    'https://www.bitzaura.pro/',
+    'https://www.bitzaura.org/',
   ),
   dca: new ERC20Token(
     ChainId.BSC,
@@ -430,7 +430,7 @@ export const bscTokens = {
     18,
     'DASS',
     'BitZaura Association',
-    'https://www.bitzaura.pro/',
+    'https://www.bitzaura.org/',
   ),
   dgold: new ERC20Token(
     ChainId.BSC,
