@@ -483,6 +483,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x5e4d5A1C3470d38b030af2AeA2ADA046Fc34cac6/logo.png"
     },
     {
+      "name": "Zeltsphy",
+      "symbol": "ZAP",
+      "address": "0x6b7682a9fdA1d482A3779C9489DC62437BB58945",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x6b7682a9fdA1d482A3779C9489DC62437BB58945/logo.png"
+    },
+    {
       "name": "ALIRI",
       "symbol": "DOA",
       "address": "0x058E73a591FF67ed31D92679db27950eb2546ca1",

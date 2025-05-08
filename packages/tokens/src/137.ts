@@ -392,6 +392,14 @@ export const bscTokens = {
     'Private Pool Share',
     'https://polygonscan.com/token/0x5e4d5a1c3470d38b030af2aea2ada046fc34cac6#code',
   ),
+  zap: new ERC20Token(
+    ChainId.BSC,
+    '0x6b7682a9fdA1d482A3779C9489DC62437BB58945',
+    18,
+    'ZAP',
+    'ZELTSPHY',
+    'https://polygonscan.com/token/0x6b7682a9fdA1d482A3779C9489DC62437BB58945#code',
+  ),
   bcatt: new ERC20Token(
     ChainId.BSC,
     '0x4A780Bb9D55173426f77D494aA8645273653924E',
