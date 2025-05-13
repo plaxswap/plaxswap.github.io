@@ -23,11 +23,13 @@ import { useAccount } from 'wagmi'
 import ProfileUserMenuItem from './ProfileUserMenuItem'
 import WalletModal, { WalletView } from './WalletModal'
 import WalletUserMenuItem from './WalletUserMenuItem'
+import { useDisconnect } from "@reown/appkit/react";
 
 const UserMenuItems = () => {
   const { t } = useTranslation()
   const { chainId, isWrongNetwork } = useActiveChainId()
   const { logout } = useAuth()
+  const { disconnect } = useDisconnect()
   const { address: account } = useAccount()
   const { hasPendingTransactions } = usePendingTransactions()
   const { isInitialized, isLoading, profile } = useProfile()
@@ -36,6 +38,10 @@ const UserMenuItems = () => {
   const [onPresentWrongNetworkModal] = useModal(<WalletModal initialView={WalletView.WRONG_NETWORK} />)
   const hasProfile = isInitialized && !!profile
 
+  const handleLogout = () => {
+    logout()
+    disconnect()
+  }
   const onClickWalletMenu = useCallback((): void => {
     if (isWrongNetwork) {
       onPresentWrongNetworkModal()
@@ -63,7 +69,7 @@ const UserMenuItems = () => {
         disabled={isWrongNetwork || chainId !== ChainId.BSC}
       />
       <UserMenuDivider />
-      <UserMenuItem as="button" onClick={logout}>
+      <UserMenuItem as="button" onClick={handleLogout}>
         <Flex alignItems="center" justifyContent="space-between" width="100%">
           {t('Disconnect')}
           <LogoutIcon />
