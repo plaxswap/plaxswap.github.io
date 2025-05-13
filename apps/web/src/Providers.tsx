@@ -10,7 +10,7 @@ import { client } from 'utils/wagmi'
 import { HistoryManagerProvider } from 'contexts/HistoryContext'
 import { createAppKit } from '@reown/appkit/react'
 import { polygon } from '@reown/appkit/networks'
-import { Ethers5Adapter } from "@reown/appkit-adapter-ethers";
+import { EthersAdapter } from "@reown/appkit-adapter-ethers";
 
 const projectId = '9ba1c138ff7ad815f7026b920b652f0b'
 const networks = [polygon]
