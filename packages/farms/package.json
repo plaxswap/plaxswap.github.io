@@ -4,13 +4,11 @@
   "sideEffects": false,
   "private": true,
   "scripts": {
-    "build": "ts-node scripts/build.ts",
+    "build": "npx tsx scripts/build.ts",
     "test": "vitest --run"
   },
   "devDependencies": {
-    "@types/node": "^20.11.24",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.0.0"
+    "tsx": "^3.12.1"
   },
   "dependencies": {
     "@pancakeswap/sdk": "*",
