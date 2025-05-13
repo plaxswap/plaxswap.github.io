@@ -18,11 +18,11 @@ const SectionsWithFoldableText: React.FC<React.PropsWithChildren<Props>> = ({ he
         </CardHeader>
         <CardBody>
           {config.map(({ title, description }, i, { length }) => (
-            <FoldableText key={title} id={title} mb={i + 1 === length ? '' : '24px'} title={title}>
+            <FoldableText id={title} mb={i + 1 === length ? '' : '24px'} title={title} key={title}>
               {description.map((desc, index) => {
                 return (
                   // eslint-disable-next-line react/no-array-index-key
-                  <Text key={index} color="textSubtle" as="p">
+                  <Text color="textSubtle">
                     {desc}
                   </Text>
                 )

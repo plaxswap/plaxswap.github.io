@@ -1,4 +1,13 @@
 import { Component, PropsWithChildren, ReactNode } from 'react'
+import React from 'react'
+
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
+      h1: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>;
+    }
+  }
+}
 
 export class ErrorBoundary extends Component<PropsWithChildren<{ fallback?: ReactNode }>, { hasError: boolean }> {
   constructor(props) {

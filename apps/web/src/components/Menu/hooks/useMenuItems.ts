@@ -27,17 +27,17 @@ export const useMenuItems = (): ConfigMenuItemsType[] => {
           if (itemStatus) {
             let itemMenuStatus
             if (itemStatus === 'soon') {
-              itemMenuStatus = <LinkStatus>{ text: t('Soon'), color: 'warning' }
+              itemMenuStatus = { text: t('Soon'), color: 'warning' }
             } else if (itemStatus === 'live') {
-              itemMenuStatus = <LinkStatus>{ text: t('Live'), color: 'failure' }
+              itemMenuStatus = { text: t('Live'), color: 'failure' }
             } else if (itemStatus === 'vote_now') {
-              itemMenuStatus = <LinkStatus>{ text: t('Vote Now'), color: 'success' }
+              itemMenuStatus = { text: t('Vote Now'), color: 'success' }
             } else if (itemStatus === 'pot_open') {
-              itemMenuStatus = <LinkStatus>{ text: t('Pot Open'), color: 'success' }
+              itemMenuStatus = { text: t('Pot Open'), color: 'success' }
             } else if (itemStatus === 'lock_end') {
-              itemMenuStatus = <LinkStatus>{ text: t('Lock End'), color: 'failure' }
+              itemMenuStatus = { text: t('Lock End'), color: 'failure' }
             } else {
-              itemMenuStatus = <LinkStatus>{ text: t('New'), color: 'success' }
+              itemMenuStatus = { text: t('New'), color: 'success' }
             }
             return { ...innerItem, status: itemMenuStatus }
           }

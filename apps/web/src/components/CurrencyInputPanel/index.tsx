@@ -187,11 +187,11 @@ export default function CurrencyInputPanel({
                 <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} />
               ) : null}
               {pair ? (
-                <Text id="pair" bold>
+                <Text data-pair bold>
                   {pair?.token0.symbol}:{pair?.token1.symbol}
                 </Text>
               ) : (
-                <Text id="pair" bold>
+                <Text data-pair bold>
                   {(currency && currency.symbol && currency.symbol.length > 10
                     ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
                         currency.symbol.length - 5,
@@ -225,16 +225,13 @@ export default function CurrencyInputPanel({
           ) : null}
         </Flex>
         {account && (
-          <Text
-            onClick={!disabled && onMax}
-            color="textSubtle"
-            fontSize="14px"
-            style={{ display: 'inline', cursor: 'pointer' }}
-          >
-            {!hideBalance && !!currency
-              ? t('Balance: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? t('Loading') })
-              : ' -'}
-          </Text>
+          <Box onClick={!disabled && onMax} style={{ cursor: 'pointer' }}>
+            <Text color="textSubtle" fontSize="14px">
+              {!hideBalance && !!currency
+                ? t('Balance: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? t('Loading') })
+                : ' -'}
+            </Text>
+          </Box>
         )}
       </Flex>
       <InputPanel>

@@ -37,6 +37,15 @@ import { DoubleCurrencyLogo } from '../Logo'
 import { RowBetween, RowFixed } from '../Layout/Row'
 import Dots from '../Loader/Dots'
 import { formatAmount } from '../../utils/formatInfoNumbers'
+import React from 'react'
+
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
+      span: React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
+    }
+  }
+}
 
 const FixedHeightRow = styled(RowBetween)`
   height: 24px;

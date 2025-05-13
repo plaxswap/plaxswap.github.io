@@ -1,4 +1,14 @@
 import { Svg, SvgProps } from '@pancakeswap/uikit'
+import React from 'react'
+
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
+      rect: React.DetailedHTMLProps<React.SVGAttributes<SVGRectElement>, SVGRectElement>;
+      animate: React.DetailedHTMLProps<React.SVGAttributes<SVGAnimateElement>, SVGAnimateElement>;
+    }
+  }
+}
 
 const BarChartLoaderSVG: React.FC<React.PropsWithChildren<SvgProps>> = (props) => {
   return (
