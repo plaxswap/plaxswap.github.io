@@ -4,6 +4,15 @@ import styled from 'styled-components'
 import merge from 'lodash/merge'
 
 import 'easymde/dist/easymde.min.css'
+import React from 'react'
+
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
+      textarea: React.DetailedHTMLProps<React.TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>;
+    }
+  }
+}
 
 interface SimpleMdeProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange'> {
   options?: EasyMde.Options

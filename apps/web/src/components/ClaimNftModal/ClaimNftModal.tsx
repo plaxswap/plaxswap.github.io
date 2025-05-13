@@ -4,6 +4,15 @@ import delay from 'lodash/delay'
 import { useTranslation } from '@pancakeswap/localization'
 import { useEffect, useState } from 'react'
 import { useBunnySpecialXmasContract } from 'hooks/useContract'
+import React from 'react'
+
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
+      img: React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
+    }
+  }
+}
 
 const showConfetti = () => {
   confetti({
