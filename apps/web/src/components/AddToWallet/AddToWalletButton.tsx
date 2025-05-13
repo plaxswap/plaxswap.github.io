@@ -90,7 +90,7 @@ const AddToWalletButton: React.FC<AddToWalletButtonProps & ButtonProps> = ({
 
   return (
     <Button
-      {...(props as Omit<ButtonProps, 'as'>)}
+      {...props}
       onClick={() => {
         const image = tokenLogo ? (BAD_SRCS[tokenLogo] ? undefined : tokenLogo) : undefined
         connector.watchAsset?.({

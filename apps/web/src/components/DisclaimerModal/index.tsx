@@ -14,16 +14,6 @@ import {
 } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
 import styled from 'styled-components'
-import React from 'react'
-
-declare module 'react' {
-  namespace JSX {
-    interface IntrinsicElements {
-      label: React.DetailedHTMLProps<React.LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement>;
-      div: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
-    }
-  }
-}
 
 interface CheckType {
   key: string
@@ -105,13 +95,14 @@ const DisclaimerModal: React.FC<React.PropsWithChildren<RiskDisclaimerProps>> = 
               key={check.key}
               htmlFor={check.key}
               style={{ display: 'block', cursor: 'pointer', marginBottom: '24px' }}
-              onClick={() => handleSetAcknowledgeRisk(check.key)}
             >
               <Flex alignItems="center">
                 <div style={{ flex: 'none', alignSelf: 'flex-start', paddingTop: '8px' }}>
                   <Checkbox
+                    id={check.key}
                     scale="sm"
-                    type="checkbox"
+                    checked={check.value}
+                    onChange={() => handleSetAcknowledgeRisk(check.key)}
                   />
                 </div>
                 <Text ml="8px">{check.content}</Text>

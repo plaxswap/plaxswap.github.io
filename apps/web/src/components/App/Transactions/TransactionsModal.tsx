@@ -1,4 +1,3 @@
-import React from 'react'
 import { useCallback } from 'react'
 import { Modal, ModalBody, Text, Button, Flex, InjectedModalProps } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
@@ -13,13 +12,6 @@ import { useAccount } from 'wagmi'
 import { AutoRow } from '../../Layout/Row'
 import Transaction from './Transaction'
 import ConnectWalletButton from '../../ConnectWalletButton'
-import styled from 'styled-components'
-
-const TransactionWrapper: React.FC<{ children?: React.ReactNode; key?: string }> = ({ children }) => (
-  <Flex flexDirection="column">
-    {children}
-  </Flex>
-)
 
 function renderTransactions(transactions: TransactionDetails[], chainId: number) {
   return (
@@ -66,13 +58,13 @@ const TransactionsModal: React.FC<React.PropsWithChildren<InjectedModalProps>> =
                 const pending = groupedTransactions.false ?? []
 
                 return (
-                  <TransactionWrapper key={`transactions#${chainIdNumber}`}>
+                  <div key={`transactions#${chainIdNumber}`}>
                     <Text fontSize="12px" color="textSubtle" mb="4px">
                       {chains.find((c) => c.id === chainIdNumber)?.name ?? 'Unknown network'}
                     </Text>
                     {renderTransactions(pending, chainIdNumber)}
                     {renderTransactions(confirmed, chainIdNumber)}
-                  </TransactionWrapper>
+                  </div>
                 )
               })}
             </>

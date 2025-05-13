@@ -1,19 +1,4 @@
 import { Svg, SvgProps } from '@pancakeswap/uikit'
-import React from 'react'
-
-declare module 'react' {
-  namespace JSX {
-    interface IntrinsicElements {
-      path: React.DetailedHTMLProps<React.SVGAttributes<SVGPathElement>, SVGPathElement>;
-      animate: React.DetailedHTMLProps<React.SVGAttributes<SVGAnimateElement>, SVGAnimateElement>;
-      defs: React.DetailedHTMLProps<React.SVGAttributes<SVGRectElement>, SVGRectElement>;
-      filter: React.DetailedHTMLProps<React.SVGAttributes<SVGFilterElement>, SVGFilterElement>;
-      feGaussianBlur: React.DetailedHTMLProps<React.SVGAttributes<SVGFEGaussianBlurElement>, SVGFEGaussianBlurElement>;
-      feMerge: React.DetailedHTMLProps<React.SVGAttributes<SVGFEMergeElement>, SVGFEMergeElement>;
-      feMergeNode: React.DetailedHTMLProps<React.SVGAttributes<SVGFEMergeNodeElement>, SVGFEMergeNodeElement>;
-    }
-  }
-}
 
 const LineChartLoaderSVG: React.FC<React.PropsWithChildren<SvgProps>> = (props) => {
   return (

@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components'
-import { SVGProps } from 'react'
 
 const rotate = keyframes`
   from {
@@ -10,7 +9,7 @@ const rotate = keyframes`
   }
 `
 
-const StyledSVG = styled.svg<{ size: string; stroke?: string } & SVGProps<SVGSVGElement>>`
+const StyledSVG = styled.svg<{ size: string; stroke?: string }>`
   animation: 2s ${rotate} linear infinite;
   height: ${({ size }) => size};
   width: ${({ size }) => size};

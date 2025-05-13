@@ -10,7 +10,7 @@ import { client } from 'utils/wagmi'
 import { HistoryManagerProvider } from 'contexts/HistoryContext'
 import { createAppKit } from '@reown/appkit/react'
 import { polygon } from '@reown/appkit/networks'
-import { Ethers5Adapter } from "@reown/appkit-adapter-ethers5";
+import { EthersAdapter } from "@reown/appkit-adapter-ethers";
 
 const projectId = '9ba1c138ff7ad815f7026b920b652f0b'
 const networks = [polygon]
@@ -23,7 +23,7 @@ const metadata = {
 }
 
 const modal = createAppKit({
-  adapters: [new Ethers5Adapter()],
+  adapters: [new EthersAdapter()],
   projectId: projectId,
   networks: [polygon],
   enableWalletGuide: false,
@@ -51,7 +51,7 @@ const modal = createAppKit({
 const StyledUIKitProvider: React.FC<React.PropsWithChildren> = ({ children, ...props }) => {
   const { resolvedTheme } = useNextTheme()
   return (
-    <UIKitProvider children={children} theme={resolvedTheme === 'dark' ? dark : light} {...props}>
+    <UIKitProvider theme={resolvedTheme === 'dark' ? dark : light} {...props}>
       {children}
     </UIKitProvider>
   )
@@ -63,7 +63,7 @@ const Providers: React.FC<React.PropsWithChildren<{ store: Store; children: Reac
 }) => {
   return (
     <WagmiProvider client={client}>
-      <Provider store={store} children={children}>
+      <Provider store={store}>
         <NextThemeProvider>
           <StyledUIKitProvider>
             <LanguageProvider>
@@ -72,7 +72,7 @@ const Providers: React.FC<React.PropsWithChildren<{ store: Store; children: Reac
                   use: [fetchStatusMiddleware],
                 }}
               >
-                <HistoryManagerProvider children={children}>
+                <HistoryManagerProvider>
                   <ModalProvider>{children}</ModalProvider>
                 </HistoryManagerProvider>
               </SWRConfig>
