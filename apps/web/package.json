@@ -28,7 +28,6 @@
       "last 1 safari version"
     ]
   },
-  
   "dependencies": {
     "@ethersproject/abi": "^5.0.0",
     "@ethersproject/address": "^5.0.0",
