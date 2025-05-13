@@ -59,6 +59,7 @@
     "@reown/appkit-adapter-ethers5": "^1.7.4",
     "@sentry/nextjs": "^7.9.0",
     "@snapshot-labs/snapshot.js": "^0.4.40",
+    "@typechain/ethers-v5": "^8.0.5",
     "@vanilla-extract/next-plugin": "^2.1.1",
     "ajv": "^6.12.3",
     "bignumber.js": "^9.0.0",
