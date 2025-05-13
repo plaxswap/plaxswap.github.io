@@ -39,7 +39,7 @@ const AppHeader: React.FC<React.PropsWithChildren<Props>> = ({
         {backTo &&
           (typeof backTo === 'string' ? (
             <Link passHref href={backTo}>
-              <IconButton as="a" scale="sm">
+              <IconButton scale="sm">
                 <ArrowBackIcon width="32px" />
               </IconButton>
             </Link>
@@ -57,9 +57,7 @@ const AppHeader: React.FC<React.PropsWithChildren<Props>> = ({
             {!noConfig && (
               <Flex alignItems="center">
                 {IconSlot}
-                <NotificationDot show={expertMode}>
-                  <GlobalSettings mode={SettingsMode.SWAP_LIQUIDITY} />
-                </NotificationDot>
+                <NotificationDot show={expertMode} color="failure" children={<GlobalSettings mode={SettingsMode.SWAP_LIQUIDITY} />} />
                 <Transactions />
               </Flex>
             )}
