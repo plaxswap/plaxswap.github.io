@@ -66,7 +66,7 @@ export class BloctoConnector extends Connector<EthereumProviderInterface, { defa
       const id = await this.getChainId()
       const unsupported = this.isChainUnsupported(id)
 
-      return { account, chain: { id, unsupported }, provider }
+      return { account: account as `0x${string}`, chain: { id, unsupported }, provider }
     } catch (error) {
       this.disconnect()
       if (this.isUserRejectedRequestError(error)) throw new UserRejectedRequestError(error)
@@ -124,14 +124,14 @@ export class BloctoConnector extends Connector<EthereumProviderInterface, { defa
     return new Web3Provider(<ExternalProvider>provider, chainId).getSigner(account)
   }
 
-  async getAccount() {
+  async getAccount(): Promise<`0x${string}`> {
     const provider = await this.getProvider()
     if (!provider) throw new ConnectorNotFoundError()
     const accounts = await provider.request({
       method: 'eth_requestAccounts',
     })
     // return checksum address
-    return getAddress(accounts[0] as string)
+    return getAddress(accounts[0] as string) as `0x${string}`
   }
 
   async getChainId() {
@@ -144,7 +144,7 @@ export class BloctoConnector extends Connector<EthereumProviderInterface, { defa
     if (accounts.length === 0) this.emit('disconnect')
     else
       this.emit('change', {
-        account: getAddress(accounts[0] as string),
+        account: getAddress(accounts[0] as string) as `0x${string}`,
       })
   }
 

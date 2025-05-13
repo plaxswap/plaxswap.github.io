@@ -57,7 +57,7 @@ export class MiniProgramConnector extends InjectedConnector {
         unsupported = this.isChainUnsupported(id)
       }
 
-      return { account, chain: { id, unsupported }, provider }
+      return { account: account as `0x${string}`, chain: { id, unsupported }, provider }
     } catch (error) {
       if (this.isUserRejectedRequestError(error)) throw new UserRejectedRequestError(error)
       if ((<RpcError>error).code === -32002) throw new ResourceUnavailableError(error)
@@ -65,14 +65,14 @@ export class MiniProgramConnector extends InjectedConnector {
     }
   }
 
-  async getAccount() {
+  async getAccount(): Promise<`0x${string}`> {
     const provider = await this.getProvider()
     if (!provider) throw new ConnectorNotFoundError()
     const accounts = await provider.request({
       method: 'eth_accounts',
     })
     // return checksum address
-    return getAddress(<string>accounts[0])
+    return getAddress(<string>accounts[0]) as `0x${string}`
   }
 
   async getChainId(): Promise<number> {
