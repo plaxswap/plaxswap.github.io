@@ -28,6 +28,7 @@
       "last 1 safari version"
     ]
   },
+  
   "dependencies": {
     "@ethersproject/abi": "^5.0.0",
     "@ethersproject/address": "^5.0.0",
@@ -55,8 +56,6 @@
     "@pancakeswap/utils": "*",
     "@pancakeswap/wagmi": "*",
     "@reduxjs/toolkit": "^1.9.1",
-    "@reown/appkit": "^1.7.4",
-    "@reown/appkit-adapter-ethers5": "^1.7.4",
     "@sentry/nextjs": "^7.9.0",
     "@snapshot-labs/snapshot.js": "^0.4.40",
     "@vanilla-extract/next-plugin": "^2.1.1",
@@ -68,7 +67,6 @@
     "crypto-js": "^4.1.1",
     "date-fns": "^2.29.3",
     "easymde": "^2.16.1",
-    "ethers": "5.7.2",
     "fast-json-stable-stringify": "^2.1.0",
     "graphql": "^16.6.0",
     "graphql-request": "^5.0.0",
