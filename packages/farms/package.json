@@ -4,7 +4,7 @@
   "sideEffects": false,
   "private": true,
   "scripts": {
-    "build": "npx tsx scripts/build.ts",
+    "build": "npx tsx --import tsx scripts/build.ts",
     "test": "vitest --run"
   },
   "devDependencies": {
