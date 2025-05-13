@@ -1,8 +1,8 @@
-import { CSSProperties, MutableRefObject, useCallback, useMemo, forwardRef } from 'react'
+import { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
 import { Currency, CurrencyAmount, Token } from '@pancakeswap/sdk'
 import { Text, QuestionHelper, Column } from '@pancakeswap/uikit'
 import styled from 'styled-components'
-import { FixedSizeList, FixedSizeListProps, ListOnItemsRenderedProps } from 'react-window'
+import { FixedSizeList } from 'react-window'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { LightGreyCard } from 'components/Card'
 import { useTranslation } from '@pancakeswap/localization'
@@ -98,10 +98,6 @@ function CurrencyRow({
     </MenuItem>
   )
 }
-
-const ForwardedFixedSizeList = forwardRef<FixedSizeList<Currency[]>, FixedSizeListProps<Currency[]>>((props, ref) => (
-  <FixedSizeList {...props} ref={ref} />
-))
 
 export default function CurrencyList({
   height,
@@ -213,7 +209,7 @@ export default function CurrencyList({
   return (
     <FixedSizeList
       height={height}
-      outerRef={fixedListRef}
+      ref={fixedListRef as any}
       width="100%"
       itemData={itemData}
       itemCount={itemData.length}

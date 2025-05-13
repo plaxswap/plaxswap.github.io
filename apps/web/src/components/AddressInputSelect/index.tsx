@@ -1,5 +1,5 @@
 import { ChangeEvent, useState, useEffect } from 'react'
-import { Box, BoxProps, Text } from '@pancakeswap/uikit'
+import { Box, BoxProps, Text, Input } from '@pancakeswap/uikit'
 import styled from 'styled-components'
 import { isAddress } from 'utils'
 import { useTranslation } from '@pancakeswap/localization'
@@ -41,17 +41,12 @@ const SubMenu = styled.div<{ isOpen: boolean }>`
   `}
 `
 
-const AddressLink = styled.button.attrs({ type: 'button' })<React.ButtonHTMLAttributes<HTMLButtonElement>>`
+const AddressLink = styled(Text)`
   cursor: pointer;
   overflow-wrap: break-word;
   font-weight: bold;
-  padding: 0 16px;
-  background: none;
-  border: none;
-  width: 100%;
-  text-align: left;
-  color: ${({ theme }) => theme.colors.text};
-  font-size: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 `
 
 const initialState = {
@@ -61,23 +56,6 @@ const initialState = {
 }
 
 const defaultValidAddressHandler = () => Promise.resolve(true)
-
-const StyledInput = styled.input.attrs({ type: 'text' })<React.InputHTMLAttributes<HTMLInputElement>>`
-  width: 100%;
-  height: 40px;
-  padding: 0 16px;
-  background: ${({ theme }) => theme.colors.input};
-  border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
-  border-radius: 16px;
-  color: ${({ theme }) => theme.colors.text};
-  font-size: 16px;
-  outline: none;
-  transition: border-color 0.2s;
-
-  &:focus {
-    border-color: ${({ theme }) => theme.colors.primary};
-  }
-`
 
 const AddressInputSelect: React.FC<React.PropsWithChildren<AddressInputSelectProps>> = ({
   onValidAddress = defaultValidAddressHandler,
@@ -129,7 +107,7 @@ const AddressInputSelect: React.FC<React.PropsWithChildren<AddressInputSelectPro
 
   return (
     <Box position="relative" {...props}>
-      <StyledInput
+      <Input
         placeholder={t('Search %subject%', { subject: t('Address').toLowerCase() })}
         value={state.value}
         onChange={handleChange}

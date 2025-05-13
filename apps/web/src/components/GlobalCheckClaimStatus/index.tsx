@@ -22,7 +22,7 @@ const GlobalCheckClaimStatus: React.FC<React.PropsWithChildren<GlobalCheckClaimS
   if (!enable || chainId !== ChainId.BSC) {
     return null
   }
-  return <GlobalCheckClaim {...props} />
+  return <GlobalCheckClaim key={account} {...props} />
 }
 
 /**

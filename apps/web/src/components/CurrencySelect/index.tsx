@@ -85,22 +85,20 @@ export const CurrencySelect = ({
     <Box width="100%" {...props}>
       <DropDownContainer p={0} onClick={onPresentCurrencyModal}>
         <DropDownHeader>
-          <Text data-pair color={!selectedCurrency ? 'text' : undefined}>
+          <Text id="pair" color={!selectedCurrency ? 'text' : undefined}>
             {!selectedCurrency ? (
               <>{t('Select')}</>
             ) : (
               <Flex alignItems="center" justifyContent="space-between">
                 <CurrencyLogo currency={selectedCurrency} size="24px" style={{ marginRight: '8px' }} />
-                <Box id="pair">
-                  <Text data-pair bold>
-                    {selectedCurrency && selectedCurrency.symbol && selectedCurrency.symbol.length > 20
-                      ? `${selectedCurrency.symbol.slice(0, 4)}...${selectedCurrency.symbol.slice(
-                          selectedCurrency.symbol.length - 5,
-                          selectedCurrency.symbol.length,
-                        )}`
-                      : selectedCurrency?.symbol}
-                  </Text>
-                </Box>
+                <Text id="pair" bold>
+                  {selectedCurrency && selectedCurrency.symbol && selectedCurrency.symbol.length > 20
+                    ? `${selectedCurrency.symbol.slice(0, 4)}...${selectedCurrency.symbol.slice(
+                        selectedCurrency.symbol.length - 5,
+                        selectedCurrency.symbol.length,
+                      )}`
+                    : selectedCurrency?.symbol}
+                </Text>
               </Flex>
             )}
           </Text>
@@ -116,7 +114,7 @@ export const CurrencySelect = ({
             <Text fontSize="12px">{selectedCurrencyBalance?.toSignificant(6) ?? t('Loading')}</Text>
           </AutoRow>
           <RowBetween>
-            <Box />
+            <div />
             {Number.isFinite(+quoted?.toExact()) && (
               <Text fontSize="12px" color="textSubtle">
                 ~${formatNumber(+quoted.toExact())}
