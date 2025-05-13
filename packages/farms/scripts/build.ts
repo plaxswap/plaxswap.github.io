@@ -12,7 +12,7 @@ const lpHelpers137 = require('../constants/priceHelperLps/137')
 const chains = [
   [137, farm137, lpHelpers137],
   [80001, farm80001, lpHelpers80001],
-]
+] as const
 
 const saveList = async () => {
   console.info('save farm config...')
@@ -49,7 +49,7 @@ if (fs.existsSync(buildPath)) {
 fs.mkdirSync(buildPath)
 
 // Copy files
-fs.readdirSync(srcPath).forEach((file) => {
+fs.readdirSync(srcPath).forEach((file: string) => {
   if (file.endsWith('.ts')) {
     const content = fs.readFileSync(path.join(srcPath, file), 'utf8')
     fs.writeFileSync(path.join(buildPath, file), content)

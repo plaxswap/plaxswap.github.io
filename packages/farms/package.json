@@ -8,6 +8,7 @@
     "test": "vitest --run"
   },
   "devDependencies": {
+    "@types/node": "^20.11.24",
     "ts-node": "^10.9.2",
     "typescript": "^5.0.0"
   },
