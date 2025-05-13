@@ -128,7 +128,10 @@ export class BinanceWalletConnector extends InjectedConnector {
             name: `Chain ${id}`,
             network: `${id}`,
             nativeCurrency: { decimals: 18, name: 'POL', symbol: 'POL' },
-            rpcUrls: { default: { http: [''] } },
+            rpcUrls: { 
+              default: { http: [''] },
+              public: { http: [''] }
+            },
           }
         )
       } catch (error) {
