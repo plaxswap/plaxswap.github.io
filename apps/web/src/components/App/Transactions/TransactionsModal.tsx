@@ -15,10 +15,10 @@ import Transaction from './Transaction'
 import ConnectWalletButton from '../../ConnectWalletButton'
 import styled from 'styled-components'
 
-const TransactionWrapper = ({ children, ...props }) => (
-  <div style={{ display: 'flex', flexDirection: 'column' }} {...props}>
+const TransactionWrapper: React.FC<{ children?: React.ReactNode; key?: string }> = ({ children }) => (
+  <Flex flexDirection="column">
     {children}
-  </div>
+  </Flex>
 )
 
 function renderTransactions(transactions: TransactionDetails[], chainId: number) {
