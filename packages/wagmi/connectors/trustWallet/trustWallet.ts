@@ -107,11 +107,10 @@ export class TrustWalletConnector extends InjectedConnector {
 
       // Attempt to show wallet select prompt with `wallet_requestPermissions` when
       // `shimDisconnect` is active and account is in disconnected state (flag in storage)
-      let account: Address | null = null
+      let account: `0x${string}` | null = null
       if (this.options?.shimDisconnect && !getClient().storage?.getItem(this.shimDisconnectKey)) {
-        account = await this.getAccount().catch(() => null)
-        const isConnected = !!account
-        if (isConnected) {
+        try {
+          account = await this.getAccount()
           // Attempt to show another prompt for selecting wallet if already connected
           try {
             await provider.request({
@@ -126,6 +125,8 @@ export class TrustWalletConnector extends InjectedConnector {
               throw new UserRejectedRequestError(error)
             }
           }
+        } catch (error) {
+          // Ignore error and continue with eth_requestAccounts
         }
       }
 
@@ -133,7 +134,7 @@ export class TrustWalletConnector extends InjectedConnector {
         const accounts = await provider.request({
           method: 'eth_requestAccounts',
         })
-        account = getAddress(accounts[0] as string)
+        account = getAddress(accounts[0] as string) as `0x${string}`
       }
 
       // Switch to chain if provided
