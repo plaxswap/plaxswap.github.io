@@ -92,7 +92,7 @@ const AffiliatesBanner = () => {
 
   return (
     <>
-      <style jsx global>
+      <style>
         {`
           #home-1 .page-bg {
             background: linear-gradient(
