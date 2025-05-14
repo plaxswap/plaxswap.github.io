@@ -4,8 +4,12 @@ import request, { gql } from 'graphql-request'
 import { SNAPSHOT_API } from 'config/constants/endpoints'
 import { PANCAKE_SPACE, ADMINS } from 'views/Voting/config'
 
+type GetProposalsResponse = {
+  proposals: Proposal[]
+}
+
 export const getCoreProposal = async (type: ProposalState): Promise<Proposal[]> => {
-  const response = await request(
+  const response = await request<GetProposalsResponse>(
     SNAPSHOT_API,
     gql`
       query getProposals($first: Int!, $skip: Int!, $state: String!, $admins: [String]!) {
