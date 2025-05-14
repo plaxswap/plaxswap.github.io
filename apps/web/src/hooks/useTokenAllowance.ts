@@ -1,11 +1,12 @@
 import { Token, CurrencyAmount } from '@pancakeswap/sdk'
 import { useMemo } from 'react'
+import { Contract } from '@ethersproject/contracts'
 
 import { useTokenContract } from './useContract'
 import { useSingleCallResult } from '../state/multicall/hooks'
 
 function useTokenAllowance(token?: Token, owner?: string, spender?: string): CurrencyAmount<Token> | undefined {
-  const contract = useTokenContract(token?.address, false)
+  const contract = useTokenContract(token?.address, false) as unknown as Contract | null
 
   const inputs = useMemo(() => [owner, spender], [owner, spender])
   const allowance = useSingleCallResult(contract, 'allowance', inputs).result

@@ -8,6 +8,10 @@ export const MAX_LOTTERIES_REQUEST_SIZE = 100
 /* eslint-disable camelcase */
 type LotteriesWhere = { id_in?: string[] }
 
+type LotteriesResponse = {
+  lotteries: LotteryRoundGraphEntity[]
+}
+
 const applyNodeDataToLotteriesGraphResponse = (
   nodeData: LotteryResponse[],
   graphResponse: LotteryRoundGraphEntity[],
@@ -81,7 +85,7 @@ export const getGraphLotteries = async (
       `,
       { skip, first, where },
     )
-    return response.lotteries
+    return (response as LotteriesResponse).lotteries
   } catch (error) {
     console.error(error)
     return []

@@ -448,7 +448,7 @@ export function useZapIn({
       singleTokenToZapAmount?.currency &&
       pair &&
       !rebalancing && {
-        contract: zapContract,
+        contract: zapContract as any,
         methodName: 'estimateZapInSwap',
         params: [
           singleTokenToZapAmount.currency.address,
@@ -472,7 +472,7 @@ export function useZapIn({
       wrappedParsedAmounts[Field.CURRENCY_B] &&
       pair &&
       rebalancing && {
-        contract: zapContract,
+        contract: zapContract as any,
         methodName: 'estimateZapInRebalancingSwap',
         params: [
           wrappedParsedAmounts[Field.CURRENCY_A].currency.address,

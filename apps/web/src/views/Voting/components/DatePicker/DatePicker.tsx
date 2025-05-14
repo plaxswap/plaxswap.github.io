@@ -7,9 +7,11 @@ export interface DatePickerProps extends ReactDatePickerProps {
   inputProps?: InputProps
 }
 
+const DatePickerComponent = ReactDatePicker as any;
+
 const DatePicker: React.FC<React.PropsWithChildren<DatePickerProps>> = ({ inputProps = {}, ...props }) => {
   return (
-    <ReactDatePicker customInput={<Input {...inputProps} />} portalId="reactDatePicker" dateFormat="PPP" {...props} />
+    <DatePickerComponent customInput={<Input {...inputProps} />} portalId="reactDatePicker" dateFormat="PPP" {...props} />
   )
 }
 

@@ -5,12 +5,17 @@ import { getDeltaTimestamps } from './getDeltaTimestamps'
 import { getBlocksFromTimestamps } from './getBlocksFromTimestamps'
 import { stableSwapClient } from './graphql'
 
+interface VirtualPriceResponse {
+  virtualPriceAtLatestBlock: { virtualPrice: string }
+  virtualPriceOneDayAgo: { virtualPrice: string }
+}
+
 export const getAprsForStableFarm = async (stableSwapAddress?: string): Promise<BigNumber> => {
   try {
     const [, , t7d] = getDeltaTimestamps()
     const [blockDay7Ago] = await getBlocksFromTimestamps([t7d])
 
-    const { virtualPriceAtLatestBlock, virtualPriceOneDayAgo: virtualPrice7DayAgo } = await stableSwapClient.request(
+    const { virtualPriceAtLatestBlock, virtualPriceOneDayAgo: virtualPrice7DayAgo } = await stableSwapClient.request<VirtualPriceResponse>(
       gql`
         query virtualPriceStableSwap($stableSwapAddress: String, $blockDayAgo: Int!) {
           virtualPriceAtLatestBlock: pair(id: $stableSwapAddress) {

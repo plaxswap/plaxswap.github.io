@@ -1,6 +1,7 @@
 import { Currency, CurrencyAmount, JSBI, Native, Token } from '@pancakeswap/sdk'
 import { useMemo } from 'react'
 import { useAccount } from 'wagmi'
+import { Contract } from '@ethersproject/contracts'
 import ERC20_INTERFACE from 'config/abi/erc20'
 import { useAllTokens } from 'hooks/Tokens'
 import { useMulticallContract } from 'hooks/useContract'
@@ -16,7 +17,7 @@ export function useNativeBalances(uncheckedAddresses?: (string | undefined)[]): 
   [address: string]: CurrencyAmount<Native> | undefined
 } {
   const native = useNativeCurrency()
-  const multicallContract = useMulticallContract()
+  const multicallContract = useMulticallContract() as unknown as Contract | null
 
   const addresses: string[] = useMemo(
     () =>

@@ -1,7 +1,7 @@
-import { memo } from 'react'
+import { memo, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
-const Container = styled.div`
+const StyledContainer = styled.div`
   background: ${({ theme }) => theme.colors.gradientVioletAlt};
   @media only screen and (max-width: 575px) and (min-height: 740px) {
     height: calc(100vh - 150px);
@@ -11,5 +11,9 @@ const Container = styled.div`
   }
   overflow: hidden;
 `
+
+const Container: React.FC<PropsWithChildren> = ({ children }) => {
+  return <StyledContainer>{children}</StyledContainer>
+}
 
 export default memo(Container)

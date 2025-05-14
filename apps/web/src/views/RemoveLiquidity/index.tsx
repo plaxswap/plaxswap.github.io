@@ -153,7 +153,7 @@ export default function RemoveLiquidity({ currencyA, currencyB, currencyIdA, cur
   }
 
   // pair contract
-  const pairContractRead: Contract | null = usePairContract(pair?.liquidityToken?.address, false)
+  const pairContractRead: any = usePairContract(pair?.liquidityToken?.address, false)
 
   // allowance handling
   const [signatureData, setSignatureData] = useState<{ v: number; r: string; s: string; deadline: number } | null>(null)

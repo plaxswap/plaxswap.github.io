@@ -4,6 +4,16 @@ import { bscRpcProvider } from 'utils/providers'
 import { GRAPH_HEALTH } from 'config/constants/endpoints'
 import { useSlowRefreshEffect } from './useRefreshEffect'
 
+type SubgraphHealthResponse = {
+  indexingStatusForCurrentVersion: {
+    health: string
+    chains: Array<{
+      chainHeadBlock: { number: string }
+      latestBlock: { number: string }
+    }>
+  }
+}
+
 export enum SubgraphStatus {
   OK,
   WARNING,
@@ -36,7 +46,7 @@ const useSubgraphHealth = (subgraphName: string) => {
       const getSubgraphHealth = async () => {
         try {
           const [{ indexingStatusForCurrentVersion }, currentBlock] = await Promise.all([
-            request(
+            request<SubgraphHealthResponse>(
               GRAPH_HEALTH,
               gql`
             query getNftMarketSubgraphHealth {

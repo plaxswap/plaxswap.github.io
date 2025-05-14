@@ -89,7 +89,9 @@ function MyApp(props: AppProps<{ initialReduxState: any }>) {
         )}
         <Blocklist>
           {(Component as NextPageWithLayout).mp ? <MPGlobalHooks /> : <GlobalHooks />}
+          {/* @ts-ignore */}
           <ResetCSS />
+          {/* @ts-ignore */}
           <GlobalStyle />
           <GlobalCheckClaimStatus excludeLocations={[]} />
           <PersistGate loading={null} persistor={persistor}>

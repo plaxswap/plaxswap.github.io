@@ -1,12 +1,18 @@
 import { useState, useEffect } from 'react'
 import request, { gql } from 'graphql-request'
 
+interface TeamResponse {
+  storm: { userCount: string }
+  flippers: { userCount: string }
+  cakers: { userCount: string }
+}
+
 const useGetParticipants = (subgraphAddress: string): string[] => {
   const [participants, setParticipants] = useState<string[]>([])
   useEffect(() => {
     const getParticipants = async () => {
       try {
-        const response = await request(
+        const response = await request<TeamResponse>(
           subgraphAddress,
           gql`
             query getTradingCompetitionParticipants {

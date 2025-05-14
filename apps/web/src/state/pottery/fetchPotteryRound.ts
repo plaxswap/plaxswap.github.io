@@ -1,9 +1,23 @@
 import { request, gql } from 'graphql-request'
 import { GRAPH_API_POTTERY } from 'config/constants/endpoints'
 
+interface PotteryVaultRoundsResponse {
+  potteryVaultRounds: Array<{
+    roundId: number
+    drawDate: string
+    prizePot: string
+    txid: string
+    winners: string[]
+    vault: {
+      totalPlayers: string
+      lockDate: string
+    }
+  }>
+}
+
 export const fetchPotteryFinishedRound = async (potteryRoundId: number) => {
   try {
-    const response = await request(
+    const response = await request<PotteryVaultRoundsResponse>(
       GRAPH_API_POTTERY,
       gql`
         query getPotteryVaultRounds($roundId: Int!) {

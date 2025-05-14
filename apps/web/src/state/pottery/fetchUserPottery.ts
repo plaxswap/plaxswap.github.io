@@ -10,6 +10,19 @@ import potteryVaultAbi from 'config/abi/potteryVaultAbi.json'
 
 const potteryDrawContract = getPotteryDrawContract()
 
+interface PotteryWithdrawalsResponse {
+  withdrawals: {
+    id: string
+    shares: string
+    depositDate: string
+    vault: {
+      id: string
+      status: string
+      lockDate: string
+    }
+  }[]
+}
+
 export const fetchPotterysAllowance = async (account: string, potteryVaultAddress: string) => {
   try {
     const contract = getBep20Contract(bscTokens.cake.address)
@@ -57,7 +70,7 @@ export const fetchUserDrawData = async (account: string) => {
 
 export const fetchWithdrawAbleData = async (account: string) => {
   try {
-    const response = await request(
+    const response = await request<PotteryWithdrawalsResponse>(
       GRAPH_API_POTTERY,
       gql`
         query getUserPotteryWithdrawAbleData($account: ID!) {

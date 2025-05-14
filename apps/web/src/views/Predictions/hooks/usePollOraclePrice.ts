@@ -2,11 +2,12 @@ import { useChainlinkOracleContract } from 'hooks/useContract'
 import { useSWRContract } from 'hooks/useSWRContract'
 import { Zero } from '@ethersproject/constants'
 import { useConfig } from '../context/ConfigProvider'
+import { Contract } from '@ethersproject/contracts'
 
 const usePollOraclePrice = (seconds = 10) => {
   const { chainlinkOracleAddress } = useConfig()
 
-  const chainlinkOracleContract = useChainlinkOracleContract(chainlinkOracleAddress, false)
+  const chainlinkOracleContract = useChainlinkOracleContract(chainlinkOracleAddress, false) as unknown as Contract
   // Can refactor to subscription later
   const { data: price, mutate } = useSWRContract([chainlinkOracleContract, 'latestAnswer'], {
     refreshInterval: seconds * 1000,

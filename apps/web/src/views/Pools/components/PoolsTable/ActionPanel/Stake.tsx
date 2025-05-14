@@ -260,7 +260,7 @@ const Staked: React.FunctionComponent<React.PropsWithChildren<StackedActionProps
     return (
       <>
         <ActionContainer flex={vaultPosition > 1 ? 1.5 : 1}>
-          <ActionContent mt={0}>
+          <ActionContent mt="0">
             <Flex flex="1" flexDirection="column" alignSelf="flex-start">
               <ActionTitles>
                 <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">

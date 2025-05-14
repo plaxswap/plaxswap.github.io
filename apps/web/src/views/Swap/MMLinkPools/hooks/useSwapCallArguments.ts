@@ -7,9 +7,10 @@ import invariant from 'tiny-invariant'
 import { MM_SIGNER, NATIVE_CURRENCY_ADDRESS } from '../constants'
 import { RFQResponse, TradeWithMM } from '../types'
 import { useMMSwapContract } from '../utils/exchange'
+import type { MmLinkedPool } from 'config/abi/types/MmLinkedPool'
 
 export interface SwapCall {
-  contract: Contract
+  contract: any // Using any to avoid ethers Contract type conflicts
   parameters: SwapParameters
 }
 

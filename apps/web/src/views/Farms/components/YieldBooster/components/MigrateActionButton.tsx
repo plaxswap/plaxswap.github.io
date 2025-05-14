@@ -5,6 +5,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { useERC20 } from 'hooks/useContract'
 import { useAppDispatch } from 'state'
+import { Contract } from '@ethersproject/contracts'
 
 import { fetchFarmUserDataAsync } from 'state/farms'
 import { useFarmFromPid, useFarmUser } from 'state/farms/hooks'
@@ -46,7 +47,7 @@ const MigrateActionButton: React.FunctionComponent<MigrateActionButtonPropsType>
     <BCakeMigrateModal
       pid={pid}
       stakedBalance={stakedBalance}
-      lpContract={lpContract}
+      lpContract={lpContract as unknown as Contract}
       onUnStack={handleUnstakeWithCallback}
     />,
   )

@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { JSBI, Percent } from '@pancakeswap/sdk'
+import { Contract } from '@ethersproject/contracts'
 
 import StableSwapABI from 'config/abi/stableSwap.json'
 import LPTokenABI from 'config/abi/lpToken.json'
@@ -61,29 +62,29 @@ export function useStableSwapInfo(stableSwapAddress: string | undefined, lpAddre
   const inputs = useMemo(
     () => [
       {
-        contract: stableSwapContract,
+        contract: stableSwapContract as unknown as Contract,
         methodName: 'balances',
         inputs: [0],
       },
       {
-        contract: stableSwapContract,
+        contract: stableSwapContract as unknown as Contract,
         methodName: 'balances',
         inputs: [1],
       },
       {
-        contract: stableSwapContract,
+        contract: stableSwapContract as unknown as Contract,
         methodName: 'A',
       },
       {
-        contract: lpTokenContract,
+        contract: lpTokenContract as unknown as Contract,
         methodName: 'totalSupply',
       },
       {
-        contract: stableSwapContract,
+        contract: stableSwapContract as unknown as Contract,
         methodName: 'fee',
       },
       {
-        contract: stableSwapContract,
+        contract: stableSwapContract as unknown as Contract,
         methodName: 'FEE_DENOMINATOR',
       },
     ],

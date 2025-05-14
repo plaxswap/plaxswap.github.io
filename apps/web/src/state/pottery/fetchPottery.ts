@@ -12,6 +12,20 @@ import potteryDrawAbi from 'config/abi/potteryDrawAbi.json'
 
 const potteryDrawAddress = getPotteryDrawAddress()
 
+interface PotteryResponse {
+  pottery: {
+    id: string
+    lastVaultAddress: string
+  }
+}
+
+interface PotteryVaultRoundsResponse {
+  potteryVaultRounds: Array<{
+    roundId: number
+    winners: string[]
+  }>
+}
+
 export const fetchLastVaultAddress = async () => {
   try {
     const response = await request(
@@ -25,7 +39,7 @@ export const fetchLastVaultAddress = async () => {
         }
       `,
       { contract: potteryDrawAddress },
-    )
+    ) as PotteryResponse
 
     const { lastVaultAddress } = response.pottery
     return lastVaultAddress
@@ -120,7 +134,7 @@ export const fetchLatestRoundId = async () => {
           }
         }
       `,
-    )
+    ) as PotteryVaultRoundsResponse
 
     const winners = response.potteryVaultRounds[0]?.winners
     const latestRoundId = response.potteryVaultRounds[0]?.roundId

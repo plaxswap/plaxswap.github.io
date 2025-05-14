@@ -83,7 +83,7 @@ export interface WalletIfoState {
 // Returned by useGetWalletIfoData
 export interface WalletIfoData extends WalletIfoState {
   allowance: BigNumber
-  contract: Contract
+  contract: any
   setPendingTx: (status: boolean, poolId: PoolIds) => void
   setIsClaimed: (poolId: PoolIds) => void
   fetchIfoData: () => Promise<void>
