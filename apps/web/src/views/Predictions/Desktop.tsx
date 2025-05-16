@@ -215,6 +215,7 @@ const Desktop: React.FC<React.PropsWithChildren> = () => {
             <ExpandButtonGroup>
               <TabToggle
                 height="42px"
+                as={Button}
                 style={{ whiteSpace: 'nowrap', alignItems: 'center' }}
                 isActive={chartView === PredictionsChartView.TradingView}
                 onMouseDown={(e) => {
@@ -226,6 +227,7 @@ const Desktop: React.FC<React.PropsWithChildren> = () => {
                 {chartView === PredictionsChartView.TradingView && <ChartIcon mr="10px" />} TradingView {t('Chart')}
               </TabToggle>
               <TabToggle
+                as={Button}
                 height="42px"
                 style={{ whiteSpace: 'nowrap', alignItems: 'center' }}
                 isActive={chartView === PredictionsChartView.Chainlink}

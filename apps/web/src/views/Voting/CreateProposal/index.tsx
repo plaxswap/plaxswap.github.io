@@ -21,13 +21,12 @@ import isEmpty from 'lodash/isEmpty'
 import times from 'lodash/times'
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from 'react'
 import { useInitialBlock } from 'state/block/hooks'
-import type { Options } from 'easymde'
-import dynamic from 'next/dynamic'
 
 import { useTranslation } from '@pancakeswap/localization'
 import truncateHash from '@pancakeswap/utils/truncateHash'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import Container from 'components/Layout/Container'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { getBlockExploreLink } from 'utils'
@@ -137,11 +136,14 @@ const CreateProposal = () => {
     updateValue(key, value)
   }
 
-  const options: Options = useMemo(() => ({
-    hideIcons: account && ADMINS.includes(account.toLowerCase())
-      ? []
-      : ['guide', 'fullscreen', 'preview', 'side-by-side', 'image']
-  }), [account])
+  const options = useMemo(() => {
+    return {
+      hideIcons:
+        account && ADMINS.includes(account.toLowerCase())
+          ? []
+          : ['guide', 'fullscreen', 'preview', 'side-by-side', 'image'],
+    }
+  }, [account])
 
   useEffect(() => {
     if (initialBlock > 0) {

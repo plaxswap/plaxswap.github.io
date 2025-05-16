@@ -6,7 +6,7 @@ interface SpacerProps {
 }
 
 const Spacer: React.FC<React.PropsWithChildren<SpacerProps>> = ({ size = 'md' }) => {
-  const { spacing } = useContext(ThemeContext as React.Context<any>)
+  const { spacing } = useContext(ThemeContext)
 
   let s: string
   switch (size) {

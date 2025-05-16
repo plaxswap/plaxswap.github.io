@@ -19,13 +19,12 @@ import useSwiper from '../hooks/useSwiper'
 import usePollOraclePrice from '../hooks/usePollOraclePrice'
 import { CHART_DOT_CLICK_EVENT } from '../helpers'
 import { useConfig } from '../context/ConfigProvider'
-import { Contract } from '@ethersproject/contracts'
 
 function useChainlinkLatestRound() {
   const { chainlinkOracleAddress } = useConfig()
   const chainlinkOracleContract = useChainlinkOracleContract(chainlinkOracleAddress, false)
   // Can refactor to subscription later
-  const lastRound = useSWRContract([chainlinkOracleContract as unknown as Contract, 'latestRound'], {
+  const lastRound = useSWRContract([chainlinkOracleContract, 'latestRound'], {
     dedupingInterval: 10 * 1000,
     refreshInterval: 10 * 1000,
     compare: (a, b) => {

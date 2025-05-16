@@ -11,18 +11,12 @@ interface UserPointIncreaseEvent {
   points: string
 }
 
-interface UserResponse {
-  user: {
-    points: UserPointIncreaseEvent[]
-  }
-}
-
 /**
  * Gets all user point increase events on the profile filtered by wallet address
  */
 export const getUserPointIncreaseEvents = async (account: string): Promise<UserPointIncreaseEvent[]> => {
   try {
-    const { user } = await request<UserResponse>(
+    const { user } = await request(
       GRAPH_API_PROFILE,
       gql`
         query getUserPointIncreaseEvents($account: ID!) {

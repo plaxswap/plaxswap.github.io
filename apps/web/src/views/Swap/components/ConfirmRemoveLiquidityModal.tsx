@@ -170,7 +170,7 @@ const ConfirmRemoveLiquidityModal: React.FC<
       customOnDismiss={customOnDismiss}
       attemptingTxn={attemptingTxn}
       hash={hash}
-      content={confirmationContent as unknown as (() => React.ReactNode) & string}
+      content={confirmationContent}
       pendingText={pendingText}
     />
   )

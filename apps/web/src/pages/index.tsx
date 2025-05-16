@@ -9,26 +9,6 @@ import { getBlocksFromTimestamps } from 'utils/getBlocksFromTimestamps'
 import { bitQueryServerClient, infoServerClient } from 'utils/graphql'
 import Home from '../views/Home'
 
-interface PancakeFactoryResponse {
-  pancakeFactory?: {
-    totalTransactions: string
-  }
-}
-
-interface PancakeFactoriesResponse {
-  pancakeFactories: Array<{
-    totalLiquidityUSD: string
-  }>
-}
-
-interface BitQueryResponse {
-  ethereum?: {
-    dexTrades: Array<{
-      count: number
-    }>
-  }
-}
-
 const IndexPage = ({ totalTx30Days, addressCount30Days, tvl }) => {
   return (
     <SWRConfig
@@ -75,8 +55,8 @@ export const getStaticProps: GetStaticProps = async () => {
       throw new Error('No block found for 30 days ago')
     }
 
-    const totalTx = await infoServerClient.request<PancakeFactoryResponse>(totalTxQuery)
-    const totalTx30DaysAgo = await infoServerClient.request<PancakeFactoryResponse>(totalTxQuery, {
+    const totalTx = await infoServerClient.request(totalTxQuery)
+    const totalTx30DaysAgo = await infoServerClient.request(totalTxQuery, {
       block: {
         number: days30AgoBlock.number,
       },
@@ -108,7 +88,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   if (process.env.BIT_QUERY_HEADER) {
     try {
-      const result = await bitQueryServerClient.request<BitQueryResponse>(usersQuery, {
+      const result = await bitQueryServerClient.request(usersQuery, {
         since: days30Ago.toISOString(),
         till: new Date().toISOString(),
       })
@@ -123,7 +103,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 
   try {
-    const result = await infoServerClient.request<PancakeFactoriesResponse>(gql`
+    const result = await infoServerClient.request(gql`
       query tvl {
         pancakeFactories(first: 1) {
           totalLiquidityUSD

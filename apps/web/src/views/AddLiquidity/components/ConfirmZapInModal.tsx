@@ -279,7 +279,7 @@ const ConfirmZapInModal: React.FC<React.PropsWithChildren<InjectedModalProps & C
       attemptingTxn={attemptingTxn}
       currencyToAdd={pair?.liquidityToken}
       hash={hash}
-      content={confirmationContent as unknown as (() => React.ReactNode) & string}
+      content={confirmationContent}
       pendingText={pendingText}
     />
   )

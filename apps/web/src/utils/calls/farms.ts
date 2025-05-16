@@ -3,12 +3,7 @@ import BigNumber from 'bignumber.js'
 import { DEFAULT_TOKEN_DECIMAL, DEFAULT_GAS_LIMIT } from 'config'
 import { getNonBscVaultContractFee, MessageTypes } from 'views/Farms/hooks/getNonBscVaultFee'
 
-interface FarmContract {
-  deposit(pid: number, value: string, options?: { gasLimit?: number; gasPrice?: string }): Promise<any>
-  withdraw(pid: number, value: string, options?: { gasLimit?: number; gasPrice?: string }): Promise<any>
-}
-
-export const stakeFarm = async (masterChefContract: FarmContract, pid, amount, gasPrice, gasLimit?: number) => {
+export const stakeFarm = async (masterChefContract: Contract, pid, amount, gasPrice, gasLimit?: number) => {
   const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
 
   return masterChefContract.deposit(pid, value, {
@@ -17,7 +12,7 @@ export const stakeFarm = async (masterChefContract: FarmContract, pid, amount, g
   })
 }
 
-export const unstakeFarm = async (masterChefContract: FarmContract, pid, amount, gasPrice, gasLimit?: number) => {
+export const unstakeFarm = async (masterChefContract, pid, amount, gasPrice, gasLimit?: number) => {
   const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
 
   return masterChefContract.withdraw(pid, value, {
@@ -26,7 +21,7 @@ export const unstakeFarm = async (masterChefContract: FarmContract, pid, amount,
   })
 }
 
-export const harvestFarm = async (masterChefContract: FarmContract, pid, gasPrice, gasLimit?: number) => {
+export const harvestFarm = async (masterChefContract, pid, gasPrice, gasLimit?: number) => {
   return masterChefContract.deposit(pid, '0', {
     gasLimit: gasLimit || DEFAULT_GAS_LIMIT,
     gasPrice,

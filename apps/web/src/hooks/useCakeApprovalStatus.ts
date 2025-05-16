@@ -3,7 +3,6 @@ import { useAccount } from 'wagmi'
 import { useCake } from 'hooks/useContract'
 import { useSWRContract, UseSWRContractKey } from 'hooks/useSWRContract'
 import BigNumber from 'bignumber.js'
-import { Contract } from '@ethersproject/contracts'
 
 // TODO: refactor as useTokenApprovalStatus for generic use
 
@@ -15,7 +14,7 @@ export const useCakeApprovalStatus = (spender) => {
     () =>
       account && spender
         ? {
-            contract: cakeContract as unknown as Contract,
+            contract: cakeContract,
             methodName: 'allowance',
             params: [account, spender],
           }

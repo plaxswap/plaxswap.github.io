@@ -247,7 +247,7 @@ export const getNftsFromDifferentCollectionsApi = async (
  */
 export const getCollectionSg = async (collectionAddress: string): Promise<CollectionMarketDataBaseFields> => {
   try {
-    const res = await request<{ collection: CollectionMarketDataBaseFields }>(
+    const res = await request(
       GRAPH_API_NFTMARKET,
       gql`
         query getCollectionData($collectionAddress: String!) {
@@ -271,7 +271,7 @@ export const getCollectionSg = async (collectionAddress: string): Promise<Collec
  */
 export const getCollectionsSg = async (): Promise<CollectionMarketDataBaseFields[]> => {
   try {
-    const res = await request<{ collections: CollectionMarketDataBaseFields[] }>(
+    const res = await request(
       GRAPH_API_NFTMARKET,
       gql`
         {
@@ -300,10 +300,11 @@ export const getNftsFromCollectionSg = async (
   first = 1000,
   skip = 0,
 ): Promise<TokenMarketData[]> => {
+  // Squad to be sorted by tokenId as this matches the order of the paginated API return. For PBs - get the most recent,
   const isPBCollection = isAddress(collectionAddress) === pancakeBunniesAddress
 
   try {
-    const res = await request<{ collection: { nfts: TokenMarketData[] } }>(
+    const res = await request(
       GRAPH_API_NFTMARKET,
       gql`
         query getNftCollectionMarketData($collectionAddress: String!) {
@@ -340,7 +341,7 @@ export const getNftsByBunnyIdSg = async (
       existingTokenIds.length > 0
         ? { otherId: bunnyId, isTradable: true, tokenId_not_in: existingTokenIds }
         : { otherId: bunnyId, isTradable: true }
-    const res = await request<{ nfts: TokenMarketData[] }>(
+    const res = await request(
       GRAPH_API_NFTMARKET,
       gql`
         query getNftsByBunnyIdSg($collectionAddress: String!, $where: NFT_filter, $orderDirection: String!) {
@@ -376,7 +377,7 @@ export const getMarketDataForTokenIds = async (
     if (existingTokenIds.length === 0) {
       return []
     }
-    const res = await request<{ collection: { nfts: TokenMarketData[] } }>(
+    const res = await request(
       GRAPH_API_NFTMARKET,
       gql`
         query getMarketDataForTokenIds($collectionAddress: String!, $where: NFT_filter) {
@@ -520,7 +521,7 @@ export const getNftsMarketData = async (
   skip = 0,
 ): Promise<TokenMarketData[]> => {
   try {
-    const res = await request<{ nfts: TokenMarketData[] }>(
+    const res = await request(
       GRAPH_API_NFTMARKET,
       gql`
         query getNftsMarketData($first: Int, $skip: Int!, $where: NFT_filter, $orderBy: NFT_orderBy, $orderDirection: OrderDirection) {
@@ -642,7 +643,7 @@ export const getLeastMostPriceInCollection = async (
  */
 export const getUserActivity = async (address: string): Promise<UserActivity> => {
   try {
-    const res = await request<{ user: UserActivity }>(
+    const res = await request(
       GRAPH_API_NFTMARKET,
       gql`
         query getUserActivity($address: String!) {
@@ -792,7 +793,7 @@ export const getTokenActivity = async (
   collectionAddress: string,
 ): Promise<{ askOrders: AskOrder[]; transactions: Transaction[] }> => {
   try {
-    const res = await request<{ nfts: { askHistory: AskOrder[]; transactionHistory: Transaction[] }[] }>(
+    const res = await request(
       GRAPH_API_NFTMARKET,
       gql`
         query getCollectionActivity($tokenId: BigInt!, $address: ID!) {
@@ -842,7 +843,7 @@ export const getTokenActivity = async (
  */
 export const getLatestListedNfts = async (first: number): Promise<TokenMarketData[]> => {
   try {
-    const res = await request<{ nfts: TokenMarketData[] }>(
+    const res = await request(
       GRAPH_API_NFTMARKET,
       gql`
         query getLatestNftMarketData($first: Int) {

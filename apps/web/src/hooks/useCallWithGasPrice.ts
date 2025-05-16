@@ -22,7 +22,7 @@ export function useCallWithGasPrice() {
    */
   const callWithGasPrice = useCallback(
     async (
-      contract: any,
+      contract: Contract,
       methodName: string,
       methodArgs: any[] = [],
       overrides: CallOverrides = null,

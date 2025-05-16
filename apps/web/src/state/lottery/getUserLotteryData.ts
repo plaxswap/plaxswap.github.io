@@ -10,24 +10,6 @@ export const MAX_USER_LOTTERIES_REQUEST_SIZE = 100
 /* eslint-disable camelcase */
 type UserLotteriesWhere = { lottery_in?: string[] }
 
-interface LotteryUserResponse {
-  user: {
-    id: string
-    totalTickets: string
-    totalCake: string
-    rounds: Array<{
-      id: string
-      lottery: {
-        id: string
-        endTime: string
-        status: string
-      }
-      claimed: boolean
-      totalTickets: string
-    }>
-  }
-}
-
 const applyNodeDataToUserGraphResponse = (
   userNodeData: { roundId: string; userTickets: LotteryTicket[] }[],
   userGraphData: UserRound[],
@@ -89,7 +71,7 @@ export const getGraphLotteryUser = async (
   }
 
   try {
-    const response = await request<LotteryUserResponse>(
+    const response = await request(
       GRAPH_API_LOTTERY,
       gql`
         query getUserLotteries($account: ID!, $first: Int!, $skip: Int!, $where: Round_filter) {

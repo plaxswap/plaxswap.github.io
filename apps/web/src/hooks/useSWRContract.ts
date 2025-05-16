@@ -12,7 +12,7 @@ import useSWR, {
 } from 'swr'
 import { multicallv2, MulticallOptions, Call } from 'utils/multicall'
 import { MaybeContract, ContractMethodName, ContractMethodParams } from 'utils/types'
-import { BlockingData, IsLoadingResponse } from 'swr/_internal'
+import { BlockingData } from 'swr/_internal'
 
 declare module 'swr' {
   interface SWRResponse<Data = any, Error = any, Config = any> {
@@ -20,7 +20,7 @@ declare module 'swr' {
     error: Error | undefined
     mutate: KeyedMutator<Data>
     isValidating: boolean
-    isLoading: IsLoadingResponse<Data, Config>
+    isLoading: BlockingData<Data, Config> extends true ? false : boolean
     // Add global fetchStatus to SWRResponse
     status: FetchStatus
   }

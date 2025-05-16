@@ -4,12 +4,11 @@ import { getCakeContract } from 'utils/contractHelpers'
 import { getBalanceNumber } from '@pancakeswap/utils/formatBalance'
 import { useBCakeProxyContractAddress } from 'views/Farms/hooks/useBCakeProxyContractAddress'
 import BigNumber from 'bignumber.js'
-import { Contract } from '@ethersproject/contracts'
 
 const useProxyCAKEBalance = () => {
   const { account, chainId } = useActiveWeb3React()
   const { proxyAddress } = useBCakeProxyContractAddress(account, chainId)
-  const cakeContract = getCakeContract() as unknown as Contract
+  const cakeContract = getCakeContract()
 
   const { data, mutate } = useSWRContract([cakeContract, 'balanceOf', [proxyAddress]])
 

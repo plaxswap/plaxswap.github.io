@@ -1,7 +1,7 @@
 import { Contract, PayableOverrides } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
 import { calculateGasMargin } from 'utils'
-import { ContractMethodName, ContractMethodParams } from 'utils/types'
+import { ContractMethodName, MaybeContract, ContractMethodParams } from 'utils/types'
 
 /**
  * Estimate the gas needed to call a function, and add a 10% margin
@@ -11,10 +11,10 @@ import { ContractMethodName, ContractMethodParams } from 'utils/types'
  * @param args An array of arguments to pass to the method
  * @returns https://docs.ethers.io/v5/api/providers/types/#providers-TransactionReceipt
  */
-export const estimateGas = async <C extends { estimateGas: Contract['estimateGas']; address: string } = Contract>(
-  contract: C,
-  methodName: string,
-  methodArgs: unknown[],
+export const estimateGas = async <C extends Contract = Contract, N extends ContractMethodName<C> = any>(
+  contract: MaybeContract<C>,
+  methodName: N,
+  methodArgs: ContractMethodParams<C, N>,
   overrides: PayableOverrides = {},
   gasMarginPer10000: number,
 ) => {
@@ -35,10 +35,10 @@ export const estimateGas = async <C extends { estimateGas: Contract['estimateGas
  * @param overrides An overrides object to pass to the method
  * @returns https://docs.ethers.io/v5/api/providers/types/#providers-TransactionReceipt
  */
-export const callWithEstimateGas = async <C extends { estimateGas: Contract['estimateGas']; address: string } = Contract>(
-  contract: C,
-  methodName: string,
-  methodArgs: unknown[],
+export const callWithEstimateGas = async <C extends Contract = Contract, N extends ContractMethodName<C> = any>(
+  contract: MaybeContract<C>,
+  methodName: N,
+  methodArgs: ContractMethodParams<C, N>,
   overrides: PayableOverrides = {},
   gasMarginPer10000 = 1000,
 ): Promise<TransactionResponse> => {

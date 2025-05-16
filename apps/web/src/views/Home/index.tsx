@@ -53,7 +53,7 @@ const Home: React.FC<React.PropsWithChildren> = () => {
 
   return (
     <>
-      <style>
+      <style jsx global>
         {`
           #home-1 .page-bg {
             background: linear-gradient(139.73deg, #e6fdff 0%, #f3efff 100%);

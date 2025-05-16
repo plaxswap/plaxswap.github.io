@@ -370,7 +370,7 @@ export default function AddLiquidity({ currencyA, currencyB }) {
     if (!canZap || !parsedAmounts || !zapIn.zapInEstimated || !chainId || !zapContract) {
       return
     }
-// @ts-ignore
+
     let method: ContractMethodName<typeof zapContract>
     let args
     let value: BigNumberish | null
@@ -443,7 +443,7 @@ export default function AddLiquidity({ currencyA, currencyB }) {
     }
 
     setLiquidityState({ attemptingTxn: true, liquidityErrorMessage: undefined, txHash: undefined })
-// @ts-ignore
+
     callWithEstimateGas(zapContract, method, args, value ? { value, gasPrice } : { gasPrice })
       .then((response) => {
         setLiquidityState({ attemptingTxn: false, liquidityErrorMessage: undefined, txHash: response.hash })

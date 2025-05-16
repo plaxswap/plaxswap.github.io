@@ -79,18 +79,9 @@ const getTotalWonMarket = (market, tokenSymbol) => {
   return Math.max(total - totalTreasury, 0)
 }
 
-interface MarketResponse {
-  market: {
-    totalBNB?: string
-    totalBNBTreasury?: string
-    totalCAKE?: string
-    totalCAKETreasury?: string
-  }
-}
-
 export const getTotalWon = async (): Promise<{ totalWonBNB: number; totalWonCAKE: number }> => {
-  const [bnbResponse, cakeResponse] = await Promise.all([
-    request<MarketResponse>(
+  const [{ market: BNBMarket, market: CAKEMarket }] = await Promise.all([
+    request(
       GRAPH_API_PREDICTION_BNB,
       gql`
         query getTotalWonData {
@@ -101,7 +92,7 @@ export const getTotalWon = async (): Promise<{ totalWonBNB: number; totalWonCAKE
         }
       `,
     ),
-    request<MarketResponse>(
+    request(
       GRAPH_API_PREDICTION_CAKE,
       gql`
         query getTotalWonData {
@@ -114,17 +105,13 @@ export const getTotalWon = async (): Promise<{ totalWonBNB: number; totalWonCAKE
     ),
   ])
 
-  const totalWonBNB = getTotalWonMarket(bnbResponse.market, 'POL')
-  const totalWonCAKE = getTotalWonMarket(cakeResponse.market, 'PLAX')
+  const totalWonBNB = getTotalWonMarket(BNBMarket, 'POL')
+  const totalWonCAKE = getTotalWonMarket(CAKEMarket, 'PLAX')
 
   return { totalWonBNB, totalWonCAKE }
 }
 
 type WhereClause = Record<string, string | number | boolean | string[]>
-
-interface BetsResponse {
-  bets: Array<BetResponseBNB | BetResponseCAKE>
-}
 
 export const getBetHistory = async (
   where: WhereClause = {},
@@ -133,7 +120,7 @@ export const getBetHistory = async (
   api: string,
   tokenSymbol: string,
 ): Promise<Array<BetResponseBNB | BetResponseCAKE>> => {
-  const response = await request<BetsResponse>(
+  const response = await request(
     api,
     gql`
       query getBetHistory($first: Int!, $skip: Int!, $where: Bet_filter) {
@@ -191,17 +178,13 @@ export const getHasRoundFailed = (oracleCalled: boolean, closeTimestamp: number,
   return false
 }
 
-interface UsersResponse {
-  users: UserResponse<BetResponse>[]
-}
-
 export const getPredictionUsers = async (
   options: GetPredictionUsersOptions = {},
   api: string,
   tokenSymbol: string,
 ): Promise<UserResponse<BetResponse>[]> => {
   const { first, skip, where, orderBy, orderDir } = { ...defaultPredictionUserOptions, ...options }
-  const response = await request<UsersResponse>(
+  const response = await request(
     api,
     gql`
       query getUsers($first: Int!, $skip: Int!, $where: User_filter, $orderBy: User_orderBy, $orderDir: OrderDirection) {
@@ -215,16 +198,12 @@ export const getPredictionUsers = async (
   return response.users
 }
 
-interface SingleUserResponse {
-  user: UserResponse<BetResponse>
-}
-
 export const getPredictionUser = async (
   account: string,
   api: string,
   tokenSymbol: string,
 ): Promise<UserResponse<BetResponse>> => {
-  const response = await request<SingleUserResponse>(
+  const response = await request(
     api,
     gql`
       query getUser($id: ID!) {

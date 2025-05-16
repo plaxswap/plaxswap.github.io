@@ -8,7 +8,7 @@ import { useRouterContract } from 'utils/exchange'
 import useTransactionDeadline from './useTransactionDeadline'
 
 export interface SwapCall {
-  contract: any // Changed from Contract to any to avoid type conflicts
+  contract: Contract
   parameters: SwapParameters
 }
 

@@ -9,7 +9,6 @@ import {
   useToast,
   Farm as FarmUI,
 } from '@pancakeswap/uikit'
-import { Contract } from '@ethersproject/contracts'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import { BASE_ADD_LIQUIDITY_URL } from 'config'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -135,7 +134,7 @@ const StakeButton: React.FC<React.PropsWithChildren<StackedActionProps>> = ({
   const [onPresentWithdraw] = useModal(
     <FarmUI.WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={lpSymbol} decimals={18} />,
   )
-  const lpContract = useERC20(lpAddress) as unknown as Contract
+  const lpContract = useERC20(lpAddress)
   const dispatch = useAppDispatch()
   const { onApprove } = useApproveFarm(lpContract, chainId)
 

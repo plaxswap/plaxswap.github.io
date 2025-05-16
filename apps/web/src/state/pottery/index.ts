@@ -73,7 +73,7 @@ export const fetchPublicPotteryDataAsync = createAsyncThunk<SerializedPotteryPub
       fetchTotalLockedValue(potteryVaultAddress),
       fetchLatestRoundId(),
     ])
-    return { ...publicPotteryData, ...totalLockedValue, latestRoundId: String(latestRoundId) }
+    return { ...publicPotteryData, ...totalLockedValue, ...latestRoundId }
   },
 )
 
@@ -106,15 +106,11 @@ export const fetchPotteryUserDataAsync = createAsyncThunk<SerializedPotteryUserD
   },
 )
 
-export const fetchPotteryRoundData = createAsyncThunk<PotteryRoundInfo, number, { rejectValue: unknown }>(
+export const fetchPotteryRoundData = createAsyncThunk<PotteryRoundInfo, number>(
   'pottery/fetchPotteryRound',
-  async (roundId, { rejectWithValue }) => {
-    try {
-      const response = await fetchPotteryFinishedRound(roundId)
-      return { ...response, roundId: String(roundId) }
-    } catch (e) {
-      return rejectWithValue(e)
-    }
+  async (roundId) => {
+    const response = await fetchPotteryFinishedRound(roundId)
+    return response
   },
 )
 

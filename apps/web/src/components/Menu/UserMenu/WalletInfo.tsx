@@ -21,7 +21,6 @@ import { ChainLogo } from 'components/Logo/ChainLogo'
 import { getBlockExploreLink, getBlockExploreName } from 'utils'
 import { formatBigNumber, getFullDisplayBalance } from '@pancakeswap/utils/formatBalance'
 import { useBalance } from 'wagmi'
-import { useDisconnect } from '@reown/appkit/react'
 import CakeBenefitsCard from './CakeBenefitsCard'
 
 const COLORS = {
@@ -48,12 +47,10 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
   const { balance: wBNBBalance, fetchStatus: wBNBFetchStatus } = useTokenBalance(wBNBToken?.address, true)
   const { balance: cakeBalance, fetchStatus: cakeFetchStatus } = useGetCakeBalance()
   const { logout } = useAuth()
-  const { disconnect } = useDisconnect()
 
   const handleLogout = () => {
     onDismiss?.()
     logout()
-    disconnect()
   }
 
   return (

@@ -62,7 +62,7 @@ export function useSwapCallArguments(
       )
     }
 
-    return swapMethods.map((parameters) => ({ parameters, contract: contract as unknown as Contract }))
+    return swapMethods.map((parameters) => ({ parameters, contract }))
   }, [account, allowedSlippage, chainId, contract, deadline, recipient, trade])
 }
 

@@ -1,6 +1,5 @@
 import { ChainId } from '@pancakeswap/sdk'
-import { Contract } from '@ethersproject/contracts'
-import { useChainlinkOracleContract } from 'hooks/useContract'
+import { getChainlinkOracleContract } from 'utils/contractHelpers'
 import { useSWRContract } from 'hooks/useSWRContract'
 import { Zero } from '@ethersproject/constants'
 
@@ -16,7 +15,7 @@ const getOracleAddress = (chainId: number) => {
 
 export const useOraclePrice = (chainId: number) => {
   const tokenAddress = getOracleAddress(chainId)
-  const chainlinkOracleContract = useChainlinkOracleContract(tokenAddress, false) as unknown as Contract
+  const chainlinkOracleContract = getChainlinkOracleContract(tokenAddress, null, ChainId.BSC)
   // Can refactor to subscription later
   const { data: price } = useSWRContract([chainlinkOracleContract, 'latestAnswer'], {
     refreshWhenHidden: true,

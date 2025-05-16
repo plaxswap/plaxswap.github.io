@@ -96,7 +96,7 @@ const ConfirmAddLiquidityModal: React.FC<
     )
   }, [noLiquidity, onAdd, t])
 
-  const confirmationContent: () => React.ReactNode = useCallback(
+  const confirmationContent = useCallback(
     () =>
       liquidityErrorMessage ? (
         <TransactionErrorContent onDismiss={onDismiss} message={liquidityErrorMessage} />
@@ -115,7 +115,7 @@ const ConfirmAddLiquidityModal: React.FC<
       attemptingTxn={attemptingTxn}
       currencyToAdd={currencyToAdd}
       hash={hash}
-      content={confirmationContent as unknown as (() => React.ReactNode) & string}
+      content={confirmationContent}
       pendingText={pendingText}
     />
   )

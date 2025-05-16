@@ -20,7 +20,6 @@ import { useEffect, useState, useCallback } from 'react'
 import { useProfile } from 'state/profile/hooks'
 import { usePendingTransactions } from 'state/transactions/hooks'
 import { useAccount } from 'wagmi'
-import { useDisconnect } from '@reown/appkit/react'
 import ProfileUserMenuItem from './ProfileUserMenuItem'
 import WalletModal, { WalletView } from './WalletModal'
 import WalletUserMenuItem from './WalletUserMenuItem'
@@ -29,7 +28,6 @@ const UserMenuItems = () => {
   const { t } = useTranslation()
   const { chainId, isWrongNetwork } = useActiveChainId()
   const { logout } = useAuth()
-  const { disconnect } = useDisconnect()
   const { address: account } = useAccount()
   const { hasPendingTransactions } = usePendingTransactions()
   const { isInitialized, isLoading, profile } = useProfile()
@@ -37,11 +35,6 @@ const UserMenuItems = () => {
   const [onPresentTransactionModal] = useModal(<WalletModal initialView={WalletView.TRANSACTIONS} />)
   const [onPresentWrongNetworkModal] = useModal(<WalletModal initialView={WalletView.WRONG_NETWORK} />)
   const hasProfile = isInitialized && !!profile
-
-  const handleLogout = () => {
-    logout()
-    disconnect()
-  }
 
   const onClickWalletMenu = useCallback((): void => {
     if (isWrongNetwork) {
@@ -70,7 +63,7 @@ const UserMenuItems = () => {
         disabled={isWrongNetwork || chainId !== ChainId.BSC}
       />
       <UserMenuDivider />
-      <UserMenuItem as="button" onClick={handleLogout}>
+      <UserMenuItem as="button" onClick={logout}>
         <Flex alignItems="center" justifyContent="space-between" width="100%">
           {t('Disconnect')}
           <LogoutIcon />
