@@ -276,6 +276,14 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
+    pid: 60,
+    lpSymbol: 'AURA-POL LP',
+    lpAddress: '0xd8b27dC7ca3563b65ae19d423867FE37681d62ac',
+    token: bscTokens.aura,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
     pid: 44,
     lpSymbol: 'BRC-POL LP',
     lpAddress: '0x6b7d774181c7f0ED78F86AbAb1C61b2Be54f35C0',
