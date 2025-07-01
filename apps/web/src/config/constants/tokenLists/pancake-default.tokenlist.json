@@ -491,6 +491,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x6b7682a9fdA1d482A3779C9489DC62437BB58945/logo.png"
     },
     {
+      "name": "AZZURAZZA",
+      "symbol": "AURA",
+      "address": "0x2a12ffDb78Ad627F1a78cA96964eef58b36Dc9c8",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x2a12ffDb78Ad627F1a78cA96964eef58b36Dc9c8/logo.png"
+    },
+    {
       "name": "ALIRI",
       "symbol": "DOA",
       "address": "0x058E73a591FF67ed31D92679db27950eb2546ca1",

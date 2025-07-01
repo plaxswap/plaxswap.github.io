@@ -400,6 +400,14 @@ export const bscTokens = {
     'ZELTSPHY',
     'https://polygonscan.com/token/0x6b7682a9fdA1d482A3779C9489DC62437BB58945#code',
   ),
+  aura: new ERC20Token(
+    ChainId.BSC,
+    '0x2a12ffDb78Ad627F1a78cA96964eef58b36Dc9c8',
+    18,
+    'AURA',
+    'AZZURAZZA',
+    'https://polygonscan.com/token/0x2a12ffDb78Ad627F1a78cA96964eef58b36Dc9c8#code',
+  ),
   bcatt: new ERC20Token(
     ChainId.BSC,
     '0x4A780Bb9D55173426f77D494aA8645273653924E',
