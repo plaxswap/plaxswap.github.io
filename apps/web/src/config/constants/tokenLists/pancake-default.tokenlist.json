@@ -499,6 +499,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x2a12ffDb78Ad627F1a78cA96964eef58b36Dc9c8/logo.png"
     },
     {
+      "name": "EXTRADE",
+      "symbol": "ETA",
+      "address": "0xD95B9B888aF76Dd918Cc33346B08d461512e4ba3",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xD95B9B888aF76Dd918Cc33346B08d461512e4ba3/logo.png"
+    },
+    {
       "name": "ALIRI",
       "symbol": "DOA",
       "address": "0x058E73a591FF67ed31D92679db27950eb2546ca1",

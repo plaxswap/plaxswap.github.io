@@ -406,7 +406,15 @@ export const bscTokens = {
     18,
     'AURA',
     'AZZURAZZA',
-    'https://polygonscan.com/token/0x2a12ffDb78Ad627F1a78cA96964eef58b36Dc9c8#code',
+    'https://fairlaunch.cloud/travelgift',
+  ),
+  eta: new ERC20Token(
+    ChainId.BSC,
+    '0xD95B9B888aF76Dd918Cc33346B08d461512e4ba3',
+    18,
+    'ETA',
+    'EXTRADE',
+    'https://polygonscan.com/token/0xD95B9B888aF76Dd918Cc33346B08d461512e4ba3#code',
   ),
   bcatt: new ERC20Token(
     ChainId.BSC,
