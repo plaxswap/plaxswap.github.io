@@ -424,6 +424,14 @@ export const bscTokens = {
     'TRADE POOL',
     'https://polygonscan.com/token/0xB63944e1F1ec6B032475D5Aa542380748e822bD0#code',
   ),
+  get: new ERC20Token(
+    ChainId.BSC,
+    '0x4a24F93c4416A5a2A36ce8fA6925198198f4EF79',
+    18,
+    'GET',
+    'GIFT EXTRADE',
+    'https://polygonscan.com/token/0x4a24F93c4416A5a2A36ce8fA6925198198f4EF79#code',
+  ),
   bcatt: new ERC20Token(
     ChainId.BSC,
     '0x4A780Bb9D55173426f77D494aA8645273653924E',

@@ -515,6 +515,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xB63944e1F1ec6B032475D5Aa542380748e822bD0/logo.png"
     },
     {
+      "name": "GIFT EXTRADE",
+      "symbol": "GET",
+      "address": "0x4a24F93c4416A5a2A36ce8fA6925198198f4EF79",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x4a24F93c4416A5a2A36ce8fA6925198198f4EF79/logo.png"
+    },
+    {
       "name": "ALIRI",
       "symbol": "DOA",
       "address": "0x058E73a591FF67ed31D92679db27950eb2546ca1",
