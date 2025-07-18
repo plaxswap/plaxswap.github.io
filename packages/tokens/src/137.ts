@@ -414,7 +414,7 @@ export const bscTokens = {
     18,
     'ETA',
     'EXTRADE',
-    'https://polygonscan.com/token/0xD95B9B888aF76Dd918Cc33346B08d461512e4ba3#code',
+    'https://fairlaunch.cloud/extrade/',
   ),
   tp: new ERC20Token(
     ChainId.BSC,
@@ -422,7 +422,7 @@ export const bscTokens = {
     18,
     'TP',
     'TRADE POOL',
-    'https://polygonscan.com/token/0xB63944e1F1ec6B032475D5Aa542380748e822bD0#code',
+    'https://fairlaunch.cloud/extrade/',
   ),
   get: new ERC20Token(
     ChainId.BSC,
@@ -430,7 +430,7 @@ export const bscTokens = {
     18,
     'GET',
     'GIFT EXTRADE',
-    'https://polygonscan.com/token/0x4a24F93c4416A5a2A36ce8fA6925198198f4EF79#code',
+    'https://linktr.ee/extradeview',
   ),
   bcatt: new ERC20Token(
     ChainId.BSC,
