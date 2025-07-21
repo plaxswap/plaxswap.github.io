@@ -414,7 +414,7 @@ export const bscTokens = {
     18,
     'ETA',
     'EXTRADE',
-    'https://fairlaunch.cloud/extrade/',
+    'https://extrade.cfd/',
   ),
   tp: new ERC20Token(
     ChainId.BSC,
