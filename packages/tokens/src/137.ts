@@ -302,7 +302,7 @@ export const bscTokens = {
     18,
     'BRAND',
     'BULLDOG BRAND',
-    'https://www.bullclub.site/',
+    'https://fairlaunch.cloud/brandswap/',
   ),
   wbtc: new ERC20Token(
     ChainId.BSC,
