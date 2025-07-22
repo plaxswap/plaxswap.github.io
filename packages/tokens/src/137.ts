@@ -294,7 +294,7 @@ export const bscTokens = {
     18,
     'BALL',
     'BULLDOG ALLIANCE',
-    'https://www.bullclub.site/',
+    'https://fairlaunch.cloud/travelgift/',
   ),
   brand: new ERC20Token(
     ChainId.BSC,
