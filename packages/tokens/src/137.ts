@@ -584,6 +584,14 @@ export const bscTokens = {
     'SME-USDT LP',
     'https://www.wesmeup.net/',
   ),
+  ppsusdt: new ERC20Token(
+    ChainId.BSC,
+    '0x659130cE9097E078bc1DDd03703B7d4ed95EBf57',
+    18,
+    'PPSusdt',
+    'PPS-USDT LP',
+    'https://polygonscan.com/token/0x659130cE9097E078bc1DDd03703B7d4ed95EBf57',
+  ),
   doa: new ERC20Token(
     ChainId.BSC,
     '0x058E73a591FF67ed31D92679db27950eb2546ca1',
