@@ -588,8 +588,8 @@ export const bscTokens = {
     ChainId.BSC,
     '0x659130cE9097E078bc1DDd03703B7d4ed95EBf57',
     18,
-    'PPSusdt',
-    'PPS-USDT LP',
+    'PLASA-LP',
+    'Plaxswap LPs',
     'https://polygonscan.com/token/0x659130cE9097E078bc1DDd03703B7d4ed95EBf57',
   ),
   doa: new ERC20Token(
