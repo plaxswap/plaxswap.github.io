@@ -262,7 +262,7 @@ export const bscTokens = {
     18,
     'FIF',
     'FREEDOM INITIAL FUND',
-    'https://freetech.site',
+    'https://linktr.ee/fifcamp_b2b',
   ),
   bcore: new ERC20Token(
     ChainId.BSC,
@@ -294,7 +294,7 @@ export const bscTokens = {
     18,
     'BALL',
     'BULLDOG ALLIANCE',
-    'https://fairlaunch.cloud/travelgift/',
+    'https://linktr.ee/useball',
   ),
   brand: new ERC20Token(
     ChainId.BSC,
@@ -302,7 +302,7 @@ export const bscTokens = {
     18,
     'BRAND',
     'BULLDOG BRAND',
-    'https://fairlaunch.cloud/brandswap/',
+    'https://fairlaunch.cloud/brandswap/?refId=0x178A29F79eD22f9cc4fE1FAB1Dc9c095dC58d844/',
   ),
   wbtc: new ERC20Token(
     ChainId.BSC,
@@ -406,7 +406,7 @@ export const bscTokens = {
     18,
     'AURA',
     'AZZURAZZA',
-    'https://fairlaunch.cloud/travelgift',
+    'https://linktr.ee/aurasupport',
   ),
   eta: new ERC20Token(
     ChainId.BSC,
