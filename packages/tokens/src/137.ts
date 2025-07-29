@@ -394,11 +394,11 @@ export const bscTokens = {
   ),
   btz: new ERC20Token(
     ChainId.BSC,
-    '0x61e0e91bE52D4b426B58eC052374ccfc1E2D84a0',
+    '0x67F9DD41bbc9CECb751Ff28Ea0e9E3c2dd15526c',
     18,
     'BTZ',
     'BITZYX',
-    'https://polygonscan.com/token/0x61e0e91bE52D4b426B58eC052374ccfc1E2D84a0#code',
+    'https://polygonscan.com/token/0x67F9DD41bbc9CECb751Ff28Ea0e9E3c2dd15526c#code',
   ),
   zap: new ERC20Token(
     ChainId.BSC,
