@@ -400,6 +400,14 @@ export const bscTokens = {
     'BITZYX',
     'https://polygonscan.com/token/0x67F9DD41bbc9CECb751Ff28Ea0e9E3c2dd15526c#code',
   ),
+  btfx: new ERC20Token(
+    ChainId.BSC,
+    '0x19A16622368cB9E63D6E919ee6C33e42930D563a',
+    18,
+    'BTFX',
+    'BITFRIX',
+    'https://polygonscan.com/token/0x19A16622368cB9E63D6E919ee6C33e42930D563a#code',
+  ),
   zap: new ERC20Token(
     ChainId.BSC,
     '0x6b7682a9fdA1d482A3779C9489DC62437BB58945',

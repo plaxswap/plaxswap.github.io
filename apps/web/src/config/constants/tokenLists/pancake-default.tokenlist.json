@@ -499,6 +499,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x67F9DD41bbc9CECb751Ff28Ea0e9E3c2dd15526c/logo.png"
     },
     {
+      "name": "BitFrix",
+      "symbol": "BTFX",
+      "address": "0x19A16622368cB9E63D6E919ee6C33e42930D563a",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x19A16622368cB9E63D6E919ee6C33e42930D563a/logo.png"
+    },
+    {
       "name": "Zeltsphy",
       "symbol": "ZAP",
       "address": "0x6b7682a9fdA1d482A3779C9489DC62437BB58945",
