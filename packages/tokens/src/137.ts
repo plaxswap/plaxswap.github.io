@@ -408,6 +408,14 @@ export const bscTokens = {
     'BITFRIX',
     'https://polygonscan.com/token/0x19A16622368cB9E63D6E919ee6C33e42930D563a#code',
   ),
+  xpool: new ERC20Token(
+    ChainId.BSC,
+    '0x1Dc357e57F491deC226b8Afe476244f678eB739D',
+    18,
+    'XPOOL',
+    'FIXPOOL',
+    'https://polygonscan.com/token/0x1Dc357e57F491deC226b8Afe476244f678eB739D#code',
+  ),
   zap: new ERC20Token(
     ChainId.BSC,
     '0x6b7682a9fdA1d482A3779C9489DC62437BB58945',

@@ -507,6 +507,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x19A16622368cB9E63D6E919ee6C33e42930D563a/logo.png"
     },
     {
+      "name": "FIXPOOL",
+      "symbol": "XPOOL",
+      "address": "0x1Dc357e57F491deC226b8Afe476244f678eB739D",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x1Dc357e57F491deC226b8Afe476244f678eB739D/logo.png"
+    },
+    {
       "name": "Zeltsphy",
       "symbol": "ZAP",
       "address": "0x6b7682a9fdA1d482A3779C9489DC62437BB58945",
