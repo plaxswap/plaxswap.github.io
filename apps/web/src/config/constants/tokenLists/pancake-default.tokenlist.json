@@ -678,7 +678,7 @@
       "name": "Wrapped BTC",
       "symbol": "WBTC",
       "address": "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6",
-      "chainId": 56,
+      "chainId": 137,
       "decimals": 8,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6/logo.png"
     },
@@ -686,7 +686,7 @@
       "name": "Wrapped Ether",
       "symbol": "WETH",
       "address": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
-      "chainId": 56,
+      "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619/logo.png"
     },
