@@ -339,6 +339,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x553d3D295e0f695B9228246232eDF400ed3560B5/logo.png"
     },
     {
+      "name": "VNX Gold",
+      "symbol": "VNXAU",
+      "address": "0xC8bB8eDa94931cA2F20EF43eA7dBD58E68400400",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xC8bB8eDa94931cA2F20EF43eA7dBD58E68400400/logo.png"
+    },
+    {
       "name": "CLABS REWARD",
       "symbol": "CPOIN",
       "address": "0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367",

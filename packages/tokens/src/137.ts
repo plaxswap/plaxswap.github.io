@@ -512,6 +512,14 @@ export const bscTokens = {
     'PAX Gold',
     'https://paxos.com/paxgold/',
   ),
+  vnxau: new ERC20Token(
+    ChainId.BSC,
+    '0xC8bB8eDa94931cA2F20EF43eA7dBD58E68400400',
+    18,
+    'VNXAU',
+    'VNX Gold',
+    'https://vnx.li/gold/',
+  ),
   cpoin: new ERC20Token(
     ChainId.BSC,
     '0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367',
@@ -590,7 +598,7 @@ export const bscTokens = {
     18,
     'PLAXusdt',
     'PLAX-USDT LP',
-    'https://plaxswaap.io',
+    'https://plaxswap.io',
   ),
   payusdt: new ERC20Token(
     ChainId.BSC,
