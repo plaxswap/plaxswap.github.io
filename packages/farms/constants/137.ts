@@ -268,6 +268,14 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,  
   },
   {
+    pid: 68,
+    lpSymbol: 'VNXAU-POL LP',
+    lpAddress: '0xd9ED000d4B43f7D2276211c773274E213115d445',
+    token: bscTokens.vnxau,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,  
+  },
+  {
     pid: 17,
     lpSymbol: 'PPS-POL LP',
     lpAddress: '0xA458AaDE6ff5dD092340bF1Ed7d87a2Bb0235299',
