@@ -136,6 +136,14 @@ export const bscTokens = {
     'WESMEUP',
     'https://www.wesmeup.net/',
   ),
+  cron: new ERC20Token(
+    ChainId.BSC,
+    '0xC5112195a19151Cf93570d6a400DA53aaf631626',
+    18,
+    'CRON',
+    'CRYPTOPRENEUR',
+    'https://www.cryptopreneur.vip/',
+  ),
   idrt: new ERC20Token(
     ChainId.BSC,
     '0x554cd6bdD03214b10AafA3e0D4D42De0C5D2937b',
