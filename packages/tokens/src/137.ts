@@ -424,6 +424,14 @@ export const bscTokens = {
     'FIXPOOL',
     'https://polygonscan.com/token/0x1Dc357e57F491deC226b8Afe476244f678eB739D#code',
   ),
+  dpool: new ERC20Token(
+    ChainId.BSC,
+    '0xc718e7fbaE39Ab1ff94BF9cE12F88C9B5254EfE5',
+    18,
+    'DPOOL',
+    'CrowdPool DAO',
+    'https://polygonscan.com/token/0xc718e7fbaE39Ab1ff94BF9cE12F88C9B5254EfE5#code',
+  ),
   zap: new ERC20Token(
     ChainId.BSC,
     '0x6b7682a9fdA1d482A3779C9489DC62437BB58945',
