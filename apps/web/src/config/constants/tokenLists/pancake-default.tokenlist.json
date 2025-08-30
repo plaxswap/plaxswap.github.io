@@ -43,12 +43,12 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x554cd6bdD03214b10AafA3e0D4D42De0C5D2937b/logo.png"
     },
     {
-      "name": "Tether USD",
-      "symbol": "USDT",
+      "name": "UST0",
+      "symbol": "USDT0",
       "address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
       "chainId": 137,
       "decimals": 6,
-      "logoURI": "https://tokens.pancakeswap.finance/images/symbol/usdt.png"
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xc2132D05D31c914a87C6611C10748AEb04B58e8F/logo.png"
     },
     {
       "name": "USD Coin",
