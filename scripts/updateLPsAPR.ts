@@ -99,7 +99,8 @@ const getAprsForFarmGroup = async (addresses: string[], blockWeekAgo: number, ch
 // Copy paste of Stable farm logic
 export const bscProvider = new StaticJsonRpcProvider(
   {
-    url: 'https://1rpc.io/37W31VzwTtHTisDEK/matic',
+    url: 'https://lb.drpc.org/polygon/AksFlvO-tUQvsJxhLBbmJvCRID1tl_YR8LtMwg8TMB_n',
+    // url: 'https://1rpc.io/37W31VzwTtHTisDEK/matic',
     // url: 'https://rpc.ankr.com/polygon/8a211590835087845ff22ee4159e7dc636f0cce7cfb1ecc483fc0fb1cbb99599',
     skipFetchSetup: true,
   },
