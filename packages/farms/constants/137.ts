@@ -42,17 +42,17 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 6,
-    lpSymbol: 'USDC-POL LP',
+    lpSymbol: 'USDC.e-POL LP',
     lpAddress: '0xD4bdB68aD7490149587c1117f9AA20D862105D14',
-    token: bscTokens.usdc,
+    token: bscTokens.usdce,
     quoteToken: bscTokens.wbnb,
     // boosted: true,
   },
   {
     pid: 10,
-    lpSymbol: 'USDC-USDT LP',
+    lpSymbol: 'USDC.e-USDT LP',
     lpAddress: '0x33919208EFB4530819e9769a51FE4Cf2524f56B1',
-    token: bscTokens.usdc,
+    token: bscTokens.usdce,
     quoteToken: bscTokens.usdt,
     boosted: true,
   },
@@ -90,10 +90,10 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 16,
-    lpSymbol: 'IDRX-USDC LP',
+    lpSymbol: 'IDRX-USDC.e LP',
     lpAddress: '0x5a8041FF395a5D1D4ea0aE2EAf8BeCf23b145b09',
     token: bscTokens.idrx,
-    quoteToken: bscTokens.usdc,
+    quoteToken: bscTokens.usdce,
     boosted: true,
   },
   {
@@ -141,10 +141,10 @@ const farms: SerializedFarmConfig[] = [
   {
     pid: 4,
     // v1pid: 3,
-    lpSymbol: 'PLAX-USDC LP',
+    lpSymbol: 'PLAX-USDC.e LP',
     lpAddress: '0x3d65e2daeE8df8E36AbB3D25f3842265BD1c48c3',
     token: bscTokens.cake,
-    quoteToken: bscTokens.usdc,
+    quoteToken: bscTokens.usdce,
     boosted: true,
   },
   {
@@ -173,10 +173,10 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 9,
-    lpSymbol: 'PAY-USDC LP',
+    lpSymbol: 'PAY-USDC.e LP',
     lpAddress: '0x28A2861188B196269366964CbDbA0473819C6467',
     token: bscTokens.pay,
-    quoteToken: bscTokens.usdc,
+    quoteToken: bscTokens.usdce,
     boosted: true,
   },
   {

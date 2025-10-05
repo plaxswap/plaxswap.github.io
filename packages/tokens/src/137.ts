@@ -55,7 +55,7 @@ export const bscTokens = {
     'Stader (PoS)',
     'https://www.staderlabs.com/',
   ),
-  usdc: USDC_BSC,
+  usdce: USDC_BSC,
   syrup: new ERC20Token(
     ChainId.BSC,
     '0x7cbbC91c05c64c5E5b12Da6F090F8f11480deA64',
@@ -175,6 +175,14 @@ export const bscTokens = {
     'XSGD',
     'XSGD',
     'https://www.straitsx.com/id/xsgd',
+  ),
+  usdcoin: new ERC20Token(
+    ChainId.BSC,
+    '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359',
+    6,
+    'USDC',
+    'USD Coin',
+    'https://mapper.polygon.technology/',
   ),
   quick: new ERC20Token(
     ChainId.BSC,

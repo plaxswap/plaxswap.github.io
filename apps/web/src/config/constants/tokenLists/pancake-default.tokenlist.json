@@ -51,12 +51,20 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xc2132D05D31c914a87C6611C10748AEb04B58e8F/logo.png"
     },
     {
-      "name": "USD Coin",
-      "symbol": "USDC",
+      "name": "USD Coin (PoS)",
+      "symbol": "USDC.e",
       "address": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
       "chainId": 137,
       "decimals": 6,
       "logoURI": "https://tokens.pancakeswap.finance/images/symbol/usdc.png"
+    },
+    {
+      "name": "USD Coin",
+      "symbol": "USDC",
+      "address": "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
+      "chainId": 137,
+      "decimals": 6,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359/logo.png"
     },
     {
       "name": "Dai Stablecoin",
