@@ -55,7 +55,7 @@ export const bscTokens = {
     'Stader (PoS)',
     'https://www.staderlabs.com/',
   ),
-  usdce: USDC_BSC,
+  usdc: USDC_BSC,
   syrup: new ERC20Token(
     ChainId.BSC,
     '0x7cbbC91c05c64c5E5b12Da6F090F8f11480deA64',
