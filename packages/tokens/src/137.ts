@@ -182,14 +182,6 @@ export const bscTokens = {
     6,
     'USDC',
     'USD Coin',
-    'https://www.circle.com/usdc',
-  ),
-  usdc: new ERC20Token(
-    ChainId.BSC,
-    '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
-    6,
-    'USDC.e',
-    'USD Coin (POS)',
     'https://mapper.polygon.technology/',
   ),
   quick: new ERC20Token(
