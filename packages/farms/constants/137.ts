@@ -268,6 +268,22 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,  
   },
   {
+    pid: 70,
+    lpSymbol: 'VREEDEX-POL LP',
+    lpAddress: '0x9052ECbC4FAad5B47de910d70122Ba7D16bd58F5',
+    token: bscTokens.vreedex,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,  
+  },
+  {
+    pid: 71,
+    lpSymbol: 'YUHUU-POL LP',
+    lpAddress: '0xB72DB0B5F0a2154A5d80EfFF6F6A4ef6E9216cec',
+    token: bscTokens.yuhuu,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,  
+  },
+  {
     pid: 35,
     lpSymbol: 'PAXG-POL LP',
     lpAddress: '0x1dA2651759e81541ec1FC09aaDA24fE61cdD1114',
