@@ -144,14 +144,6 @@ export const bscTokens = {
     'CRYPTOPRENEUR',
     'https://www.cryptopreneur.vip/',
   ),
-  vip: new ERC20Token(
-    ChainId.BSC,
-    '0xffe481A8214d6eB04CFC5Df28feCFEFdacBad37e',
-    18,
-    'VIP',
-    'VIPool',
-    'https://www.bcore.site/',
-  ),
   idrt: new ERC20Token(
     ChainId.BSC,
     '0x554cd6bdD03214b10AafA3e0D4D42De0C5D2937b',
@@ -327,6 +319,14 @@ export const bscTokens = {
     'BRAND',
     'BULLDOG BRAND',
     'https://fairlaunch.cloud/brandswap/?refId=0x178A29F79eD22f9cc4fE1FAB1Dc9c095dC58d844/',
+  ),
+  vip: new ERC20Token(
+    ChainId.BSC,
+    '0xffe481A8214d6eB04CFC5Df28feCFEFdacBad37e',
+    18,
+    'VIP',
+    'VIPool',
+    'https://www.bcore.site/',
   ),
   wbtc: new ERC20Token(
     ChainId.BSC,

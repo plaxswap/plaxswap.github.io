@@ -139,14 +139,6 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xC5112195a19151Cf93570d6a400DA53aaf631626/logo.png"
     },
     {
-      "name": "VIPool",
-      "symbol": "VIP",
-      "address": "0xffe481A8214d6eB04CFC5Df28feCFEFdacBad37e",
-      "chainId": 137,
-      "decimals": 18,
-      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xffe481A8214d6eB04CFC5Df28feCFEFdacBad37e/logo.png"
-    },
-    {
       "name": "QUICKSWAP",
       "symbol": "QUICK",
       "address": "0xB5C064F955D8e7F38fE0460C556a72987494eE17",
@@ -513,6 +505,14 @@
       "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xb0de690CA7C204608062765507e280d0163D452C/logo.png"
+    },
+    {
+      "name": "VIPool",
+      "symbol": "VIP",
+      "address": "0xffe481A8214d6eB04CFC5Df28feCFEFdacBad37e",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xffe481A8214d6eB04CFC5Df28feCFEFdacBad37e/logo.png"
     },
     {
       "name": "Private Pool Share",
