@@ -515,6 +515,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xffe481A8214d6eB04CFC5Df28feCFEFdacBad37e/logo.png"
     },
     {
+      "name": "CMiner",
+      "symbol": "CMR",
+      "address": "0xA9919Eae41600561823EECc766F8ee66834A356D",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xA9919Eae41600561823EECc766F8ee66834A356D/logo.png"
+    },
+    {
       "name": "Private Pool Share",
       "symbol": "PPS",
       "address": "0x5e4d5A1C3470d38b030af2AeA2ADA046Fc34cac6",

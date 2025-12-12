@@ -328,6 +328,14 @@ export const bscTokens = {
     'VIPool',
     'https://www.bcore.site/',
   ),
+  cmr: new ERC20Token(
+    ChainId.BSC,
+    '0xA9919Eae41600561823EECc766F8ee66834A356D',
+    18,
+    'CMR',
+    'CMiner',
+    'https://fairlaunch.cloud/CMiner/',
+  ),
   wbtc: new ERC20Token(
     ChainId.BSC,
     '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
