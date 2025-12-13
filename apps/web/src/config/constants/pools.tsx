@@ -1172,7 +1172,7 @@ export const livePools: Pool.SerializedPoolConfig<SerializedWrappedToken>[] = [
     // version: 3,
   },
   {
-    sousId: 407,
+    sousId: 408,
     stakingToken: bscTokens.cmr,
     earningToken: bscTokens.wbnb,
     contractAddress: {
