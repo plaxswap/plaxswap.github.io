@@ -268,6 +268,14 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,  
   },
   {
+    pid: 74,
+    lpSymbol: 'CMR-POL LP',
+    lpAddress: '0xAf16aA61A64AB88EaF889686344CD5Eb27e98CB7',
+    token: bscTokens.cmr,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,  
+  },
+  {
     pid: 66,
     lpSymbol: 'XPOOL-POL LP',
     lpAddress: '0x4eD1125a2C14130D827e7E8Fd3B95134f2d142a3',
