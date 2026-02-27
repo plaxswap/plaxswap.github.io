@@ -360,6 +360,14 @@ export const bscTokens = {
     'SOLANA',
     'https://solana.com/',
   ),
+  link: new ERC20Token(
+    ChainId.BSC,
+    '0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39',
+    18,
+    'LINK',
+    'ChainLink',
+    'https://chain.link/',
+  ),
   inch: new ERC20Token(
     ChainId.BSC,
     '0x9c2C5fd7b07E95EE044DDeba0E97a665F142394f',
