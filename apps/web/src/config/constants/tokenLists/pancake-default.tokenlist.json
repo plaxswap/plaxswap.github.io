@@ -198,7 +198,7 @@
       "name": "CRONOS",
       "symbol": "CRO",
       "address": "0xAdA58DF0F643D959C2A47c9D4d4c1a4deFe3F11C",
-      "chainId": 1,
+      "chainId": 137,
       "decimals": 8,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xAdA58DF0F643D959C2A47c9D4d4c1a4deFe3F11C/logo.png"
     },
