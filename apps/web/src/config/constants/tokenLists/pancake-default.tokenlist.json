@@ -475,6 +475,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x659130cE9097E078bc1DDd03703B7d4ed95EBf57/logo.png"
     },
     {
+      "name": "BTFX-USDT LP",
+      "symbol": "BTFXusdt",
+      "address": "0xF5551B1Ef3E39Ed913e43b6054da1e86C69BF162",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xF5551B1Ef3E39Ed913e43b6054da1e86C69BF162/logo.png"
+    },
+    {
       "name": "Bulldog Core",
       "symbol": "BCORE",
       "address": "0xA830a38CeAC7BFe3568D229945A45121730fbb91",

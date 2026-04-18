@@ -672,6 +672,14 @@ export const bscTokens = {
     'PPS-USDT LP',
     'https://polygonscan.com/token/0x659130cE9097E078bc1DDd03703B7d4ed95EBf57',
   ),
+  btfxusdt: new ERC20Token(
+    ChainId.BSC,
+    '0xF5551B1Ef3E39Ed913e43b6054da1e86C69BF162',
+    18,
+    'BTFXusdt',
+    'BTFX-USDT LP',
+    'https://polygonscan.com/token/0xF5551B1Ef3E39Ed913e43b6054da1e86C69BF162',
+  ),
   doa: new ERC20Token(
     ChainId.BSC,
     '0x058E73a591FF67ed31D92679db27950eb2546ca1',
