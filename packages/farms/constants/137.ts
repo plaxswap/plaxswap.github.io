@@ -228,6 +228,14 @@ const farms: SerializedFarmConfig[] = [
     boosted: true,  
   },
   {
+    pid: 78,
+    lpSymbol: 'BTFXusdt-POL LP',
+    lpAddress: '0x48EAc3A56245AE1b6B18984298cb02a86F592991',
+    token: bscTokens.btfxusdt,
+    quoteToken: bscTokens.wbnb,
+    boosted: true,
+  },
+  {
     pid: 55,
     lpSymbol: 'LIST-POL LP',
     lpAddress: '0x247ca7BcC9B981B667D6DDE0414b9FA99BF52813',
