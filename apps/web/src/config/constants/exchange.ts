@@ -107,7 +107,7 @@ export const DEFAULT_INPUT_CURRENCY = 'POL'
 export const DEFAULT_OUTPUT_CURRENCY = '0x328801B0b580eAdd83eA841638865eA41Dc6fb25'
 
 // Handler string is passed to Gelato to use PCS router
-export const GELATO_HANDLER = 'pancakeswap'
+export const GELATO_HANDLER = 'plaxswap'
 export const GENERIC_GAS_LIMIT_ORDER_EXECUTION = BigNumber.from(500000)
 
 export const LIMIT_ORDERS_DOCS_URL = 'https://docs.plaxswap.io/products/plaxswap-exchange/limit-orders'

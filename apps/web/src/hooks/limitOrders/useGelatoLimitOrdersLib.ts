@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { ChainId } from '@pancakeswap/sdk'
-import { ChainId as ChainIdType, GelatoLimitOrders } from '@gelatonetwork/limit-orders-lib'
+import { ChainId as ChainIdType, GelatoLimitOrders } from '@plaxswap/limit-orders-lib'
 import { GELATO_HANDLER } from 'config/constants/exchange'
 import { useProviderOrSigner } from 'hooks/useProviderOrSigner'
 import { useActiveChainId } from '../useActiveChainId'

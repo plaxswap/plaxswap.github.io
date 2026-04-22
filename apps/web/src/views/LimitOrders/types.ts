@@ -1,4 +1,4 @@
-import { Order } from '@gelatonetwork/limit-orders-lib'
+import { Order } from '@plaxswap/limit-orders-lib'
 
 export enum ORDER_CATEGORY {
   Open = 0,

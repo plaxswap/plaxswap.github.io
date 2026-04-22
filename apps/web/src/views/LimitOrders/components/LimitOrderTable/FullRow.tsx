@@ -1,5 +1,5 @@
 import React from 'react'
-import { Order } from '@gelatonetwork/limit-orders-lib'
+import { Order } from '@plaxswap/limit-orders-lib'
 import { Td, MoreHorizontalIcon, SyncAltIcon, useModal, IconButton } from '@pancakeswap/uikit'
 
 import useFormattedOrderData from 'views/LimitOrders/hooks/useFormattedOrderData'

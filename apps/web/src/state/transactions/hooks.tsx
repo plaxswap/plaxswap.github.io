@@ -1,7 +1,7 @@
 import { TransactionResponse } from '@ethersproject/providers'
 import { useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { Order } from '@gelatonetwork/limit-orders-lib'
+import { Order } from '@plaxswap/limit-orders-lib'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import pickBy from 'lodash/pickBy'
 import mapValues from 'lodash/mapValues'
