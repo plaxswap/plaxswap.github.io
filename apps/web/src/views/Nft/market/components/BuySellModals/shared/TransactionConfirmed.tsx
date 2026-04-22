@@ -18,7 +18,7 @@ const TransactionConfirmed: React.FC<React.PropsWithChildren<TransactionConfirme
         <ArrowUpIcon width="64px" height="64px" color="primary" />
         <Text bold>{t('Transaction Confirmed')}</Text>
         <LinkExternal isBscScan href={getBlockExploreLink(txHash, 'transaction', chainId)}>
-          {t('View on BscScan')}
+          {t('View on PolygonScan')}
         </LinkExternal>
       </Flex>
       <Divider />

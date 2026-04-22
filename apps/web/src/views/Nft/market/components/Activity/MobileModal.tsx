@@ -101,7 +101,7 @@ const MobileModal: React.FC<React.PropsWithChildren<MobileModalProps>> = ({
         </LightGreyCard>
         <Flex flexDirection="column" pt="16px" alignItems="center">
           <Button as="a" external href={getBlockExploreLink(activity.tx, 'transaction', chainId)}>
-            {t('View on BscScan')}
+            {t('View on PolygonScan')}
             <BscScanIcon color="invertedContrast" ml="4px" />
           </Button>
         </Flex>

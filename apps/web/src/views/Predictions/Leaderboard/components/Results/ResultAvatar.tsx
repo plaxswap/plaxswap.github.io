@@ -83,7 +83,7 @@ const ResultAvatar: React.FC<React.PropsWithChildren<ResultAvatarProps>> = ({ us
     >
       <SubMenuItem onClick={onPresentWalletStatsModal}>{t('View Stats')}</SubMenuItem>
       <SubMenuItem as={Link} href={getBlockExploreLink(user.id, 'address')} bold={false} color="text" external>
-        {t('View on BscScan')}
+        {t('View on PolygonScan')}
         <BscScanIcon ml="4px" width="20px" color="textSubtle" />
       </SubMenuItem>
     </SubMenu>
