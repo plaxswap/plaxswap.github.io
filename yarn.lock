@@ -4123,10 +4123,10 @@
     tiny-glob "^0.2.9"
     tslib "^2.4.0"
 
-"@plaxswap/limit-orders-lib@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@plaxswap/limit-orders-lib/-/limit-orders-lib-4.1.0.tgz#696f30259a1b93a92b80f99e7b3883348dd61b07"
-  integrity sha512-40e3vQHXi/Bk8ZZgXAhY3if4QD5YJAHEekKlATfrASCEQnQpQKYpfeGETU3FTdFQDgCJUHfIcDRKh9JtJez1xA==
+"@plaxswap/limit-orders-lib@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@plaxswap/limit-orders-lib/-/limit-orders-lib-4.4.0.tgz#8ea8755ec943d09503ab1a65e6baf7bc12ac64fe"
+  integrity sha512-u/yc/gcUgRM/ylasZMDo7SN+xkIVtLlNMQwH7uC2iYYYHH8xfqlX18V6tZrSC6XnhO0iW9tyCP9k73LW0fCfoA==
   dependencies:
     ethers "^5.4.6"
     graphql "^15.5.3"
