@@ -24,7 +24,7 @@ export const BLOCKS_CLIENT = 'https://api.goldsky.com/api/public/project_cl8ylki
 export const BLOCKS_CLIENT_ETH = ''
 export const STABLESWAP_SUBGRAPH_CLIENT = 'https://api.studio.thegraph.com/query/111480/plaxio/version/latest'
 export const GRAPH_API_NFTMARKET = ''
-export const GRAPH_HEALTH = ''
+export const GRAPH_HEALTH = 'https://api.thegraph.com/index-node/graphql'
 
 export const TC_MOBOX_SUBGRAPH = ''
 export const TC_MOD_SUBGRAPH = ''
