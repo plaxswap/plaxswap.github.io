@@ -22,7 +22,7 @@ export const INFO_CLIENT = 'https://proxy-worker.pancake-swap.workers.dev/bsc-ex
 export const INFO_CLIENT_ETH = ''
 export const BLOCKS_CLIENT = 'https://api.thegraph.com/subgraphs/name/pancakeswap/blocks'
 export const BLOCKS_CLIENT_ETH = ''
-export const STABLESWAP_SUBGRAPH_CLIENT = 'https://api.thegraph.com/subgraphs/name/pancakeswap/exchange-stableswap'
+export const STABLESWAP_SUBGRAPH_CLIENT = 'https://api.studio.thegraph.com/query/111480/plax-block/version/latest'
 export const GRAPH_API_NFTMARKET = ''
 export const GRAPH_HEALTH = ''
 
