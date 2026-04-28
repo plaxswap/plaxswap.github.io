@@ -390,7 +390,7 @@ export const useFetchPairPrices = ({
             )) ||
           []
 
-        if (newPairData.length > 0) {
+        if (newPairData.length > 0 && hasEnoughLiquidity) {
           dispatch(updatePairData({ pairData: newPairData, pairId, timeWindow }))
           setIsLoading(false)
         } else {

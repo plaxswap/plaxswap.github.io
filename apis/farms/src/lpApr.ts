@@ -20,7 +20,7 @@ const LP_HOLDERS_FEE = 0.0017
 const WEEKS_IN_A_YEAR = 52.1429
 
 const BLOCKS_CLIENT_WITH_CHAIN = {
-  [ChainId.BSC]: 'https://api.thegraph.com/subgraphs/name/pancakeswap/blocks',
+  [ChainId.BSC]: 'https://api.goldsky.com/api/public/project_cl8ylkiw00krx0hvza0qw17vn/subgraphs/blocks/matic/gn',
   [ChainId.BSC_TESTNET]: '',
 }
 
