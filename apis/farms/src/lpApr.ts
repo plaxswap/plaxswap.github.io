@@ -14,7 +14,7 @@ interface BlockResponse {
   }[]
 }
 
-const STABLESWAP_SUBGRAPH_ENDPOINT = 'https://api.studio.thegraph.com/query/111480/plaxswap/version/latest'
+const STABLESWAP_SUBGRAPH_ENDPOINT = 'https://api.studio.thegraph.com/query/111480/plaxeq/version/latest'
 
 const LP_HOLDERS_FEE = 0.0017
 const WEEKS_IN_A_YEAR = 52.1429
@@ -25,7 +25,7 @@ const BLOCKS_CLIENT_WITH_CHAIN = {
 }
 
 const INFO_CLIENT_WITH_CHAIN = {
-  [ChainId.BSC]: 'https://api.studio.thegraph.com/query/111480/plaxswap/version/latest',
+  [ChainId.BSC]: 'https://api.studio.thegraph.com/query/111480/plaxeq/version/latest',
   [ChainId.BSC_TESTNET]: '',
 }
 

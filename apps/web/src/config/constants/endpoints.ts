@@ -17,12 +17,12 @@ export const GRAPH_API_POTTERY = ''
  */
 export const GRAPH_API_PREDICTION_V1 = ''
 
-export const INFO_CLIENT = 'https://api.studio.thegraph.com/query/111480/plaxswap/version/latest'
+export const INFO_CLIENT = 'https://api.studio.thegraph.com/query/111480/plaxeq/version/latest'
 
 export const INFO_CLIENT_ETH = ''
 export const BLOCKS_CLIENT = 'https://api.goldsky.com/api/public/project_cl8ylkiw00krx0hvza0qw17vn/subgraphs/blocks/matic/gn'
 export const BLOCKS_CLIENT_ETH = ''
-export const STABLESWAP_SUBGRAPH_CLIENT = 'https://api.studio.thegraph.com/query/111480/plaxswap/version/latest'
+export const STABLESWAP_SUBGRAPH_CLIENT = 'https://api.studio.thegraph.com/query/111480/plaxeq/version/latest'
 export const GRAPH_API_NFTMARKET = ''
 export const GRAPH_HEALTH = ''
 
