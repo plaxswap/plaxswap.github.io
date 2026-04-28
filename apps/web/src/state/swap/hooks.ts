@@ -394,7 +394,7 @@ export const useFetchPairPrices = ({
           dispatch(updatePairData({ pairData: newPairData, pairId, timeWindow }))
           setIsLoading(false)
         } else {
-          console.info(`[Price Chart]: Liquidity too low for ${pairId}`)
+          console.info(`[Price Chart]: Liquidity too low for ${pairId}, ${pairData}, ${timeWindow}`)
           dispatch(updatePairData({ pairData: [], pairId, timeWindow }))
           fetchDerivedData()
         }
