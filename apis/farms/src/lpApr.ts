@@ -25,7 +25,7 @@ const BLOCKS_CLIENT_WITH_CHAIN = {
 }
 
 const INFO_CLIENT_WITH_CHAIN = {
-  [ChainId.BSC]: 'https://proxy-worker.pancake-swap.workers.dev/bsc-exchange',
+  [ChainId.BSC]: 'https://api.studio.thegraph.com/query/111480/plaxswap/version/latest',
   [ChainId.BSC_TESTNET]: '',
 }
 
