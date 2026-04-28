@@ -10,7 +10,7 @@ export const API_PROFILE = 'https://profile.pancakeswap.com'
 export const API_NFT = ''
 export const SNAPSHOT_API = `${SNAPSHOT_BASE_URL}/graphql`
 export const SNAPSHOT_HUB_API = `${SNAPSHOT_BASE_URL}/api/message`
-export const GRAPH_API_POTTERY = 'https://api.thegraph.com/subgraphs/name/pancakeswap/pottery'
+export const GRAPH_API_POTTERY = ''
 
 /**
  * V1 will be deprecated but is still used to claim old rounds
@@ -19,15 +19,15 @@ export const GRAPH_API_PREDICTION_V1 = ''
 
 export const INFO_CLIENT = 'https://proxy-worker.pancake-swap.workers.dev/bsc-exchange'
 
-export const INFO_CLIENT_ETH = 'https://api.thegraph.com/subgraphs/name/pancakeswap/exhange-eth'
+export const INFO_CLIENT_ETH = ''
 export const BLOCKS_CLIENT = 'https://api.thegraph.com/subgraphs/name/pancakeswap/blocks'
-export const BLOCKS_CLIENT_ETH = 'https://api.thegraph.com/subgraphs/name/blocklytics/ethereum-blocks'
+export const BLOCKS_CLIENT_ETH = ''
 export const STABLESWAP_SUBGRAPH_CLIENT = 'https://api.thegraph.com/subgraphs/name/pancakeswap/exchange-stableswap'
-export const GRAPH_API_NFTMARKET = 'https://api.thegraph.com/subgraphs/name/pancakeswap/nft-market'
-export const GRAPH_HEALTH = 'https://api.thegraph.com/index-node/graphql'
+export const GRAPH_API_NFTMARKET = ''
+export const GRAPH_HEALTH = ''
 
-export const TC_MOBOX_SUBGRAPH = 'https://api.thegraph.com/subgraphs/name/pancakeswap/trading-competition-v3'
-export const TC_MOD_SUBGRAPH = 'https://api.thegraph.com/subgraphs/name/pancakeswap/trading-competition-v4'
+export const TC_MOBOX_SUBGRAPH = ''
+export const TC_MOD_SUBGRAPH = ''
 
 export const FARM_API = ''
 
