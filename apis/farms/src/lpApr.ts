@@ -14,7 +14,7 @@ interface BlockResponse {
   }[]
 }
 
-const STABLESWAP_SUBGRAPH_ENDPOINT = 'https://api.studio.thegraph.com/query/111480/plax-block/version/latest'
+const STABLESWAP_SUBGRAPH_ENDPOINT = 'https://api.studio.thegraph.com/query/111480/plaxswap/version/latest'
 
 const LP_HOLDERS_FEE = 0.0017
 const WEEKS_IN_A_YEAR = 52.1429
