@@ -36,6 +36,29 @@ import { SwapState } from './reducer'
 import { derivedPairByDataIdSelector, pairByDataIdSelector } from './selectors'
 import { PairDataTimeWindowEnum } from './types'
 import { useStableSwapPairs } from './useStableSwapPairs'
+import { bscTokens } from '../../../../../packages/tokens/src/137'
+
+const tokenList = {
+  timestamp: new Date().toISOString(),
+  name: "PancakeSwap Extended",
+  version: {
+    major: 2,
+    minor: 16,
+    patch: 743,
+  },
+  tokens: Object.values(bscTokens).map((token: any) => ({
+    name: token.name,
+    symbol: token.symbol,
+    address: token.address,
+    chainId: token.chainId,
+    decimals: token.decimals,
+    logoURI: `https://tokens.pancakeswap.finance/images/${token.address}.png`,
+  })),
+  keywords: ["pancakeswap", "extended"],
+  logoURI: "https://pancakeswap.finance/logo.png",
+}
+
+console.info(JSON.stringify(tokenList, null, 2))
 
 export function useSwapState(): AppState['swap'] {
   return useSelector<AppState, AppState['swap']>((state) => state.swap)
