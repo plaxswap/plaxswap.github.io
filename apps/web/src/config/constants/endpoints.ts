@@ -17,7 +17,7 @@ export const GRAPH_API_POTTERY = ''
  */
 export const GRAPH_API_PREDICTION_V1 = ''
 
-export const INFO_CLIENT = 'https://proxy-worker.pancake-swap.workers.dev/bsc-exchange'
+export const INFO_CLIENT = 'https://api.studio.thegraph.com/query/111480/plaxswap/version/latest'
 
 export const INFO_CLIENT_ETH = ''
 export const BLOCKS_CLIENT = 'https://api.thegraph.com/subgraphs/name/pancakeswap/blocks'
