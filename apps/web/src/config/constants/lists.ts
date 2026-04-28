@@ -1,4 +1,4 @@
-export const PANCAKE_EXTENDED = 'https://tokens.pancakeswap.finance/pancakeswap-extended.json'
+export const PANCAKE_EXTENDED = 'https://plaxswap.github.io/tokenlist-json/tokenlist.json'
 export const COINGECKO = 'https://tokens.pancakeswap.finance/coingecko.json'
 export const PANCAKE_ETH_DEFAULT = 'https://tokens.pancakeswap.finance/pancakeswap-eth-default.json'
 export const PANCAKE_ETH_MM = 'https://tokens.pancakeswap.finance/pancakeswap-eth-mm.json'
