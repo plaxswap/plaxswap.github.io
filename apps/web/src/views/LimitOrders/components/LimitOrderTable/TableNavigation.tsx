@@ -86,7 +86,7 @@ const TableNavigation: React.FC<TableNavigationProps> = ({
           </Arrow>
         </Flex>
         <Flex width="100%" justifyContent={['center', null, null, null, 'flex-end']}>
-          <SubgraphHealthIndicator subgraphName="gelatodigital/limit-orders-bsc" inline />
+          <SubgraphHealthIndicator subgraphName="limit-orders-polygon" inline />
         </Flex>
       </Grid>
     </>
