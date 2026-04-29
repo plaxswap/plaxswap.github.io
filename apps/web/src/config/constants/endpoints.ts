@@ -17,7 +17,7 @@ export const GRAPH_API_POTTERY = 'https://api.studio.thegraph.com/query/1749035/
  */
 export const GRAPH_API_PREDICTION_V1 = ''
 
-export const INFO_CLIENT = 'https://proxy-worker-dev.plaxswap-proxy.workers.dev/bsc-exchange'
+export const INFO_CLIENT = 'https://api.studio.thegraph.com/query/1749035/defites/version/latest'
 
 export const INFO_CLIENT_ETH = ''
 export const BLOCKS_CLIENT = 'https://api.goldsky.com/api/public/project_cl8ylkiw00krx0hvza0qw17vn/subgraphs/blocks/matic/gn'
