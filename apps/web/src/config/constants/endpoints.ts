@@ -1,10 +1,10 @@
 import { ChainId } from '@pancakeswap/sdk'
 
-export const GRAPH_API_PROFILE = 'https://api.thegraph.com/subgraphs/name/pancakeswap/profile'
+export const GRAPH_API_PROFILE = 'https://api.studio.thegraph.com/query/1749035/tesprof/version/latest'
 export const GRAPH_API_PREDICTION_BNB = ''
 export const GRAPH_API_PREDICTION_CAKE = ''
 
-export const GRAPH_API_LOTTERY = 'https://api.thegraph.com/subgraphs/name/pancakeswap/lottery'
+export const GRAPH_API_LOTTERY = 'https://api.studio.thegraph.com/query/111480/plaxlot/version/latest'
 export const SNAPSHOT_BASE_URL = process.env.NEXT_PUBLIC_SNAPSHOT_BASE_URL
 export const API_PROFILE = 'https://profile.pancakeswap.com'
 export const API_NFT = ''
@@ -17,12 +17,12 @@ export const GRAPH_API_POTTERY = ''
  */
 export const GRAPH_API_PREDICTION_V1 = ''
 
-export const INFO_CLIENT = 'https://api.studio.thegraph.com/query/111480/plaxeq/version/latest'
+export const INFO_CLIENT = 'https://proxy-worker-dev.plaxswap-proxy.workers.dev/bsc-exchange'
 
 export const INFO_CLIENT_ETH = ''
 export const BLOCKS_CLIENT = 'https://api.goldsky.com/api/public/project_cl8ylkiw00krx0hvza0qw17vn/subgraphs/blocks/matic/gn'
 export const BLOCKS_CLIENT_ETH = ''
-export const STABLESWAP_SUBGRAPH_CLIENT = 'https://api.studio.thegraph.com/query/111480/plaxeq/version/latest'
+export const STABLESWAP_SUBGRAPH_CLIENT = 'https://api.studio.thegraph.com/query/1749035/defites/version/latest'
 export const GRAPH_API_NFTMARKET = ''
 export const GRAPH_HEALTH = 'https://indexer.upgrade.thegraph.com/status'
 
