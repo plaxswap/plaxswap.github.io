@@ -10,7 +10,7 @@ export const API_PROFILE = 'https://profile.pancakeswap.com'
 export const API_NFT = ''
 export const SNAPSHOT_API = `${SNAPSHOT_BASE_URL}/graphql`
 export const SNAPSHOT_HUB_API = `${SNAPSHOT_BASE_URL}/api/message`
-export const GRAPH_API_POTTERY = ''
+export const GRAPH_API_POTTERY = 'https://api.studio.thegraph.com/query/1749035/tespot/version/latest'
 
 /**
  * V1 will be deprecated but is still used to claim old rounds

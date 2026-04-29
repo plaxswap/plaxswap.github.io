@@ -22,11 +22,13 @@ const WEEKS_IN_A_YEAR = 52.1429
 const BLOCKS_CLIENT_WITH_CHAIN = {
   [ChainId.BSC]: 'https://api.goldsky.com/api/public/project_cl8ylkiw00krx0hvza0qw17vn/subgraphs/blocks/matic/gn',
   [ChainId.BSC_TESTNET]: '',
+  [ChainId.ETHEREUM]: '',
 }
 
 const INFO_CLIENT_WITH_CHAIN = {
-  [ChainId.BSC]: 'https://api.studio.thegraph.com/query/1749035/defites/version/latest',
+  [ChainId.BSC]: 'https://proxy-worker-dev.plaxswap-proxy.workers.dev/bsc-exchange',
   [ChainId.BSC_TESTNET]: '',
+  [ChainId.ETHEREUM]: '',
 }
 
 const blockClientWithChain = (chainId: ChainId) => {
