@@ -472,6 +472,14 @@ export const bscTokens = {
     'ZELTSPHY',
     'https://polygonscan.com/token/0x6b7682a9fdA1d482A3779C9489DC62437BB58945#code',
   ),
+  bring: new ERC20Token(
+    ChainId.BSC,
+    '0x199a1B6528a2F893e7eCe7e1b3Bd7A4E18c76D9A',
+    18,
+    'BRING',
+    'Blockstring',
+    'https://polygonscan.com/token/0x199a1B6528a2F893e7eCe7e1b3Bd7A4E18c76D9A#code',
+  ),
   aura: new ERC20Token(
     ChainId.BSC,
     '0x2a12ffDb78Ad627F1a78cA96964eef58b36Dc9c8',
