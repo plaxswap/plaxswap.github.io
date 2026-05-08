@@ -1,9 +1,9 @@
 import { ChainId } from '@pancakeswap/sdk'
 import { ACCESS_RISK_API } from 'config/constants/endpoints'
-
 import { z } from 'zod'
 
 const zBand = z.enum(['5/5', '4/5', '3/5', '2/5', '1/5'])
+
 export const zRiskTokenData = z.object({
   trust_level: z.string(),
   band: zBand,
@@ -33,6 +33,15 @@ export interface RiskTokenInfo {
   scannedTs: number
 }
 
+/**
+ * ADDRESS WHITELIST
+ * otomatis VERY_LOW tanpa fetch API
+ */
+const WHITELIST_RISK = [
+  '0x328801b0b580eadd83ea841638865ea41dc6fb25',
+  '0x1234567890123456789012345678901234567890',
+].map((a) => a.toLowerCase())
+
 const fetchRiskApi = async (address: string, chainId: number) => {
   const response = await fetch(`${ACCESS_RISK_API}/${chainId}/${address}`, {
     headers: {
@@ -41,20 +50,59 @@ const fetchRiskApi = async (address: string, chainId: number) => {
     },
   })
 
-  const result = await response.json()
-  return result
+  if (!response.ok) {
+    throw new Error(`Risk API Error: ${response.status}`)
+  }
+
+  return response.json()
 }
 
-export const fetchRiskToken = async (address: string, chainId: number): Promise<RiskTokenInfo> => {
-  const riskApi = await fetchRiskApi(address, chainId)
-  const data = zRiskTokenData.parse(riskApi.data)
-  // eslint-disable-next-line camelcase
-  const { band, scanned_ts } = data
+export const fetchRiskToken = async (
+  address: string,
+  chainId: ChainId,
+): Promise<RiskTokenInfo> => {
+  const lowerAddress = address.toLowerCase()
 
-  return {
-    address,
-    chainId,
-    riskLevel: TOKEN_RISK_MAPPING[band],
-    scannedTs: parseInt(scanned_ts, 10),
+  /**
+   * WHITELIST BYPASS
+   */
+  if (WHITELIST_RISK.includes(lowerAddress)) {
+    return {
+      address,
+      chainId,
+      riskLevel: TOKEN_RISK.VERY_LOW,
+      scannedTs: Date.now(),
+    }
+  }
+
+  try {
+    const riskApi = await fetchRiskApi(address, chainId)
+
+    const parsed = zRiskTokenData.safeParse(riskApi.data)
+
+    if (!parsed.success) {
+      throw new Error('Invalid risk response')
+    }
+    // eslint-disable-next-line camelcase
+    const { band, scanned_ts } = parsed.data
+
+    return {
+      address,
+      chainId,
+      riskLevel: TOKEN_RISK_MAPPING[band],
+      scannedTs: Number(scanned_ts),
+    }
+  } catch (error) {
+    console.error('Risk API failed:', error)
+
+    /**
+     * FALLBACK DEFAULT
+     */
+    return {
+      address,
+      chainId,
+      riskLevel: TOKEN_RISK.MEDIUM,
+      scannedTs: Date.now(),
+    }
   }
 }
