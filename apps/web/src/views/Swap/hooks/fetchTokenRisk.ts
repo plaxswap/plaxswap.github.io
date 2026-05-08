@@ -34,27 +34,31 @@ export interface RiskTokenInfo {
 }
 
 /**
- * ADDRESS WHITELIST
- * otomatis VERY_LOW tanpa fetch API
+ * TOKEN WHITELIST
+ * tidak akan fetch API
  */
 const WHITELIST_RISK = [
   '0x328801b0b580eadd83ea841638865ea41dc6fb25',
-  '0x1234567890123456789012345678901234567890',
+  // tambah address lain disini
 ].map((a) => a.toLowerCase())
 
 const fetchRiskApi = async (address: string, chainId: number) => {
-  const response = await fetch(`${ACCESS_RISK_API}/${chainId}/${address}`, {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-  })
+  try {
+    const response = await fetch(`${ACCESS_RISK_API}/${chainId}/${address}`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
 
-  if (!response.ok) {
-    throw new Error(`Risk API Error: ${response.status}`)
+    if (!response.ok) {
+      return null
+    }
+
+    return response.json()
+  } catch {
+    return null
   }
-
-  return response.json()
 }
 
 export const fetchRiskToken = async (
@@ -64,7 +68,7 @@ export const fetchRiskToken = async (
   const lowerAddress = address.toLowerCase()
 
   /**
-   * WHITELIST BYPASS
+   * SKIP API FETCH
    */
   if (WHITELIST_RISK.includes(lowerAddress)) {
     return {
@@ -75,34 +79,40 @@ export const fetchRiskToken = async (
     }
   }
 
-  try {
-    const riskApi = await fetchRiskApi(address, chainId)
+  /**
+   * FETCH NORMAL TOKEN
+   */
+  const riskApi = await fetchRiskApi(address, chainId)
 
-    const parsed = zRiskTokenData.safeParse(riskApi.data)
-
-    if (!parsed.success) {
-      throw new Error('Invalid risk response')
-    }
-    // eslint-disable-next-line camelcase
-    const { band, scanned_ts } = parsed.data
-
-    return {
-      address,
-      chainId,
-      riskLevel: TOKEN_RISK_MAPPING[band],
-      scannedTs: Number(scanned_ts),
-    }
-  } catch (error) {
-    console.error('Risk API failed:', error)
-
-    /**
-     * FALLBACK DEFAULT
-     */
+  /**
+   * FALLBACK MEDIUM
+   */
+  if (!riskApi?.data) {
     return {
       address,
       chainId,
       riskLevel: TOKEN_RISK.MEDIUM,
       scannedTs: Date.now(),
     }
+  }
+
+  const parsed = zRiskTokenData.safeParse(riskApi.data)
+
+  if (!parsed.success) {
+    return {
+      address,
+      chainId,
+      riskLevel: TOKEN_RISK.MEDIUM,
+      scannedTs: Date.now(),
+    }
+  }
+
+  const { band, scanned_ts: scannedTs } = parsed.data
+
+  return {
+    address,
+    chainId,
+    riskLevel: TOKEN_RISK_MAPPING[band],
+    scannedTs: Number(scannedTs),
   }
 }
