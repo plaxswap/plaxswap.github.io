@@ -30,7 +30,7 @@ export const fetchLastVaultAddress = async () => {
     const { lastVaultAddress } = response.pottery
     return lastVaultAddress
   } catch (error) {
-    console.error('Failed to fetch last vault address', error)
+    // console.error('Failed to fetch last vault address', error)
     return ''
   }
 }
