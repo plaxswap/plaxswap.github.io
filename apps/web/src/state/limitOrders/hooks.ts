@@ -18,6 +18,7 @@ import { useCurrencyBalances } from '../wallet/hooks'
 import { replaceLimitOrdersState, selectCurrency, setRateType, switchCurrencies, typeInput } from './actions'
 import { Field, Rate, OrderState } from './types'
 import { AppState, useAppDispatch } from '..'
+import { useSingleTokenSwapInfo } from '../swap/hooks'
 
 // Get desired input amount in output basis mode
 const getDesiredInput = (
@@ -326,11 +327,9 @@ export const useDerivedOrderInfo = (): DerivedOrderInfo => {
   const trade = isExactIn ? bestTradeExactIn : bestTradeExactOut
 
   // Get swap price for single token disregarding slippage and price impact
-  // needed for chart's latest value
-  const oneInputToken = tryParseAmount('1', currencies.input)
-  const singleTokenTrade = useTradeExactIn(oneInputToken, currencies.output)
-  const singleTokenPrice = parseFloat(singleTokenTrade?.executionPrice?.toSignificant(6))
-  const inverseSingleTokenPrice = 1 / singleTokenPrice
+  // needed for chart's latest value. Keep this aligned with Swap so the
+  // chart can use smart-router pricing when subgraph pair data is missing.
+  const singleTokenPrice = useSingleTokenSwapInfo(inputCurrencyId, currencies.input, outputCurrencyId, currencies.output)
 
   // Get "final" amounts
   const parsedAmounts = useMemo(() => {
@@ -432,10 +431,7 @@ export const useDerivedOrderInfo = (): DerivedOrderInfo => {
     price,
     rawAmounts,
     wrappedCurrencies,
-    singleTokenPrice: {
-      [wrappedCurrencies.input?.address]: singleTokenPrice,
-      [wrappedCurrencies.output?.address]: inverseSingleTokenPrice,
-    },
+    singleTokenPrice,
     currencyIds: {
       input: inputCurrencyId,
       output: outputCurrencyId,
