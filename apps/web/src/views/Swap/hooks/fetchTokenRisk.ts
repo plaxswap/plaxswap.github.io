@@ -82,37 +82,37 @@ export const fetchRiskToken = async (
   /**
    * FETCH NORMAL TOKEN
    */
-  const riskApi = await fetchRiskApi(address, chainId)
+  // const riskApi = await fetchRiskApi(address, chainId)
 
   /**
    * FALLBACK MEDIUM
    */
-  if (!riskApi?.data) {
+  // if (!riskApi?.data) {
     return {
       address,
       chainId,
       riskLevel: TOKEN_RISK.MEDIUM,
       scannedTs: Date.now(),
-    }
+    // }
   }
 
-  const parsed = zRiskTokenData.safeParse(riskApi.data)
+  // const parsed = zRiskTokenData.safeParse(riskApi.data)
 
-  if (!parsed.success) {
-    return {
-      address,
-      chainId,
-      riskLevel: TOKEN_RISK.MEDIUM,
-      scannedTs: Date.now(),
-    }
+  // if (!parsed.success) {
+    // return {
+    //   address,
+    //   chainId,
+    //   riskLevel: TOKEN_RISK.MEDIUM,
+    //   scannedTs: Date.now(),
+    // }
   }
 
-  const { band, scanned_ts: scannedTs } = parsed.data
+  // const { band, scanned_ts: scannedTs } = parsed.data
 
-  return {
-    address,
-    chainId,
-    riskLevel: TOKEN_RISK_MAPPING[band],
-    scannedTs: Number(scannedTs),
-  }
-}
+  // return {
+  //   address,
+  //   chainId,
+  //   riskLevel: TOKEN_RISK_MAPPING[band],
+  //   scannedTs: Number(scannedTs),
+  // }
+// }
