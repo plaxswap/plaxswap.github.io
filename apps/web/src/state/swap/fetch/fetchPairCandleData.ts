@@ -31,6 +31,13 @@ type PairSwapDatasResponse = {
 
 const getInterval = (timeWindow: PairDataTimeWindowEnum) => {
   switch (timeWindow) {
+    case PairDataTimeWindowEnum.MINUTE:
+      return 60
+    case PairDataTimeWindowEnum.FIVE_MINUTES:
+      return 60 * 5
+    case PairDataTimeWindowEnum.TEN_MINUTES:
+      return 60 * 10
+    case PairDataTimeWindowEnum.HOUR:
     case PairDataTimeWindowEnum.DAY:
       return ONE_HOUR_SECONDS
     case PairDataTimeWindowEnum.WEEK:
@@ -44,18 +51,25 @@ const getInterval = (timeWindow: PairDataTimeWindowEnum) => {
   }
 }
 
-const getSkipDaysToStart = (timeWindow: PairDataTimeWindowEnum) => {
+const getLookback = (timeWindow: PairDataTimeWindowEnum) => {
   switch (timeWindow) {
+    case PairDataTimeWindowEnum.MINUTE:
+      return { hours: 1 }
+    case PairDataTimeWindowEnum.FIVE_MINUTES:
+      return { hours: 6 }
+    case PairDataTimeWindowEnum.TEN_MINUTES:
+      return { hours: 12 }
+    case PairDataTimeWindowEnum.HOUR:
     case PairDataTimeWindowEnum.DAY:
-      return 1
+      return { days: 1 }
     case PairDataTimeWindowEnum.WEEK:
-      return 7
+      return { days: 7 }
     case PairDataTimeWindowEnum.MONTH:
-      return 30
+      return { days: 30 }
     case PairDataTimeWindowEnum.YEAR:
-      return 365
+      return { days: 365 }
     default:
-      return 7
+      return { days: 7 }
   }
 }
 
@@ -117,7 +131,7 @@ const fetchPairCandleData = async (
   const activeTokenAddress = activeToken.toLowerCase()
   const interval = getInterval(timeWindow)
   const endTimestamp = getUnixTime(new Date())
-  const startTimestamp = getUnixTime(startOfHour(sub(endTimestamp * 1000, { days: getSkipDaysToStart(timeWindow) })))
+  const startTimestamp = getUnixTime(startOfHour(sub(endTimestamp * 1000, getLookback(timeWindow))))
   const swaps: SwapData[] = []
 
   try {

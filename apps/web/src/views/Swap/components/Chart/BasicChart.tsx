@@ -20,6 +20,13 @@ const SwapCandleChart = dynamic(() => import('./SwapCandleChart'), {
 
 const getCandleInterval = (timeWindow: PairDataTimeWindowEnum) => {
   switch (timeWindow) {
+    case PairDataTimeWindowEnum.MINUTE:
+      return 60
+    case PairDataTimeWindowEnum.FIVE_MINUTES:
+      return 60 * 5
+    case PairDataTimeWindowEnum.TEN_MINUTES:
+      return 60 * 10
+    case PairDataTimeWindowEnum.HOUR:
     case PairDataTimeWindowEnum.DAY:
       return ONE_HOUR_SECONDS
     case PairDataTimeWindowEnum.WEEK:
@@ -79,7 +86,7 @@ const BasicChart = ({
   isMobile,
   currentSwapPrice,
 }) => {
-  const [timeWindow, setTimeWindow] = useState<PairDataTimeWindowEnum>(0)
+  const [timeWindow, setTimeWindow] = useState<PairDataTimeWindowEnum>(PairDataTimeWindowEnum.DAY)
 
   const { pairPrices = [], pairId } = useFetchPairPrices({
     token0Address,
@@ -187,6 +194,10 @@ const BasicChart = ({
         </Flex>
         <Box>
           <ButtonMenu activeIndex={timeWindow} onItemClick={setTimeWindow} scale="sm">
+            <ButtonMenuItem>{t('1m')}</ButtonMenuItem>
+            <ButtonMenuItem>{t('5m')}</ButtonMenuItem>
+            <ButtonMenuItem>{t('10m')}</ButtonMenuItem>
+            <ButtonMenuItem>{t('1H')}</ButtonMenuItem>
             <ButtonMenuItem>{t('24H')}</ButtonMenuItem>
             <ButtonMenuItem>{t('1W')}</ButtonMenuItem>
             <ButtonMenuItem>{t('1M')}</ButtonMenuItem>
