@@ -23,10 +23,6 @@ const getChartColors = ({ isChangePositive }) => {
 }
 
 const dateFormattingByTimewindow: Record<PairDataTimeWindowEnum, string> = {
-  [PairDataTimeWindowEnum.MINUTE]: 'h:mm a',
-  [PairDataTimeWindowEnum.FIVE_MINUTES]: 'h:mm a',
-  [PairDataTimeWindowEnum.TEN_MINUTES]: 'h:mm a',
-  [PairDataTimeWindowEnum.HOUR]: 'h:mm a',
   [PairDataTimeWindowEnum.DAY]: 'h:mm a',
   [PairDataTimeWindowEnum.WEEK]: 'MMM dd',
   [PairDataTimeWindowEnum.MONTH]: 'MMM dd',

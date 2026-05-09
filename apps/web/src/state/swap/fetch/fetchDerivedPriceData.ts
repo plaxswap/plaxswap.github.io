@@ -50,13 +50,6 @@ const getTokenDerivedUSDCPrices = async (tokenAddress: string, blocks: Block[], 
 
 const getInterval = (timeWindow: PairDataTimeWindowEnum) => {
   switch (timeWindow) {
-    case PairDataTimeWindowEnum.MINUTE:
-      return 60
-    case PairDataTimeWindowEnum.FIVE_MINUTES:
-      return 60 * 5
-    case PairDataTimeWindowEnum.TEN_MINUTES:
-      return 60 * 10
-    case PairDataTimeWindowEnum.HOUR:
     case PairDataTimeWindowEnum.DAY:
       return ONE_HOUR_SECONDS
     case PairDataTimeWindowEnum.WEEK:
@@ -70,25 +63,18 @@ const getInterval = (timeWindow: PairDataTimeWindowEnum) => {
   }
 }
 
-const getLookback = (timeWindow: PairDataTimeWindowEnum) => {
+const getSkipDaysToStart = (timeWindow: PairDataTimeWindowEnum) => {
   switch (timeWindow) {
-    case PairDataTimeWindowEnum.MINUTE:
-      return { hours: 1 }
-    case PairDataTimeWindowEnum.FIVE_MINUTES:
-      return { hours: 6 }
-    case PairDataTimeWindowEnum.TEN_MINUTES:
-      return { hours: 12 }
-    case PairDataTimeWindowEnum.HOUR:
     case PairDataTimeWindowEnum.DAY:
-      return { days: 1 }
+      return 1
     case PairDataTimeWindowEnum.WEEK:
-      return { days: 7 }
+      return 7
     case PairDataTimeWindowEnum.MONTH:
-      return { days: 30 }
+      return 30
     case PairDataTimeWindowEnum.YEAR:
-      return { days: 365 }
+      return 365
     default:
-      return { days: 7 }
+      return 7
   }
 }
 
@@ -105,7 +91,7 @@ const fetchDerivedPriceData = async (
 ) => {
   const interval = getInterval(timeWindow)
   const endTimestamp = getUnixTime(new Date())
-  const startTimestamp = getUnixTime(startOfHour(sub(endTimestamp * 1000, getLookback(timeWindow))))
+  const startTimestamp = getUnixTime(startOfHour(sub(endTimestamp * 1000, { days: getSkipDaysToStart(timeWindow) })))
   const timestamps = []
   let time = startTimestamp
   while (time <= endTimestamp) {

@@ -28,10 +28,6 @@ export type PairCandlesNormalized = {
 }[]
 
 export enum PairDataTimeWindowEnum {
-  MINUTE,
-  FIVE_MINUTES,
-  TEN_MINUTES,
-  HOUR,
   DAY,
   WEEK,
   MONTH,
