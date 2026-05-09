@@ -3,8 +3,9 @@ import { useTranslation } from '@pancakeswap/localization'
 import { useEffect, useMemo, useState, memo } from 'react'
 import { useFetchPairPrices } from 'state/swap/hooks'
 import dynamic from 'next/dynamic'
-import { PairCandlesNormalized, PairDataTimeWindowEnum } from 'state/swap/types'
+import { PairCandlesNormalized, PairDataTimeWindowEnum, PairPricesNormalized } from 'state/swap/types'
 import fetchPairCandleData from 'state/swap/fetch/fetchPairCandleData'
+import { ONE_DAY_UNIX, ONE_HOUR_SECONDS } from 'config/constants/info'
 import NoChartAvailable from './NoChartAvailable'
 import PairPriceDisplay from '../../../../components/PairPriceDisplay'
 import { getTimeWindowChange } from './utils'
@@ -16,6 +17,58 @@ const SwapLineChart = dynamic(() => import('./SwapLineChart'), {
 const SwapCandleChart = dynamic(() => import('./SwapCandleChart'), {
   ssr: false,
 })
+
+const getCandleInterval = (timeWindow: PairDataTimeWindowEnum) => {
+  switch (timeWindow) {
+    case PairDataTimeWindowEnum.DAY:
+      return ONE_HOUR_SECONDS
+    case PairDataTimeWindowEnum.WEEK:
+      return ONE_HOUR_SECONDS * 4
+    case PairDataTimeWindowEnum.MONTH:
+      return ONE_DAY_UNIX
+    case PairDataTimeWindowEnum.YEAR:
+      return ONE_DAY_UNIX * 15
+    default:
+      return ONE_HOUR_SECONDS * 4
+  }
+}
+
+const pricesToCandles = (
+  prices: PairPricesNormalized,
+  timeWindow: PairDataTimeWindowEnum,
+): PairCandlesNormalized => {
+  const interval = getCandleInterval(timeWindow)
+  const candles = new Map<number, { open: number; high: number; low: number; close: number }>()
+
+  prices
+    ?.filter((price) => price.value && price.value !== Infinity && !Number.isNaN(price.value))
+    .forEach((price, index, filteredPrices) => {
+      const previousPrice = filteredPrices[index - 1]
+      const open = previousPrice?.value ?? price.value
+      const close = price.value
+      const bucketTime = Math.floor(price.time.getTime() / 1000 / interval) * interval
+      const candle = candles.get(bucketTime)
+
+      if (!candle) {
+        candles.set(bucketTime, {
+          open,
+          high: Math.max(open, close),
+          low: Math.min(open, close),
+          close,
+        })
+        return
+      }
+
+      candle.high = Math.max(candle.high, open, close)
+      candle.low = Math.min(candle.low, open, close)
+      candle.close = close
+    })
+
+  return Array.from(candles.entries()).map(([time, candle]) => ({
+    time,
+    ...candle,
+  }))
+}
 
 const BasicChart = ({
   token0Address,
@@ -41,7 +94,15 @@ const BasicChart = ({
     () => pairCandles.map(({ time, close }) => ({ time: new Date(time * 1000), value: close })),
     [pairCandles],
   )
-  const chartPrices = candlePrices.length > 0 ? candlePrices : pairPrices
+  const derivedCandles = useMemo(
+    () => (pairCandles.length > 0 ? pairCandles : pricesToCandles(pairPrices, timeWindow)),
+    [pairCandles, pairPrices, timeWindow],
+  )
+  const derivedCandlePrices = useMemo(
+    () => derivedCandles.map(({ time, close }) => ({ time: new Date(time * 1000), value: close })),
+    [derivedCandles],
+  )
+  const chartPrices = candlePrices.length > 0 ? candlePrices : derivedCandlePrices.length > 0 ? derivedCandlePrices : pairPrices
   const valueToDisplay = hoverValue || chartPrices[chartPrices.length - 1]?.value
   const { changePercentage, changeValue } = getTimeWindowChange(chartPrices)
   const isChangePositive = changeValue >= 0
@@ -90,7 +151,7 @@ const BasicChart = ({
       (price) => !price.value || price.value === 0 || price.value === Infinity || Number.isNaN(price.value),
     )
 
-  if (isBadData && pairCandles.length === 0) {
+  if (isBadData && derivedCandles.length === 0) {
     return (
       <NoChartAvailable
         token0Address={token0Address}
@@ -134,9 +195,9 @@ const BasicChart = ({
         </Box>
       </Flex>
       <Box height={isMobile ? '100%' : chartHeight} p={isMobile ? '0px' : '16px'} width="100%">
-        {pairCandles.length > 0 ? (
+        {derivedCandles.length > 0 ? (
           <SwapCandleChart
-            data={pairCandles}
+            data={derivedCandles}
             setHoverValue={setHoverValue}
             setHoverDate={setHoverDate}
             isChartExpanded={isChartExpanded}
