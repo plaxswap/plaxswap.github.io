@@ -2,7 +2,22 @@ const fs = require('fs')
 const path = require('path')
 
 const workspaceRoot = path.resolve(__dirname, '../../..')
-const walletConnectCoreRoot = path.join(workspaceRoot, 'node_modules', '@walletconnect', 'core')
+const walletConnectCoreRoots = [
+  path.join(workspaceRoot, 'node_modules', '@walletconnect', 'core'),
+  path.join(workspaceRoot, 'apps', 'web', 'node_modules', '@walletconnect', 'core'),
+  path.join(workspaceRoot, 'node_modules', '@wagmi', 'connectors', 'node_modules', '@walletconnect', 'core'),
+  path.join(
+    workspaceRoot,
+    'apps',
+    'web',
+    'node_modules',
+    '@wagmi',
+    'connectors',
+    'node_modules',
+    '@walletconnect',
+    'core',
+  ),
+].filter((dir, index, roots) => fs.existsSync(dir) && roots.indexOf(dir) === index)
 
 const log = (message) => console.log(`[patch-viem] ${message}`)
 
@@ -65,6 +80,93 @@ function overwriteFile(filePath, content) {
 
   fs.writeFileSync(filePath, content)
   log(`patched ${path.relative(workspaceRoot, filePath)}`)
+}
+
+function hasEsmExport(content, exportName) {
+  return (
+    new RegExp(`export\\s+const\\s+${exportName}\\b`).test(content) ||
+    new RegExp(`export\\s*\\{[^}]*\\b(?:\\w+\\s+as\\s+)?${exportName}\\b[^}]*\\}`).test(content)
+  )
+}
+
+function patchWalletConnectEsm(filePath) {
+  if (!fs.existsSync(filePath)) return
+
+  const previousBlockPattern =
+    /\n?\/\/ WalletConnect compatibility exports for older Next builds\.\nconst __wcEventTraceProxy = new Proxy\(\{\}, \{ get: \(_target, prop\) => String\(prop\) \}\);\n(?:export const (?:TRANSPORT_TYPES|PAIRING_EVENTS|VERIFY_SERVER|EVENT_CLIENT_SESSION_TRACES|EVENT_CLIENT_SESSION_ERRORS|EVENT_CLIENT_AUTHENTICATE_TRACES|EVENT_CLIENT_AUTHENTICATE_ERRORS|EVENT_CLIENT_PAIRING_TRACES|EVENT_CLIENT_PAIRING_ERRORS) = [^\n]+;\n?)+/g
+  let content = fs.readFileSync(filePath, 'utf8').replace(previousBlockPattern, '\n')
+
+  const missingExports = [
+    ['TRANSPORT_TYPES', '{ relay: "relay", link_mode: "link_mode" }'],
+    [
+      'PAIRING_EVENTS',
+      '{ create: "pairing_create", update: "pairing_update", delete: "pairing_delete", expire: "pairing_expire" }',
+    ],
+    ['VERIFY_SERVER', '"https://verify.walletconnect.com"'],
+    ['EVENT_CLIENT_SESSION_TRACES', '__wcEventTraceProxy'],
+    ['EVENT_CLIENT_SESSION_ERRORS', '__wcEventTraceProxy'],
+    ['EVENT_CLIENT_AUTHENTICATE_TRACES', '__wcEventTraceProxy'],
+    ['EVENT_CLIENT_AUTHENTICATE_ERRORS', '__wcEventTraceProxy'],
+    ['EVENT_CLIENT_PAIRING_TRACES', '__wcEventTraceProxy'],
+    ['EVENT_CLIENT_PAIRING_ERRORS', '__wcEventTraceProxy'],
+  ].filter(([exportName]) => !hasEsmExport(content, exportName))
+
+  if (missingExports.length > 0) {
+    const needsProxy = missingExports.some(([, value]) => value === '__wcEventTraceProxy')
+    const text = [
+      '// WalletConnect compatibility exports for older Next builds.',
+      ...(needsProxy ? ['const __wcEventTraceProxy = new Proxy({}, { get: (_target, prop) => String(prop) });'] : []),
+      ...missingExports.map(([exportName, value]) => `export const ${exportName} = ${value};`),
+    ].join('\n')
+    const sourceMapComment = '//# sourceMappingURL=index.es.js.map'
+    content = content.includes(sourceMapComment)
+      ? content.replace(sourceMapComment, `${text}\n${sourceMapComment}`)
+      : `${content.trimEnd()}\n${text}\n`
+  }
+
+  const current = fs.readFileSync(filePath, 'utf8')
+  if (content !== current) {
+    fs.writeFileSync(filePath, content)
+    log(`patched ${path.relative(workspaceRoot, filePath)}`)
+  }
+}
+
+function patchWalletConnectCjs(filePath) {
+  if (!fs.existsSync(filePath)) return
+
+  const previousBlockPattern =
+    /\n?\/\/ WalletConnect compatibility exports for older Next builds\.\nconst __wcEventTraceProxy = new Proxy\(\{\}, \{ get: \(_target, prop\) => String\(prop\) \}\);\n(?:exports\.(?:TRANSPORT_TYPES|PAIRING_EVENTS|VERIFY_SERVER|EVENT_CLIENT_SESSION_TRACES|EVENT_CLIENT_SESSION_ERRORS|EVENT_CLIENT_AUTHENTICATE_TRACES|EVENT_CLIENT_AUTHENTICATE_ERRORS|EVENT_CLIENT_PAIRING_TRACES|EVENT_CLIENT_PAIRING_ERRORS) = [^\n]+;\n?)+/g
+  let content = fs.readFileSync(filePath, 'utf8').replace(previousBlockPattern, '\n')
+
+  const missingExports = [
+    ['TRANSPORT_TYPES', '{ relay: "relay", link_mode: "link_mode" }'],
+    [
+      'PAIRING_EVENTS',
+      '{ create: "pairing_create", update: "pairing_update", delete: "pairing_delete", expire: "pairing_expire" }',
+    ],
+    ['VERIFY_SERVER', '"https://verify.walletconnect.com"'],
+    ['EVENT_CLIENT_SESSION_TRACES', '__wcEventTraceProxy'],
+    ['EVENT_CLIENT_SESSION_ERRORS', '__wcEventTraceProxy'],
+    ['EVENT_CLIENT_AUTHENTICATE_TRACES', '__wcEventTraceProxy'],
+    ['EVENT_CLIENT_AUTHENTICATE_ERRORS', '__wcEventTraceProxy'],
+    ['EVENT_CLIENT_PAIRING_TRACES', '__wcEventTraceProxy'],
+    ['EVENT_CLIENT_PAIRING_ERRORS', '__wcEventTraceProxy'],
+  ].filter(([exportName]) => !new RegExp(`exports\\.${exportName}\\b`).test(content))
+
+  if (missingExports.length > 0) {
+    const needsProxy = missingExports.some(([, value]) => value === '__wcEventTraceProxy')
+    content = `${content.trimEnd()}\n${[
+      '// WalletConnect compatibility exports for older Next builds.',
+      ...(needsProxy ? ['const __wcEventTraceProxy = new Proxy({}, { get: (_target, prop) => String(prop) });'] : []),
+      ...missingExports.map(([exportName, value]) => `exports.${exportName} = ${value};`),
+    ].join('\n')}\n`
+  }
+
+  const current = fs.readFileSync(filePath, 'utf8')
+  if (content !== current) {
+    fs.writeFileSync(filePath, content)
+    log(`patched ${path.relative(workspaceRoot, filePath)}`)
+  }
 }
 
 if (viemRoots.length === 0) log('node_modules/viem not found, skipping viem patch')
@@ -182,42 +284,11 @@ for (const wagmiCoreRoot of wagmiCoreRoots) {
   }
 }
 
-patchFile(path.join(walletConnectCoreRoot, 'dist', 'index.es.js'), [
-  {
-    marker: 'WalletConnect compatibility exports for older Next builds.',
-    text: [
-      '// WalletConnect compatibility exports for older Next builds.',
-      'const __wcEventTraceProxy = new Proxy({}, { get: (_target, prop) => String(prop) });',
-      'export const TRANSPORT_TYPES = { relay: "relay", link_mode: "link_mode" };',
-      'export const PAIRING_EVENTS = { create: "pairing_create", update: "pairing_update", delete: "pairing_delete", expire: "pairing_expire" };',
-      'export const VERIFY_SERVER = "https://verify.walletconnect.com";',
-      'export const EVENT_CLIENT_SESSION_TRACES = __wcEventTraceProxy;',
-      'export const EVENT_CLIENT_SESSION_ERRORS = __wcEventTraceProxy;',
-      'export const EVENT_CLIENT_AUTHENTICATE_TRACES = __wcEventTraceProxy;',
-      'export const EVENT_CLIENT_AUTHENTICATE_ERRORS = __wcEventTraceProxy;',
-      'export const EVENT_CLIENT_PAIRING_TRACES = __wcEventTraceProxy;',
-      'export const EVENT_CLIENT_PAIRING_ERRORS = __wcEventTraceProxy;',
-    ].join('\n'),
-  },
-])
+if (walletConnectCoreRoots.length === 0) log('node_modules/@walletconnect/core not found, skipping walletconnect patch')
 
-patchFile(path.join(walletConnectCoreRoot, 'dist', 'index.cjs.js'), [
-  {
-    marker: 'exports.EVENT_CLIENT_PAIRING_ERRORS = __wcEventTraceProxy;',
-    text: [
-      '// WalletConnect compatibility exports for older Next builds.',
-      'const __wcEventTraceProxy = new Proxy({}, { get: (_target, prop) => String(prop) });',
-      'exports.TRANSPORT_TYPES = { relay: "relay", link_mode: "link_mode" };',
-      'exports.PAIRING_EVENTS = { create: "pairing_create", update: "pairing_update", delete: "pairing_delete", expire: "pairing_expire" };',
-      'exports.VERIFY_SERVER = "https://verify.walletconnect.com";',
-      'exports.EVENT_CLIENT_SESSION_TRACES = __wcEventTraceProxy;',
-      'exports.EVENT_CLIENT_SESSION_ERRORS = __wcEventTraceProxy;',
-      'exports.EVENT_CLIENT_AUTHENTICATE_TRACES = __wcEventTraceProxy;',
-      'exports.EVENT_CLIENT_AUTHENTICATE_ERRORS = __wcEventTraceProxy;',
-      'exports.EVENT_CLIENT_PAIRING_TRACES = __wcEventTraceProxy;',
-      'exports.EVENT_CLIENT_PAIRING_ERRORS = __wcEventTraceProxy;',
-    ].join('\n'),
-  },
-])
+for (const walletConnectCoreRoot of walletConnectCoreRoots) {
+  patchWalletConnectEsm(path.join(walletConnectCoreRoot, 'dist', 'index.es.js'))
+  patchWalletConnectCjs(path.join(walletConnectCoreRoot, 'dist', 'index.cjs.js'))
+}
 
 log('done')
