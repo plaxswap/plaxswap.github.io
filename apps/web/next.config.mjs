@@ -178,11 +178,23 @@ const config = {
         process.cwd(),
         '../../node_modules/@wagmi/connectors/dist/esm/metaMask.js',
       ),
+      '@wagmi/connectors/dist/esm/metaMask.js': path.resolve(
+        process.cwd(),
+        '../../node_modules/@wagmi/connectors/dist/esm/metaMask.js',
+      ),
       '@wagmi/connectors/dist/esm/safe': path.resolve(
         process.cwd(),
         '../../node_modules/@wagmi/connectors/dist/esm/safe.js',
       ),
+      '@wagmi/connectors/dist/esm/safe.js': path.resolve(
+        process.cwd(),
+        '../../node_modules/@wagmi/connectors/dist/esm/safe.js',
+      ),
       '@wagmi/connectors/dist/esm/walletConnect': path.resolve(
+        process.cwd(),
+        '../../node_modules/@wagmi/connectors/dist/esm/walletConnect.js',
+      ),
+      '@wagmi/connectors/dist/esm/walletConnect.js': path.resolve(
         process.cwd(),
         '../../node_modules/@wagmi/connectors/dist/esm/walletConnect.js',
       ),

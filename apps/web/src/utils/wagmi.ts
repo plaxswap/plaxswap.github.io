@@ -1,12 +1,13 @@
+/* eslint-disable import/extensions */
 import { JsonRpcProvider, FallbackProvider, Web3Provider } from '@ethersproject/providers'
 import { getClient, getConnectorClient, injected } from '@wagmi/core'
 import memoize from 'lodash/memoize'
 import { createConfig, http } from 'wagmi'
 import { polygon, polygonMumbai } from 'wagmi/chains'
 import type { Transport } from 'viem'
-import { metaMask } from '@wagmi/connectors/dist/esm/metaMask'
-import { safe } from '@wagmi/connectors/dist/esm/safe'
-import { walletConnect } from '@wagmi/connectors/dist/esm/walletConnect'
+import { metaMask } from '@wagmi/connectors/dist/esm/metaMask.js'
+import { safe } from '@wagmi/connectors/dist/esm/safe.js'
+import { walletConnect } from '@wagmi/connectors/dist/esm/walletConnect.js'
 
 export const chains = [polygon, polygonMumbai]
 
