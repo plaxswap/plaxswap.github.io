@@ -4,6 +4,10 @@ import { withAxiom } from 'next-axiom'
 import BundleAnalyzer from '@next/bundle-analyzer'
 import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin'
 import path from 'path'
+import { createRequire } from 'module'
+
+const require = createRequire(import.meta.url)
+const wagmiConnectorsRoot = path.dirname(require.resolve('@wagmi/connectors/package.json'))
 
 const withBundleAnalyzer = BundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -174,30 +178,9 @@ const config = {
   webpack: (webpackConfig, { webpack }) => {
     webpackConfig.resolve.alias = {
       ...webpackConfig.resolve.alias,
-      '@wagmi/connectors/dist/esm/metaMask': path.resolve(
-        process.cwd(),
-        '../../node_modules/@wagmi/connectors/dist/esm/metaMask.js',
-      ),
-      '@wagmi/connectors/dist/esm/metaMask.js': path.resolve(
-        process.cwd(),
-        '../../node_modules/@wagmi/connectors/dist/esm/metaMask.js',
-      ),
-      '@wagmi/connectors/dist/esm/safe': path.resolve(
-        process.cwd(),
-        '../../node_modules/@wagmi/connectors/dist/esm/safe.js',
-      ),
-      '@wagmi/connectors/dist/esm/safe.js': path.resolve(
-        process.cwd(),
-        '../../node_modules/@wagmi/connectors/dist/esm/safe.js',
-      ),
-      '@wagmi/connectors/dist/esm/walletConnect': path.resolve(
-        process.cwd(),
-        '../../node_modules/@wagmi/connectors/dist/esm/walletConnect.js',
-      ),
-      '@wagmi/connectors/dist/esm/walletConnect.js': path.resolve(
-        process.cwd(),
-        '../../node_modules/@wagmi/connectors/dist/esm/walletConnect.js',
-      ),
+      '@wagmi/connectors/dist/esm/metaMask.js': path.join(wagmiConnectorsRoot, 'dist/esm/metaMask.js'),
+      '@wagmi/connectors/dist/esm/safe.js': path.join(wagmiConnectorsRoot, 'dist/esm/safe.js'),
+      '@wagmi/connectors/dist/esm/walletConnect.js': path.join(wagmiConnectorsRoot, 'dist/esm/walletConnect.js'),
     }
 
     // tree shake sentry tracing
