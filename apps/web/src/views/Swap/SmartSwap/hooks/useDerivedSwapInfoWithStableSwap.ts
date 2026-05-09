@@ -4,7 +4,7 @@ import { Field } from 'state/swap/actions'
 import { useCurrencyBalances } from 'state/wallet/hooks'
 import { useTranslation } from '@pancakeswap/localization'
 import tryParseAmount from '@pancakeswap/utils/tryParseAmount'
-import { useWeb3React } from '@pancakeswap/wagmi'
+import { useWeb3React } from 'web3library'
 import { useUserSingleHopOnly, useUserSlippageTolerance } from 'state/user/hooks'
 import { isAddress } from 'utils'
 

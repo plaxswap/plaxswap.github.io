@@ -7,16 +7,16 @@ import useAuth from 'hooks/useAuth'
 import { useMenuItems } from 'components/Menu/hooks/useMenuItems'
 import { useRouter } from 'next/router'
 import { getActiveMenuItem, getActiveSubMenuItem } from 'components/Menu/utils'
-import { useAccount, useNetwork } from 'wagmi'
+import { useAccount } from 'wagmi'
 import { useMemo } from 'react'
 import { ChainId } from '@pancakeswap/sdk'
+import { chains } from 'utils/wagmi'
 import Dots from '../Loader/Dots'
 
 // Where chain is not supported or page not supported
 export function UnsupportedNetworkModal({ pageSupportedChains }: { pageSupportedChains: number[] }) {
   const { switchNetworkAsync, isLoading, canSwitch } = useSwitchNetwork()
   const switchNetworkLocal = useSwitchNetworkLocal()
-  const { chains } = useNetwork()
   const chainId = useLocalNetworkChain() || ChainId.BSC
   const { isConnected } = useAccount()
   const { logout } = useAuth()
@@ -33,8 +33,9 @@ export function UnsupportedNetworkModal({ pageSupportedChains }: { pageSupported
 
   const supportedMainnetChains = useMemo(
     () => chains.filter((chain) => !chain.testnet && pageSupportedChains?.includes(chain.id)),
-    [chains, pageSupportedChains],
+    [pageSupportedChains],
   )
+  const supportedMainnetChainIds = supportedMainnetChains.map((c) => c.id as number)
 
   return (
     <Modal title={t('Check your network')} hideCloseButton headerBackground="gradientCardHeader">
@@ -59,7 +60,7 @@ export function UnsupportedNetworkModal({ pageSupportedChains }: { pageSupported
           <Button
             isLoading={isLoading}
             onClick={() => {
-              if (supportedMainnetChains.map((c) => c.id).includes(chainId)) {
+              if (supportedMainnetChainIds.includes(chainId)) {
                 switchNetworkAsync(chainId)
               } else {
                 switchNetworkAsync(ChainId.BSC)

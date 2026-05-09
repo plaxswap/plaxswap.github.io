@@ -61,7 +61,6 @@ import {
   getTradingCompetitionContractMoD,
   getStableSwapNativeHelperContract,
 } from 'utils/contractHelpers'
-import { useSigner } from 'wagmi'
 
 // Imports below migrated from Exchange useContract.ts
 import { Contract } from '@ethersproject/contracts'
@@ -76,6 +75,7 @@ import { getContract } from 'utils'
 import { IPancakePair } from 'config/abi/types/IPancakePair'
 import { VaultKey } from 'state/types'
 import { useActiveChainId } from './useActiveChainId'
+import { useEthersSigner as useSigner } from './useEthersSigner'
 
 /**
  * Helper hooks to get specific contracts (by ABI)

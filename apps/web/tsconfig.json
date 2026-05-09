@@ -6,8 +6,17 @@
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": true,
     "downlevelIteration": true,
-    "target": "es5"
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "target": "es2020"
   },
-  "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "./src/**/*.ts", "./src/**/*.tsx"]
+  "exclude": [
+    "node_modules",
+    "src/utils/safeConnector.ts"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "./src/**/*.ts",
+    "./src/**/*.tsx"
+  ]
 }

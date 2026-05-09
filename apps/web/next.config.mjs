@@ -3,6 +3,7 @@ import { withSentryConfig } from '@sentry/nextjs'
 import { withAxiom } from 'next-axiom'
 import BundleAnalyzer from '@next/bundle-analyzer'
 import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin'
+import path from 'path'
 
 const withBundleAnalyzer = BundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -50,9 +51,7 @@ const config = {
       '@pancakeswap/utils',
       '@pancakeswap/tokens',
       '@pancakeswap/smart-router',
-      '@wagmi',
       'wagmi',
-      '@ledgerhq',
       '@gnosis.pm/safe-apps-wagmi',
     ],
   },
@@ -173,6 +172,22 @@ const config = {
     ]
   },
   webpack: (webpackConfig, { webpack }) => {
+    webpackConfig.resolve.alias = {
+      ...webpackConfig.resolve.alias,
+      '@wagmi/connectors/dist/esm/metaMask': path.resolve(
+        process.cwd(),
+        '../../node_modules/@wagmi/connectors/dist/esm/metaMask.js',
+      ),
+      '@wagmi/connectors/dist/esm/safe': path.resolve(
+        process.cwd(),
+        '../../node_modules/@wagmi/connectors/dist/esm/safe.js',
+      ),
+      '@wagmi/connectors/dist/esm/walletConnect': path.resolve(
+        process.cwd(),
+        '../../node_modules/@wagmi/connectors/dist/esm/walletConnect.js',
+      ),
+    }
+
     // tree shake sentry tracing
     webpackConfig.plugins.push(
       new webpack.DefinePlugin({

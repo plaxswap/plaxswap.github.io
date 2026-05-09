@@ -4,15 +4,16 @@ import DisclaimerModal from 'components/DisclaimerModal'
 import { ConnectorNames, getDocLink } from 'config/wallet'
 import { ExtendEthereum } from 'global'
 import { useState, useCallback } from 'react'
-import { useAccount, useNetwork } from 'wagmi'
+import { useAccount } from 'wagmi'
 import { mainnet } from 'wagmi/chains'
+import { chains } from 'utils/wagmi'
 import { FarmsContext } from './context'
 import Farms from './Farms'
 
 export function useIsBloctoETH() {
-  const { chain } = useNetwork()
-  const { isConnected, connector } = useAccount()
-  const isETH = chain?.id === mainnet.id
+  const { isConnected, connector, chainId } = useAccount()
+  const chain = chains.find((c) => c.id === chainId)
+  const isETH = Number(chain?.id) === mainnet.id
   return (
     (connector?.id === ConnectorNames.Blocto ||
       (typeof window !== 'undefined' && Boolean((window.ethereum as ExtendEthereum)?.isBlocto))) &&

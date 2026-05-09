@@ -2,10 +2,10 @@
 import { useTranslation } from '@pancakeswap/localization'
 import { ChainId } from '@pancakeswap/sdk'
 import { useToast } from '@pancakeswap/uikit'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import replaceBrowserHistory from '@pancakeswap/utils/replaceBrowserHistory'
 import { ConnectorNames } from 'config/wallet'
-import { useAccount, useSwitchNetwork as useSwitchNetworkWallet } from 'wagmi'
+import { useAccount, useSwitchChain } from 'wagmi'
 import { CHAIN_QUERY_NAME } from 'config/chains'
 import { useSessionChainId } from './useSessionChainId'
 import { useSwitchNetworkLoading } from './useSwitchNetworkLoading'
@@ -23,12 +23,13 @@ export function useSwitchNetworkLocal() {
 
 export function useSwitchNetwork() {
   const [loading, setLoading] = useSwitchNetworkLoading()
+  const [pendingChainId, setPendingChainId] = useState<number>()
   const {
-    switchNetworkAsync: _switchNetworkAsync,
-    isLoading: _isLoading,
-    switchNetwork: _switchNetwork,
+    switchChainAsync: _switchNetworkAsync,
+    switchChain: _switchNetwork,
+    isPending: _isLoading,
     ...switchNetworkArgs
-  } = useSwitchNetworkWallet()
+  } = useSwitchChain()
   const { t } = useTranslation()
   const { toastError } = useToast()
   const { isConnected, connector } = useAccount()
@@ -40,8 +41,9 @@ export function useSwitchNetwork() {
     async (chainId: number) => {
       if (isConnected && typeof _switchNetworkAsync === 'function') {
         if (isLoading) return
+        setPendingChainId(chainId)
         setLoading(true)
-        return _switchNetworkAsync(chainId)
+        return _switchNetworkAsync({ chainId })
           .then((c) => {
             // well token pocket
             if (window.ethereum?.isTokenPocket === true) {
@@ -54,10 +56,15 @@ export function useSwitchNetwork() {
             // TODO: review the error
             toastError(t('Error connecting, please retry and confirm in wallet!'))
           })
-          .finally(() => setLoading(false))
+          .finally(() => {
+            setPendingChainId(undefined)
+            setLoading(false)
+          })
       }
+      setPendingChainId(chainId)
       return new Promise(() => {
         switchNetworkLocal(chainId)
+        setPendingChainId(undefined)
       })
     },
     [isConnected, _switchNetworkAsync, isLoading, setLoading, toastError, t, switchNetworkLocal],
@@ -66,7 +73,8 @@ export function useSwitchNetwork() {
   const switchNetwork = useCallback(
     (chainId: number) => {
       if (isConnected && typeof _switchNetwork === 'function') {
-        return _switchNetwork(chainId)
+        setPendingChainId(chainId)
+        return _switchNetwork({ chainId })
       }
       return switchNetworkLocal(chainId)
     },
@@ -91,6 +99,7 @@ export function useSwitchNetwork() {
     ...switchNetworkArgs,
     switchNetwork,
     switchNetworkAsync,
+    pendingChainId,
     isLoading,
     canSwitch,
   }

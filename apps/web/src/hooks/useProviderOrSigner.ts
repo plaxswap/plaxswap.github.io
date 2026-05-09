@@ -1,13 +1,15 @@
 import { useMemo } from 'react'
 import { ChainId } from '@pancakeswap/sdk'
-import { useAccount, useProvider, useSigner } from 'wagmi'
+import { useAccount } from 'wagmi'
 import { useActiveChainId } from './useActiveChainId'
+import { useEthersProvider } from './useEthersProvider'
+import { useEthersSigner } from './useEthersSigner'
 
 export const useProviderOrSigner = (withSignerIfPossible = true, forceBSC?: boolean) => {
   const { chainId } = useActiveChainId()
-  const provider = useProvider({ chainId: forceBSC ? ChainId.BSC : chainId })
+  const provider = useEthersProvider({ chainId: forceBSC ? ChainId.BSC : chainId })
   const { address, isConnected } = useAccount()
-  const { data: signer } = useSigner()
+  const { data: signer } = useEthersSigner({ chainId: forceBSC ? ChainId.BSC : chainId })
 
   return useMemo(
     () => (withSignerIfPossible && address && isConnected && signer ? signer : provider),

@@ -1,11 +1,11 @@
-import { useClient, useConnect } from 'wagmi'
+import { useConnect, useReconnect } from 'wagmi'
 import { useEffect } from 'react'
 
 const SAFE_ID = 'safe'
 
 const useEagerConnect = () => {
-  const client = useClient()
   const { connectAsync, connectors } = useConnect()
+  const { reconnect } = useReconnect()
   useEffect(() => {
     const connectorInstance = connectors.find((c) => c.id === SAFE_ID && c.ready)
     if (
@@ -14,12 +14,12 @@ const useEagerConnect = () => {
       !window.cy
     ) {
       connectAsync({ connector: connectorInstance }).catch(() => {
-        client.autoConnect()
+        reconnect()
       })
     } else {
-      client.autoConnect()
+      reconnect()
     }
-  }, [client, connectAsync, connectors])
+  }, [connectAsync, connectors, reconnect])
 }
 
 export default useEagerConnect

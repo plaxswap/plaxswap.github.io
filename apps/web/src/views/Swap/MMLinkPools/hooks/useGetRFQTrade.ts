@@ -29,16 +29,14 @@ export const useGetRFQId = (
         (param?.takerSideTokenAmount && param?.takerSideTokenAmount !== '0')),
   )
 
-  const { data, refetch, isLoading } = useQuery(
-    [`RFQ/${rfqUserInputPath.current}`],
-    () => sendRFQAndGetRFQId(param),
-    {
-      refetchInterval: 20000,
-      retry: true,
-      refetchOnWindowFocus: false,
-      enabled,
-    }, // 20sec
-  )
+  const { data, refetch, isLoading } = useQuery({
+    queryKey: [`RFQ/${rfqUserInputPath.current}`],
+    queryFn: () => sendRFQAndGetRFQId(param),
+    refetchInterval: 20000,
+    retry: true,
+    refetchOnWindowFocus: false,
+    enabled,
+  })
   // eslint-disable-next-line no-param-reassign
   if (!data?.message?.rfqId) isRFQLive.current = false
 
@@ -73,7 +71,9 @@ export const useGetRFQTrade = (
     error: errorResponse,
     data: dataResponse,
     isLoading: isLoadingResponse,
-  } = useQuery([`RFQ/${deferredRfqId}`], () => getRFQById(deferredRfqId), {
+  } = useQuery({
+    queryKey: [`RFQ/${deferredRfqId}`],
+    queryFn: () => getRFQById(deferredRfqId),
     enabled,
     staleTime: Infinity,
     retry: (failureCount, err) => {

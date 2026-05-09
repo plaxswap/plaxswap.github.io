@@ -15,7 +15,7 @@ import {
   useToast,
   ReactMarkdown,
 } from '@pancakeswap/uikit'
-import { useWeb3LibraryContext } from '@pancakeswap/wagmi'
+import { useWeb3LibraryContext } from 'web3library'
 import snapshot from '@snapshot-labs/snapshot.js'
 import isEmpty from 'lodash/isEmpty'
 import times from 'lodash/times'

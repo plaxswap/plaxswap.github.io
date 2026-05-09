@@ -9,11 +9,11 @@ import { BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS } from 'config/constants/exc
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useSWRImmutable from 'swr/immutable'
 import { useOfficialsAndUserAddedTokens } from 'hooks/Tokens'
-import { useWeb3LibraryContext } from '@pancakeswap/wagmi'
+import { useWeb3LibraryContext } from 'web3library'
 import useSWR from 'swr'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import { isAddress } from 'utils'
-import { useFeeData } from 'wagmi'
+import { useEstimateFeesPerGas } from 'wagmi'
 
 import { AppState, useAppDispatch } from '../../index'
 import {
@@ -409,17 +409,19 @@ export function useRemoveUserAddedToken(): (chainId: number, address: string) =>
 }
 
 export function useFeeDataWithGasPrice(chainIdOverride?: number): {
-  gasPrice: string
+  gasPrice?: string
   maxFeePerGas?: string
   maxPriorityFeePerGas?: string
 } {
   const { chainId: chainId_ } = useActiveWeb3React()
   const chainId = chainIdOverride ?? chainId_
   const gasPrice = useGasPrice(chainId)
-  const { data } = useFeeData({
+  const { data } = useEstimateFeesPerGas({
     chainId,
-    enabled: chainId !== ChainId.BSC && chainId !== ChainId.BSC_TESTNET,
-    watch: true,
+    query: {
+      enabled: chainId !== ChainId.BSC && chainId !== ChainId.BSC_TESTNET,
+      refetchInterval: 12000,
+    },
   })
 
   if (gasPrice) {
@@ -428,11 +430,21 @@ export function useFeeDataWithGasPrice(chainIdOverride?: number): {
     }
   }
 
-  return (
-    data?.formatted ?? {
-      gasPrice: undefined,
-    }
-  )
+  const feeData: {
+    gasPrice?: string
+    maxFeePerGas?: string
+    maxPriorityFeePerGas?: string
+  } = {}
+
+  const estimatedGasPrice = data?.gasPrice
+  const maxFeePerGas = data?.maxFeePerGas
+  const maxPriorityFeePerGas = data?.maxPriorityFeePerGas
+
+  if (estimatedGasPrice !== undefined) feeData.gasPrice = String(estimatedGasPrice)
+  if (maxFeePerGas !== undefined) feeData.maxFeePerGas = String(maxFeePerGas)
+  if (maxPriorityFeePerGas !== undefined) feeData.maxPriorityFeePerGas = String(maxPriorityFeePerGas)
+
+  return feeData
 }
 
 /**

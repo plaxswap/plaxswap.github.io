@@ -6,13 +6,16 @@ import useAuth from 'hooks/useAuth'
 import { useSessionChainId } from 'hooks/useSessionChainId'
 import { useSwitchNetwork } from 'hooks/useSwitchNetwork'
 import Image from 'next/image'
-import { Chain, useAccount, useNetwork } from 'wagmi'
+import type { Chain } from 'viem'
+import { useAccount } from 'wagmi'
+import { chains } from 'utils/wagmi'
 import Dots from '../Loader/Dots'
 
 // Where page network is not equal to wallet network
 export function WrongNetworkModal({ currentChain, onDismiss }: { currentChain: Chain; onDismiss: () => void }) {
   const { switchNetworkAsync, isLoading, canSwitch } = useSwitchNetwork()
-  const { chain } = useNetwork()
+  const { chainId: connectedChainId } = useAccount()
+  const chain = chains.find((c) => c.id === connectedChainId)
   const { logout } = useAuth()
   const { isConnected } = useAccount()
   const [, setSessionChainId] = useSessionChainId()

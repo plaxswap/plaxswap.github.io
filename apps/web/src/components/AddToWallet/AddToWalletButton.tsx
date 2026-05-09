@@ -10,8 +10,7 @@ import {
   TrustWalletIcon,
 } from '@pancakeswap/uikit'
 import { useAccount } from 'wagmi'
-import { canRegisterToken } from '../../utils/wallet'
-import { BAD_SRCS } from '../Logo/constants'
+import { canRegisterToken, registerToken } from '../../utils/wallet'
 
 export enum AddToWalletTextOptions {
   NO_TEXT,
@@ -85,21 +84,14 @@ const AddToWalletButton: React.FC<AddToWalletButtonProps & ButtonProps> = ({
   const isCanRegisterToken = canRegisterToken()
 
   if (connector && connector.name === 'Binance') return null
-  if (!(connector && connector.watchAsset && isConnected)) return null
+  if (!(connector && isConnected)) return null
   if (!isCanRegisterToken) return null
 
   return (
     <Button
       {...props}
       onClick={() => {
-        const image = tokenLogo ? (BAD_SRCS[tokenLogo] ? undefined : tokenLogo) : undefined
-        connector.watchAsset?.({
-          address: tokenAddress,
-          symbol: tokenSymbol,
-          image,
-          // @ts-ignore
-          decimals: tokenDecimals,
-        })
+        registerToken(tokenAddress, tokenSymbol, tokenDecimals, tokenLogo)
       }}
     >
       {getWalletText(textOptions, tokenSymbol, t)}

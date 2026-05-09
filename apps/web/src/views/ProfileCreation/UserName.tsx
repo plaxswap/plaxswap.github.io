@@ -17,7 +17,7 @@ import {
   WarningIcon,
 } from '@pancakeswap/uikit'
 import { useDebounce } from '@pancakeswap/hooks'
-import { useSignMessage } from '@pancakeswap/wagmi'
+import { useAccount, useSignMessage } from 'wagmi'
 import { API_PROFILE } from 'config/constants/endpoints'
 import { FetchStatus } from 'config/constants/types'
 import { formatDistance, parseISO } from 'date-fns'
@@ -25,7 +25,6 @@ import { useGetCakeBalance } from 'hooks/useTokenBalance'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import fetchWithTimeout from 'utils/fetchWithTimeout'
-import { useAccount } from 'wagmi'
 import { REGISTER_COST, USERNAME_MAX_LENGTH, USERNAME_MIN_LENGTH } from './config'
 import ConfirmProfileCreationModal from './ConfirmProfileCreationModal'
 import useProfileCreation from './contexts/hook'
@@ -139,10 +138,15 @@ const UserName: React.FC<React.PropsWithChildren> = () => {
   }
 
   const handleConfirm = async () => {
+    if (!account) {
+      toastError(t('Error'), t('Please connect your wallet'))
+      return
+    }
+
     try {
       setIsLoading(true)
 
-      const signature = await signMessageAsync({ message: userName })
+      const signature = await signMessageAsync({ account, message: userName })
       const response = await fetch(`${API_PROFILE}/api/users/register`, {
         method: 'POST',
         headers: {

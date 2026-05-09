@@ -39,6 +39,14 @@ function TradeSummary({
   const lpHoldersFeePercent = `${(LP_HOLDERS_FEE * 100).toFixed(2)}%`
   const treasuryFeePercent = `${(TREASURY_FEE * 100).toFixed(4)}%`
   const buyBackFeePercent = `${(BUYBACK_FEE * 100).toFixed(4)}%`
+  const slippageAdjustedOutput = slippageAdjustedAmounts[Field.OUTPUT]
+  const slippageAdjustedInput = slippageAdjustedAmounts[Field.INPUT]
+  const slippageAdjustedAmountText =
+    isExactIn && slippageAdjustedOutput && outputAmount
+      ? `${slippageAdjustedOutput.toSignificant(4)} ${outputAmount.currency.symbol}`
+      : !isExactIn && slippageAdjustedInput && inputAmount
+      ? `${slippageAdjustedInput.toSignificant(4)} ${inputAmount.currency.symbol}`
+      : '-'
 
   return (
     <AutoColumn style={{ padding: '0 16px' }}>
@@ -56,11 +64,7 @@ function TradeSummary({
           />
         </RowFixed>
         <RowFixed>
-          <Text fontSize="14px">
-            {isExactIn
-              ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${outputAmount.currency.symbol}` ?? '-'
-              : `${slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4)} ${inputAmount.currency.symbol}` ?? '-'}
-          </Text>
+          <Text fontSize="14px">{slippageAdjustedAmountText}</Text>
         </RowFixed>
       </RowBetween>
       {priceImpactWithoutFee && (

@@ -15,7 +15,7 @@ import {
   ExtractAbiFunction,
   ExtractAbiFunctionNames,
   Narrow,
-  ResolvedConfig,
+  ResolvedRegister,
 } from 'abitype'
 import { ethers } from 'ethers'
 
@@ -529,16 +529,16 @@ export type GetOverridesForAbiStateMutability<TAbiStateMutability extends AbiSta
 
 // Update `ethers.Overrides` to use abitype config
 export interface Overrides extends ethers.Overrides {
-  gasLimit?: ResolvedConfig['BigIntType']
-  gasPrice?: ResolvedConfig['BigIntType']
-  maxFeePerGas?: ResolvedConfig['BigIntType']
-  maxPriorityFeePerGas?: ResolvedConfig['BigIntType']
-  nonce?: ResolvedConfig['IntType']
+  gasLimit?: ResolvedRegister['bigIntType']
+  gasPrice?: ResolvedRegister['bigIntType']
+  maxFeePerGas?: ResolvedRegister['bigIntType']
+  maxPriorityFeePerGas?: ResolvedRegister['bigIntType']
+  nonce?: ResolvedRegister['intType']
 }
 
 // Update `ethers.PayableOverrides` to use abitype config
 export interface PayableOverrides extends Overrides {
-  value?: ResolvedConfig['IntType'] | ResolvedConfig['BigIntType']
+  value?: ResolvedRegister['intType'] | ResolvedRegister['bigIntType']
 }
 
 // Update `ethers.CallOverrides` to use abitype config

@@ -5,14 +5,7 @@ import replaceBrowserHistory from '@pancakeswap/utils/replaceBrowserHistory'
 import { ConnectorNames } from 'config/wallet'
 import { useCallback } from 'react'
 import { useAppDispatch } from 'state'
-import {
-  ConnectorNotFoundError,
-  SwitchChainError,
-  SwitchChainNotSupportedError,
-  useConnect,
-  useDisconnect,
-  useNetwork,
-} from 'wagmi'
+import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import { clearUserStates } from '../utils/clearUserStates'
 import { useActiveChainId } from './useActiveChainId'
 import { useSessionChainId } from './useSessionChainId'
@@ -20,7 +13,7 @@ import { useSessionChainId } from './useSessionChainId'
 const useAuth = () => {
   const dispatch = useAppDispatch()
   const { connectAsync, connectors } = useConnect()
-  const { chain } = useNetwork()
+  const { chainId: connectedChainId } = useAccount()
   const { disconnectAsync } = useDisconnect()
   const { chainId } = useActiveChainId()
   const [, setSessionChainId] = useSessionChainId()
@@ -31,16 +24,16 @@ const useAuth = () => {
       const findConnector = connectors.find((c) => c.id === connectorID)
       try {
         const connected = await connectAsync({ connector: findConnector, chainId })
-        if (!connected.chain.unsupported && connected.chain.id !== chainId) {
-          replaceBrowserHistory('chain', CHAIN_QUERY_NAME[connected.chain.id])
-          setSessionChainId(connected.chain.id)
+        if (connected.chainId && connected.chainId !== chainId) {
+          replaceBrowserHistory('chain', CHAIN_QUERY_NAME[connected.chainId])
+          setSessionChainId(connected.chainId)
         }
         return connected
       } catch (error) {
-        if (error instanceof ConnectorNotFoundError) {
+        if (!findConnector) {
           throw new WalletConnectorNotFoundError()
         }
-        if (error instanceof SwitchChainNotSupportedError || error instanceof SwitchChainError) {
+        if (error) {
           throw new WalletSwitchChainError(t('Unable to switch network. Please try it on your wallet'))
         }
       }
@@ -55,9 +48,9 @@ const useAuth = () => {
     } catch (error) {
       console.error(error)
     } finally {
-      clearUserStates(dispatch, { chainId: chain?.id })
+      clearUserStates(dispatch, { chainId: connectedChainId })
     }
-  }, [disconnectAsync, dispatch, chain?.id])
+  }, [disconnectAsync, dispatch, connectedChainId])
 
   return { login, logout }
 }

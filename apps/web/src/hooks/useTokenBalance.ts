@@ -9,7 +9,7 @@ import { useMemo } from 'react'
 import useSWR from 'swr'
 import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
 import { bscRpcProvider } from 'utils/providers'
-import { useWeb3React } from '@pancakeswap/wagmi'
+import { useWeb3React } from 'web3library'
 import { useTokenContract } from './useContract'
 import { useSWRContract } from './useSWRContract'
 

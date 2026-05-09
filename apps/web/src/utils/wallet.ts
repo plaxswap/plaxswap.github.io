@@ -1,5 +1,5 @@
 // Set of helper functions to facilitate wallet setup
-import { Address } from 'wagmi'
+import type { Address } from 'viem'
 import { BAD_SRCS } from '../components/Logo/constants'
 
 /**

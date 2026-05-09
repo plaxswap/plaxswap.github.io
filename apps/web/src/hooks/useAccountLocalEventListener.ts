@@ -13,12 +13,12 @@ export const useAccountLocalEventListener = () => {
         dispatch(resetUserState({ chainId }))
       }
 
-      connector.addListener('disconnect', handleEvent)
-      connector.addListener('change', handleEvent)
+      connector.emitter.on('disconnect', handleEvent)
+      connector.emitter.on('change', handleEvent)
 
       return () => {
-        connector.removeListener('disconnect', handleEvent)
-        connector.removeListener('change', handleEvent)
+        connector.emitter.off('disconnect', handleEvent)
+        connector.emitter.off('change', handleEvent)
       }
     }
     return undefined

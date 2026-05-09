@@ -80,7 +80,9 @@ export const useOrderBookQuote = (
       request.takerSideTokenAmount !== '0' &&
       checkOrderBookShouldRefetch(rfqInputPath, rfqUserInputPath, isRFQLive),
   )
-  const { data, isLoading } = useQuery([`orderBook/${inputPath}`], () => getMMOrderBook(request), {
+  const { data, isLoading } = useQuery({
+    queryKey: [`orderBook/${inputPath}`],
+    queryFn: () => getMMOrderBook(request),
     refetchInterval: 5000,
     enabled,
   })

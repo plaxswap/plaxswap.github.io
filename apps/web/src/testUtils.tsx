@@ -10,7 +10,7 @@ import Provider from 'Providers'
 import { initializeStore, makeStore } from 'state'
 import { SWRConfig } from 'swr'
 import { vi } from 'vitest'
-import { WagmiConfig } from 'wagmi'
+import { WagmiProvider } from 'wagmi'
 import { client } from './utils/wagmi'
 
 const mockRouter: NextRouter = {
@@ -60,15 +60,15 @@ export const createSWRWrapper =
   (fallbackData = undefined) =>
   ({ children }) =>
     (
-      <WagmiConfig client={client}>
+      <WagmiProvider config={client}>
         <SWRConfig value={{ fallback: fallbackData }}>{children}</SWRConfig>
-      </WagmiConfig>
+      </WagmiProvider>
     )
 
 export const createWagmiWrapper =
   () =>
   ({ children }) =>
-    <WagmiConfig client={client}>{children}</WagmiConfig>
+    <WagmiProvider config={client}>{children}</WagmiProvider>
 
 // re-export everything
 export * from '@testing-library/react'

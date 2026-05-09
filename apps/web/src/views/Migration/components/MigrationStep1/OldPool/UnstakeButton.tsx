@@ -1,6 +1,6 @@
 import { useTranslation } from '@pancakeswap/localization'
 import { AutoRenewIcon, Button, useToast, Pool } from '@pancakeswap/uikit'
-import { useAccount, useSigner } from 'wagmi'
+import { useAccount } from 'wagmi'
 import BigNumber from 'bignumber.js'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import cakeVaultAbi from 'config/abi/cakeVaultV2.json'
@@ -16,6 +16,7 @@ import { cakeVaultAddress, ifoPoolV1Contract, useVaultPoolByKeyV1 } from 'views/
 import { Token } from '@pancakeswap/sdk'
 import { useFetchUserPools } from '../../../hook/V1/Pool/useFetchUserPools'
 import useUnstakePool from '../../../hook/V1/Pool/useUnstakePool'
+import { useEthersSigner as useSigner } from '../../../../../hooks/useEthersSigner'
 
 export interface UnstakeButtonProps {
   pool: Pool.DeserializedPool<Token>

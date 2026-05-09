@@ -18,6 +18,7 @@ import useNativeCurrency from 'hooks/useNativeCurrency'
 import useTokenBalance, { useGetCakeBalance } from 'hooks/useTokenBalance'
 import { ChainLogo } from 'components/Logo/ChainLogo'
 
+import { BigNumber } from '@ethersproject/bignumber'
 import { getBlockExploreLink, getBlockExploreName } from 'utils'
 import { formatBigNumber, getFullDisplayBalance } from '@pancakeswap/utils/formatBalance'
 import { useBalance } from 'wagmi'
@@ -26,6 +27,10 @@ import CakeBenefitsCard from './CakeBenefitsCard'
 const COLORS = {
   ETH: '#627EEA',
   BNB: '#14151A',
+}
+
+const formatWagmiBalance = (value: bigint, decimalsToShow = 6) => {
+  return formatBigNumber(BigNumber.from(value.toString()), decimalsToShow)
 }
 
 interface WalletInfoProps {
@@ -39,7 +44,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
   const { account, chainId, chain } = useActiveWeb3React()
   const isBSC = chainId === ChainId.BSC
   const bnbBalance = useBalance({ address: account, chainId: ChainId.BSC })
-  const nativeBalance = useBalance({ address: account, enabled: !isBSC })
+  const nativeBalance = useBalance({ address: account, query: { enabled: !isBSC } })
   const native = useNativeCurrency()
   const wNativeToken = !isBSC ? WNATIVE[chainId] : null
   const wBNBToken = WNATIVE[ChainId.BSC]
@@ -95,7 +100,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
             {!nativeBalance.isFetched ? (
               <Skeleton height="22px" width="60px" />
             ) : (
-              <Text>{formatBigNumber(nativeBalance.data.value, 6)}</Text>
+              <Text>{formatWagmiBalance(nativeBalance.data.value, 6)}</Text>
             )}
           </Flex>
           {wNativeBalance.gt(0) && (
@@ -129,7 +134,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
           {!bnbBalance.isFetched ? (
             <Skeleton height="22px" width="60px" />
           ) : (
-            <Text>{formatBigNumber(bnbBalance.data.value, 6)}</Text>
+            <Text>{formatWagmiBalance(bnbBalance.data.value, 6)}</Text>
           )}
         </Flex>
         {wBNBBalance.gt(0) && (

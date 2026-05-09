@@ -27,7 +27,7 @@ import {
 } from '@pancakeswap/uikit'
 // import { V3SwapPromotionIcon } from 'components/V3SwapPromotionIcon'
 import { useDebouncedChangeHandler } from '@pancakeswap/hooks'
-import { useWeb3LibraryContext } from '@pancakeswap/wagmi'
+import { useWeb3LibraryContext } from 'web3library'
 import { BigNumber } from '@ethersproject/bignumber'
 import { callWithEstimateGas } from 'utils/calls'
 import { getLPSymbol } from 'utils/getLpSymbol'

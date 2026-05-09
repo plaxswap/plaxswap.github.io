@@ -1,145 +1,119 @@
-import { BinanceWalletConnector } from '@pancakeswap/wagmi/connectors/binanceWallet'
-import { BloctoConnector } from '@pancakeswap/wagmi/connectors/blocto'
-import { TrustWalletConnector } from '@pancakeswap/wagmi/connectors/trustWallet'
-import { 
-  // bsc, bscTestnet, goerli, 
-  mainnet, polygon, polygonMumbai } from 'wagmi/chains'
-// import { canto } from '../../../../packages/wagmi/src/chains'
-// import { core } from '../../../../packages/wagmi/src/chains'
-import { configureChains, createClient } from 'wagmi'
+import { JsonRpcProvider, FallbackProvider, Web3Provider } from '@ethersproject/providers'
+import { getClient, getConnectorClient, injected } from '@wagmi/core'
 import memoize from 'lodash/memoize'
-import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
-import { InjectedConnector } from 'wagmi/connectors/injected'
-import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
-import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
-import { LedgerConnector } from 'wagmi/connectors/ledger'
-import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
-import { SafeConnector } from './safeConnector'
+import { createConfig, http } from 'wagmi'
+import { polygon, polygonMumbai } from 'wagmi/chains'
+import type { Transport } from 'viem'
+import { metaMask } from '@wagmi/connectors/dist/esm/metaMask'
+import { safe } from '@wagmi/connectors/dist/esm/safe'
+import { walletConnect } from '@wagmi/connectors/dist/esm/walletConnect'
 
-// const CHAINS = [bsc, mainnet, bscTestnet, goerli, polygon]
-const CHAINS = [polygon, polygonMumbai]
+export const chains = [polygon, polygonMumbai]
 
-const getNodeRealUrl = (networkName: string) => {
-  let host = null
+const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '9ba1c138ff7ad815f7026b920b652f0b'
 
-  switch (networkName) {
-    case 'homestead':
-      if (process.env.NEXT_PUBLIC_NODE_REAL_API_ETH) {
-        host = `eth-mainnet.nodereal.io/v1/${process.env.NEXT_PUBLIC_NODE_REAL_API_ETH}`
-      }
-      break
-    case 'goerli':
-      if (process.env.NEXT_PUBLIC_NODE_REAL_API_GOERLI) {
-        host = `eth-goerli.nodereal.io/v1/${process.env.NEXT_PUBLIC_NODE_REAL_API_GOERLI}`
-      }
-      break
-    default:
-      host = null
+const getRpcUrl = (chain: (typeof chains)[number]) => {
+  if (!!process.env.NEXT_PUBLIC_NODE_PRODUCTION && chain.id === polygon.id) {
+    return process.env.NEXT_PUBLIC_NODE_PRODUCTION
   }
-
-  if (!host) {
-    return null
-  }
-
-  const url = `https://${host}`
-  return {
-    http: url,
-    webSocket: url.replace(/^http/i, 'wss').replace('.nodereal.io/v1', '.nodereal.io/ws/v1'),
-  }
+  return chain.rpcUrls.default.http[0]
 }
 
-export const { provider, chains } = configureChains(CHAINS, [
-  jsonRpcProvider({
-    rpc: (chain) => {
-      if (!!process.env.NEXT_PUBLIC_NODE_PRODUCTION && chain.id === polygon.id) {
-        return { http: process.env.NEXT_PUBLIC_NODE_PRODUCTION }
-      }
-      if (process.env.NODE_ENV === 'test' && chain.id === mainnet.id) {
-        return { http: 'https://cloudflare-eth.com' }
-      }
+export const injectedConnector = injected({
+  shimDisconnect: false,
+})
 
-      return getNodeRealUrl(chain.network) || { http: chain.rpcUrls.default.http[0] }
-    },
-  }),
-])
+export const coinbaseConnector = injectedConnector
 
-export const injectedConnector = new InjectedConnector({
-  chains,
-  options: {
-    shimDisconnect: false,
-    shimChainChangedDisconnect: true,
+export const walletConnectConnector = walletConnect({
+  projectId: walletConnectProjectId,
+  showQrModal: true,
+  metadata: {
+    name: 'Plaxswap',
+    description: 'DEX on Polygon',
+    url: 'https://plaxswap.io',
+    icons: ['https://plaxswap.github.io/blockchain/logo.png'],
   },
 })
 
-export const coinbaseConnector = new CoinbaseWalletConnector({
-  chains,
-  options: {
-    appName: 'PancakeSwap',
-    appLogoUrl: 'https://pancakeswap.com/logo.png',
+export const walletConnectNoQrCodeConnector = walletConnect({
+  projectId: walletConnectProjectId,
+  showQrModal: false,
+  metadata: {
+    name: 'Plaxswap',
+    description: 'DEX on Polygon',
+    url: 'https://plaxswap.io',
+    icons: ['https://plaxswap.github.io/blockchain/logo.png'],
   },
 })
 
-export const walletConnectConnector = new WalletConnectConnector({
-  chains,
-  options: {
-    qrcode: true,
+export const metaMaskConnector = metaMask({
+  dappMetadata: {
+    name: 'Plaxswap',
+    url: 'https://plaxswap.io',
+    iconUrl: 'https://plaxswap.github.io/blockchain/logo.png',
   },
 })
 
-export const walletConnectNoQrCodeConnector = new WalletConnectConnector({
-  chains,
-  options: {
-    qrcode: false,
+export const bscConnector = injectedConnector
+export const bloctoConnector = injectedConnector
+export const ledgerConnector = injectedConnector
+export const trustWalletConnector = injectedConnector
+
+export const config = createConfig({
+  chains: [polygon, polygonMumbai],
+  transports: {
+    [polygon.id]: http(getRpcUrl(polygon)),
+    [polygonMumbai.id]: http(getRpcUrl(polygonMumbai)),
   },
-})
-
-export const metaMaskConnector = new MetaMaskConnector({
-  chains,
-  options: {
-    shimDisconnect: false,
-    shimChainChangedDisconnect: true,
-  },
-})
-
-const bloctoConnector = new BloctoConnector({
-  chains,
-  options: {
-    defaultChainId: 137,
-    appId: 'e2f2f0cd-3ceb-4dec-b293-bb555f2ed5af',
-  },
-})
-
-const ledgerConnector = new LedgerConnector({
-  chains,
-})
-
-export const bscConnector = new BinanceWalletConnector({ chains })
-
-export const trustWalletConnector = new TrustWalletConnector({
-  chains,
-  options: {
-    shimDisconnect: false,
-    shimChainChangedDisconnect: true,
-  },
-})
-
-export const client = createClient({
-  autoConnect: false,
-  provider,
   connectors: [
-    new SafeConnector({ chains }),
+    safe(),
     metaMaskConnector,
     injectedConnector,
     coinbaseConnector,
     walletConnectConnector,
-    bscConnector,
-    bloctoConnector,
-    ledgerConnector,
     trustWalletConnector,
   ],
 })
 
-export const CHAIN_IDS = chains.map((c) => c.id)
+export const client = config
+
+const clientToProvider = (clientConfig: any) => {
+  const { chain, transport } = clientConfig
+  const network = {
+    chainId: chain.id,
+    name: chain.name,
+    ensAddress: chain.contracts?.ensRegistry?.address,
+  }
+
+  if (transport.type === 'fallback') {
+    return new FallbackProvider(
+      (transport.transports as ReturnType<Transport>[]).map(
+        ({ value }) => new JsonRpcProvider(value?.url, network),
+      ),
+    )
+  }
+
+  return new JsonRpcProvider((transport as any).url, network)
+}
+
+export const provider = ({ chainId }: { chainId?: number } = {}) => {
+  const publicClient = getClient(config, { chainId: chainId as any })
+  return publicClient ? clientToProvider(publicClient) : undefined
+}
+
+export const getEthersSigner = async ({ chainId }: { chainId?: number } = {}) => {
+  const walletClient = await getConnectorClient(config, { chainId: chainId as any })
+  const { account, chain, transport } = walletClient as any
+  const network = {
+    chainId: chain.id,
+    name: chain.name,
+    ensAddress: chain.contracts?.ensRegistry?.address,
+  }
+  return new Web3Provider(transport, network).getSigner(account.address)
+}
+
+export const CHAIN_IDS: number[] = chains.map((c) => c.id)
 
 export const isChainSupported = memoize((chainId: number) => CHAIN_IDS.includes(chainId))
 export const isChainTestnet = memoize((chainId: number) => chains.find((c) => c.id === chainId)?.testnet)

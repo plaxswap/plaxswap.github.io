@@ -19,10 +19,10 @@ import useSWRImmutable from 'swr/immutable'
 import getLpAddress from 'utils/getLpAddress'
 import { multiplyPriceByAmount } from 'utils/prices'
 import { isChainTestnet } from 'utils/wagmi'
-import { useProvider } from 'wagmi'
 import { usePairContract } from './useContract'
 import { PairState, usePairs } from './usePairs'
 import { useActiveChainId } from './useActiveChainId'
+import { useEthersProvider } from './useEthersProvider'
 
 /**
  * Returns the price in BUSD of the input currency
@@ -121,7 +121,7 @@ export const usePriceByPairs = (currencyA?: Currency, currencyB?: Currency) => {
   const [tokenA, tokenB] = [currencyA?.wrapped, currencyB?.wrapped]
   const pairAddress = getLpAddress(tokenA, tokenB)
   const pairContract = usePairContract(pairAddress)
-  const provider = useProvider({ chainId: currencyA.chainId })
+  const provider = useEthersProvider({ chainId: currencyA.chainId })
 
   const { data: price } = useSWR(
     currencyA && currencyB && ['pair-price', currencyA, currencyB],

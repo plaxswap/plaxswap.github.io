@@ -1,27 +1,22 @@
 /* eslint-disable no-console */
 import { useCallback } from 'react'
-
 import { useToast } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
-import { MiniProgramConnector } from '@pancakeswap/wagmi/connectors/miniProgram'
-import { useConnect } from 'wagmi'
 import getWeb3Provider from 'utils/mpBridge'
-import { chains } from '../utils/wagmi'
 
-const injected = new MiniProgramConnector({ chains, getWeb3Provider })
-export const getAccount = () => injected.getAccount()
+export const getAccount = async () => {
+  const provider = await getWeb3Provider()
+  const accounts = await provider?.request?.({ method: 'eth_accounts' })
+  return accounts?.[0]
+}
 
 const useActive = () => {
-  const { connectAsync } = useConnect()
-  return useCallback(
-    () =>
-      connectAsync({ connector: injected }).catch((error) => {
-        console.log('🚀 ~ file: useEagerConnect.ts ~ line 183 ~ activate ~ error', error)
-        // captureException(error)
-      }),
-    [connectAsync],
-  )
+  return useCallback(async () => {
+    const provider = await getWeb3Provider()
+    await provider?.request?.({ method: 'eth_requestAccounts' })
+  }, [])
 }
+
 export const useEagerConnect = () => {
   // noop
 }
@@ -32,9 +27,6 @@ export const useActiveHandle = () => {
   const { t } = useTranslation()
 
   const main = async () => {
-    /**
-     *  backward
-     */
     console.log('~ before getAccount')
     const address = await getAccount()
     console.log('~ after getAccount', address)
@@ -42,6 +34,7 @@ export const useActiveHandle = () => {
       handleActive().then(resolve)
     })
   }
+
   return async (showToast = true) => {
     await main()
     const address = await getAccount()
@@ -50,4 +43,5 @@ export const useActiveHandle = () => {
     }
   }
 }
+
 export default useEagerConnect

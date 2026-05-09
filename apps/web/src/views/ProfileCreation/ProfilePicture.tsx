@@ -11,7 +11,7 @@ import {
   useToast,
   NextLinkFromReactRouter,
 } from '@pancakeswap/uikit'
-import { useAccount, useSigner } from 'wagmi'
+import { useAccount } from 'wagmi'
 import { getPancakeProfileAddress } from 'utils/addressHelpers'
 import { getErc721Contract } from 'utils/contractHelpers'
 import { useTranslation } from '@pancakeswap/localization'
@@ -27,6 +27,7 @@ import { ProfileCreationContext } from './contexts/ProfileCreationProvider'
 import multicall from '../../utils/multicall'
 import profileABI from '../../config/abi/pancakeProfile.json'
 import { useNftsForAddress } from '../Nft/market/hooks/useNftsForAddress'
+import { useEthersSigner as useSigner } from '../../hooks/useEthersSigner'
 
 const Link = styled(NextLinkFromReactRouter)`
   color: ${({ theme }) => theme.colors.primary};

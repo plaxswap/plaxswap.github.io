@@ -1,7 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import { ExtendEthereum } from 'global'
 import replaceBrowserHistory from '@pancakeswap/utils/replaceBrowserHistory'
-import { ConnectorData } from 'wagmi'
 import { CHAIN_QUERY_NAME } from 'config/chains'
 import { useAppDispatch } from '../state'
 import { clearUserStates } from '../utils/clearUserStates'
@@ -19,8 +18,8 @@ export const useAccountEventListener = () => {
 
   useEffect(() => {
     if (account && connector) {
-      const handleUpdateEvent = (e: ConnectorData<any>) => {
-        if (e?.chain?.id && !(e?.chain?.unsupported ?? false)) {
+      const handleUpdateEvent = (e: any) => {
+        if (e?.chain?.id) {
           replaceBrowserHistory('chain', CHAIN_QUERY_NAME[e.chain.id])
           setSessionChainId(e.chain.id)
         }
@@ -35,12 +34,12 @@ export const useAccountEventListener = () => {
         clearUserStates(dispatch, { chainId })
       }
 
-      connector.addListener('disconnect', handleDeactiveEvent)
-      connector.addListener('change', handleUpdateEvent)
+      connector.emitter?.on('disconnect', handleDeactiveEvent)
+      connector.emitter?.on('change', handleUpdateEvent)
 
       return () => {
-        connector.removeListener('disconnect', handleDeactiveEvent)
-        connector.removeListener('change', handleUpdateEvent)
+        connector.emitter?.off('disconnect', handleDeactiveEvent)
+        connector.emitter?.off('change', handleUpdateEvent)
       }
     }
     return undefined

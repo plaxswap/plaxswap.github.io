@@ -1,13 +1,13 @@
-import { useWeb3React } from '@pancakeswap/wagmi'
+import { useWeb3React } from 'web3library'
 import { useRouter, NextRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import { EXCHANGE_PAGE_PATHS } from 'config/constants/exchange'
-import { isChainSupported } from 'utils/wagmi'
-import { useProvider } from 'wagmi'
+import { chains, isChainSupported } from 'utils/wagmi'
 import { ChainId } from '@pancakeswap/sdk'
 import { getChainId, CHAIN_QUERY_NAME } from 'config/chains'
 import { useActiveChainId } from './useActiveChainId'
 import { useSwitchNetworkLoading } from './useSwitchNetworkLoading'
+import { useEthersProvider } from './useEthersProvider'
 
 const getHashFromRouter = (router: NextRouter) => {
   return router.asPath.match(/#([a-z0-9]+)/gi)
@@ -57,11 +57,12 @@ export function useNetworkConnectorUpdater() {
 const useActiveWeb3React = () => {
   const web3React = useWeb3React()
   const { chainId, isWrongNetwork } = useActiveChainId()
-  const provider = useProvider({ chainId })
+  const provider = useEthersProvider({ chainId })
 
   return {
     provider,
     ...web3React,
+    chain: chains.find((c) => c.id === chainId),
     chainId,
     isWrongNetwork,
   }

@@ -3,7 +3,6 @@ import merge from 'lodash/merge'
 import pickBy from 'lodash/pickBy'
 import forEach from 'lodash/forEach'
 import { useTranslation } from '@pancakeswap/localization'
-import { useProvider } from 'wagmi'
 import { poll } from '@ethersproject/web'
 import { ToastDescriptionWithTx } from 'components/Toast'
 import { Box, Text, useToast } from '@pancakeswap/uikit'
@@ -20,6 +19,7 @@ import {
 import { useAllChainTransactions } from './hooks'
 import { fetchCelerApi } from './fetchCelerApi'
 import { TransactionDetails } from './reducer'
+import { useEthersProvider } from '../../hooks/useEthersProvider'
 
 export function shouldCheck(
   fetchedTransactions: { [txHash: string]: TransactionDetails },
@@ -30,7 +30,7 @@ export function shouldCheck(
 }
 
 export const Updater: React.FC<{ chainId: number }> = ({ chainId }) => {
-  const provider = useProvider({ chainId })
+  const provider = useEthersProvider({ chainId })
   const { t } = useTranslation()
 
   const dispatch = useAppDispatch()
