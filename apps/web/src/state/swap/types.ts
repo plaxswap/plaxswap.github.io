@@ -19,6 +19,14 @@ export type PairPricesNormalized = {
   value: number
 }[]
 
+export type PairCandlesNormalized = {
+  time: number
+  open: number
+  high: number
+  low: number
+  close: number
+}[]
+
 export enum PairDataTimeWindowEnum {
   DAY,
   WEEK,

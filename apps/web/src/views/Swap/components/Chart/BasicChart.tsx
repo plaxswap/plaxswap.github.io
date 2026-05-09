@@ -1,14 +1,19 @@
 import { Box, ButtonMenu, ButtonMenuItem, Flex, Text } from '@pancakeswap/uikit'
 import { useTranslation } from '@pancakeswap/localization'
-import { useState, memo } from 'react'
+import { useEffect, useMemo, useState, memo } from 'react'
 import { useFetchPairPrices } from 'state/swap/hooks'
 import dynamic from 'next/dynamic'
-import { PairDataTimeWindowEnum } from 'state/swap/types'
+import { PairCandlesNormalized, PairDataTimeWindowEnum } from 'state/swap/types'
+import fetchPairCandleData from 'state/swap/fetch/fetchPairCandleData'
 import NoChartAvailable from './NoChartAvailable'
 import PairPriceDisplay from '../../../../components/PairPriceDisplay'
 import { getTimeWindowChange } from './utils'
 
 const SwapLineChart = dynamic(() => import('./SwapLineChart'), {
+  ssr: false,
+})
+
+const SwapCandleChart = dynamic(() => import('./SwapCandleChart'), {
   ssr: false,
 })
 
@@ -29,10 +34,16 @@ const BasicChart = ({
     timeWindow,
     currentSwapPrice,
   })
+  const [pairCandles, setPairCandles] = useState<PairCandlesNormalized>([])
   const [hoverValue, setHoverValue] = useState<number | undefined>()
   const [hoverDate, setHoverDate] = useState<string | undefined>()
-  const valueToDisplay = hoverValue || pairPrices[pairPrices.length - 1]?.value
-  const { changePercentage, changeValue } = getTimeWindowChange(pairPrices)
+  const candlePrices = useMemo(
+    () => pairCandles.map(({ time, close }) => ({ time: new Date(time * 1000), value: close })),
+    [pairCandles],
+  )
+  const chartPrices = candlePrices.length > 0 ? candlePrices : pairPrices
+  const valueToDisplay = hoverValue || chartPrices[chartPrices.length - 1]?.value
+  const { changePercentage, changeValue } = getTimeWindowChange(chartPrices)
   const isChangePositive = changeValue >= 0
   const chartHeight = isChartExpanded ? 'calc(100vh - 220px)' : '320px'
   const {
@@ -47,6 +58,29 @@ const BasicChart = ({
     minute: '2-digit',
   })
 
+  useEffect(() => {
+    let cancelled = false
+
+    const fetchCandles = async () => {
+      if (!pairId || !token0Address) {
+        setPairCandles([])
+        return
+      }
+
+      const candles = await fetchPairCandleData(pairId, token0Address, timeWindow)
+
+      if (!cancelled) {
+        setPairCandles(candles)
+      }
+    }
+
+    fetchCandles()
+
+    return () => {
+      cancelled = true
+    }
+  }, [pairId, timeWindow, token0Address])
+
   // Sometimes we might receive array full of zeros for obscure tokens while trying to derive data
   // In that case chart is not useful to users
   const isBadData =
@@ -56,7 +90,7 @@ const BasicChart = ({
       (price) => !price.value || price.value === 0 || price.value === Infinity || Number.isNaN(price.value),
     )
 
-  if (isBadData) {
+  if (isBadData && pairCandles.length === 0) {
     return (
       <NoChartAvailable
         token0Address={token0Address}
@@ -100,14 +134,24 @@ const BasicChart = ({
         </Box>
       </Flex>
       <Box height={isMobile ? '100%' : chartHeight} p={isMobile ? '0px' : '16px'} width="100%">
-        <SwapLineChart
-          data={pairPrices}
-          setHoverValue={setHoverValue}
-          setHoverDate={setHoverDate}
-          isChangePositive={isChangePositive}
-          isChartExpanded={isChartExpanded}
-          timeWindow={timeWindow}
-        />
+        {pairCandles.length > 0 ? (
+          <SwapCandleChart
+            data={pairCandles}
+            setHoverValue={setHoverValue}
+            setHoverDate={setHoverDate}
+            isChartExpanded={isChartExpanded}
+            timeWindow={timeWindow}
+          />
+        ) : (
+          <SwapLineChart
+            data={pairPrices}
+            setHoverValue={setHoverValue}
+            setHoverDate={setHoverDate}
+            isChangePositive={isChangePositive}
+            isChartExpanded={isChartExpanded}
+            timeWindow={timeWindow}
+          />
+        )}
       </Box>
     </>
   )
