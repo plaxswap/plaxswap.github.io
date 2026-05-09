@@ -11,6 +11,11 @@ const viemRoots = [
   path.join(workspaceRoot, 'apps', 'web', 'node_modules', 'viem'),
 ].filter((dir, index, roots) => fs.existsSync(dir) && roots.indexOf(dir) === index)
 
+const wagmiCoreRoots = [
+  path.join(workspaceRoot, 'node_modules', '@wagmi', 'core'),
+  path.join(workspaceRoot, 'apps', 'web', 'node_modules', '@wagmi', 'core'),
+].filter((dir, index, roots) => fs.existsSync(dir) && roots.indexOf(dir) === index)
+
 const keepTsRoots = new Set(['_types', '_esm', '_cjs'])
 
 function removeSourceTs(viemRoot, dir) {
@@ -50,6 +55,16 @@ function patchFile(filePath, patches) {
     fs.writeFileSync(filePath, content)
     log(`patched ${path.relative(workspaceRoot, filePath)}`)
   }
+}
+
+function overwriteFile(filePath, content) {
+  if (!fs.existsSync(filePath)) return
+
+  const current = fs.readFileSync(filePath, 'utf8')
+  if (current === content) return
+
+  fs.writeFileSync(filePath, content)
+  log(`patched ${path.relative(workspaceRoot, filePath)}`)
 }
 
 if (viemRoots.length === 0) log('node_modules/viem not found, skipping viem patch')
@@ -122,6 +137,49 @@ for (const viemRoot of viemRoots) {
       ].join('\n'),
     },
   ])
+}
+
+if (wagmiCoreRoots.length === 0) log('node_modules/@wagmi/core not found, skipping wagmi core patch')
+
+const unsupportedEip5792Actions = [
+  'getCallsStatus',
+  'getCapabilities',
+  'sendCalls',
+  'sendCallsSync',
+  'sendTransactionSync',
+  'showCallsStatus',
+  'waitForCallsStatus',
+]
+
+for (const wagmiCoreRoot of wagmiCoreRoots) {
+  for (const actionName of unsupportedEip5792Actions) {
+    overwriteFile(
+      path.join(wagmiCoreRoot, 'dist', 'esm', 'actions', `${actionName}.js`),
+      [
+        `/** ${actionName} requires EIP-5792 viem actions that are not available in this build. */`,
+        `export async function ${actionName}() {`,
+        `    throw new Error('${actionName} is not available in this viem build.');`,
+        '}',
+        `//# sourceMappingURL=${actionName}.js.map`,
+        '',
+      ].join('\n'),
+    )
+
+    overwriteFile(
+      path.join(wagmiCoreRoot, 'dist', 'cjs', 'actions', `${actionName}.js`),
+      [
+        '"use strict";',
+        'Object.defineProperty(exports, "__esModule", { value: true });',
+        `exports.${actionName} = ${actionName};`,
+        `/** ${actionName} requires EIP-5792 viem actions that are not available in this build. */`,
+        `async function ${actionName}() {`,
+        `    throw new Error('${actionName} is not available in this viem build.');`,
+        '}',
+        `//# sourceMappingURL=${actionName}.js.map`,
+        '',
+      ].join('\n'),
+    )
+  }
 }
 
 patchFile(path.join(walletConnectCoreRoot, 'dist', 'index.es.js'), [

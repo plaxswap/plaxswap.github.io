@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
 import { JsonRpcProvider, FallbackProvider, Web3Provider } from '@ethersproject/providers'
 import memoize from 'lodash/memoize'
-import { createConfig, http } from 'wagmi'
 import { polygon, polygonMumbai } from 'wagmi/chains'
-import type { Transport } from 'viem'
+import { http, type Transport } from 'viem'
+import { createConfig } from '@wagmi/core/dist/esm/createConfig.js'
 import { getConnectorClient } from '@wagmi/core/dist/esm/actions/getConnectorClient.js'
 import { injected } from '@wagmi/core/dist/esm/connectors/injected.js'
 import { metaMask } from '@wagmi/connectors/dist/esm/metaMask.js'

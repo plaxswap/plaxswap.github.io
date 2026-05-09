@@ -179,6 +179,7 @@ const config = {
   webpack: (webpackConfig, { webpack }) => {
     webpackConfig.resolve.alias = {
       ...webpackConfig.resolve.alias,
+      '@wagmi/core/dist/esm/createConfig.js': path.join(wagmiCoreRoot, 'dist/esm/createConfig.js'),
       '@wagmi/core/dist/esm/actions/getConnectorClient.js': path.join(
         wagmiCoreRoot,
         'dist/esm/actions/getConnectorClient.js',
