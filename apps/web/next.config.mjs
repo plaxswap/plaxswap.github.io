@@ -7,6 +7,7 @@ import path from 'path'
 import { createRequire } from 'module'
 
 const require = createRequire(import.meta.url)
+const wagmiCoreRoot = path.dirname(require.resolve('@wagmi/core/package.json'))
 const wagmiConnectorsRoot = path.dirname(require.resolve('@wagmi/connectors/package.json'))
 
 const withBundleAnalyzer = BundleAnalyzer({
@@ -178,6 +179,11 @@ const config = {
   webpack: (webpackConfig, { webpack }) => {
     webpackConfig.resolve.alias = {
       ...webpackConfig.resolve.alias,
+      '@wagmi/core/dist/esm/actions/getConnectorClient.js': path.join(
+        wagmiCoreRoot,
+        'dist/esm/actions/getConnectorClient.js',
+      ),
+      '@wagmi/core/dist/esm/connectors/injected.js': path.join(wagmiCoreRoot, 'dist/esm/connectors/injected.js'),
       '@wagmi/connectors/dist/esm/metaMask.js': path.join(wagmiConnectorsRoot, 'dist/esm/metaMask.js'),
       '@wagmi/connectors/dist/esm/safe.js': path.join(wagmiConnectorsRoot, 'dist/esm/safe.js'),
       '@wagmi/connectors/dist/esm/walletConnect.js': path.join(wagmiConnectorsRoot, 'dist/esm/walletConnect.js'),

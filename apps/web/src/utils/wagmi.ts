@@ -1,10 +1,11 @@
 /* eslint-disable import/extensions */
 import { JsonRpcProvider, FallbackProvider, Web3Provider } from '@ethersproject/providers'
-import { getClient, getConnectorClient, injected } from '@wagmi/core'
 import memoize from 'lodash/memoize'
 import { createConfig, http } from 'wagmi'
 import { polygon, polygonMumbai } from 'wagmi/chains'
 import type { Transport } from 'viem'
+import { getConnectorClient } from '@wagmi/core/dist/esm/actions/getConnectorClient.js'
+import { injected } from '@wagmi/core/dist/esm/connectors/injected.js'
 import { metaMask } from '@wagmi/connectors/dist/esm/metaMask.js'
 import { safe } from '@wagmi/connectors/dist/esm/safe.js'
 import { walletConnect } from '@wagmi/connectors/dist/esm/walletConnect.js'
@@ -99,7 +100,7 @@ const clientToProvider = (clientConfig: any) => {
 }
 
 export const provider = ({ chainId }: { chainId?: number } = {}) => {
-  const publicClient = getClient(config, { chainId: chainId as any })
+  const publicClient = config.getClient({ chainId: chainId as any })
   return publicClient ? clientToProvider(publicClient) : undefined
 }
 
