@@ -2,26 +2,25 @@ const fs = require('fs')
 const path = require('path')
 
 const workspaceRoot = path.resolve(__dirname, '../../..')
-const viemRoot = path.join(workspaceRoot, 'node_modules', 'viem')
 const walletConnectCoreRoot = path.join(workspaceRoot, 'node_modules', '@walletconnect', 'core')
 
 const log = (message) => console.log(`[patch-viem] ${message}`)
 
-if (!fs.existsSync(viemRoot)) {
-  log('node_modules/viem not found, skipping')
-  process.exit(0)
-}
+const viemRoots = [
+  path.join(workspaceRoot, 'node_modules', 'viem'),
+  path.join(workspaceRoot, 'apps', 'web', 'node_modules', 'viem'),
+].filter((dir, index, roots) => fs.existsSync(dir) && roots.indexOf(dir) === index)
 
 const keepTsRoots = new Set(['_types', '_esm', '_cjs'])
 
-function removeSourceTs(dir) {
+function removeSourceTs(viemRoot, dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const fullPath = path.join(dir, entry.name)
     const relative = path.relative(viemRoot, fullPath)
     const firstSegment = relative.split(path.sep)[0]
 
     if (entry.isDirectory()) {
-      removeSourceTs(fullPath)
+      removeSourceTs(viemRoot, fullPath)
       continue
     }
 
@@ -39,81 +38,91 @@ function patchFile(filePath, patches) {
 
   for (const { marker, text } of patches) {
     if (!content.includes(marker)) {
-      content = content.replace('//# sourceMappingURL=index.js.map', `${text}\n//# sourceMappingURL=index.js.map`)
+      const sourceMapComment = '//# sourceMappingURL=index.js.map'
+      content = content.includes(sourceMapComment)
+        ? content.replace(sourceMapComment, `${text}\n${sourceMapComment}`)
+        : `${content.trimEnd()}\n${text}\n`
       changed = true
     }
   }
 
-  if (changed) fs.writeFileSync(filePath, content)
+  if (changed) {
+    fs.writeFileSync(filePath, content)
+    log(`patched ${path.relative(workspaceRoot, filePath)}`)
+  }
 }
 
-removeSourceTs(viemRoot)
+if (viemRoots.length === 0) log('node_modules/viem not found, skipping viem patch')
 
-patchFile(path.join(viemRoot, '_esm', 'actions', 'index.js'), [
-  {
-    marker: 'sendCallsSync is not available in this viem build.',
-    text: [
-      "export { getCapabilities, getCallsStatus, sendCalls, showCallsStatus } from '../experimental/index.js';",
-      'export async function sendCallsSync() {',
-      "    throw new Error('sendCallsSync is not available in this viem build.');",
-      '}',
-      'export async function sendTransactionSync() {',
-      "    throw new Error('sendTransactionSync is not available in this viem build.');",
-      '}',
-      'export async function waitForCallsStatus() {',
-      "    throw new Error('waitForCallsStatus is not available in this viem build.');",
-      '}',
-    ].join('\n'),
-  },
-])
+for (const viemRoot of viemRoots) {
+  removeSourceTs(viemRoot, viemRoot)
 
-patchFile(path.join(viemRoot, '_esm', 'experimental', 'index.js'), [
-  {
-    marker: 'waitForCallsStatus is not available in this viem build.',
-    text: [
-      'export async function waitForCallsStatus() {',
-      "    throw new Error('waitForCallsStatus is not available in this viem build.');",
-      '}',
-    ].join('\n'),
-  },
-])
+  patchFile(path.join(viemRoot, '_esm', 'actions', 'index.js'), [
+    {
+      marker: 'sendCallsSync is not available in this viem build.',
+      text: [
+        "export { getCapabilities, getCallsStatus, sendCalls, showCallsStatus } from '../experimental/index.js';",
+        'export async function sendCallsSync() {',
+        "    throw new Error('sendCallsSync is not available in this viem build.');",
+        '}',
+        'export async function sendTransactionSync() {',
+        "    throw new Error('sendTransactionSync is not available in this viem build.');",
+        '}',
+        'export async function waitForCallsStatus() {',
+        "    throw new Error('waitForCallsStatus is not available in this viem build.');",
+        '}',
+      ].join('\n'),
+    },
+  ])
 
-patchFile(path.join(viemRoot, '_cjs', 'actions', 'index.js'), [
-  {
-    marker: 'exports.sendCallsSync = sendCallsSync;',
-    text: [
-      'var experimental_js_1 = require("../experimental/index.js");',
-      'Object.defineProperty(exports, "getCapabilities", { enumerable: true, get: function () { return experimental_js_1.getCapabilities; } });',
-      'Object.defineProperty(exports, "getCallsStatus", { enumerable: true, get: function () { return experimental_js_1.getCallsStatus; } });',
-      'Object.defineProperty(exports, "sendCalls", { enumerable: true, get: function () { return experimental_js_1.sendCalls; } });',
-      'Object.defineProperty(exports, "showCallsStatus", { enumerable: true, get: function () { return experimental_js_1.showCallsStatus; } });',
-      'async function sendCallsSync() {',
-      "    throw new Error('sendCallsSync is not available in this viem build.');",
-      '}',
-      'exports.sendCallsSync = sendCallsSync;',
-      'async function sendTransactionSync() {',
-      "    throw new Error('sendTransactionSync is not available in this viem build.');",
-      '}',
-      'exports.sendTransactionSync = sendTransactionSync;',
-      'async function waitForCallsStatus() {',
-      "    throw new Error('waitForCallsStatus is not available in this viem build.');",
-      '}',
-      'exports.waitForCallsStatus = waitForCallsStatus;',
-    ].join('\n'),
-  },
-])
+  patchFile(path.join(viemRoot, '_esm', 'experimental', 'index.js'), [
+    {
+      marker: 'waitForCallsStatus is not available in this viem build.',
+      text: [
+        'export async function waitForCallsStatus() {',
+        "    throw new Error('waitForCallsStatus is not available in this viem build.');",
+        '}',
+      ].join('\n'),
+    },
+  ])
 
-patchFile(path.join(viemRoot, '_cjs', 'experimental', 'index.js'), [
-  {
-    marker: 'exports.waitForCallsStatus = waitForCallsStatus;',
-    text: [
-      'async function waitForCallsStatus() {',
-      "    throw new Error('waitForCallsStatus is not available in this viem build.');",
-      '}',
-      'exports.waitForCallsStatus = waitForCallsStatus;',
-    ].join('\n'),
-  },
-])
+  patchFile(path.join(viemRoot, '_cjs', 'actions', 'index.js'), [
+    {
+      marker: 'exports.sendCallsSync = sendCallsSync;',
+      text: [
+        'var experimental_js_1 = require("../experimental/index.js");',
+        'Object.defineProperty(exports, "getCapabilities", { enumerable: true, get: function () { return experimental_js_1.getCapabilities; } });',
+        'Object.defineProperty(exports, "getCallsStatus", { enumerable: true, get: function () { return experimental_js_1.getCallsStatus; } });',
+        'Object.defineProperty(exports, "sendCalls", { enumerable: true, get: function () { return experimental_js_1.sendCalls; } });',
+        'Object.defineProperty(exports, "showCallsStatus", { enumerable: true, get: function () { return experimental_js_1.showCallsStatus; } });',
+        'async function sendCallsSync() {',
+        "    throw new Error('sendCallsSync is not available in this viem build.');",
+        '}',
+        'exports.sendCallsSync = sendCallsSync;',
+        'async function sendTransactionSync() {',
+        "    throw new Error('sendTransactionSync is not available in this viem build.');",
+        '}',
+        'exports.sendTransactionSync = sendTransactionSync;',
+        'async function waitForCallsStatus() {',
+        "    throw new Error('waitForCallsStatus is not available in this viem build.');",
+        '}',
+        'exports.waitForCallsStatus = waitForCallsStatus;',
+      ].join('\n'),
+    },
+  ])
+
+  patchFile(path.join(viemRoot, '_cjs', 'experimental', 'index.js'), [
+    {
+      marker: 'exports.waitForCallsStatus = waitForCallsStatus;',
+      text: [
+        'async function waitForCallsStatus() {',
+        "    throw new Error('waitForCallsStatus is not available in this viem build.');",
+        '}',
+        'exports.waitForCallsStatus = waitForCallsStatus;',
+      ].join('\n'),
+    },
+  ])
+}
 
 patchFile(path.join(walletConnectCoreRoot, 'dist', 'index.es.js'), [
   {
