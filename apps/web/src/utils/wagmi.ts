@@ -8,6 +8,7 @@ import { injected } from '@wagmi/core/dist/esm/connectors/injected.js'
 import { metaMask } from '@wagmi/connectors/dist/esm/metaMask.js'
 import { walletConnect } from '@wagmi/connectors/dist/esm/walletConnect.js'
 import { wagmiAdapter } from 'config/reown'
+import { BSC_PROD_NODE } from 'utils/providers'
 
 export const chains = [polygon, polygonMumbai]
 
@@ -58,6 +59,19 @@ export const config = wagmiAdapter.wagmiConfig
 
 export const client = config
 
+const polygonMumbaiRpcUrl =
+  process.env.NEXT_PUBLIC_NODE_PRODUCTION_TESTNET || polygonMumbai.rpcUrls.default.http[0]
+
+const getReadOnlyRpcUrl = (chainId?: number) => {
+  if (!chainId || chainId === polygon.id) {
+    return BSC_PROD_NODE
+  }
+  if (chainId === polygonMumbai.id) {
+    return polygonMumbaiRpcUrl
+  }
+  return undefined
+}
+
 const clientToProvider = (clientConfig: any) => {
   const { chain, transport } = clientConfig
   const network = {
@@ -78,6 +92,16 @@ const clientToProvider = (clientConfig: any) => {
 }
 
 export const provider = ({ chainId }: { chainId?: number } = {}) => {
+  const readOnlyRpcUrl = getReadOnlyRpcUrl(chainId)
+  if (readOnlyRpcUrl) {
+    const chain = chains.find((supportedChain) => supportedChain.id === chainId) ?? polygon
+    return new JsonRpcProvider(readOnlyRpcUrl, {
+      chainId: chain.id,
+      name: chain.name,
+      ensAddress: (chain.contracts as any)?.ensRegistry?.address,
+    })
+  }
+
   const publicClient = config.getClient({ chainId: chainId as any })
   return publicClient ? clientToProvider(publicClient) : undefined
 }
