@@ -153,19 +153,19 @@ export const DetailLimitOrderModal: React.FC<React.PropsWithChildren<DetailLimit
           </>
         ) : (
           <Button variant="primary" mt="16px" as="a" external href={formattedOrder.bscScanUrls.created}>
-            {t('View order creation on BSCScan')}
+            {t('View order creation on PolygonScan')}
             <BscScanIcon color="invertedContrast" ml="4px" />
           </Button>
         )}
         {isCancelled && bscScanUrls.cancelled && (
           <Button variant="primary" mt="16px" as="a" external href={bscScanUrls.cancelled}>
-            {t('View order cancellation on BSCScan')}
+            {t('View order cancellation on PolygonScan')}
             <BscScanIcon color="invertedContrast" ml="4px" />
           </Button>
         )}
         {isExecuted && bscScanUrls.executed && (
           <Button variant="primary" mt="16px" as="a" external href={bscScanUrls.executed}>
-            {t('View order execution on BSCScan')}
+            {t('View order execution on PolygonScan')}
             <BscScanIcon color="invertedContrast" ml="4px" />
           </Button>
         )}
