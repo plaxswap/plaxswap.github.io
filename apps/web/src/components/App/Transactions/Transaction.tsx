@@ -21,7 +21,12 @@ const IconWrapper = styled.div<{ pending: boolean; success?: boolean }>`
     pending ? theme.colors.primary : success ? theme.colors.success : theme.colors.failure};
 `
 
-export default function Transaction({ tx, chainId }: { tx: TransactionDetails; chainId: number }) {
+interface TransactionProps {
+  tx: TransactionDetails
+  chainId: number
+}
+
+const Transaction: React.FC<TransactionProps> = ({ tx, chainId }) => {
   const summary = tx?.summary
   const pending = !tx?.receipt
   const success = !pending && tx && (tx.receipt?.status === 1 || typeof tx.receipt?.status === 'undefined')
@@ -39,3 +44,5 @@ export default function Transaction({ tx, chainId }: { tx: TransactionDetails; c
     </TransactionState>
   )
 }
+
+export default Transaction

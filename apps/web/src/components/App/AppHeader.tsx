@@ -23,6 +23,13 @@ const AppHeaderContainer = styled(Flex)`
   border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
 `
 
+const BackIconButton = IconButton as React.ComponentType<
+  React.PropsWithChildren<React.AnchorHTMLAttributes<HTMLAnchorElement> & { as?: string; scale?: string; variant?: string }>
+>
+const HeaderNotificationDot = NotificationDot as React.ComponentType<
+  React.PropsWithChildren<{ show: boolean }>
+>
+
 const AppHeader: React.FC<React.PropsWithChildren<Props>> = ({
   title,
   subtitle,
@@ -39,9 +46,9 @@ const AppHeader: React.FC<React.PropsWithChildren<Props>> = ({
         {backTo &&
           (typeof backTo === 'string' ? (
             <Link passHref href={backTo}>
-              <IconButton as="a" scale="sm">
+              <BackIconButton as="a" scale="sm">
                 <ArrowBackIcon width="32px" />
-              </IconButton>
+              </BackIconButton>
             </Link>
           ) : (
             <IconButton scale="sm" variant="text" onClick={backTo}>
@@ -57,9 +64,9 @@ const AppHeader: React.FC<React.PropsWithChildren<Props>> = ({
             {!noConfig && (
               <Flex alignItems="center">
                 {IconSlot}
-                <NotificationDot show={expertMode}>
+                <HeaderNotificationDot show={expertMode}>
                   <GlobalSettings mode={SettingsMode.SWAP_LIQUIDITY} />
-                </NotificationDot>
+                </HeaderNotificationDot>
                 <Transactions />
               </Flex>
             )}

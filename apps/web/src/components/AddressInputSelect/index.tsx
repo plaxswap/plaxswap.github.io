@@ -41,7 +41,7 @@ const SubMenu = styled.div<{ isOpen: boolean }>`
   `}
 `
 
-const AddressLink = styled(Text)`
+const AddressLink = styled(Text as React.ComponentType<React.HTMLAttributes<HTMLDivElement>>)`
   cursor: pointer;
   overflow-wrap: break-word;
   font-weight: bold;
@@ -56,6 +56,7 @@ const initialState = {
 }
 
 const defaultValidAddressHandler = () => Promise.resolve(true)
+const AddressInput = Input as React.ComponentType<React.InputHTMLAttributes<HTMLInputElement>>
 
 const AddressInputSelect: React.FC<React.PropsWithChildren<AddressInputSelectProps>> = ({
   onValidAddress = defaultValidAddressHandler,
@@ -107,7 +108,7 @@ const AddressInputSelect: React.FC<React.PropsWithChildren<AddressInputSelectPro
 
   return (
     <Box position="relative" {...props}>
-      <Input
+      <AddressInput
         placeholder={t('Search %subject%', { subject: t('Address').toLowerCase() })}
         value={state.value}
         onChange={handleChange}

@@ -26,9 +26,32 @@ const viemRoots = [
   path.join(workspaceRoot, 'apps', 'web', 'node_modules', 'viem'),
 ].filter((dir, index, roots) => fs.existsSync(dir) && roots.indexOf(dir) === index)
 
+const oxRoots = [
+  path.join(workspaceRoot, 'node_modules', 'ox'),
+  path.join(workspaceRoot, 'node_modules', 'viem', 'node_modules', 'ox'),
+  path.join(workspaceRoot, 'node_modules', '@base-org', 'account', 'node_modules', 'viem', 'node_modules', 'ox'),
+  path.join(workspaceRoot, 'node_modules', '@coinbase', 'cdp-sdk', 'node_modules', 'ox'),
+  path.join(workspaceRoot, 'node_modules', '@reown', 'appkit', 'node_modules', 'ox'),
+  path.join(workspaceRoot, 'node_modules', '@reown', 'appkit-common', 'node_modules', 'ox'),
+  path.join(workspaceRoot, 'node_modules', '@reown', 'appkit-controllers', 'node_modules', 'ox'),
+  path.join(workspaceRoot, 'node_modules', '@reown', 'appkit-utils', 'node_modules', 'ox'),
+  path.join(workspaceRoot, 'node_modules', '@safe-global', 'safe-apps-sdk', 'node_modules', 'ox'),
+  path.join(workspaceRoot, 'apps', 'web', 'node_modules', 'ox'),
+  path.join(workspaceRoot, 'apps', 'web', 'node_modules', 'viem', 'node_modules', 'ox'),
+  path.join(workspaceRoot, 'apps', 'web', 'node_modules', '@reown', 'appkit', 'node_modules', 'ox'),
+  path.join(workspaceRoot, 'apps', 'web', 'node_modules', '@reown', 'appkit-common', 'node_modules', 'ox'),
+  path.join(workspaceRoot, 'apps', 'web', 'node_modules', '@reown', 'appkit-controllers', 'node_modules', 'ox'),
+  path.join(workspaceRoot, 'apps', 'web', 'node_modules', '@reown', 'appkit-utils', 'node_modules', 'ox'),
+].filter((dir, index, roots) => fs.existsSync(dir) && roots.indexOf(dir) === index)
+
 const wagmiCoreRoots = [
   path.join(workspaceRoot, 'node_modules', '@wagmi', 'core'),
   path.join(workspaceRoot, 'apps', 'web', 'node_modules', '@wagmi', 'core'),
+].filter((dir, index, roots) => fs.existsSync(dir) && roots.indexOf(dir) === index)
+
+const reownWagmiAdapterRoots = [
+  path.join(workspaceRoot, 'node_modules', '@reown', 'appkit-adapter-wagmi'),
+  path.join(workspaceRoot, 'apps', 'web', 'node_modules', '@reown', 'appkit-adapter-wagmi'),
 ].filter((dir, index, roots) => fs.existsSync(dir) && roots.indexOf(dir) === index)
 
 const keepTsRoots = new Set(['_types', '_esm', '_cjs'])
@@ -169,6 +192,38 @@ function patchWalletConnectCjs(filePath) {
   }
 }
 
+function patchReownWagmiAdapterHelpers(filePath) {
+  if (!fs.existsSync(filePath)) return
+
+  let content = fs.readFileSync(filePath, 'utf8')
+
+  content = content.replace(
+    /export async function getSafeConnector\(connectors\) \{[\s\S]*?\n\}/,
+    [
+      'export async function getSafeConnector() {',
+      '    return null;',
+      '}',
+    ].join('\n'),
+  )
+
+  content = content.replace(
+    /export async function getCoinbaseConnector\(connectors\) \{[\s\S]*?\n\}/,
+    [
+      'export async function getCoinbaseConnector() {',
+      '    return null;',
+      '}',
+    ].join('\n'),
+  )
+
+  content = content.replace("import { CoreHelperUtil } from '@reown/appkit-controllers';\n", '')
+
+  const current = fs.readFileSync(filePath, 'utf8')
+  if (content !== current) {
+    fs.writeFileSync(filePath, content)
+    log(`patched ${path.relative(workspaceRoot, filePath)}`)
+  }
+}
+
 if (viemRoots.length === 0) log('node_modules/viem not found, skipping viem patch')
 
 for (const viemRoot of viemRoots) {
@@ -241,6 +296,12 @@ for (const viemRoot of viemRoots) {
   ])
 }
 
+if (oxRoots.length === 0) log('node_modules/ox not found, skipping ox patch')
+
+for (const oxRoot of oxRoots) {
+  removeSourceTs(oxRoot, oxRoot)
+}
+
 if (wagmiCoreRoots.length === 0) log('node_modules/@wagmi/core not found, skipping wagmi core patch')
 
 const unsupportedEip5792Actions = [
@@ -289,6 +350,12 @@ if (walletConnectCoreRoots.length === 0) log('node_modules/@walletconnect/core n
 for (const walletConnectCoreRoot of walletConnectCoreRoots) {
   patchWalletConnectEsm(path.join(walletConnectCoreRoot, 'dist', 'index.es.js'))
   patchWalletConnectCjs(path.join(walletConnectCoreRoot, 'dist', 'index.cjs.js'))
+}
+
+if (reownWagmiAdapterRoots.length === 0) log('node_modules/@reown/appkit-adapter-wagmi not found, skipping reown patch')
+
+for (const reownWagmiAdapterRoot of reownWagmiAdapterRoots) {
+  patchReownWagmiAdapterHelpers(path.join(reownWagmiAdapterRoot, 'dist', 'esm', 'src', 'utils', 'helpers.js'))
 }
 
 log('done')

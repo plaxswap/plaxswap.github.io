@@ -1,0 +1,52 @@
+import { createAppKit } from '@reown/appkit/react'
+import { polygon, polygonMumbai } from '@reown/appkit/networks'
+import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
+import { http } from 'viem'
+
+export const reownProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '9ba1c138ff7ad815f7026b920b652f0b'
+
+export const reownNetworks = [polygon, polygonMumbai] as [typeof polygon, typeof polygonMumbai]
+
+const metadata = {
+  name: 'Plaxswap',
+  description: 'DEX on Polygon',
+  url: 'https://plaxswap.io',
+  icons: ['https://plaxswap.github.io/blockchain/logo.png'],
+}
+
+const getRpcUrl = (chain: (typeof reownNetworks)[number]) => {
+  if (!!process.env.NEXT_PUBLIC_NODE_PRODUCTION && chain.id === polygon.id) {
+    return process.env.NEXT_PUBLIC_NODE_PRODUCTION
+  }
+  return chain.rpcUrls.default.http[0]
+}
+
+export const wagmiAdapter = new WagmiAdapter({
+  networks: reownNetworks,
+  projectId: reownProjectId,
+  ssr: true,
+  transports: {
+    [polygon.id]: http(getRpcUrl(polygon)),
+    [polygonMumbai.id]: http(getRpcUrl(polygonMumbai)),
+  },
+})
+
+export const reownModal = createAppKit({
+  adapters: [wagmiAdapter],
+  networks: reownNetworks,
+  defaultNetwork: polygon,
+  projectId: reownProjectId,
+  metadata,
+  enableCoinbase: false,
+  enableWalletGuide: false,
+  features: {
+    analytics: false,
+    email: false,
+    socials: false,
+    swaps: false,
+    onramp: false,
+  },
+  themeVariables: {
+    '--w3m-accent': '#1FC7D4',
+  },
+})

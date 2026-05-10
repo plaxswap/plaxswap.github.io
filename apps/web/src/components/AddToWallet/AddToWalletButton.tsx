@@ -37,6 +37,10 @@ const Icons = {
   MetaMask: MetamaskIcon,
 }
 
+const WalletButton = Button as React.ComponentType<
+  React.PropsWithChildren<ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>>
+>
+
 const getWalletText = (textOptions: AddToWalletTextOptions, tokenSymbol: string, t: any) => {
   return (
     textOptions !== AddToWalletTextOptions.NO_TEXT &&
@@ -88,7 +92,7 @@ const AddToWalletButton: React.FC<AddToWalletButtonProps & ButtonProps> = ({
   if (!isCanRegisterToken) return null
 
   return (
-    <Button
+    <WalletButton
       {...props}
       onClick={() => {
         registerToken(tokenAddress, tokenSymbol, tokenDecimals, tokenLogo)
@@ -96,7 +100,7 @@ const AddToWalletButton: React.FC<AddToWalletButtonProps & ButtonProps> = ({
     >
       {getWalletText(textOptions, tokenSymbol, t)}
       {getWalletIcon(marginTextBetweenLogo, connector?.name)}
-    </Button>
+    </WalletButton>
   )
 }
 

@@ -2,24 +2,16 @@
 import { JsonRpcProvider, FallbackProvider, Web3Provider } from '@ethersproject/providers'
 import memoize from 'lodash/memoize'
 import { polygon, polygonMumbai } from 'wagmi/chains'
-import { http, type Transport } from 'viem'
-import { createConfig } from '@wagmi/core/dist/esm/createConfig.js'
+import type { Transport } from 'viem'
 import { getConnectorClient } from '@wagmi/core/dist/esm/actions/getConnectorClient.js'
 import { injected } from '@wagmi/core/dist/esm/connectors/injected.js'
 import { metaMask } from '@wagmi/connectors/dist/esm/metaMask.js'
-import { safe } from '@wagmi/connectors/dist/esm/safe.js'
 import { walletConnect } from '@wagmi/connectors/dist/esm/walletConnect.js'
+import { wagmiAdapter } from 'config/reown'
 
 export const chains = [polygon, polygonMumbai]
 
 const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '9ba1c138ff7ad815f7026b920b652f0b'
-
-const getRpcUrl = (chain: (typeof chains)[number]) => {
-  if (!!process.env.NEXT_PUBLIC_NODE_PRODUCTION && chain.id === polygon.id) {
-    return process.env.NEXT_PUBLIC_NODE_PRODUCTION
-  }
-  return chain.rpcUrls.default.http[0]
-}
 
 export const injectedConnector = injected({
   shimDisconnect: false,
@@ -62,21 +54,7 @@ export const bloctoConnector = injectedConnector
 export const ledgerConnector = injectedConnector
 export const trustWalletConnector = injectedConnector
 
-export const config = createConfig({
-  chains: [polygon, polygonMumbai],
-  transports: {
-    [polygon.id]: http(getRpcUrl(polygon)),
-    [polygonMumbai.id]: http(getRpcUrl(polygonMumbai)),
-  },
-  connectors: [
-    safe(),
-    metaMaskConnector,
-    injectedConnector,
-    coinbaseConnector,
-    walletConnectConnector,
-    trustWalletConnector,
-  ],
-})
+export const config = wagmiAdapter.wagmiConfig
 
 export const client = config
 

@@ -1,4 +1,5 @@
 import { Button, ButtonProps } from '@pancakeswap/uikit'
+import { createElement } from 'react'
 import { useSwitchNetworkLoading } from 'hooks/useSwitchNetworkLoading'
 import { useSetAtom } from 'jotai'
 import { useActiveChainId } from 'hooks/useActiveChainId'
@@ -8,7 +9,7 @@ import Trans from './Trans'
 const wrongNetworkProps: ButtonProps = {
   variant: 'danger',
   disabled: false,
-  children: <Trans>Wrong Network</Trans>,
+  children: createElement(Trans, null, 'Wrong Network'),
 }
 
 export const CommitButton = (props: ButtonProps) => {
