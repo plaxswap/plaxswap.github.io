@@ -7,6 +7,11 @@ export const reownProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID |
 
 export const reownNetworks = [polygon, polygonMumbai] as [typeof polygon, typeof polygonMumbai]
 
+const POLYGON_RPC_URL =
+  process.env.NEXT_PUBLIC_NODE_PRODUCTION || 'https://lb.drpc.live/polygon/AksFlvO-tUQvsJxhLBbmJvCRID1tl_YR8LtMwg8TMB_n'
+
+const POLYGON_MUMBAI_RPC_URL = process.env.NEXT_PUBLIC_NODE_PRODUCTION_TESTNET || polygonMumbai.rpcUrls.default.http[0]
+
 const metadata = {
   name: 'Plaxswap',
   description: 'DEX on Polygon',
@@ -15,10 +20,13 @@ const metadata = {
 }
 
 const getRpcUrl = (chain: (typeof reownNetworks)[number]) => {
-  if (!!process.env.NEXT_PUBLIC_NODE_PRODUCTION && chain.id === polygon.id) {
-    return process.env.NEXT_PUBLIC_NODE_PRODUCTION
+  if (chain.id === polygon.id) {
+    return POLYGON_RPC_URL
   }
-  return chain.rpcUrls.default.http[0]
+  if (chain.id === polygonMumbai.id) {
+    return POLYGON_MUMBAI_RPC_URL
+  }
+  return POLYGON_RPC_URL
 }
 
 export const wagmiAdapter = new WagmiAdapter({
