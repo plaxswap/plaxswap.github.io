@@ -62,6 +62,7 @@ const config = {
   },
   reactStrictMode: true,
   swcMinify: true,
+  staticPageGenerationTimeout: 180,
   images: {
     remotePatterns: [
       {

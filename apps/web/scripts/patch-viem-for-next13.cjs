@@ -54,7 +54,38 @@ const reownWagmiAdapterRoots = [
   path.join(workspaceRoot, 'apps', 'web', 'node_modules', '@reown', 'appkit-adapter-wagmi'),
 ].filter((dir, index, roots) => fs.existsSync(dir) && roots.indexOf(dir) === index)
 
+const reownWalletRoots = [
+  path.join(workspaceRoot, 'node_modules', '@reown', 'appkit-wallet'),
+  path.join(workspaceRoot, 'apps', 'web', 'node_modules', '@reown', 'appkit-wallet'),
+].filter((dir, index, roots) => fs.existsSync(dir) && roots.indexOf(dir) === index)
+
+const walletConnectLoggerRoots = [
+  path.join(workspaceRoot, 'node_modules', '@walletconnect', 'logger'),
+  path.join(workspaceRoot, 'node_modules', '@reown', 'appkit-utils', 'node_modules', '@walletconnect', 'logger'),
+  path.join(workspaceRoot, 'node_modules', '@reown', 'appkit-wallet', 'node_modules', '@walletconnect', 'logger'),
+  path.join(workspaceRoot, 'node_modules', '@walletconnect', 'universal-provider', 'node_modules', '@walletconnect', 'logger'),
+  path.join(workspaceRoot, 'apps', 'web', 'node_modules', '@walletconnect', 'logger'),
+  path.join(
+    workspaceRoot,
+    'apps',
+    'web',
+    'node_modules',
+    '@reown',
+    'appkit-wallet',
+    'node_modules',
+    '@walletconnect',
+    'logger',
+  ),
+].filter((dir, index, roots) => fs.existsSync(dir) && roots.indexOf(dir) === index)
+
 const keepTsRoots = new Set(['_types', '_esm', '_cjs'])
+
+function copyDirectory(source, target) {
+  if (!fs.existsSync(source)) return
+  fs.rmSync(target, { recursive: true, force: true })
+  fs.mkdirSync(path.dirname(target), { recursive: true })
+  fs.cpSync(source, target, { recursive: true })
+}
 
 function removeSourceTs(viemRoot, dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -107,9 +138,99 @@ function overwriteFile(filePath, content) {
 
 function hasEsmExport(content, exportName) {
   return (
+    new RegExp(`export\\s+(?:async\\s+)?function\\s+${exportName}\\b`).test(content) ||
     new RegExp(`export\\s+const\\s+${exportName}\\b`).test(content) ||
     new RegExp(`export\\s*\\{[^}]*\\b(?:\\w+\\s+as\\s+)?${exportName}\\b[^}]*\\}`).test(content)
   )
+}
+
+function patchViemActions(filePath) {
+  if (!fs.existsSync(filePath)) return
+
+  let content = fs.readFileSync(filePath, 'utf8')
+  content = content.replace(
+    /\n?export \{ getCapabilities, getCallsStatus, sendCalls, showCallsStatus \}\s*from '\.\.\/experimental\/index\.js';\nexport async function sendCallsSync\(\) \{\n\s*throw new Error\('sendCallsSync is not available in this viem build\.'\);\n\}\nexport async function sendTransactionSync\(\) \{\n\s*throw new Error\('sendTransactionSync is not available in this viem build\.'\);\n\}\nexport async function waitForCallsStatus\(\) \{\n\s*throw new Error\('waitForCallsStatus is not available in this viem build\.'\);\n\}\n?/g,
+    '\n',
+  )
+
+  const needsPatch = ['getCapabilities', 'getCallsStatus', 'sendCallsSync', 'sendTransactionSync', 'waitForCallsStatus'].some(
+    (exportName) => !hasEsmExport(content, exportName),
+  )
+
+  if (needsPatch) {
+    const sourceMapComment = '//# sourceMappingURL=index.js.map'
+    const text = [
+      "export { getCapabilities, getCallsStatus, sendCalls, showCallsStatus } from '../experimental/index.js';",
+      'export async function sendCallsSync() {',
+      "    throw new Error('sendCallsSync is not available in this viem build.');",
+      '}',
+      'export async function sendTransactionSync() {',
+      "    throw new Error('sendTransactionSync is not available in this viem build.');",
+      '}',
+      'export async function waitForCallsStatus() {',
+      "    throw new Error('waitForCallsStatus is not available in this viem build.');",
+      '}',
+    ].join('\n')
+    content = content.includes(sourceMapComment)
+      ? content.replace(sourceMapComment, `${text}\n${sourceMapComment}`)
+      : `${content.trimEnd()}\n${text}\n`
+  }
+
+  const current = fs.readFileSync(filePath, 'utf8')
+  if (content !== current) {
+    fs.writeFileSync(filePath, content)
+    log(`patched ${path.relative(workspaceRoot, filePath)}`)
+  }
+}
+
+function patchViemExperimental(filePath) {
+  if (!fs.existsSync(filePath)) return
+
+  let content = fs.readFileSync(filePath, 'utf8')
+  content = content.replace(
+    /\n?export async function waitForCallsStatus\(\) \{\n\s*throw new Error\('waitForCallsStatus is not available in this viem build\.'\);\n\}\n?/g,
+    '\n',
+  )
+
+  if (!hasEsmExport(content, 'waitForCallsStatus')) {
+    const sourceMapComment = '//# sourceMappingURL=index.js.map'
+    const text = [
+      'export async function waitForCallsStatus() {',
+      "    throw new Error('waitForCallsStatus is not available in this viem build.');",
+      '}',
+    ].join('\n')
+    content = content.includes(sourceMapComment)
+      ? content.replace(sourceMapComment, `${text}\n${sourceMapComment}`)
+      : `${content.trimEnd()}\n${text}\n`
+  }
+
+  const current = fs.readFileSync(filePath, 'utf8')
+  if (content !== current) {
+    fs.writeFileSync(filePath, content)
+    log(`patched ${path.relative(workspaceRoot, filePath)}`)
+  }
+}
+
+function syncViemNestedNobleHashes(viemRoot) {
+  const rootHashes = path.join(workspaceRoot, 'node_modules', '@noble', 'hashes')
+  const nestedHashes = path.join(viemRoot, 'node_modules', '@noble', 'hashes')
+
+  if (!fs.existsSync(rootHashes) || !fs.existsSync(nestedHashes)) return
+
+  const rootPackagePath = path.join(rootHashes, 'package.json')
+  const nestedPackagePath = path.join(nestedHashes, 'package.json')
+  const viemPackagePath = path.join(viemRoot, 'package.json')
+  if (!fs.existsSync(rootPackagePath) || !fs.existsSync(nestedPackagePath) || !fs.existsSync(viemPackagePath)) return
+
+  const rootVersion = JSON.parse(fs.readFileSync(rootPackagePath, 'utf8')).version
+  const nestedVersion = JSON.parse(fs.readFileSync(nestedPackagePath, 'utf8')).version
+  const viemPackage = JSON.parse(fs.readFileSync(viemPackagePath, 'utf8'))
+  const expectedVersion = viemPackage.dependencies?.['@noble/hashes']
+
+  if (expectedVersion && rootVersion === expectedVersion && nestedVersion !== expectedVersion) {
+    copyDirectory(rootHashes, nestedHashes)
+    log(`patched ${path.relative(workspaceRoot, nestedHashes)}`)
+  }
 }
 
 function patchWalletConnectEsm(filePath) {
@@ -215,7 +336,20 @@ function patchReownWagmiAdapterHelpers(filePath) {
     ].join('\n'),
   )
 
+  content = content.replace(
+    /export async function getBaseAccountConnector\(connectors\) \{[\s\S]*?\n\}/,
+    [
+      'export async function getBaseAccountConnector() {',
+      '    return null;',
+      '}',
+    ].join('\n'),
+  )
+
   content = content.replace("import { CoreHelperUtil } from '@reown/appkit-controllers';\n", '')
+  content = content.replace(
+    "import { CoreHelperUtil, WcHelpersUtil } from '@reown/appkit-controllers';\n",
+    "import { WcHelpersUtil } from '@reown/appkit-controllers';\n",
+  )
 
   const current = fs.readFileSync(filePath, 'utf8')
   if (content !== current) {
@@ -224,39 +358,70 @@ function patchReownWagmiAdapterHelpers(filePath) {
   }
 }
 
+function patchReownWalletLogger(filePath) {
+  if (!fs.existsSync(filePath)) return
+
+  const namedImport = "import { generateChildLogger, generatePlatformLogger, getDefaultLoggerOptions } from '@walletconnect/logger';"
+  const previousCompatibleImport = [
+    "import walletConnectLogger from '@walletconnect/logger';",
+    'const { generateChildLogger, generatePlatformLogger, getDefaultLoggerOptions } = walletConnectLogger;',
+  ].join('\n')
+  const previousNamespaceImport = [
+    "import * as walletConnectLoggerModule from '@walletconnect/logger';",
+    'const walletConnectLogger = walletConnectLoggerModule.default || walletConnectLoggerModule;',
+    'const { generateChildLogger, generatePlatformLogger, getDefaultLoggerOptions } = walletConnectLogger;',
+  ].join('\n')
+  const previousDirectEsmImport =
+    "import { generateChildLogger, generatePlatformLogger, getDefaultLoggerOptions } from '@walletconnect/logger/dist/index.es.js';"
+
+  const content = fs
+    .readFileSync(filePath, 'utf8')
+    .replace(previousCompatibleImport, namedImport)
+    .replace(previousNamespaceImport, namedImport)
+    .replace(previousDirectEsmImport, namedImport)
+  const current = fs.readFileSync(filePath, 'utf8')
+  if (content !== current) {
+    fs.writeFileSync(filePath, content)
+    log(`patched ${path.relative(workspaceRoot, filePath)}`)
+  }
+}
+
+function patchWalletConnectLoggerPackage(filePath) {
+  if (!fs.existsSync(filePath)) return
+
+  const packageRoot = path.dirname(filePath)
+  const esmJs = path.join(packageRoot, 'dist', 'index.es.js')
+  const esmMjs = path.join(packageRoot, 'dist', 'index.es.mjs')
+  if (fs.existsSync(esmJs) && !fs.existsSync(esmMjs)) {
+    fs.copyFileSync(esmJs, esmMjs)
+    log(`patched ${path.relative(workspaceRoot, esmMjs)}`)
+  }
+
+  const pkg = JSON.parse(fs.readFileSync(filePath, 'utf8'))
+  const nextExports = {
+    '.': {
+      types: './dist/types/index.d.ts',
+      import: './dist/index.es.mjs',
+      require: './dist/index.cjs.js',
+      default: './dist/index.es.mjs',
+    },
+  }
+  if (JSON.stringify(pkg.exports) === JSON.stringify(nextExports)) return
+
+  pkg.exports = nextExports
+
+  fs.writeFileSync(filePath, `${JSON.stringify(pkg, null, 2)}\n`)
+  log(`patched ${path.relative(workspaceRoot, filePath)}`)
+}
+
 if (viemRoots.length === 0) log('node_modules/viem not found, skipping viem patch')
 
 for (const viemRoot of viemRoots) {
+  syncViemNestedNobleHashes(viemRoot)
   removeSourceTs(viemRoot, viemRoot)
 
-  patchFile(path.join(viemRoot, '_esm', 'actions', 'index.js'), [
-    {
-      marker: 'sendCallsSync is not available in this viem build.',
-      text: [
-        "export { getCapabilities, getCallsStatus, sendCalls, showCallsStatus } from '../experimental/index.js';",
-        'export async function sendCallsSync() {',
-        "    throw new Error('sendCallsSync is not available in this viem build.');",
-        '}',
-        'export async function sendTransactionSync() {',
-        "    throw new Error('sendTransactionSync is not available in this viem build.');",
-        '}',
-        'export async function waitForCallsStatus() {',
-        "    throw new Error('waitForCallsStatus is not available in this viem build.');",
-        '}',
-      ].join('\n'),
-    },
-  ])
-
-  patchFile(path.join(viemRoot, '_esm', 'experimental', 'index.js'), [
-    {
-      marker: 'waitForCallsStatus is not available in this viem build.',
-      text: [
-        'export async function waitForCallsStatus() {',
-        "    throw new Error('waitForCallsStatus is not available in this viem build.');",
-        '}',
-      ].join('\n'),
-    },
-  ])
+  patchViemActions(path.join(viemRoot, '_esm', 'actions', 'index.js'))
+  patchViemExperimental(path.join(viemRoot, '_esm', 'experimental', 'index.js'))
 
   patchFile(path.join(viemRoot, '_cjs', 'actions', 'index.js'), [
     {
@@ -356,6 +521,18 @@ if (reownWagmiAdapterRoots.length === 0) log('node_modules/@reown/appkit-adapter
 
 for (const reownWagmiAdapterRoot of reownWagmiAdapterRoots) {
   patchReownWagmiAdapterHelpers(path.join(reownWagmiAdapterRoot, 'dist', 'esm', 'src', 'utils', 'helpers.js'))
+}
+
+if (reownWalletRoots.length === 0) log('node_modules/@reown/appkit-wallet not found, skipping reown wallet patch')
+
+for (const reownWalletRoot of reownWalletRoots) {
+  patchReownWalletLogger(path.join(reownWalletRoot, 'dist', 'esm', 'src', 'W3mFrameLogger.js'))
+}
+
+if (walletConnectLoggerRoots.length === 0) log('node_modules/@walletconnect/logger not found, skipping walletconnect logger patch')
+
+for (const walletConnectLoggerRoot of walletConnectLoggerRoots) {
+  patchWalletConnectLoggerPackage(path.join(walletConnectLoggerRoot, 'package.json'))
 }
 
 log('done')
