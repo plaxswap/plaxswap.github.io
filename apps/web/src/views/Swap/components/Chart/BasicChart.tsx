@@ -103,7 +103,8 @@ const BasicChart = ({
     [derivedCandles],
   )
   const chartPrices = candlePrices.length > 0 ? candlePrices : derivedCandlePrices.length > 0 ? derivedCandlePrices : pairPrices
-  const valueToDisplay = hoverValue || chartPrices[chartPrices.length - 1]?.value
+  const swapPanelPrice = currentSwapPrice?.[token0Address]
+  const valueToDisplay = hoverValue || swapPanelPrice || chartPrices[chartPrices.length - 1]?.value
   const { changePercentage, changeValue } = getTimeWindowChange(chartPrices)
   const isChangePositive = changeValue >= 0
   const chartHeight = isChartExpanded ? 'calc(100vh - 220px)' : '320px'
@@ -173,7 +174,7 @@ const BasicChart = ({
       >
         <Flex flexDirection="column" pt="12px">
           <PairPriceDisplay
-            value={pairPrices?.length > 0 && valueToDisplay}
+            value={(pairPrices?.length > 0 || swapPanelPrice) && valueToDisplay}
             inputSymbol={inputCurrency?.symbol}
             outputSymbol={outputCurrency?.symbol}
           >

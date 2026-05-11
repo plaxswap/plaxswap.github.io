@@ -1,12 +1,5 @@
 import { Flex, Skeleton, Text, FlexGap, FlexGapProps } from '@pancakeswap/uikit'
 import styled from 'styled-components'
-import { formatAmount, formatAmountNotation } from 'utils/formatInfoNumbers'
-
-const formatOptions = {
-  notation: 'standard' as formatAmountNotation,
-  displayThreshold: 0.001,
-  tokenPrecision: true,
-}
 
 interface TokenDisplayProps extends FlexGapProps {
   value?: number | string
@@ -24,6 +17,17 @@ const TextLabel = styled(Text)`
   }
 `
 
+const formatPrice = (value: number) => {
+  if (!Number.isFinite(value)) {
+    return '-'
+  }
+
+  return new Intl.NumberFormat('en-US', {
+    maximumSignificantDigits: 6,
+    useGrouping: false,
+  }).format(value)
+}
+
 const PairPriceDisplay: React.FC<React.PropsWithChildren<TokenDisplayProps>> = ({
   value,
   inputSymbol,
@@ -36,7 +40,7 @@ const PairPriceDisplay: React.FC<React.PropsWithChildren<TokenDisplayProps>> = (
     <FlexGap alignItems="baseline" {...props}>
       <Flex alignItems="inherit">
         <TextLabel mr="8px" bold>
-          {format ? formatAmount(typeof value === 'string' ? parseFloat(value) : value, formatOptions) : value}
+          {format ? formatPrice(typeof value === 'string' ? parseFloat(value) : value) : value}
         </TextLabel>
         {inputSymbol && outputSymbol && (
           <Text color="textSubtle" fontSize="20px" bold lineHeight={1.1}>
