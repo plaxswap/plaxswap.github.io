@@ -276,7 +276,6 @@ const fetchPairDayVolumeData = async (
           id
           date
           dailyVolumeUSD
-          dailyVolumeToken
         }
       }
     `
@@ -451,6 +450,7 @@ const fetchTokenDayVolumeData = async (chainName: MultiChainName, tokenAddresses
           id
           date
           dailyVolumeUSD
+          dailyVolumeToken
         }
       }
     `
