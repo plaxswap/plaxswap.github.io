@@ -47,7 +47,7 @@ export const ADDITIONAL_BASES: {
 } = {
   [ChainId.BSC]: {
     // SNFTS-SFUND
-    [bscTokens.snfts.address]: [bscTokens.sfund],
+    // [bscTokens.snfts.address]: [bscTokens.sfund],
   },
 }
 
@@ -60,7 +60,7 @@ export const CUSTOM_BASES: {
   [chainId in ChainId]?: { [tokenAddress: string]: Token[] }
 } = {
   [ChainId.BSC]: {
-    [bscTokens.axlusdc.address]: [bscTokens.usdt],
+    [bscTokens.usdc.address]: [bscTokens.usdt],
   },
 }
 
