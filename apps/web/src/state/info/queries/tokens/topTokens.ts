@@ -17,6 +17,12 @@ interface TopTokensResponse {
   }[]
 }
 
+interface TokensResponse {
+  tokens: {
+    id: string
+  }[]
+}
+
 interface StableSwapTopTokensResponse {
   tokens: {
     id: string
@@ -35,14 +41,28 @@ const fetchTopTokens = async (chainName: MultiChainName, timestamp24hAgo: number
       : checkIsStableSwap()
       ? ''
       : `where: { dailyTxns_gt: 300, id_not_in: $blacklist, date_gt: ${timestamp24hAgo}}`
+  const fallbackWhereCondition = chainName === 'ETH' ? `where: { token_not_in: $blacklist }` : `where: { id_not_in: $blacklist }`
   const firstCount = 50
   try {
-    const query = gql`
+    const tokenDayDatasQuery = (where: string) => gql`
       query topTokens($blacklist: [ID!]) {
         tokenDayDatas(
           first: ${firstCount}
-          ${whereCondition}
+          ${where}
           orderBy: dailyVolumeUSD
+          orderDirection: desc
+        ) {
+          id
+        }
+      }
+    `
+
+    const tokensQuery = gql`
+      query topTokens($blacklist: [ID!]) {
+        tokens(
+          first: ${firstCount}
+          ${fallbackWhereCondition}
+          orderBy: tradeVolumeUSD
           orderDirection: desc
         ) {
           id
@@ -72,12 +92,31 @@ const fetchTopTokens = async (chainName: MultiChainName, timestamp24hAgo: number
         multiChainTokenWhiteList[chainName],
       )
     }
-    const data = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TopTokensResponse>(query, {
+    let data = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TopTokensResponse>(tokenDayDatasQuery(whereCondition), {
       blacklist: multiChainTokenBlackList[chainName],
     })
+
+    if (!data.tokenDayDatas.length) {
+      data = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TopTokensResponse>(
+        tokenDayDatasQuery(fallbackWhereCondition),
+        {
+          blacklist: multiChainTokenBlackList[chainName],
+        },
+      )
+    }
+
     // tokenDayDatas id has compound id "0xTOKENADDRESS-NUMBERS", extracting token address with .split('-')
+    const tokenDayDataAddresses = data.tokenDayDatas.map((t) => t.id.split('-')[0])
+    if (tokenDayDataAddresses.length > 0) {
+      return union(tokenDayDataAddresses, multiChainTokenWhiteList[chainName])
+    }
+
+    const tokensData = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TokensResponse>(tokensQuery, {
+      blacklist: multiChainTokenBlackList[chainName],
+    })
+
     return union(
-      data.tokenDayDatas.map((t) => t.id.split('-')[0]),
+      tokensData.tokens.map((t) => t.id),
       multiChainTokenWhiteList[chainName],
     )
   } catch (error) {

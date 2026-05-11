@@ -19,7 +19,20 @@ export const useTokenHighLightList = () => {
   const { chainId } = useActiveChainId()
   const bscWhiteList = useBSCWhiteList()
   const allTokensFromBSC = useTokenDatasSWR(chainId === ChainId.BSC ? bscWhiteList : [], false)
-  const allTokensFromETH = useAllTokenHighLight()
+  const allTokensFromGraph = useAllTokenHighLight()
 
-  return chainId === ChainId.BSC ? allTokensFromBSC : allTokensFromETH
+  return useMemo(() => {
+    if (chainId !== ChainId.BSC) {
+      return allTokensFromGraph
+    }
+
+    const tokensByAddress = new Map()
+    ;[...(allTokensFromBSC ?? []), ...(allTokensFromGraph ?? [])].forEach((token) => {
+      if (token?.address) {
+        tokensByAddress.set(token.address.toLowerCase(), token)
+      }
+    })
+
+    return Array.from(tokensByAddress.values())
+  }, [allTokensFromBSC, allTokensFromGraph, chainId])
 }
