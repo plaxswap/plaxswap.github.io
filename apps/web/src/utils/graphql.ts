@@ -1,4 +1,10 @@
-import { BIT_QUERY, INFO_CLIENT, STABLESWAP_SUBGRAPH_CLIENT, INFO_CLIENT_ETH } from 'config/constants/endpoints'
+import {
+  BIT_QUERY,
+  INFO_CLIENT,
+  INFO_CLIENT_FALLBACKS,
+  STABLESWAP_SUBGRAPH_CLIENT,
+  INFO_CLIENT_ETH,
+} from 'config/constants/endpoints'
 import { GraphQLClient } from 'graphql-request'
 import { INFO_CLIENT_WITH_CHAIN } from '../config/constants/endpoints'
 
@@ -19,36 +25,84 @@ export const isGraphQLRateLimitedError = (error: unknown) => {
 
 const getGraphQLClientEndpoint = (client: GraphQLClient) => (client as any).url ?? ''
 
+const shouldFallbackGraphQLError = (error: unknown) => {
+  const message = error instanceof Error ? error.message : String(error)
+  return isGraphQLRateLimitedError(error) || message.toLowerCase().includes('failed to fetch')
+}
+
+const getEndpointCandidates = (endpoint: string) => {
+  if (endpoint === INFO_CLIENT || endpoint === STABLESWAP_SUBGRAPH_CLIENT) {
+    return INFO_CLIENT_FALLBACKS
+  }
+  return [endpoint]
+}
+
+const requestEndpoint = (
+  endpoint: string,
+  options: ConstructorParameters<typeof GraphQLClient>[1] | undefined,
+  document: unknown,
+  variables?: unknown,
+  requestHeaders?: unknown,
+) => {
+  const now = Date.now()
+  const rateLimitExpiry = rateLimitedUntil.get(endpoint)
+
+  if (rateLimitExpiry && now < rateLimitExpiry) {
+    return Promise.reject(new Error(`GraphQL endpoint is rate limited until ${new Date(rateLimitExpiry).toISOString()}`))
+  }
+
+  const cacheKey = getRequestCacheKey(endpoint, document, variables)
+  const cached = requestCache.get(cacheKey)
+
+  if (cached && now - cached.timestamp < REQUEST_CACHE_TTL) {
+    return cached.promise
+  }
+
+  const client = new GraphQLClient(endpoint, options)
+  const promise = client.request(document as any, variables as any, requestHeaders as any)
+  requestCache.set(cacheKey, { timestamp: now, promise })
+
+  promise.catch((error) => {
+    requestCache.delete(cacheKey)
+    if (isGraphQLRateLimitedError(error)) {
+      rateLimitedUntil.set(endpoint, Date.now() + RATE_LIMIT_COOLDOWN)
+    }
+  })
+
+  return promise
+}
+
+const requestWithFallbacks = async (
+  endpoint: string,
+  options: ConstructorParameters<typeof GraphQLClient>[1] | undefined,
+  document: unknown,
+  variables?: unknown,
+  requestHeaders?: unknown,
+) => {
+  const endpoints = getEndpointCandidates(endpoint)
+  let lastError: unknown
+
+  for (const candidate of endpoints) {
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      return await requestEndpoint(candidate, options, document, variables, requestHeaders)
+    } catch (error) {
+      lastError = error
+      if (!shouldFallbackGraphQLError(error)) {
+        throw error
+      }
+      console.warn('GraphQL request failed, trying fallback endpoint', { endpoint: candidate, error })
+    }
+  }
+
+  throw lastError
+}
+
 const createCachedGraphQLClient = (endpoint: string, options?: ConstructorParameters<typeof GraphQLClient>[1]) => {
   const client = new GraphQLClient(endpoint, options)
-  const request = client.request.bind(client)
 
   ;(client as any).request = (document: unknown, variables?: unknown, requestHeaders?: unknown) => {
-    const now = Date.now()
-    const rateLimitExpiry = rateLimitedUntil.get(endpoint)
-
-    if (rateLimitExpiry && now < rateLimitExpiry) {
-      return Promise.reject(new Error(`GraphQL endpoint is rate limited until ${new Date(rateLimitExpiry).toISOString()}`))
-    }
-
-    const cacheKey = getRequestCacheKey(endpoint, document, variables)
-    const cached = requestCache.get(cacheKey)
-
-    if (cached && now - cached.timestamp < REQUEST_CACHE_TTL) {
-      return cached.promise
-    }
-
-    const promise = request(document as any, variables as any, requestHeaders as any)
-    requestCache.set(cacheKey, { timestamp: now, promise })
-
-    promise.catch((error) => {
-      requestCache.delete(cacheKey)
-      if (isGraphQLRateLimitedError(error)) {
-        rateLimitedUntil.set(endpoint, Date.now() + RATE_LIMIT_COOLDOWN)
-      }
-    })
-
-    return promise
+    return requestWithFallbacks(endpoint, options, document, variables, requestHeaders)
   }
 
   return client
