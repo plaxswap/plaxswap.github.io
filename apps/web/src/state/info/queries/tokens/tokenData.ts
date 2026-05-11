@@ -6,7 +6,7 @@ import { getDeltaTimestamps } from 'utils/getDeltaTimestamps'
 import { getChangeForPeriod } from 'utils/getChangeForPeriod'
 import { useBlocksFromTimestamps } from 'views/Info/hooks/useBlocksFromTimestamps'
 import { getAmountChange, getPercentChange } from 'views/Info/utils/infoDataHelpers'
-import { getMultiChainQueryEndPointWithStableSwap, MultiChainName, multiChainQueryMainToken } from '../../constant'
+import { getMultiChainQueryEndPointWithStableSwap, MultiChainName } from '../../constant'
 import { fetchTokenAddresses } from './topTokens'
 
 interface TokenFields {
@@ -14,8 +14,6 @@ interface TokenFields {
   symbol: string
   name: string
   decimals: string
-  derivedBNB: string // Price in BNB per token
-  derivedETH: string // Price in ETH per token
   derivedUSD: string // Price in USD per token
   tradeVolumeUSD: string
   totalTransactions: string
@@ -25,10 +23,8 @@ interface TokenFields {
 interface FormattedTokenFields
   extends Omit<
     TokenFields,
-    'derivedETH' | 'derivedBNB' | 'derivedUSD' | 'tradeVolumeUSD' | 'totalTransactions' | 'totalLiquidity' | 'decimals'
+    'derivedUSD' | 'tradeVolumeUSD' | 'totalTransactions' | 'totalLiquidity' | 'decimals'
   > {
-  derivedBNB: number
-  derivedETH: number
   derivedUSD: number
   tradeVolumeUSD: number
   totalTransactions: number
@@ -47,7 +43,7 @@ interface TokenQueryResponse {
 /**
  * Main token data to display on Token page
  */
-const TOKEN_AT_BLOCK = (chainName: MultiChainName, block: number | undefined, tokens: string[]) => {
+const TOKEN_AT_BLOCK = (block: number | undefined, tokens: string[]) => {
   const addressesString = `["${tokens.join('","')}"]`
   const blockString = block ? `block: {number: ${block}}` : ``
   return `tokens(
@@ -60,7 +56,6 @@ const TOKEN_AT_BLOCK = (chainName: MultiChainName, block: number | undefined, to
       symbol
       name
       decimals
-      derived${multiChainQueryMainToken[chainName]}
       derivedUSD
       tradeVolumeUSD
       totalTransactions
@@ -80,11 +75,11 @@ const fetchTokenData = async (
   try {
     const query = gql`
       query tokens {
-        now: ${TOKEN_AT_BLOCK(chainName, null, tokenAddresses)}
-        oneDayAgo: ${TOKEN_AT_BLOCK(chainName, block24h, tokenAddresses)}
-        twoDaysAgo: ${TOKEN_AT_BLOCK(chainName, block48h, tokenAddresses)}
-        oneWeekAgo: ${TOKEN_AT_BLOCK(chainName, block7d, tokenAddresses)}
-        twoWeeksAgo: ${TOKEN_AT_BLOCK(chainName, block14d, tokenAddresses)}
+        now: ${TOKEN_AT_BLOCK(null, tokenAddresses)}
+        oneDayAgo: ${TOKEN_AT_BLOCK(block24h, tokenAddresses)}
+        twoDaysAgo: ${TOKEN_AT_BLOCK(block48h, tokenAddresses)}
+        oneWeekAgo: ${TOKEN_AT_BLOCK(block7d, tokenAddresses)}
+        twoWeeksAgo: ${TOKEN_AT_BLOCK(block14d, tokenAddresses)}
       }
     `
     const data = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TokenQueryResponse>(query)
@@ -101,12 +96,9 @@ const parseTokenData = (tokens?: TokenFields[]) => {
     return {}
   }
   return tokens.reduce((accum: { [address: string]: FormattedTokenFields }, tokenData) => {
-    const { derivedBNB, derivedUSD, tradeVolumeUSD, totalTransactions, totalLiquidity, derivedETH, decimals } =
-      tokenData
+    const { derivedUSD, tradeVolumeUSD, totalTransactions, totalLiquidity, decimals } = tokenData
     accum[tokenData.id.toLowerCase()] = {
       ...tokenData,
-      derivedBNB: derivedBNB ? parseFloat(derivedBNB) : 0,
-      derivedETH: derivedETH ? parseFloat(derivedETH) : 0,
       derivedUSD: parseFloat(derivedUSD),
       tradeVolumeUSD: parseFloat(tradeVolumeUSD),
       totalTransactions: parseFloat(totalTransactions),

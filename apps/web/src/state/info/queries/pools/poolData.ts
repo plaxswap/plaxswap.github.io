@@ -11,7 +11,6 @@ import { getPercentChange, getAmountChange } from 'views/Info/utils/infoDataHelp
 import {
   getMultiChainQueryEndPointWithStableSwap,
   MultiChainName,
-  multiChainQueryMainToken,
   checkIsStableSwap,
 } from '../../constant'
 import { useGetChainName } from '../../hooks'
@@ -65,7 +64,7 @@ interface PoolsQueryResponse {
  * Note: Don't try to refactor it to use variables, server throws error if blocks passed as undefined variable
  * only works if its hard-coded into query string
  */
-const POOL_AT_BLOCK = (chainName: MultiChainName, block: number | null, pools: string[]) => {
+const POOL_AT_BLOCK = (block: number | null, pools: string[]) => {
   const blockString = block ? `block: {number: ${block}}` : ``
   const addressesString = `["${pools.join('","')}"]`
   const volumeOutUSDString = checkIsStableSwap() ? 'volumeOutUSD' : ''
@@ -73,7 +72,7 @@ const POOL_AT_BLOCK = (chainName: MultiChainName, block: number | null, pools: s
   return `pairs(
     where: { id_in: ${addressesString} }
     ${blockString}
-    orderBy: trackedReserve${multiChainQueryMainToken[chainName]}
+    orderBy: reserveUSD
     orderDirection: desc
   ) {
     id
@@ -108,11 +107,11 @@ export const fetchPoolData = async (
   try {
     const query = gql`
       query pools {
-        now: ${POOL_AT_BLOCK(chainName, null, poolAddresses)}
-        oneDayAgo: ${POOL_AT_BLOCK(chainName, block24h, poolAddresses)}
-        twoDaysAgo: ${POOL_AT_BLOCK(chainName, block48h, poolAddresses)}
-        oneWeekAgo: ${POOL_AT_BLOCK(chainName, block7d, poolAddresses)}
-        twoWeeksAgo: ${POOL_AT_BLOCK(chainName, block14d, poolAddresses)}
+        now: ${POOL_AT_BLOCK(null, poolAddresses)}
+        oneDayAgo: ${POOL_AT_BLOCK(block24h, poolAddresses)}
+        twoDaysAgo: ${POOL_AT_BLOCK(block48h, poolAddresses)}
+        oneWeekAgo: ${POOL_AT_BLOCK(block7d, poolAddresses)}
+        twoWeeksAgo: ${POOL_AT_BLOCK(block14d, poolAddresses)}
       }
     `
     const data = await getMultiChainQueryEndPointWithStableSwap(chainName).request<PoolsQueryResponse>(query)

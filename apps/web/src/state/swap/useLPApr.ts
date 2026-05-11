@@ -6,7 +6,7 @@ import { getBlocksFromTimestamps } from 'utils/getBlocksFromTimestamps'
 import { getChangeForPeriod } from 'utils/getChangeForPeriod'
 import { SLOW_INTERVAL } from 'config/constants'
 import { LP_HOLDERS_FEE, WEEKS_IN_YEAR } from 'config/constants/info'
-import { getMultiChainQueryEndPointWithStableSwap, MultiChainName, multiChainQueryMainToken } from '../info/constant'
+import { getMultiChainQueryEndPointWithStableSwap } from '../info/constant'
 
 interface PoolReserveVolume {
   reserveUSD: string
@@ -56,8 +56,8 @@ const fetchPoolVolumeAndReserveData = async (
   try {
     const query = gql`
       query pools {
-        now: ${POOL_AT_BLOCK(chainName, null, poolAddress)}
-        oneWeekAgo: ${POOL_AT_BLOCK(chainName, block7d, poolAddress)}
+        now: ${POOL_AT_BLOCK(null, poolAddress)}
+        oneWeekAgo: ${POOL_AT_BLOCK(block7d, poolAddress)}
       }
     `
 
@@ -68,13 +68,13 @@ const fetchPoolVolumeAndReserveData = async (
     return { error: true }
   }
 }
-const POOL_AT_BLOCK = (chainName: MultiChainName, block: number | null, pool: string) => {
+const POOL_AT_BLOCK = (block: number | null, pool: string) => {
   const addressesString = `["${pool}"]`
   const blockString = block ? `block: {number: ${block}}` : ``
   return `pairs(
     where: { id_in: ${addressesString} }
     ${blockString}
-    orderBy: trackedReserve${multiChainQueryMainToken[chainName]}
+    orderBy: reserveUSD
     orderDirection: desc
   ) {
     reserveUSD
