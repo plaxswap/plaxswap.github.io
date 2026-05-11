@@ -36,16 +36,17 @@ const HotTokenList: React.FC<{ handleOutputSelect: (newCurrencyOutput: Currency)
   const [index, setIndex] = useState(0)
   const { isMobile } = useMatchBreakpoints()
   const formattedTokens = useMemo(
-    () =>
-      allTokens.filter(
-        (t) =>
-          t.priceUSD !== 0 &&
-          t.priceUSDChange !== 0 &&
-          t.volumeUSD !== 0 &&
-          t.liquidityUSD >= LIQUIDITY_FILTER[chainId],
-      ),
+    () => {
+      const tokensWithMarketData = (allTokens ?? []).filter((t) => t.priceUSD !== 0 && t.volumeUSD !== 0)
+      const tokensWithLiquidity = tokensWithMarketData.filter((t) => t.liquidityUSD >= LIQUIDITY_FILTER[chainId])
+      return tokensWithLiquidity.length > 0 ? tokensWithLiquidity : tokensWithMarketData
+    },
     [allTokens, chainId],
   )
+  const priceChangeTokens = useMemo(() => {
+    const tokensWithPriceChange = formattedTokens.filter((t) => t.priceUSDChange !== 0)
+    return tokensWithPriceChange.length > 0 ? tokensWithPriceChange : formattedTokens
+  }, [formattedTokens])
 
   const { t } = useTranslation()
   return (
@@ -58,7 +59,7 @@ const HotTokenList: React.FC<{ handleOutputSelect: (newCurrencyOutput: Currency)
       </MenuWrapper>
       {index === 0 ? (
         <TokenTable
-          tokenDatas={formattedTokens}
+          tokenDatas={priceChangeTokens}
           type={chainId === ChainId.BSC ? 'priceChange' : 'liquidity'}
           defaultSortField={chainId === ChainId.BSC ? 'priceUSDChange' : 'liquidityUSD'}
           maxItems={isMobile ? 100 : 6}
