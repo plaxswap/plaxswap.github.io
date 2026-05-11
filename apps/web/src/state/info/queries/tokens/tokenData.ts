@@ -82,6 +82,19 @@ interface PairDayDataQueryResponse {
   pairDayDatas: PairDayDataFields[]
 }
 
+interface PairSwapFields {
+  id: string
+  timestamp: string
+  amountUSD: string
+  pair: {
+    id: string
+  }
+}
+
+interface PairSwapQueryResponse {
+  swaps: PairSwapFields[]
+}
+
 const USD_QUOTE_TOKEN_ADDRESSES = [
   '0xc2132d05d31c914a87c6611c10748aeb04b58e8f', // USDT
   '0x2791bca1f2de4661ed88a30c99a7a9449aa84174', // USDC.e
@@ -289,10 +302,106 @@ const fetchPairDayVolumeData = async (
   }
 }
 
+const fetchPairSwapVolumeData = async (
+  chainName: MultiChainName,
+  timestamp24hAgo: number,
+  timestamp48hAgo: number,
+  pairAddresses: string[],
+) => {
+  if (!pairAddresses.length) {
+    return {}
+  }
+
+  const pairIds = Array.from(new Set(pairAddresses.map((address) => address.toLowerCase())))
+  const query = gql`
+    query pairSwapVolumes($pairIds: [String!], $timestamp48hAgo: Int!, $first: Int!, $skip: Int!) {
+      swaps(
+        first: $first
+        skip: $skip
+        where: { pair_in: $pairIds, timestamp_gte: $timestamp48hAgo }
+        orderBy: timestamp
+        orderDirection: asc
+      ) {
+        id
+        timestamp
+        amountUSD
+        pair {
+          id
+        }
+      }
+    }
+  `
+  const swaps: PairSwapFields[] = []
+  const pageSize = 1000
+  const maxPages = 5
+
+  try {
+    for (let page = 0; page < maxPages; page += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      const response = await getMultiChainQueryEndPointWithStableSwap(chainName).request<PairSwapQueryResponse>(query, {
+        pairIds,
+        timestamp48hAgo,
+        first: pageSize,
+        skip: page * pageSize,
+      })
+
+      if (!response?.swaps?.length) {
+        break
+      }
+
+      swaps.push(...response.swaps)
+
+      if (response.swaps.length < pageSize) {
+        break
+      }
+    }
+
+    return swaps.reduce((accum: Record<string, { volumeUSD: number; volumeUSDChange: number }>, swap) => {
+      const pairAddress = swap.pair.id.toLowerCase()
+      const timestamp = parseInt(swap.timestamp)
+      const amountUSD = parseFloat(swap.amountUSD)
+
+      if (!accum[pairAddress]) {
+        accum[pairAddress] = {
+          volumeUSD: 0,
+          volumeUSDChange: 0,
+        }
+      }
+
+      if (!amountUSD || !timestamp) {
+        return accum
+      }
+
+      if (timestamp >= timestamp24hAgo) {
+        accum[pairAddress].volumeUSD += amountUSD
+      } else {
+        accum[pairAddress].volumeUSDChange += amountUSD
+      }
+
+      return accum
+    }, {})
+  } catch (error) {
+    console.info('Failed to fetch token pair swap volume data', error)
+    return {}
+  }
+}
+
+const normalizeSwapVolumeChange = (pairSwapVolume: { volumeUSD: number; volumeUSDChange: number } | undefined) => {
+  if (!pairSwapVolume) {
+    return undefined
+  }
+
+  return {
+    volumeUSD: pairSwapVolume.volumeUSD,
+    volumeUSDChange: getPercentChange(pairSwapVolume.volumeUSD, pairSwapVolume.volumeUSDChange),
+  }
+}
+
 const fetchTokenMarketDataByAddresses = async (
   chainName: MultiChainName,
   block24h: number,
   block48h: number,
+  timestamp24hAgo: number,
   timestamp48hAgo: number,
   tokenAddresses: string[],
 ) => {
@@ -325,6 +434,12 @@ const fetchTokenMarketDataByAddresses = async (
     }, {})
     const bestPairAddresses = Object.values(bestPairsByToken).map((pair) => pair.id)
     const pairDayVolumeByPair = await fetchPairDayVolumeData(chainName, timestamp48hAgo, bestPairAddresses)
+    const pairSwapVolumeByPair = await fetchPairSwapVolumeData(
+      chainName,
+      timestamp24hAgo,
+      timestamp48hAgo,
+      bestPairAddresses,
+    )
 
     const marketDataByAddress = tokenAddresses.reduce((accum: Record<string, TokenChartData>, address) => {
       const normalizedAddress = address.toLowerCase()
@@ -355,12 +470,13 @@ const fetchTokenMarketDataByAddresses = async (
         twoDayPair ? parseFloat(twoDayPair.volumeUSD) : undefined,
       )
       const pairDayVolume = pairDayVolumeByPair[pairId]
+      const pairSwapVolume = normalizeSwapVolumeChange(pairSwapVolumeByPair[pairId])
 
       accum[normalizedAddress] = {
         priceUSD,
         priceUSDChange: getPercentChange(priceUSD, priceUSDOneDay),
-        volumeUSD: pairDayVolume?.volumeUSD || volumeUSD,
-        volumeUSDChange: pairDayVolume?.volumeUSDChange || volumeUSDChange,
+        volumeUSD: pairSwapVolume?.volumeUSD || pairDayVolume?.volumeUSD || volumeUSD,
+        volumeUSDChange: pairSwapVolume?.volumeUSDChange || pairDayVolume?.volumeUSDChange || volumeUSDChange,
       }
 
       return accum
@@ -371,6 +487,7 @@ const fetchTokenMarketDataByAddresses = async (
       requestedAddresses: tokenAddresses.length,
       currentPairs: currentPairs.length,
       pairDayVolumes: Object.keys(pairDayVolumeByPair).length,
+      pairSwapVolumes: Object.keys(pairSwapVolumeByPair).length,
       tokensWithMarketData: Object.keys(marketDataByAddress).length,
       samplePairs: currentPairs.slice(0, 5).map((pair) => ({
         id: pair.id,
@@ -448,6 +565,7 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
           chainName,
           block24h.number,
           block48h.number,
+          t24h,
           t48h,
           tokenAddresses,
         )
@@ -513,7 +631,7 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
     if (tokenAddresses.length > 0 && allBlocksAvailable && !blockError) {
       fetch()
     }
-  }, [tokenAddresses, block24h, block48h, block7d, block14d, blockError, chainName, t48h])
+  }, [tokenAddresses, block24h, block48h, block7d, block14d, blockError, chainName, t24h, t48h])
 
   return fetchState
 }
@@ -543,6 +661,7 @@ export const fetchAllTokenDataByAddresses = async (
     chainName,
     block24h.number,
     block48h.number,
+    Number(block24h.timestamp),
     Number(block48h.timestamp),
     tokenAddresses,
   )
