@@ -162,11 +162,12 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
           const week: FormattedTokenFields | undefined = parsed7d[address]
           const twoWeeks: FormattedTokenFields | undefined = parsed14d[address]
 
-          const [volumeUSD, volumeUSDChange] = getChangeForPeriod(
+          const [volumeUSDRaw, volumeUSDChange] = getChangeForPeriod(
             current?.tradeVolumeUSD,
             oneDay?.tradeVolumeUSD,
             twoDays?.tradeVolumeUSD,
           )
+          const volumeUSD = volumeUSDRaw || current?.tradeVolumeUSD || 0
           const [volumeUSDWeek] = getChangeForPeriod(
             current?.tradeVolumeUSD,
             week?.tradeVolumeUSD,
@@ -246,11 +247,12 @@ export const fetchAllTokenDataByAddresses = async (
     const week: FormattedTokenFields | undefined = parsed7d[address]
     const twoWeeks: FormattedTokenFields | undefined = parsed14d[address]
 
-    const [volumeUSD, volumeUSDChange] = getChangeForPeriod(
+    const [volumeUSDRaw, volumeUSDChange] = getChangeForPeriod(
       current?.tradeVolumeUSD,
       oneDay?.tradeVolumeUSD,
       twoDays?.tradeVolumeUSD,
     )
+    const volumeUSD = volumeUSDRaw || current?.tradeVolumeUSD || 0
     const [volumeUSDWeek] = getChangeForPeriod(current?.tradeVolumeUSD, week?.tradeVolumeUSD, twoWeeks?.tradeVolumeUSD)
     const liquidityUSD = current ? current.totalLiquidity * current.derivedUSD : 0
     const liquidityUSDOneDayAgo = oneDay ? oneDay.totalLiquidity * oneDay.derivedUSD : 0

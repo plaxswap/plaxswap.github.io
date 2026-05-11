@@ -37,7 +37,7 @@ const HotTokenList: React.FC<{ handleOutputSelect: (newCurrencyOutput: Currency)
   const { isMobile } = useMatchBreakpoints()
   const formattedTokens = useMemo(
     () => {
-      const tokensWithMarketData = (allTokens ?? []).filter((t) => t.priceUSD !== 0 && t.volumeUSD !== 0)
+      const tokensWithMarketData = (allTokens ?? []).filter((t) => t.exists)
       const tokensWithLiquidity = tokensWithMarketData.filter((t) => t.liquidityUSD >= LIQUIDITY_FILTER[chainId])
       return tokensWithLiquidity.length > 0 ? tokensWithLiquidity : tokensWithMarketData
     },
