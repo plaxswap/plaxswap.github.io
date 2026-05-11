@@ -4,7 +4,7 @@ export const PANCAKE_ETH_DEFAULT = 'https://tokens.pancakeswap.finance/pancakesw
 export const PANCAKE_ETH_MM = 'https://tokens.pancakeswap.finance/pancakeswap-eth-mm.json'
 export const PANCAKE_BSC_MM = 'https://tokens.pancakeswap.finance/pancakeswap-bnb-mm.json'
 export const COINGECKO_ETH = 'https://tokens.coingecko.com/uniswap/all.json'
-export const CMC = 'https://tokens.pancakeswap.finance/cmc.json'
+export const CMC = 'https://plaxswap.github.io/tokenlist-json/tokenlist.json'
 
 export const ETH_URLS = [PANCAKE_ETH_DEFAULT, PANCAKE_ETH_MM, COINGECKO_ETH]
 export const BSC_URLS = [PANCAKE_EXTENDED, CMC, COINGECKO, PANCAKE_BSC_MM]
