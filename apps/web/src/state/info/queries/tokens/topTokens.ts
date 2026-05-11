@@ -87,6 +87,11 @@ const fetchTopTokens = async (chainName: MultiChainName, timestamp24hAgo: number
       const data = await getMultiChainQueryEndPointWithStableSwap(chainName).request<StableSwapTopTokensResponse>(
         stableSwapQuery,
       )
+      console.info('[HotTokenList debug] stableSwap top token addresses', {
+        chainName,
+        count: data.tokens.length,
+        sample: data.tokens.slice(0, 10).map((t) => t.id),
+      })
       return union(
         data.tokens.map((t) => t.id),
         multiChainTokenWhiteList[chainName],
@@ -94,6 +99,12 @@ const fetchTopTokens = async (chainName: MultiChainName, timestamp24hAgo: number
     }
     let data = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TopTokensResponse>(tokenDayDatasQuery(whereCondition), {
       blacklist: multiChainTokenBlackList[chainName],
+    })
+    console.info('[HotTokenList debug] top tokenDayDatas strict', {
+      chainName,
+      timestamp24hAgo,
+      count: data.tokenDayDatas.length,
+      sample: data.tokenDayDatas.slice(0, 10).map((t) => t.id),
     })
 
     if (!data.tokenDayDatas.length) {
@@ -103,6 +114,11 @@ const fetchTopTokens = async (chainName: MultiChainName, timestamp24hAgo: number
           blacklist: multiChainTokenBlackList[chainName],
         },
       )
+      console.info('[HotTokenList debug] top tokenDayDatas fallback', {
+        chainName,
+        count: data.tokenDayDatas.length,
+        sample: data.tokenDayDatas.slice(0, 10).map((t) => t.id),
+      })
     }
 
     // tokenDayDatas id has compound id "0xTOKENADDRESS-NUMBERS", extracting token address with .split('-')
@@ -113,6 +129,11 @@ const fetchTopTokens = async (chainName: MultiChainName, timestamp24hAgo: number
 
     const tokensData = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TokensResponse>(tokensQuery, {
       blacklist: multiChainTokenBlackList[chainName],
+    })
+    console.info('[HotTokenList debug] top tokens fallback', {
+      chainName,
+      count: tokensData.tokens.length,
+      sample: tokensData.tokens.slice(0, 10).map((t) => t.id),
     })
 
     return union(

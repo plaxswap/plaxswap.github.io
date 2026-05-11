@@ -83,6 +83,15 @@ const fetchTokenData = async (
       }
     `
     const data = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TokenQueryResponse>(query)
+    console.info('[HotTokenList debug] token data query result', {
+      chainName,
+      requestedAddresses: tokenAddresses.length,
+      now: data?.now?.length ?? 0,
+      oneDayAgo: data?.oneDayAgo?.length ?? 0,
+      twoDaysAgo: data?.twoDaysAgo?.length ?? 0,
+      sampleRequestedAddresses: tokenAddresses.slice(0, 10),
+      sampleNow: data?.now?.slice(0, 5),
+    })
     return { data, error: false }
   } catch (error) {
     console.error('Failed to fetch token data', error)

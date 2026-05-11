@@ -1,6 +1,6 @@
 import { CMC } from 'config/constants/lists'
 import { useAtomValue } from 'jotai'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { selectorByUrlsAtom } from 'state/lists/hooks'
 import { useTokenDatasSWR, useAllTokenHighLight } from 'state/info/hooks'
 import { useActiveChainId } from 'hooks/useActiveChainId'
@@ -21,7 +21,7 @@ export const useTokenHighLightList = () => {
   const allTokensFromBSC = useTokenDatasSWR(chainId === ChainId.BSC ? bscWhiteList : [], false)
   const allTokensFromGraph = useAllTokenHighLight()
 
-  return useMemo(() => {
+  const tokenHighLightList = useMemo(() => {
     if (chainId !== ChainId.BSC) {
       return allTokensFromGraph
     }
@@ -35,4 +35,19 @@ export const useTokenHighLightList = () => {
 
     return Array.from(tokensByAddress.values())
   }, [allTokensFromBSC, allTokensFromGraph, chainId])
+
+  useEffect(() => {
+    console.info('[HotTokenList debug] token sources', {
+      chainId,
+      whitelistAddresses: bscWhiteList.length,
+      whitelistTokenData: allTokensFromBSC?.length ?? 0,
+      graphTokenData: allTokensFromGraph?.length ?? 0,
+      mergedTokenData: tokenHighLightList?.length ?? 0,
+      sampleWhitelistAddresses: bscWhiteList.slice(0, 5),
+      sampleWhitelistTokenData: allTokensFromBSC?.slice(0, 3),
+      sampleGraphTokenData: allTokensFromGraph?.slice(0, 3),
+    })
+  }, [allTokensFromBSC, allTokensFromGraph, bscWhiteList, chainId, tokenHighLightList])
+
+  return tokenHighLightList
 }

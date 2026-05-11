@@ -1,6 +1,6 @@
 import { useTranslation } from '@pancakeswap/localization'
 import { ButtonMenu, ButtonMenuItem, useMatchBreakpoints } from '@pancakeswap/uikit'
-import { memo, useState, useMemo } from 'react'
+import { memo, useEffect, useState, useMemo } from 'react'
 import { useActiveChainId } from 'hooks/useActiveChainId'
 import { ChainId, Currency } from '@pancakeswap/sdk'
 
@@ -47,6 +47,37 @@ const HotTokenList: React.FC<{ handleOutputSelect: (newCurrencyOutput: Currency)
     const tokensWithPriceChange = formattedTokens.filter((t) => t.priceUSDChange !== 0)
     return tokensWithPriceChange.length > 0 ? tokensWithPriceChange : formattedTokens
   }, [formattedTokens])
+
+  useEffect(() => {
+    const tokens = allTokens ?? []
+    const tokensWithPrice = tokens.filter((t) => t.priceUSD !== 0)
+    const tokensWithVolume = tokens.filter((t) => t.volumeUSD !== 0)
+    const tokensWithMarketData = tokens.filter((t) => t.priceUSD !== 0 && t.volumeUSD !== 0)
+    const tokensWithLiquidity = tokensWithMarketData.filter((t) => t.liquidityUSD >= LIQUIDITY_FILTER[chainId])
+    console.info('[HotTokenList debug] table filters', {
+      chainId,
+      totalTokens: tokens.length,
+      tokensWithPrice: tokensWithPrice.length,
+      tokensWithVolume: tokensWithVolume.length,
+      tokensWithMarketData: tokensWithMarketData.length,
+      tokensWithLiquidity: tokensWithLiquidity.length,
+      formattedTokens: formattedTokens.length,
+      priceChangeTokens: priceChangeTokens.length,
+      sampleAllTokens: tokens.slice(0, 5),
+      sampleFormattedTokens: formattedTokens.slice(0, 5),
+      rejectedSamples: tokens
+        .filter((t) => t.priceUSD === 0 || t.volumeUSD === 0)
+        .slice(0, 5)
+        .map((t) => ({
+          address: t.address,
+          symbol: t.symbol,
+          priceUSD: t.priceUSD,
+          volumeUSD: t.volumeUSD,
+          liquidityUSD: t.liquidityUSD,
+          priceUSDChange: t.priceUSDChange,
+        })),
+    })
+  }, [allTokens, chainId, formattedTokens, priceChangeTokens])
 
   const { t } = useTranslation()
   return (
