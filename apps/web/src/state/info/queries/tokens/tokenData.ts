@@ -44,6 +44,7 @@ interface TokenChartData {
   priceUSD: number
   priceUSDChange: number
   volumeUSD: number
+  volumeUSDChange: number
 }
 
 interface PairMarketFields {
@@ -262,6 +263,7 @@ const fetchTokenMarketDataByAddresses = async (
           priceUSD: 1,
           priceUSDChange: 0,
           volumeUSD: 0,
+          volumeUSDChange: 0,
         }
         return accum
       }
@@ -276,7 +278,7 @@ const fetchTokenMarketDataByAddresses = async (
       const twoDayPair = twoDayPairsById[pairId]
       const priceUSD = parsePairPriceForToken(currentPair, normalizedAddress)
       const priceUSDOneDay = oneDayPair ? parsePairPriceForToken(oneDayPair, normalizedAddress) : 0
-      const [volumeUSD] = getChangeForPeriod(
+      const [volumeUSD, volumeUSDChange] = getChangeForPeriod(
         parseFloat(currentPair.volumeUSD),
         oneDayPair ? parseFloat(oneDayPair.volumeUSD) : undefined,
         twoDayPair ? parseFloat(twoDayPair.volumeUSD) : undefined,
@@ -286,6 +288,7 @@ const fetchTokenMarketDataByAddresses = async (
         priceUSD,
         priceUSDChange: getPercentChange(priceUSD, priceUSDOneDay),
         volumeUSD,
+        volumeUSDChange,
       }
 
       return accum
@@ -391,6 +394,7 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
             twoDays?.tradeVolumeUSD,
           )
           const volumeUSD = marketData?.volumeUSD || volumeUSDRaw || current?.tradeVolumeUSD || 0
+          const marketVolumeUSDChange = marketData?.volumeUSDChange || 0
           const [volumeUSDWeek] = getChangeForPeriod(
             current?.tradeVolumeUSD,
             week?.tradeVolumeUSD,
@@ -414,7 +418,7 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
             name: current ? current.name : '',
             symbol: current ? current.symbol : '',
             volumeUSD,
-            volumeUSDChange,
+            volumeUSDChange: marketVolumeUSDChange || volumeUSDChange,
             volumeUSDWeek,
             txCount,
             liquidityUSD,
@@ -484,6 +488,7 @@ export const fetchAllTokenDataByAddresses = async (
       twoDays?.tradeVolumeUSD,
     )
     const volumeUSD = marketData?.volumeUSD || volumeUSDRaw || current?.tradeVolumeUSD || 0
+    const marketVolumeUSDChange = marketData?.volumeUSDChange || 0
     const [volumeUSDWeek] = getChangeForPeriod(current?.tradeVolumeUSD, week?.tradeVolumeUSD, twoWeeks?.tradeVolumeUSD)
     const liquidityUSD = current ? current.totalLiquidity * current.derivedUSD : 0
     const liquidityUSDOneDayAgo = oneDay ? oneDay.totalLiquidity * oneDay.derivedUSD : 0
@@ -505,7 +510,7 @@ export const fetchAllTokenDataByAddresses = async (
         name: current ? current.name : '',
         symbol: current ? current.symbol : '',
         volumeUSD,
-        volumeUSDChange,
+        volumeUSDChange: marketVolumeUSDChange || volumeUSDChange,
         volumeUSDWeek,
         txCount,
         liquidityUSD,

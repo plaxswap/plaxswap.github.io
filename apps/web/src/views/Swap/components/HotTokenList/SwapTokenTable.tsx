@@ -185,7 +185,7 @@ const DataRow: React.FC<
         )}
         {type !== 'liquidity' && (
           <Text fontWeight={400}>
-            <Percent value={tokenData.priceUSDChange} fontWeight={400} />
+            <Percent value={type === 'volume' ? tokenData.volumeUSDChange : tokenData.priceUSDChange} fontWeight={400} />
           </Text>
         )}
         {type === 'volume' && <Text fontWeight={400}>${formatAmount(tokenData.volumeUSD)}</Text>}
@@ -228,6 +228,7 @@ const DataRow: React.FC<
 const SORT_FIELD = {
   name: 'name',
   volumeUSD: 'volumeUSD',
+  volumeUSDChange: 'volumeUSDChange',
   liquidityUSD: 'liquidityUSD',
   priceUSD: 'priceUSD',
   priceUSDChange: 'priceUSDChange',
@@ -330,11 +331,15 @@ const TokenTable: React.FC<
             color="secondary"
             fontSize="12px"
             bold
-            onClick={() => handleSort(SORT_FIELD.priceUSDChange)}
+            onClick={() => handleSort(type === 'volume' ? SORT_FIELD.volumeUSDChange : SORT_FIELD.priceUSDChange)}
             textTransform="uppercase"
           >
             {t('Change')}{' '}
-            <SortButton scale="sm" variant="subtle" className={arrowClassName(SORT_FIELD.priceUSDChange)}>
+            <SortButton
+              scale="sm"
+              variant="subtle"
+              className={arrowClassName(type === 'volume' ? SORT_FIELD.volumeUSDChange : SORT_FIELD.priceUSDChange)}
+            >
               <SortArrowIcon />
             </SortButton>
           </StyledClickableColumnHeader>
