@@ -99,6 +99,7 @@ interface TokenDayVolumeFields {
   id: string
   date: number
   dailyVolumeUSD: string
+  dailyVolumeToken: string
 }
 
 interface TokenDayVolumeQueryResponse {
@@ -275,6 +276,7 @@ const fetchPairDayVolumeData = async (
           id
           date
           dailyVolumeUSD
+          dailyVolumeToken
         }
       }
     `
@@ -407,6 +409,31 @@ const normalizeSwapVolumeChange = (pairSwapVolume: { volumeUSD: number; volumeUS
   }
 }
 
+const normalizeTokenDayVolume = (
+  tokenDayVolume:
+    | { volumeUSD: number; volumeUSDChange: number; volumeToken: number; previousVolumeToken: number }
+    | undefined,
+  priceUSD: number,
+  priceUSDOneDay?: number,
+) => {
+  if (!tokenDayVolume) {
+    return undefined
+  }
+
+  const convertedVolumeUSD = tokenDayVolume.volumeToken && priceUSD ? tokenDayVolume.volumeToken * priceUSD : 0
+  const convertedPreviousVolumeUSD =
+    tokenDayVolume.previousVolumeToken && (priceUSDOneDay || priceUSD)
+      ? tokenDayVolume.previousVolumeToken * (priceUSDOneDay || priceUSD)
+      : 0
+  const volumeUSD = tokenDayVolume.volumeUSD || convertedVolumeUSD
+
+  return {
+    volumeUSD,
+    volumeUSDChange:
+      tokenDayVolume.volumeUSDChange || getPercentChange(volumeUSD, convertedPreviousVolumeUSD || undefined),
+  }
+}
+
 const fetchTokenDayVolumeData = async (chainName: MultiChainName, tokenAddresses: string[]) => {
   if (!tokenAddresses.length) {
     return {}
@@ -443,14 +470,24 @@ const fetchTokenDayVolumeData = async (chainName: MultiChainName, tokenAddresses
     }, {})
 
     return Object.keys(groupedByToken).reduce(
-      (accum: Record<string, { volumeUSD: number; volumeUSDChange: number }>, tokenAddress) => {
+      (
+        accum: Record<
+          string,
+          { volumeUSD: number; volumeUSDChange: number; volumeToken: number; previousVolumeToken: number }
+        >,
+        tokenAddress,
+      ) => {
         const [latest, previous] = groupedByToken[tokenAddress].sort((a, b) => b.date - a.date)
         const volumeUSD = latest?.dailyVolumeUSD ? parseFloat(latest.dailyVolumeUSD) : 0
         const previousVolumeUSD = previous?.dailyVolumeUSD ? parseFloat(previous.dailyVolumeUSD) : 0
+        const volumeToken = latest?.dailyVolumeToken ? parseFloat(latest.dailyVolumeToken) : 0
+        const previousVolumeToken = previous?.dailyVolumeToken ? parseFloat(previous.dailyVolumeToken) : 0
 
         accum[tokenAddress] = {
           volumeUSD,
           volumeUSDChange: getPercentChange(volumeUSD, previousVolumeUSD),
+          volumeToken,
+          previousVolumeToken,
         }
 
         return accum
@@ -512,7 +549,7 @@ const fetchTokenMarketDataByAddresses = async (
       const normalizedAddress = address.toLowerCase()
 
       if (USD_QUOTE_TOKEN_SET.has(normalizedAddress)) {
-        const tokenDayVolume = tokenDayVolumeByToken[normalizedAddress]
+        const tokenDayVolume = normalizeTokenDayVolume(tokenDayVolumeByToken[normalizedAddress], 1, 1)
         accum[normalizedAddress] = {
           priceUSD: 1,
           priceUSDChange: 0,
@@ -523,8 +560,8 @@ const fetchTokenMarketDataByAddresses = async (
       }
 
       const currentPair = bestPairsByToken[normalizedAddress]
-      const tokenDayVolume = tokenDayVolumeByToken[normalizedAddress]
       if (!currentPair) {
+        const tokenDayVolume = normalizeTokenDayVolume(tokenDayVolumeByToken[normalizedAddress], 0)
         if (tokenDayVolume) {
           accum[normalizedAddress] = {
             priceUSD: 0,
@@ -548,6 +585,7 @@ const fetchTokenMarketDataByAddresses = async (
       )
       const pairDayVolume = pairDayVolumeByPair[pairId]
       const pairSwapVolume = normalizeSwapVolumeChange(pairSwapVolumeByPair[pairId])
+      const tokenDayVolume = normalizeTokenDayVolume(tokenDayVolumeByToken[normalizedAddress], priceUSD, priceUSDOneDay)
 
       accum[normalizedAddress] = {
         priceUSD,
@@ -570,6 +608,7 @@ const fetchTokenMarketDataByAddresses = async (
       pairDayVolumes: Object.keys(pairDayVolumeByPair).length,
       pairSwapVolumes: Object.keys(pairSwapVolumeByPair).length,
       tokenDayVolumes: Object.keys(tokenDayVolumeByToken).length,
+      tokenDayTokenVolumes: Object.values(tokenDayVolumeByToken).filter((volumeData) => volumeData.volumeToken > 0).length,
       tokensWithMarketData: Object.keys(marketDataByAddress).length,
       tokensWithVolumeData: Object.values(marketDataByAddress).filter((marketData) => marketData.volumeUSD > 0).length,
       samplePairs: currentPairs.slice(0, 5).map((pair) => ({
