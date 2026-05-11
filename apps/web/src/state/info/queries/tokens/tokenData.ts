@@ -60,7 +60,7 @@ const TOKEN_AT_BLOCK = (chainName: MultiChainName, block: number | undefined, to
       symbol
       name
       decimals
-      derived${multiChainQueryMainToken[chainName]}
+      derivedBNB
       derivedUSD
       tradeVolumeUSD
       totalTransactions
