@@ -60,7 +60,7 @@ export const CUSTOM_BASES: {
   [chainId in ChainId]?: { [tokenAddress: string]: Token[] }
 } = {
   [ChainId.BSC]: {
-    [bscTokens.axlusdc.address]: [bscTokens.usdt],
+    [bscTokens.usdc.address]: [bscTokens.usdt],
   },
 }
 
