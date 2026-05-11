@@ -226,13 +226,11 @@ const parsePairPriceForToken = (pair: PairMarketFields, tokenAddress: string) =>
   const reserve1 = parseFloat(pair.reserve1)
 
   if (tokenAddress === token0 && USD_QUOTE_TOKEN_SET.has(token1)) {
-    const token0Price = parseFloat(pair.token0Price)
-    return token0Price || (reserve0 > 0 ? reserve1 / reserve0 : 0)
+    return reserve0 > 0 ? reserve1 / reserve0 : 0
   }
 
   if (tokenAddress === token1 && USD_QUOTE_TOKEN_SET.has(token0)) {
-    const token1Price = parseFloat(pair.token1Price)
-    return token1Price || (reserve1 > 0 ? reserve0 / reserve1 : 0)
+    return reserve1 > 0 ? reserve0 / reserve1 : 0
   }
 
   return 0
