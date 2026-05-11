@@ -29,7 +29,14 @@ export const useTokenHighLightList = () => {
     const tokensByAddress = new Map()
     ;[...(allTokensFromBSC ?? []), ...(allTokensFromGraph ?? [])].forEach((token) => {
       if (token?.address) {
-        tokensByAddress.set(token.address.toLowerCase(), token)
+        const address = token.address.toLowerCase()
+        const existingToken = tokensByAddress.get(address)
+        const existingScore = (existingToken?.priceUSD ? 1 : 0) + (existingToken?.volumeUSD ? 1 : 0)
+        const tokenScore = (token.priceUSD ? 1 : 0) + (token.volumeUSD ? 1 : 0)
+
+        if (!existingToken || tokenScore >= existingScore) {
+          tokensByAddress.set(address, token)
+        }
       }
     })
 

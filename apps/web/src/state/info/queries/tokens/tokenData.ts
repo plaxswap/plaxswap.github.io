@@ -512,17 +512,27 @@ const fetchTokenMarketDataByAddresses = async (
       const normalizedAddress = address.toLowerCase()
 
       if (USD_QUOTE_TOKEN_SET.has(normalizedAddress)) {
+        const tokenDayVolume = tokenDayVolumeByToken[normalizedAddress]
         accum[normalizedAddress] = {
           priceUSD: 1,
           priceUSDChange: 0,
-          volumeUSD: 0,
-          volumeUSDChange: 0,
+          volumeUSD: tokenDayVolume?.volumeUSD || 0,
+          volumeUSDChange: tokenDayVolume?.volumeUSDChange || 0,
         }
         return accum
       }
 
       const currentPair = bestPairsByToken[normalizedAddress]
+      const tokenDayVolume = tokenDayVolumeByToken[normalizedAddress]
       if (!currentPair) {
+        if (tokenDayVolume) {
+          accum[normalizedAddress] = {
+            priceUSD: 0,
+            priceUSDChange: 0,
+            volumeUSD: tokenDayVolume.volumeUSD,
+            volumeUSDChange: tokenDayVolume.volumeUSDChange,
+          }
+        }
         return accum
       }
 
@@ -538,7 +548,6 @@ const fetchTokenMarketDataByAddresses = async (
       )
       const pairDayVolume = pairDayVolumeByPair[pairId]
       const pairSwapVolume = normalizeSwapVolumeChange(pairSwapVolumeByPair[pairId])
-      const tokenDayVolume = tokenDayVolumeByToken[normalizedAddress]
 
       accum[normalizedAddress] = {
         priceUSD,
@@ -562,6 +571,7 @@ const fetchTokenMarketDataByAddresses = async (
       pairSwapVolumes: Object.keys(pairSwapVolumeByPair).length,
       tokenDayVolumes: Object.keys(tokenDayVolumeByToken).length,
       tokensWithMarketData: Object.keys(marketDataByAddress).length,
+      tokensWithVolumeData: Object.values(marketDataByAddress).filter((marketData) => marketData.volumeUSD > 0).length,
       samplePairs: currentPairs.slice(0, 5).map((pair) => ({
         id: pair.id,
         token0: pair.token0.id,
