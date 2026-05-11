@@ -60,7 +60,7 @@ const TOKEN_AT_BLOCK = (chainName: MultiChainName, block: number | undefined, to
       symbol
       name
       decimals
-      derivedBNB
+      derived${multiChainQueryMainToken[chainName]}
       derivedUSD
       tradeVolumeUSD
       totalTransactions
@@ -105,8 +105,8 @@ const parseTokenData = (tokens?: TokenFields[]) => {
       tokenData
     accum[tokenData.id.toLowerCase()] = {
       ...tokenData,
-      derivedBNB: derivedBNB ? 0 : parseFloat(derivedBNB),
-      derivedETH: derivedETH ? 0 : parseFloat(derivedETH),
+      derivedBNB: derivedBNB ? parseFloat(derivedBNB) : 0,
+      derivedETH: derivedETH ? parseFloat(derivedETH) : 0,
       derivedUSD: parseFloat(derivedUSD),
       tradeVolumeUSD: parseFloat(tradeVolumeUSD),
       totalTransactions: parseFloat(totalTransactions),
