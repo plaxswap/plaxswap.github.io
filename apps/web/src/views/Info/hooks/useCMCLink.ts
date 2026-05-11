@@ -1,9 +1,5 @@
 import useSWRImmutable from 'swr/immutable'
 
-// endpoint to check asset exists and get url to CMC page
-// returns 400 status code if token is not on CMC
-const CMC_ENDPOINT = 'https://3rdparty-apis.coinmarketcap.com/v1/cryptocurrency/contract?address='
-
 /**
  * Check if asset exists on CMC, if exists
  * return url, if not return undefined
@@ -11,10 +7,10 @@ const CMC_ENDPOINT = 'https://3rdparty-apis.coinmarketcap.com/v1/cryptocurrency/
  */
 const useCMCLink = (address: string): string | undefined => {
   const { data: cmcPageUrl } = useSWRImmutable(address ? ['cmcLink', address] : null, async () => {
-    const response = await fetch(`${CMC_ENDPOINT}${address}`)
+    const response = await fetch(`/api/cmc/link/${address.toLowerCase()}`)
 
     if (response.ok) {
-      return (await response.json()).data.url
+      return (await response.json()).url
     }
     return undefined
   })
