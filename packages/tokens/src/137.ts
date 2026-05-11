@@ -23,6 +23,14 @@ export const bscTokens = {
     'https://www.makerdao.com/',
   ),
   usdt: USDT_BSC,
+  sd: new ERC20Token(
+    ChainId.BSC,
+    '0x1d734A02eF1e1f5886e66b0673b71Af5B53ffA94',
+    18,
+    'SD',
+    'Stader (PoS)',
+    'https://www.staderlabs.com/',
+  ),
   usdc: USDC_BSC,
   syrup: new ERC20Token(
     ChainId.BSC,
@@ -119,6 +127,22 @@ export const bscTokens = {
     'AAVE',
     'AAVE',
     'https://aave.com',
+  ),
+  df: new ERC20Token(
+    ChainId.BSC,
+    '0x08C15FA26E519A78a666D19CE5C646D55047e0a3',
+    18,
+    'DF',
+    'DFORCE',
+    'https://dforce.network/',
+  ),
+  usx: new ERC20Token(
+    ChainId.BSC,
+    '0xCf66EB3D546F0415b368d98A95EAF56DeD7aA752',
+    18,
+    'USX',
+    'DFORCE USD',
+    'https://dforce.network/',
   ),
   uni: new ERC20Token(
     ChainId.BSC,
