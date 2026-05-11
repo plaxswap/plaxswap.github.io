@@ -27,7 +27,12 @@ const getGraphQLClientEndpoint = (client: GraphQLClient) => (client as any).url 
 
 const shouldFallbackGraphQLError = (error: unknown) => {
   const message = error instanceof Error ? error.message : String(error)
-  return isGraphQLRateLimitedError(error) || message.toLowerCase().includes('failed to fetch')
+  const normalizedMessage = message.toLowerCase()
+  return (
+    isGraphQLRateLimitedError(error) ||
+    normalizedMessage.includes('failed to fetch') ||
+    normalizedMessage.includes('rate limited until')
+  )
 }
 
 const getEndpointCandidates = (endpoint: string) => {
@@ -91,7 +96,9 @@ const requestWithFallbacks = async (
       if (!shouldFallbackGraphQLError(error)) {
         throw error
       }
-      console.warn('GraphQL request failed, trying fallback endpoint', { endpoint: candidate, error })
+      if (process.env.NODE_ENV !== 'production') {
+        console.info('GraphQL request failed, trying fallback endpoint', { endpoint: candidate, error })
+      }
     }
   }
 

@@ -18,7 +18,7 @@ const getTokenDerivedUSDCPrices = async (tokenAddress: string, blocks: Block[], 
   )
 
   if (!rawPrices) {
-    console.error('Price data failed to load')
+    console.info('Price data failed to load')
     return null
   }
 
