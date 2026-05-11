@@ -40,24 +40,46 @@ interface TokenQueryResponse {
   twoWeeksAgo: TokenFields[]
 }
 
-interface TokenDayDataFields {
-  date: number
-  dailyVolumeUSD: string
-  priceUSD: string
-  token: {
-    id: string
-  }
-}
-
-interface TokenDayDataQueryResponse {
-  tokenDayDatas: TokenDayDataFields[]
-}
-
 interface TokenChartData {
   priceUSD: number
   priceUSDChange: number
   volumeUSD: number
 }
+
+interface PairMarketFields {
+  id: string
+  reserve0: string
+  reserve1: string
+  reserveUSD: string
+  volumeUSD: string
+  token0Price: string
+  token1Price: string
+  token0: {
+    id: string
+  }
+  token1: {
+    id: string
+  }
+}
+
+interface PairMarketQueryResponse {
+  nowToken0QuotePairs: PairMarketFields[]
+  nowToken1QuotePairs: PairMarketFields[]
+  oneDayAgoToken0QuotePairs: PairMarketFields[]
+  oneDayAgoToken1QuotePairs: PairMarketFields[]
+  twoDaysAgoToken0QuotePairs: PairMarketFields[]
+  twoDaysAgoToken1QuotePairs: PairMarketFields[]
+}
+
+const USD_QUOTE_TOKEN_ADDRESSES = [
+  '0xc2132d05d31c914a87c6611c10748aeb04b58e8f', // USDT
+  '0x2791bca1f2de4661ed88a30c99a7a9449aa84174', // USDC.e
+  '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359', // native USDC
+  '0x9c9e5fd8bbc25984b178fdce6117defa39d2db39', // BUSD
+  '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063', // DAI
+]
+
+const USD_QUOTE_TOKEN_SET = new Set(USD_QUOTE_TOKEN_ADDRESSES)
 
 /**
  * Main token data to display on Token page
@@ -118,9 +140,90 @@ const fetchTokenData = async (
   }
 }
 
-const fetchTokenChartDataByAddresses = async (
+const getPairsForTokenMarket = (aliasPrefix: string, block: number | undefined, tokenAddresses: string[]) => {
+  const tokens = Array.from(new Set(tokenAddresses.map((address) => address.toLowerCase())))
+  const addressesString = `["${tokens.join('","')}"]`
+  const quoteAddressesString = `["${USD_QUOTE_TOKEN_ADDRESSES.join('","')}"]`
+  const blockString = block ? `block: {number: ${block}}` : ``
+
+  return `
+    ${aliasPrefix}Token0QuotePairs: pairs(
+      first: 1000
+      where: { token0_in: ${addressesString}, token1_in: ${quoteAddressesString} }
+      ${blockString}
+      orderBy: reserveUSD
+      orderDirection: desc
+    ) {
+      id
+      reserve0
+      reserve1
+      reserveUSD
+      volumeUSD
+      token0Price
+      token1Price
+      token0 { id }
+      token1 { id }
+    }
+    ${aliasPrefix}Token1QuotePairs: pairs(
+      first: 1000
+      where: { token1_in: ${addressesString}, token0_in: ${quoteAddressesString} }
+      ${blockString}
+      orderBy: reserveUSD
+      orderDirection: desc
+    ) {
+      id
+      reserve0
+      reserve1
+      reserveUSD
+      volumeUSD
+      token0Price
+      token1Price
+      token0 { id }
+      token1 { id }
+    }
+  `
+}
+
+const parsePairPriceForToken = (pair: PairMarketFields, tokenAddress: string) => {
+  const token0 = pair.token0.id.toLowerCase()
+  const token1 = pair.token1.id.toLowerCase()
+  const reserve0 = parseFloat(pair.reserve0)
+  const reserve1 = parseFloat(pair.reserve1)
+
+  if (tokenAddress === token0 && USD_QUOTE_TOKEN_SET.has(token1)) {
+    const token0Price = parseFloat(pair.token0Price)
+    return token0Price || (reserve0 > 0 ? reserve1 / reserve0 : 0)
+  }
+
+  if (tokenAddress === token1 && USD_QUOTE_TOKEN_SET.has(token0)) {
+    const token1Price = parseFloat(pair.token1Price)
+    return token1Price || (reserve1 > 0 ? reserve0 / reserve1 : 0)
+  }
+
+  return 0
+}
+
+const pickBestPairByToken = (pairs: PairMarketFields[], tokenAddresses: string[]) => {
+  const tokenSet = new Set(tokenAddresses.map((address) => address.toLowerCase()))
+
+  return pairs.reduce((accum: Record<string, PairMarketFields>, pair) => {
+    const token0 = pair.token0.id.toLowerCase()
+    const token1 = pair.token1.id.toLowerCase()
+    const tokenAddress = tokenSet.has(token0) && USD_QUOTE_TOKEN_SET.has(token1) ? token0 : token1
+    const previousPair = accum[tokenAddress]
+
+    if (!previousPair || parseFloat(pair.reserveUSD) > parseFloat(previousPair.reserveUSD)) {
+      accum[tokenAddress] = pair
+    }
+
+    return accum
+  }, {})
+}
+
+const fetchTokenMarketDataByAddresses = async (
   chainName: MultiChainName,
-  timestamp48hAgo: number,
+  block24h: number,
+  block48h: number,
   tokenAddresses: string[],
 ) => {
   if (!tokenAddresses.length) {
@@ -129,52 +232,84 @@ const fetchTokenChartDataByAddresses = async (
 
   try {
     const query = gql`
-      query tokenDayDatas($tokens: [String!], $timestamp48hAgo: Int!) {
-        tokenDayDatas(
-          first: 1000
-          where: { token_in: $tokens, date_gt: $timestamp48hAgo }
-          orderBy: date
-          orderDirection: desc
-        ) {
-          date
-          dailyVolumeUSD
-          priceUSD
-          token {
-            id
-          }
-        }
+      query tokenMarketPairs {
+        ${getPairsForTokenMarket('now', null, tokenAddresses)}
+        ${getPairsForTokenMarket('oneDayAgo', block24h, tokenAddresses)}
+        ${getPairsForTokenMarket('twoDaysAgo', block48h, tokenAddresses)}
       }
     `
-    const { tokenDayDatas } = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TokenDayDataQueryResponse>(
-      query,
-      {
-        tokens: Array.from(new Set(tokenAddresses.map((address) => address.toLowerCase()))),
-        timestamp48hAgo,
-      },
-    )
 
-    const grouped = tokenDayDatas.reduce((accum: Record<string, TokenDayDataFields[]>, tokenDayData) => {
-      const address = tokenDayData.token.id.toLowerCase()
-      if (!accum[address]) {
-        accum[address] = []
-      }
-      accum[address].push(tokenDayData)
+    const data = await getMultiChainQueryEndPointWithStableSwap(chainName).request<PairMarketQueryResponse>(query)
+
+    const currentPairs = [...(data.nowToken0QuotePairs ?? []), ...(data.nowToken1QuotePairs ?? [])]
+    const oneDayPairs = [...(data.oneDayAgoToken0QuotePairs ?? []), ...(data.oneDayAgoToken1QuotePairs ?? [])]
+    const twoDayPairs = [...(data.twoDaysAgoToken0QuotePairs ?? []), ...(data.twoDaysAgoToken1QuotePairs ?? [])]
+    const bestPairsByToken = pickBestPairByToken(currentPairs, tokenAddresses)
+    const oneDayPairsById = oneDayPairs.reduce((accum: Record<string, PairMarketFields>, pair) => {
+      accum[pair.id.toLowerCase()] = pair
+      return accum
+    }, {})
+    const twoDayPairsById = twoDayPairs.reduce((accum: Record<string, PairMarketFields>, pair) => {
+      accum[pair.id.toLowerCase()] = pair
       return accum
     }, {})
 
-    return Object.keys(grouped).reduce((accum: Record<string, TokenChartData>, address) => {
-      const [latest, previous] = grouped[address].sort((a, b) => b.date - a.date)
-      const priceUSD = latest?.priceUSD ? parseFloat(latest.priceUSD) : 0
-      const priceUSDOneDay = previous?.priceUSD ? parseFloat(previous.priceUSD) : 0
-      accum[address] = {
+    const marketDataByAddress = tokenAddresses.reduce((accum: Record<string, TokenChartData>, address) => {
+      const normalizedAddress = address.toLowerCase()
+
+      if (USD_QUOTE_TOKEN_SET.has(normalizedAddress)) {
+        accum[normalizedAddress] = {
+          priceUSD: 1,
+          priceUSDChange: 0,
+          volumeUSD: 0,
+        }
+        return accum
+      }
+
+      const currentPair = bestPairsByToken[normalizedAddress]
+      if (!currentPair) {
+        return accum
+      }
+
+      const pairId = currentPair.id.toLowerCase()
+      const oneDayPair = oneDayPairsById[pairId]
+      const twoDayPair = twoDayPairsById[pairId]
+      const priceUSD = parsePairPriceForToken(currentPair, normalizedAddress)
+      const priceUSDOneDay = oneDayPair ? parsePairPriceForToken(oneDayPair, normalizedAddress) : 0
+      const [volumeUSD] = getChangeForPeriod(
+        parseFloat(currentPair.volumeUSD),
+        oneDayPair ? parseFloat(oneDayPair.volumeUSD) : undefined,
+        twoDayPair ? parseFloat(twoDayPair.volumeUSD) : undefined,
+      )
+
+      accum[normalizedAddress] = {
         priceUSD,
         priceUSDChange: getPercentChange(priceUSD, priceUSDOneDay),
-        volumeUSD: latest?.dailyVolumeUSD ? parseFloat(latest.dailyVolumeUSD) : 0,
+        volumeUSD,
       }
+
       return accum
     }, {})
+
+    console.info('[HotTokenList debug] pair market fallback result', {
+      chainName,
+      requestedAddresses: tokenAddresses.length,
+      currentPairs: currentPairs.length,
+      tokensWithMarketData: Object.keys(marketDataByAddress).length,
+      samplePairs: currentPairs.slice(0, 5).map((pair) => ({
+        id: pair.id,
+        token0: pair.token0.id,
+        token1: pair.token1.id,
+        reserveUSD: pair.reserveUSD,
+        token0Price: pair.token0Price,
+        token1Price: pair.token1Price,
+      })),
+      sampleMarketData: Object.entries(marketDataByAddress).slice(0, 5),
+    })
+
+    return marketDataByAddress
   } catch (error) {
-    console.info('Failed to fetch token chart price data', error)
+    console.info('Failed to fetch token pair market data', error)
     return {}
   }
 }
@@ -233,23 +368,29 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
         const parsed48 = parseTokenData(data?.twoDaysAgo)
         const parsed7d = parseTokenData(data?.oneWeekAgo)
         const parsed14d = parseTokenData(data?.twoWeeksAgo)
-        const chartDataByAddress = await fetchTokenChartDataByAddresses(chainName, t48h, tokenAddresses)
+        const marketDataByAddress = await fetchTokenMarketDataByAddresses(
+          chainName,
+          block24h.number,
+          block48h.number,
+          tokenAddresses,
+        )
 
         // Calculate data and format
         const formatted = tokenAddresses.reduce((accum: { [address: string]: TokenData }, address) => {
-          const current: FormattedTokenFields | undefined = parsed[address]
-          const oneDay: FormattedTokenFields | undefined = parsed24[address]
-          const twoDays: FormattedTokenFields | undefined = parsed48[address]
-          const week: FormattedTokenFields | undefined = parsed7d[address]
-          const twoWeeks: FormattedTokenFields | undefined = parsed14d[address]
-          const chartData = chartDataByAddress[address.toLowerCase()]
+          const normalizedAddress = address.toLowerCase()
+          const current: FormattedTokenFields | undefined = parsed[normalizedAddress]
+          const oneDay: FormattedTokenFields | undefined = parsed24[normalizedAddress]
+          const twoDays: FormattedTokenFields | undefined = parsed48[normalizedAddress]
+          const week: FormattedTokenFields | undefined = parsed7d[normalizedAddress]
+          const twoWeeks: FormattedTokenFields | undefined = parsed14d[normalizedAddress]
+          const marketData = marketDataByAddress[normalizedAddress]
 
           const [volumeUSDRaw, volumeUSDChange] = getChangeForPeriod(
             current?.tradeVolumeUSD,
             oneDay?.tradeVolumeUSD,
             twoDays?.tradeVolumeUSD,
           )
-          const volumeUSD = chartData?.volumeUSD || volumeUSDRaw || current?.tradeVolumeUSD || 0
+          const volumeUSD = marketData?.volumeUSD || volumeUSDRaw || current?.tradeVolumeUSD || 0
           const [volumeUSDWeek] = getChangeForPeriod(
             current?.tradeVolumeUSD,
             week?.tradeVolumeUSD,
@@ -260,16 +401,16 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
           const liquidityUSDChange = getPercentChange(liquidityUSD, liquidityUSDOneDayAgo)
           const liquidityToken = current ? current.totalLiquidity : 0
           // Prices of tokens for now, 24h ago and 7d ago
-          const priceUSD = chartData?.priceUSD || (current ? current.derivedUSD : 0)
+          const priceUSD = marketData?.priceUSD || (current ? current.derivedUSD : 0)
           const priceUSDOneDay = oneDay ? oneDay.derivedUSD : 0
           const priceUSDWeek = week ? week.derivedUSD : 0
-          const priceUSDChange = chartData?.priceUSDChange || getPercentChange(priceUSD, priceUSDOneDay)
+          const priceUSDChange = marketData?.priceUSDChange || getPercentChange(priceUSD, priceUSDOneDay)
           const priceUSDChangeWeek = getPercentChange(priceUSD, priceUSDWeek)
           const txCount = getAmountChange(current?.totalTransactions, oneDay?.totalTransactions)
 
-          accum[address] = {
+          accum[normalizedAddress] = {
             exists: !!current,
-            address,
+            address: normalizedAddress,
             name: current ? current.name : '',
             symbol: current ? current.symbol : '',
             volumeUSD,
@@ -294,7 +435,7 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
     if (tokenAddresses.length > 0 && allBlocksAvailable && !blockError) {
       fetch()
     }
-  }, [tokenAddresses, block24h, block48h, block7d, block14d, blockError, chainName, t48h])
+  }, [tokenAddresses, block24h, block48h, block7d, block14d, blockError, chainName])
 
   return fetchState
 }
@@ -320,42 +461,47 @@ export const fetchAllTokenDataByAddresses = async (
   const parsed48 = parseTokenData(data?.twoDaysAgo)
   const parsed7d = parseTokenData(data?.oneWeekAgo)
   const parsed14d = parseTokenData(data?.twoWeeksAgo)
-  const timestamp48hAgo = Number(block48h.timestamp)
-  const chartDataByAddress = await fetchTokenChartDataByAddresses(chainName, timestamp48hAgo, tokenAddresses)
+  const marketDataByAddress = await fetchTokenMarketDataByAddresses(
+    chainName,
+    block24h.number,
+    block48h.number,
+    tokenAddresses,
+  )
 
   // Calculate data and format
   const formatted = tokenAddresses.reduce((accum: { [address: string]: { data: TokenData } }, address) => {
-    const current: FormattedTokenFields | undefined = parsed[address]
-    const oneDay: FormattedTokenFields | undefined = parsed24[address]
-    const twoDays: FormattedTokenFields | undefined = parsed48[address]
-    const week: FormattedTokenFields | undefined = parsed7d[address]
-    const twoWeeks: FormattedTokenFields | undefined = parsed14d[address]
-    const chartData = chartDataByAddress[address.toLowerCase()]
+    const normalizedAddress = address.toLowerCase()
+    const current: FormattedTokenFields | undefined = parsed[normalizedAddress]
+    const oneDay: FormattedTokenFields | undefined = parsed24[normalizedAddress]
+    const twoDays: FormattedTokenFields | undefined = parsed48[normalizedAddress]
+    const week: FormattedTokenFields | undefined = parsed7d[normalizedAddress]
+    const twoWeeks: FormattedTokenFields | undefined = parsed14d[normalizedAddress]
+    const marketData = marketDataByAddress[normalizedAddress]
 
     const [volumeUSDRaw, volumeUSDChange] = getChangeForPeriod(
       current?.tradeVolumeUSD,
       oneDay?.tradeVolumeUSD,
       twoDays?.tradeVolumeUSD,
     )
-    const volumeUSD = chartData?.volumeUSD || volumeUSDRaw || current?.tradeVolumeUSD || 0
+    const volumeUSD = marketData?.volumeUSD || volumeUSDRaw || current?.tradeVolumeUSD || 0
     const [volumeUSDWeek] = getChangeForPeriod(current?.tradeVolumeUSD, week?.tradeVolumeUSD, twoWeeks?.tradeVolumeUSD)
     const liquidityUSD = current ? current.totalLiquidity * current.derivedUSD : 0
     const liquidityUSDOneDayAgo = oneDay ? oneDay.totalLiquidity * oneDay.derivedUSD : 0
     const liquidityUSDChange = getPercentChange(liquidityUSD, liquidityUSDOneDayAgo)
     const liquidityToken = current ? current.totalLiquidity : 0
     // Prices of tokens for now, 24h ago and 7d ago
-    const priceUSD = chartData?.priceUSD || (current ? current.derivedUSD : 0)
+    const priceUSD = marketData?.priceUSD || (current ? current.derivedUSD : 0)
     const decimals = current ? current.decimals : 0
     const priceUSDOneDay = oneDay ? oneDay.derivedUSD : 0
     const priceUSDWeek = week ? week.derivedUSD : 0
-    const priceUSDChange = chartData?.priceUSDChange || getPercentChange(priceUSD, priceUSDOneDay)
+    const priceUSDChange = marketData?.priceUSDChange || getPercentChange(priceUSD, priceUSDOneDay)
     const priceUSDChangeWeek = getPercentChange(priceUSD, priceUSDWeek)
     const txCount = getAmountChange(current?.totalTransactions, oneDay?.totalTransactions)
 
-    accum[address] = {
+    accum[normalizedAddress] = {
       data: {
         exists: !!current,
-        address,
+        address: normalizedAddress,
         name: current ? current.name : '',
         symbol: current ? current.symbol : '',
         volumeUSD,
