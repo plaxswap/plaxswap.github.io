@@ -17,6 +17,12 @@ import pairDayDatas, { stableSwapPairDayDatas } from '../queries/pairDayDatas'
 import pairHourDatasByIds, { stableSwapPairHourDatasByIds } from '../queries/pairHourDatasByIds'
 import lastPairHourId from '../queries/lastPairHourId'
 
+const isRateLimitedError = (error: unknown) => {
+  const status = (error as any)?.response?.status
+  const message = error instanceof Error ? error.message : String(error)
+  return status === 429 || message.includes('429') || message.toLowerCase().includes('too many requests')
+}
+
 const fetchPairPriceData = async ({ pairId, timeWindow, isStableSwap }: fetchPairDataParams) => {
   const client = isStableSwap ? stableSwapClient : infoClient
 
@@ -93,6 +99,10 @@ const fetchPairPriceData = async ({ pairId, timeWindow, isStableSwap }: fetchPai
         return { data: null, error: false }
     }
   } catch (error) {
+    if (isRateLimitedError(error)) {
+      console.warn('Price chart data is rate limited by the subgraph', { pairId, timeWindow })
+      return { error: true, rateLimited: true }
+    }
     console.error('Failed to fetch price chart data', error)
     return { error: true }
   }

@@ -1,6 +1,7 @@
-import { request, gql } from 'graphql-request'
+import { gql } from 'graphql-request'
 import { GRAPH_API_LOTTERY } from 'config/constants/endpoints'
 import { LotteryRoundGraphEntity, LotteryResponse } from 'state/types'
+import { gqlRequest } from 'utils/graphql'
 import { getRoundIdsArray, fetchMultipleLotteries } from './helpers'
 
 export const MAX_LOTTERIES_REQUEST_SIZE = 100
@@ -62,7 +63,7 @@ export const getGraphLotteries = async (
   where: LotteriesWhere = {},
 ): Promise<LotteryRoundGraphEntity[]> => {
   try {
-    const response = await request(
+    const response = await gqlRequest(
       GRAPH_API_LOTTERY,
       gql`
         query getLotteries($first: Int!, $skip: Int!, $where: Lottery_filter) {

@@ -1,9 +1,10 @@
-import { request, gql } from 'graphql-request'
+import { gql } from 'graphql-request'
 import { campaignMap } from 'config/constants/campaigns'
 import { TranslateFunction } from '@pancakeswap/localization'
 import { GRAPH_API_PROFILE } from 'config/constants/endpoints'
 import { Achievement } from 'state/types'
 import { getAchievementTitle, getAchievementDescription } from 'utils/achievements'
+import { gqlRequest } from 'utils/graphql'
 
 interface UserPointIncreaseEvent {
   campaignId: string
@@ -16,7 +17,7 @@ interface UserPointIncreaseEvent {
  */
 export const getUserPointIncreaseEvents = async (account: string): Promise<UserPointIncreaseEvent[]> => {
   try {
-    const { user } = await request(
+    const { user } = await gqlRequest(
       GRAPH_API_PROFILE,
       gql`
         query getUserPointIncreaseEvents($account: ID!) {

@@ -1,4 +1,4 @@
-import { request, gql } from 'graphql-request'
+import { gql } from 'graphql-request'
 import { GRAPH_API_PREDICTION_BNB, GRAPH_API_PREDICTION_CAKE } from 'config/constants/endpoints'
 import { BigNumber } from '@ethersproject/bignumber'
 import {
@@ -17,6 +17,7 @@ import { getPredictionsContract } from 'utils/contractHelpers'
 import predictionsAbi from 'config/abi/predictions.json'
 import { Zero } from '@ethersproject/constants'
 import { PredictionsClaimableResponse, PredictionsLedgerResponse, PredictionsRoundsResponse } from 'utils/types'
+import { gqlRequest } from 'utils/graphql'
 import { getRoundBaseFields, getBetBaseFields, getUserBaseFields } from './queries'
 import { ROUNDS_PER_PAGE } from './config'
 import { transformBetResponseCAKE, transformUserResponseCAKE } from './cakeTransformers'
@@ -81,7 +82,7 @@ const getTotalWonMarket = (market, tokenSymbol) => {
 
 export const getTotalWon = async (): Promise<{ totalWonBNB: number; totalWonCAKE: number }> => {
   const [{ market: BNBMarket, market: CAKEMarket }] = await Promise.all([
-    request(
+    gqlRequest(
       GRAPH_API_PREDICTION_BNB,
       gql`
         query getTotalWonData {
@@ -92,7 +93,7 @@ export const getTotalWon = async (): Promise<{ totalWonBNB: number; totalWonCAKE
         }
       `,
     ),
-    request(
+    gqlRequest(
       GRAPH_API_PREDICTION_CAKE,
       gql`
         query getTotalWonData {
@@ -120,7 +121,7 @@ export const getBetHistory = async (
   api: string,
   tokenSymbol: string,
 ): Promise<Array<BetResponseBNB | BetResponseCAKE>> => {
-  const response = await request(
+  const response = await gqlRequest(
     api,
     gql`
       query getBetHistory($first: Int!, $skip: Int!, $where: Bet_filter) {
@@ -184,7 +185,7 @@ export const getPredictionUsers = async (
   tokenSymbol: string,
 ): Promise<UserResponse<BetResponse>[]> => {
   const { first, skip, where, orderBy, orderDir } = { ...defaultPredictionUserOptions, ...options }
-  const response = await request(
+  const response = await gqlRequest(
     api,
     gql`
       query getUsers($first: Int!, $skip: Int!, $where: User_filter, $orderBy: User_orderBy, $orderDir: OrderDirection) {
@@ -203,7 +204,7 @@ export const getPredictionUser = async (
   api: string,
   tokenSymbol: string,
 ): Promise<UserResponse<BetResponse>> => {
-  const response = await request(
+  const response = await gqlRequest(
     api,
     gql`
       query getUser($id: ID!) {

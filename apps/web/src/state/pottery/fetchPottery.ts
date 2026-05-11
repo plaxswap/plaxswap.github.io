@@ -6,15 +6,16 @@ import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
 import { PotteryDepositStatus } from 'state/types'
 import { bscTokens } from '@pancakeswap/tokens'
 import { getBep20Contract } from 'utils/contractHelpers'
-import { request, gql } from 'graphql-request'
+import { gql } from 'graphql-request'
 import { GRAPH_API_POTTERY } from 'config/constants/endpoints'
 import potteryDrawAbi from 'config/abi/potteryDrawAbi.json'
+import { gqlRequest } from 'utils/graphql'
 
 const potteryDrawAddress = getPotteryDrawAddress()
 
 export const fetchLastVaultAddress = async () => {
   try {
-    const response = await request(
+    const response = await gqlRequest(
       GRAPH_API_POTTERY,
       gql`
         query getLastVaultAddress($contract: ID!) {
@@ -110,7 +111,7 @@ export const fetchTotalLockedValue = async (potteryVaultAddress: string) => {
 
 export const fetchLatestRoundId = async () => {
   try {
-    const response = await request(
+    const response = await gqlRequest(
       GRAPH_API_POTTERY,
       gql`
         query getLatestRoundId {

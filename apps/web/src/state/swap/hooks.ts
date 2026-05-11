@@ -349,7 +349,13 @@ export const useFetchPairPrices = ({
 
     const fetchAndUpdatePairPrice = async () => {
       setIsLoading(true)
-      const { data } = await fetchPairPriceData({ pairId, timeWindow, isStableSwap })
+      const { data, rateLimited } = await fetchPairPriceData({ pairId, timeWindow, isStableSwap })
+      if (rateLimited) {
+        dispatch(updatePairData({ pairData: [], pairId, timeWindow }))
+        dispatch(updateDerivedPairData({ pairData: [], pairId, timeWindow }))
+        setIsLoading(false)
+        return
+      }
       if (data) {
         // Find out if Liquidity Pool has enough liquidity
         // low liquidity pool might mean that the price is incorrect

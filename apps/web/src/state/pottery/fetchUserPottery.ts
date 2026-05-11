@@ -2,11 +2,12 @@ import BigNumber from 'bignumber.js'
 import { bscTokens } from '@pancakeswap/tokens'
 import { BIG_ZERO } from '@pancakeswap/utils/bigNumber'
 import { getBep20Contract, getPotteryVaultContract, getPotteryDrawContract } from 'utils/contractHelpers'
-import { request, gql } from 'graphql-request'
+import { gql } from 'graphql-request'
 import { GRAPH_API_POTTERY } from 'config/constants/endpoints'
 import { PotteryDepositStatus } from 'state/types'
 import { multicallv2 } from 'utils/multicall'
 import potteryVaultAbi from 'config/abi/potteryVaultAbi.json'
+import { gqlRequest } from 'utils/graphql'
 
 const potteryDrawContract = getPotteryDrawContract()
 
@@ -57,7 +58,7 @@ export const fetchUserDrawData = async (account: string) => {
 
 export const fetchWithdrawAbleData = async (account: string) => {
   try {
-    const response = await request(
+    const response = await gqlRequest(
       GRAPH_API_POTTERY,
       gql`
         query getUserPotteryWithdrawAbleData($account: ID!) {

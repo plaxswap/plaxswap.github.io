@@ -1,7 +1,8 @@
-import { request, gql } from 'graphql-request'
+import { gql } from 'graphql-request'
 import { GRAPH_API_LOTTERY } from 'config/constants/endpoints'
 import { LotteryTicket } from 'config/constants/types'
 import { LotteryUserGraphEntity, LotteryResponse, UserRound } from 'state/types'
+import { gqlRequest } from 'utils/graphql'
 import { getRoundIdsArray, fetchMultipleLotteries, hasRoundBeenClaimed } from './helpers'
 import { fetchUserTicketsForMultipleRounds } from './getUserTicketsData'
 
@@ -71,7 +72,7 @@ export const getGraphLotteryUser = async (
   }
 
   try {
-    const response = await request(
+    const response = await gqlRequest(
       GRAPH_API_LOTTERY,
       gql`
         query getUserLotteries($account: ID!, $first: Int!, $skip: Int!, $where: Round_filter) {
