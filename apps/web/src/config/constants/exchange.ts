@@ -32,7 +32,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
 export const ADDITIONAL_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
   [ChainId.BSC]: {
     // SNFTS-SFUND
-    // [bscTokens.snfts.address]: [bscTokens.sfund],
+    [bscTokens.snfts.address]: [bscTokens.sfund],
   },
 }
 
@@ -43,7 +43,7 @@ export const ADDITIONAL_BASES: { [chainId in ChainId]?: { [tokenAddress: string]
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
   [ChainId.BSC]: {
-    [bscTokens.usdc.address]: [bscTokens.usdt],
+    [bscTokens.axlusdc.address]: [bscTokens.usdt],
   },
 }
 
