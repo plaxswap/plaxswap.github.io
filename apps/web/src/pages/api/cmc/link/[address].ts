@@ -41,7 +41,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const params = new URLSearchParams({
     address: address.toLowerCase(),
     skip_invalid: 'true',
-    aux: 'urls,logo,description,tags,platform,date_added,notice,status',
   })
 
   try {
@@ -55,7 +54,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const token = getCmcInfo(body.data)
 
     if (!response.ok || !token?.slug) {
-      res.status(response.ok ? 404 : response.status).json({ error: body.status?.error_message || 'Token not found' })
+      res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400')
+      res.status(200).json({})
       return
     }
 
