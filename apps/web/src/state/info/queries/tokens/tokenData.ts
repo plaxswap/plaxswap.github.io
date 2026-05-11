@@ -95,6 +95,16 @@ interface PairSwapQueryResponse {
   swaps: PairSwapFields[]
 }
 
+interface TokenDayVolumeFields {
+  id: string
+  date: number
+  dailyVolumeUSD: string
+}
+
+interface TokenDayVolumeQueryResponse {
+  tokenDayDatas: TokenDayVolumeFields[]
+}
+
 const USD_QUOTE_TOKEN_ADDRESSES = [
   '0xc2132d05d31c914a87c6611c10748aeb04b58e8f', // USDT
   '0x2791bca1f2de4661ed88a30c99a7a9449aa84174', // USDC.e
@@ -397,6 +407,62 @@ const normalizeSwapVolumeChange = (pairSwapVolume: { volumeUSD: number; volumeUS
   }
 }
 
+const fetchTokenDayVolumeData = async (chainName: MultiChainName, tokenAddresses: string[]) => {
+  if (!tokenAddresses.length) {
+    return {}
+  }
+
+  try {
+    const query = gql`
+      query tokenDayVolumes($tokens: [String!]) {
+        tokenDayDatas(
+          first: 1000
+          where: { token_in: $tokens }
+          orderBy: date
+          orderDirection: desc
+        ) {
+          id
+          date
+          dailyVolumeUSD
+        }
+      }
+    `
+    const { tokenDayDatas } = await getMultiChainQueryEndPointWithStableSwap(
+      chainName,
+    ).request<TokenDayVolumeQueryResponse>(query, {
+      tokens: Array.from(new Set(tokenAddresses.map((address) => address.toLowerCase()))),
+    })
+
+    const groupedByToken = tokenDayDatas.reduce((accum: Record<string, TokenDayVolumeFields[]>, dayData) => {
+      const tokenAddress = dayData.id.split('-')[0].toLowerCase()
+      if (!accum[tokenAddress]) {
+        accum[tokenAddress] = []
+      }
+      accum[tokenAddress].push(dayData)
+      return accum
+    }, {})
+
+    return Object.keys(groupedByToken).reduce(
+      (accum: Record<string, { volumeUSD: number; volumeUSDChange: number }>, tokenAddress) => {
+        const [latest, previous] = groupedByToken[tokenAddress].sort((a, b) => b.date - a.date)
+        const volumeUSD = latest?.dailyVolumeUSD ? parseFloat(latest.dailyVolumeUSD) : 0
+        const previousVolumeUSD = previous?.dailyVolumeUSD ? parseFloat(previous.dailyVolumeUSD) : 0
+
+        accum[tokenAddress] = {
+          volumeUSD,
+          volumeUSDChange: getPercentChange(volumeUSD, previousVolumeUSD),
+        }
+
+        return accum
+      },
+      {},
+    )
+  } catch (error) {
+    console.info('Failed to fetch token day volume data', error)
+    return {}
+  }
+}
+
 const fetchTokenMarketDataByAddresses = async (
   chainName: MultiChainName,
   block24h: number,
@@ -440,6 +506,7 @@ const fetchTokenMarketDataByAddresses = async (
       timestamp48hAgo,
       bestPairAddresses,
     )
+    const tokenDayVolumeByToken = await fetchTokenDayVolumeData(chainName, tokenAddresses)
 
     const marketDataByAddress = tokenAddresses.reduce((accum: Record<string, TokenChartData>, address) => {
       const normalizedAddress = address.toLowerCase()
@@ -471,12 +538,17 @@ const fetchTokenMarketDataByAddresses = async (
       )
       const pairDayVolume = pairDayVolumeByPair[pairId]
       const pairSwapVolume = normalizeSwapVolumeChange(pairSwapVolumeByPair[pairId])
+      const tokenDayVolume = tokenDayVolumeByToken[normalizedAddress]
 
       accum[normalizedAddress] = {
         priceUSD,
         priceUSDChange: getPercentChange(priceUSD, priceUSDOneDay),
-        volumeUSD: pairSwapVolume?.volumeUSD || pairDayVolume?.volumeUSD || volumeUSD,
-        volumeUSDChange: pairSwapVolume?.volumeUSDChange || pairDayVolume?.volumeUSDChange || volumeUSDChange,
+        volumeUSD: pairSwapVolume?.volumeUSD || pairDayVolume?.volumeUSD || tokenDayVolume?.volumeUSD || volumeUSD,
+        volumeUSDChange:
+          pairSwapVolume?.volumeUSDChange ||
+          pairDayVolume?.volumeUSDChange ||
+          tokenDayVolume?.volumeUSDChange ||
+          volumeUSDChange,
       }
 
       return accum
@@ -488,6 +560,7 @@ const fetchTokenMarketDataByAddresses = async (
       currentPairs: currentPairs.length,
       pairDayVolumes: Object.keys(pairDayVolumeByPair).length,
       pairSwapVolumes: Object.keys(pairSwapVolumeByPair).length,
+      tokenDayVolumes: Object.keys(tokenDayVolumeByToken).length,
       tokensWithMarketData: Object.keys(marketDataByAddress).length,
       samplePairs: currentPairs.slice(0, 5).map((pair) => ({
         id: pair.id,
