@@ -47,7 +47,7 @@ export const ADDITIONAL_BASES: {
 } = {
   [ChainId.BSC]: {
     // SNFTS-SFUND
-    [bscTokens.snfts.address]: [bscTokens.sfund],
+    // [bscTokens.snfts.address]: [bscTokens.sfund],
   },
 }
 
