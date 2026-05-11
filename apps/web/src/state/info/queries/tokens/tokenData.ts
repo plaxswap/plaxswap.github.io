@@ -40,6 +40,25 @@ interface TokenQueryResponse {
   twoWeeksAgo: TokenFields[]
 }
 
+interface TokenDayDataFields {
+  date: number
+  dailyVolumeUSD: string
+  priceUSD: string
+  token: {
+    id: string
+  }
+}
+
+interface TokenDayDataQueryResponse {
+  tokenDayDatas: TokenDayDataFields[]
+}
+
+interface TokenChartData {
+  priceUSD: number
+  priceUSDChange: number
+  volumeUSD: number
+}
+
 /**
  * Main token data to display on Token page
  */
@@ -99,6 +118,67 @@ const fetchTokenData = async (
   }
 }
 
+const fetchTokenChartDataByAddresses = async (
+  chainName: MultiChainName,
+  timestamp48hAgo: number,
+  tokenAddresses: string[],
+) => {
+  if (!tokenAddresses.length) {
+    return {}
+  }
+
+  try {
+    const query = gql`
+      query tokenDayDatas($tokens: [String!], $timestamp48hAgo: Int!) {
+        tokenDayDatas(
+          first: 1000
+          where: { token_in: $tokens, date_gt: $timestamp48hAgo }
+          orderBy: date
+          orderDirection: desc
+        ) {
+          date
+          dailyVolumeUSD
+          priceUSD
+          token {
+            id
+          }
+        }
+      }
+    `
+    const { tokenDayDatas } = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TokenDayDataQueryResponse>(
+      query,
+      {
+        tokens: Array.from(new Set(tokenAddresses.map((address) => address.toLowerCase()))),
+        timestamp48hAgo,
+      },
+    )
+
+    const grouped = tokenDayDatas.reduce((accum: Record<string, TokenDayDataFields[]>, tokenDayData) => {
+      const address = tokenDayData.token.id.toLowerCase()
+      if (!accum[address]) {
+        accum[address] = []
+      }
+      accum[address].push(tokenDayData)
+      return accum
+    }, {})
+
+    return Object.keys(grouped).reduce((accum: Record<string, TokenChartData>, address) => {
+      const [latest, previous] = grouped[address].sort((a, b) => b.date - a.date)
+      const priceUSD = latest?.priceUSD ? parseFloat(latest.priceUSD) : 0
+      const priceUSDOneDay = previous?.priceUSD ? parseFloat(previous.priceUSD) : 0
+      accum[address] = {
+        priceUSD,
+        priceUSDChange: getPercentChange(priceUSD, priceUSDOneDay),
+        volumeUSD: latest?.dailyVolumeUSD ? parseFloat(latest.dailyVolumeUSD) : 0,
+      }
+      return accum
+    }, {})
+  } catch (error) {
+    console.info('Failed to fetch token chart price data', error)
+    return {}
+  }
+}
+
 // Transforms tokens into "0xADDRESS: { ...TokenFields }" format and cast strings to numbers
 const parseTokenData = (tokens?: TokenFields[]) => {
   if (!tokens) {
@@ -153,6 +233,7 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
         const parsed48 = parseTokenData(data?.twoDaysAgo)
         const parsed7d = parseTokenData(data?.oneWeekAgo)
         const parsed14d = parseTokenData(data?.twoWeeksAgo)
+        const chartDataByAddress = await fetchTokenChartDataByAddresses(chainName, t48h, tokenAddresses)
 
         // Calculate data and format
         const formatted = tokenAddresses.reduce((accum: { [address: string]: TokenData }, address) => {
@@ -161,13 +242,14 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
           const twoDays: FormattedTokenFields | undefined = parsed48[address]
           const week: FormattedTokenFields | undefined = parsed7d[address]
           const twoWeeks: FormattedTokenFields | undefined = parsed14d[address]
+          const chartData = chartDataByAddress[address.toLowerCase()]
 
           const [volumeUSDRaw, volumeUSDChange] = getChangeForPeriod(
             current?.tradeVolumeUSD,
             oneDay?.tradeVolumeUSD,
             twoDays?.tradeVolumeUSD,
           )
-          const volumeUSD = volumeUSDRaw || current?.tradeVolumeUSD || 0
+          const volumeUSD = chartData?.volumeUSD || volumeUSDRaw || current?.tradeVolumeUSD || 0
           const [volumeUSDWeek] = getChangeForPeriod(
             current?.tradeVolumeUSD,
             week?.tradeVolumeUSD,
@@ -178,10 +260,10 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
           const liquidityUSDChange = getPercentChange(liquidityUSD, liquidityUSDOneDayAgo)
           const liquidityToken = current ? current.totalLiquidity : 0
           // Prices of tokens for now, 24h ago and 7d ago
-          const priceUSD = current ? current.derivedUSD : 0
+          const priceUSD = chartData?.priceUSD || (current ? current.derivedUSD : 0)
           const priceUSDOneDay = oneDay ? oneDay.derivedUSD : 0
           const priceUSDWeek = week ? week.derivedUSD : 0
-          const priceUSDChange = getPercentChange(priceUSD, priceUSDOneDay)
+          const priceUSDChange = chartData?.priceUSDChange || getPercentChange(priceUSD, priceUSDOneDay)
           const priceUSDChangeWeek = getPercentChange(priceUSD, priceUSDWeek)
           const txCount = getAmountChange(current?.totalTransactions, oneDay?.totalTransactions)
 
@@ -212,7 +294,7 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
     if (tokenAddresses.length > 0 && allBlocksAvailable && !blockError) {
       fetch()
     }
-  }, [tokenAddresses, block24h, block48h, block7d, block14d, blockError, chainName])
+  }, [tokenAddresses, block24h, block48h, block7d, block14d, blockError, chainName, t48h])
 
   return fetchState
 }
@@ -238,6 +320,8 @@ export const fetchAllTokenDataByAddresses = async (
   const parsed48 = parseTokenData(data?.twoDaysAgo)
   const parsed7d = parseTokenData(data?.oneWeekAgo)
   const parsed14d = parseTokenData(data?.twoWeeksAgo)
+  const timestamp48hAgo = Number(block48h.timestamp)
+  const chartDataByAddress = await fetchTokenChartDataByAddresses(chainName, timestamp48hAgo, tokenAddresses)
 
   // Calculate data and format
   const formatted = tokenAddresses.reduce((accum: { [address: string]: { data: TokenData } }, address) => {
@@ -246,24 +330,25 @@ export const fetchAllTokenDataByAddresses = async (
     const twoDays: FormattedTokenFields | undefined = parsed48[address]
     const week: FormattedTokenFields | undefined = parsed7d[address]
     const twoWeeks: FormattedTokenFields | undefined = parsed14d[address]
+    const chartData = chartDataByAddress[address.toLowerCase()]
 
     const [volumeUSDRaw, volumeUSDChange] = getChangeForPeriod(
       current?.tradeVolumeUSD,
       oneDay?.tradeVolumeUSD,
       twoDays?.tradeVolumeUSD,
     )
-    const volumeUSD = volumeUSDRaw || current?.tradeVolumeUSD || 0
+    const volumeUSD = chartData?.volumeUSD || volumeUSDRaw || current?.tradeVolumeUSD || 0
     const [volumeUSDWeek] = getChangeForPeriod(current?.tradeVolumeUSD, week?.tradeVolumeUSD, twoWeeks?.tradeVolumeUSD)
     const liquidityUSD = current ? current.totalLiquidity * current.derivedUSD : 0
     const liquidityUSDOneDayAgo = oneDay ? oneDay.totalLiquidity * oneDay.derivedUSD : 0
     const liquidityUSDChange = getPercentChange(liquidityUSD, liquidityUSDOneDayAgo)
     const liquidityToken = current ? current.totalLiquidity : 0
     // Prices of tokens for now, 24h ago and 7d ago
-    const priceUSD = current ? current.derivedUSD : 0
+    const priceUSD = chartData?.priceUSD || (current ? current.derivedUSD : 0)
     const decimals = current ? current.decimals : 0
     const priceUSDOneDay = oneDay ? oneDay.derivedUSD : 0
     const priceUSDWeek = week ? week.derivedUSD : 0
-    const priceUSDChange = getPercentChange(priceUSD, priceUSDOneDay)
+    const priceUSDChange = chartData?.priceUSDChange || getPercentChange(priceUSD, priceUSDOneDay)
     const priceUSDChangeWeek = getPercentChange(priceUSD, priceUSDWeek)
     const txCount = getAmountChange(current?.totalTransactions, oneDay?.totalTransactions)
 
