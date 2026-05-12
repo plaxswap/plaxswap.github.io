@@ -80,6 +80,23 @@ interface PoolSwapQueryResponse {
   swaps: PoolSwapFields[]
 }
 
+interface TokenUsdPairFields {
+  reserve0: string
+  reserve1: string
+  reserveUSD: string
+  token0: {
+    id: string
+  }
+  token1: {
+    id: string
+  }
+}
+
+interface TokenUsdPairQueryResponse {
+  token0QuotePairs: TokenUsdPairFields[]
+  token1QuotePairs: TokenUsdPairFields[]
+}
+
 const USD_QUOTE_TOKEN_ADDRESSES = new Set([
   '0xc2132d05d31c914a87c6611c10748aeb04b58e8f', // USDT
   '0x2791bca1f2de4661ed88a30c99a7a9449aa84174', // USDC.e
@@ -87,6 +104,8 @@ const USD_QUOTE_TOKEN_ADDRESSES = new Set([
   '0x9c9e5fd8bbc25984b178fdce6117defa39d2db39', // BUSD
   '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063', // DAI
 ])
+
+const USD_QUOTE_TOKEN_LIST = Array.from(USD_QUOTE_TOKEN_ADDRESSES)
 
 /**
  * Data for displaying pool tables (on multiple pages, used throughout the site)
@@ -172,6 +191,95 @@ export const parsePoolData = (pairs?: PoolFields[]) => {
   }, {})
 }
 
+const getPoolTokenAddresses = (poolsByAddress: Record<string, FormattedPoolFields>) => {
+  return Array.from(
+    new Set(
+      Object.values(poolsByAddress)
+        .flatMap((pool) => [pool.token0?.id, pool.token1?.id])
+        .filter(Boolean)
+        .map((address) => address.toLowerCase()),
+    ),
+  )
+}
+
+const fetchTokenUsdPrices = async (chainName: MultiChainName, tokenAddresses: string[]) => {
+  const tokens = Array.from(new Set(tokenAddresses.map((address) => address.toLowerCase()))).filter(
+    (address) => !USD_QUOTE_TOKEN_ADDRESSES.has(address),
+  )
+
+  if (!tokens.length) {
+    return USD_QUOTE_TOKEN_LIST.reduce((accum: Record<string, number>, address) => {
+      accum[address] = 1
+      return accum
+    }, {})
+  }
+
+  const tokenAddressesString = `["${tokens.join('","')}"]`
+  const quoteAddressesString = `["${USD_QUOTE_TOKEN_LIST.join('","')}"]`
+
+  try {
+    const query = gql`
+      query tokenUsdPrices {
+        token0QuotePairs: pairs(
+          first: 1000
+          where: { token0_in: ${tokenAddressesString}, token1_in: ${quoteAddressesString} }
+          orderBy: reserveUSD
+          orderDirection: desc
+        ) {
+          reserve0
+          reserve1
+          reserveUSD
+          token0 { id }
+          token1 { id }
+        }
+        token1QuotePairs: pairs(
+          first: 1000
+          where: { token1_in: ${tokenAddressesString}, token0_in: ${quoteAddressesString} }
+          orderBy: reserveUSD
+          orderDirection: desc
+        ) {
+          reserve0
+          reserve1
+          reserveUSD
+          token0 { id }
+          token1 { id }
+        }
+      }
+    `
+    const data = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TokenUsdPairQueryResponse>(query)
+    const prices = USD_QUOTE_TOKEN_LIST.reduce((accum: Record<string, number>, address) => {
+      accum[address] = 1
+      return accum
+    }, {})
+    const bestReserveByToken: Record<string, number> = {}
+
+    ;[...(data.token0QuotePairs ?? []), ...(data.token1QuotePairs ?? [])].forEach((pair) => {
+      const token0 = pair.token0.id.toLowerCase()
+      const token1 = pair.token1.id.toLowerCase()
+      const reserve0 = parseFloat(pair.reserve0)
+      const reserve1 = parseFloat(pair.reserve1)
+      const reserveUSD = parseFloat(pair.reserveUSD)
+      const tokenAddress = USD_QUOTE_TOKEN_ADDRESSES.has(token0) ? token1 : token0
+      const priceUSD = USD_QUOTE_TOKEN_ADDRESSES.has(token0)
+        ? reserve1 > 0 ? reserve0 / reserve1 : 0
+        : reserve0 > 0 ? reserve1 / reserve0 : 0
+
+      if (priceUSD && (!bestReserveByToken[tokenAddress] || reserveUSD > bestReserveByToken[tokenAddress])) {
+        prices[tokenAddress] = priceUSD
+        bestReserveByToken[tokenAddress] = reserveUSD
+      }
+    })
+
+    return prices
+  } catch (error) {
+    console.info('Failed to fetch pool token USD prices', error)
+    return USD_QUOTE_TOKEN_LIST.reduce((accum: Record<string, number>, address) => {
+      accum[address] = 1
+      return accum
+    }, {})
+  }
+}
+
 const getUsdReserve = (pool?: FormattedPoolFields) => {
   if (!pool?.token0?.id || !pool?.token1?.id) {
     return 0
@@ -188,27 +296,37 @@ const getUsdReserve = (pool?: FormattedPoolFields) => {
   return 0
 }
 
-const getPoolLiquidityUSD = (pool?: FormattedPoolFields) => {
+const getPoolLiquidityUSD = (pool: FormattedPoolFields | undefined, tokenUsdPrices: Record<string, number> = {}) => {
   if (!pool) {
     return 0
   }
 
-  return pool.reserveUSD || getUsdReserve(pool) * 2
+  const token0 = pool.token0?.id?.toLowerCase()
+  const token1 = pool.token1?.id?.toLowerCase()
+  const reserve0USD = pool.reserve0 * (tokenUsdPrices[token0] || 0)
+  const reserve1USD = pool.reserve1 * (tokenUsdPrices[token1] || 0)
+
+  return pool.reserveUSD || reserve0USD + reserve1USD || getUsdReserve(pool) * 2
 }
 
-const getSwapUsdAmount = (swap: PoolSwapFields) => {
+const getSwapUsdAmount = (swap: PoolSwapFields, tokenUsdPrices: Record<string, number> = {}) => {
   const token0 = swap.pair.token0.id.toLowerCase()
   const token1 = swap.pair.token1.id.toLowerCase()
+  const amount0 = Math.abs(parseFloat(swap.amount0In) - parseFloat(swap.amount0Out))
+  const amount1 = Math.abs(parseFloat(swap.amount1In) - parseFloat(swap.amount1Out))
 
   if (USD_QUOTE_TOKEN_ADDRESSES.has(token0)) {
-    return Math.abs(parseFloat(swap.amount0In) - parseFloat(swap.amount0Out))
+    return amount0
   }
 
   if (USD_QUOTE_TOKEN_ADDRESSES.has(token1)) {
-    return Math.abs(parseFloat(swap.amount1In) - parseFloat(swap.amount1Out))
+    return amount1
   }
 
-  return 0
+  const amount0USD = amount0 * (tokenUsdPrices[token0] || 0)
+  const amount1USD = amount1 * (tokenUsdPrices[token1] || 0)
+
+  return amount0USD || amount1USD || 0
 }
 
 const fetchPoolSwapVolumeData = async (
@@ -217,6 +335,7 @@ const fetchPoolSwapVolumeData = async (
   timestamp48hAgo: number,
   timestamp7dAgo: number,
   poolAddresses: string[],
+  tokenUsdPrices: Record<string, number> = {},
 ) => {
   const pairIds = Array.from(new Set(poolAddresses.map((address) => address.toLowerCase())))
 
@@ -282,7 +401,7 @@ const fetchPoolSwapVolumeData = async (
       ) => {
         const pairAddress = swap.pair.id.toLowerCase()
         const timestamp = parseInt(swap.timestamp)
-        const amountUSD = getSwapUsdAmount(swap)
+        const amountUSD = getSwapUsdAmount(swap, tokenUsdPrices)
 
         if (!accum[pairAddress]) {
           accum[pairAddress] = {
@@ -349,7 +468,15 @@ const usePoolDatas = (poolAddresses: string[]): PoolDatas => {
         const formattedPoolData48h = parsePoolData(data?.twoDaysAgo)
         const formattedPoolData7d = parsePoolData(data?.oneWeekAgo)
         const formattedPoolData14d = parsePoolData(data?.twoWeeksAgo)
-        const swapVolumeByPool = await fetchPoolSwapVolumeData(chainName, t24h, t48h, t7d, poolAddresses)
+        const tokenUsdPrices = await fetchTokenUsdPrices(chainName, getPoolTokenAddresses(formattedPoolData))
+        const swapVolumeByPool = await fetchPoolSwapVolumeData(
+          chainName,
+          t24h,
+          t48h,
+          t7d,
+          poolAddresses,
+          tokenUsdPrices,
+        )
 
         // Calculate data and format
         const formatted = poolAddresses.reduce((accum: { [address: string]: PoolData }, address) => {
@@ -376,9 +503,9 @@ const usePoolDatas = (poolAddresses: string[]): PoolDatas => {
             volumeUSDChangeRaw || getPercentChange(swapVolume?.volumeUSD, swapVolume?.previousVolumeUSD)
           const volumeUSDWeek = volumeUSDWeekRaw || swapVolume?.volumeUSDWeek || 0
 
-          const liquidityUSD = getPoolLiquidityUSD(current)
+          const liquidityUSD = getPoolLiquidityUSD(current, tokenUsdPrices)
 
-          const liquidityUSDChange = getPercentChange(liquidityUSD, getPoolLiquidityUSD(oneDay))
+          const liquidityUSDChange = getPercentChange(liquidityUSD, getPoolLiquidityUSD(oneDay, tokenUsdPrices))
 
           const liquidityToken0 = current ? current.reserve0 : 0
           const liquidityToken1 = current ? current.reserve1 : 0
@@ -456,12 +583,14 @@ export const fetchAllPoolDataWithAddress = async (
   const formattedPoolData48h = parsePoolData(data?.twoDaysAgo)
   const formattedPoolData7d = parsePoolData(data?.oneWeekAgo)
   const formattedPoolData14d = parsePoolData(data?.twoWeeksAgo)
+  const tokenUsdPrices = await fetchTokenUsdPrices(chainName, getPoolTokenAddresses(formattedPoolData))
   const swapVolumeByPool = await fetchPoolSwapVolumeData(
     chainName,
     Number(block24h.timestamp),
     Number(block48h.timestamp),
     Number(block7d.timestamp),
     poolAddresses,
+    tokenUsdPrices,
   )
 
   // Calculate data and format
@@ -491,9 +620,9 @@ export const fetchAllPoolDataWithAddress = async (
       volumeUSDChangeRaw || getPercentChange(swapVolume?.volumeUSD, swapVolume?.previousVolumeUSD)
     const volumeUSDWeek = volumeUSDWeekRaw || swapVolume?.volumeUSDWeek || 0
 
-    const liquidityUSD = getPoolLiquidityUSD(current)
+    const liquidityUSD = getPoolLiquidityUSD(current, tokenUsdPrices)
 
-    const liquidityUSDChange = getPercentChange(liquidityUSD, getPoolLiquidityUSD(oneDay))
+    const liquidityUSDChange = getPercentChange(liquidityUSD, getPoolLiquidityUSD(oneDay, tokenUsdPrices))
 
     const liquidityToken0 = current ? current.reserve0 : 0
     const liquidityToken1 = current ? current.reserve1 : 0
