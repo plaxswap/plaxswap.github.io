@@ -114,8 +114,8 @@ const USD_QUOTE_TOKEN_LIST = Array.from(USD_QUOTE_TOKEN_ADDRESSES)
  */
 const POOL_AT_BLOCK = (block: number | null, pools: string[]) => {
   const blockString = block ? `block: {number: ${block}}` : ``
-  const addressesString = `["${pools.join('","')}"]`
-  const volumeOutUSDString = checkIsStableSwap() ? 'volumeOutUSD' : ''
+  const poolAddresses = pools.filter((pool) => /^0x[a-f0-9]{40}$/i.test(pool))
+  const addressesString = `["${poolAddresses.join('","')}"]`
 
   return `pairs(
     where: { id_in: ${addressesString} }
@@ -128,7 +128,6 @@ const POOL_AT_BLOCK = (block: number | null, pools: string[]) => {
     reserve1
     reserveUSD
     volumeUSD
-    ${volumeOutUSDString}
     token0Price
     token1Price
     token0 {
@@ -153,10 +152,25 @@ export const fetchPoolData = async (
   chainName: 'ETH' | 'BSC' = 'BSC',
 ) => {
   try {
+    const validPoolAddresses = poolAddresses.filter((pool) => /^0x[a-f0-9]{40}$/i.test(pool))
+
+    if (!validPoolAddresses.length) {
+      return {
+        data: {
+          now: [],
+          oneDayAgo: [],
+          twoDaysAgo: [],
+          oneWeekAgo: [],
+          twoWeeksAgo: [],
+        },
+        error: false,
+      }
+    }
+
     if (checkIsStableSwap()) {
       const query = gql`
         query stablePools {
-          now: ${POOL_AT_BLOCK(null, poolAddresses)}
+          now: ${POOL_AT_BLOCK(null, validPoolAddresses)}
         }
       `
       const data = await getMultiChainQueryEndPointWithStableSwap(chainName).request<PoolsQueryResponse>(query)
@@ -175,11 +189,11 @@ export const fetchPoolData = async (
 
     const query = gql`
       query pools {
-        now: ${POOL_AT_BLOCK(null, poolAddresses)}
-        oneDayAgo: ${POOL_AT_BLOCK(block24h, poolAddresses)}
-        twoDaysAgo: ${POOL_AT_BLOCK(block48h, poolAddresses)}
-        oneWeekAgo: ${POOL_AT_BLOCK(block7d, poolAddresses)}
-        twoWeeksAgo: ${POOL_AT_BLOCK(block14d, poolAddresses)}
+        now: ${POOL_AT_BLOCK(null, validPoolAddresses)}
+        oneDayAgo: ${POOL_AT_BLOCK(block24h, validPoolAddresses)}
+        twoDaysAgo: ${POOL_AT_BLOCK(block48h, validPoolAddresses)}
+        oneWeekAgo: ${POOL_AT_BLOCK(block7d, validPoolAddresses)}
+        twoWeeksAgo: ${POOL_AT_BLOCK(block14d, validPoolAddresses)}
       }
     `
     const data = await getMultiChainQueryEndPointWithStableSwap(chainName).request<PoolsQueryResponse>(query)

@@ -29,6 +29,8 @@ interface TopSwapsResponse {
   }[]
 }
 
+const isAddress = (value: string) => /^0x[a-f0-9]{40}$/i.test(value)
+
 /**
  * Initial pools to display on the home page
  */
@@ -57,7 +59,9 @@ const fetchTopPools = async (chainName: MultiChainName, timestamp24hAgo: number)
       blacklist: multiChainTokenBlackList[chainName],
     })
     // pairDayDatas id has compound id "0xPOOLADDRESS-NUMBERS", extracting pool address with .split('-')
-    const pairDayAddresses = data.pairDayDatas.map((p) => p.id.split('-')[0].toLowerCase())
+    const pairDayAddresses = data.pairDayDatas
+      .map((p) => p.id.split('-')[0].toLowerCase())
+      .filter(isAddress)
 
     if (pairDayAddresses.length > 0 || !isStableSwap) {
       return pairDayAddresses
@@ -76,7 +80,11 @@ const fetchTopPools = async (chainName: MultiChainName, timestamp24hAgo: number)
       )
 
       if (fallbackData.pairs.length > 0) {
-        return fallbackData.pairs.map((p) => p.id.toLowerCase())
+        const pairAddresses = fallbackData.pairs.map((p) => p.id.toLowerCase()).filter(isAddress)
+
+        if (pairAddresses.length > 0) {
+          return pairAddresses
+        }
       }
     } catch (fallbackError) {
       console.info('Failed to fetch stable pools from pairs, trying swaps fallback', fallbackError)
@@ -95,7 +103,10 @@ const fetchTopPools = async (chainName: MultiChainName, timestamp24hAgo: number)
       swapsFallbackQuery,
     )
 
-    return Array.from(new Set(swapsFallbackData.swaps.map((swap) => swap.pair.id.toLowerCase()))).slice(0, firstCount)
+    return Array.from(new Set(swapsFallbackData.swaps.map((swap) => swap.pair.id.toLowerCase()).filter(isAddress))).slice(
+      0,
+      firstCount,
+    )
   } catch (error) {
     console.error('Failed to fetch top pools', error)
     return []
