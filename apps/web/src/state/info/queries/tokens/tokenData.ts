@@ -45,6 +45,8 @@ interface TokenChartData {
   priceUSDChange: number
   volumeUSD: number
   volumeUSDChange: number
+  volumeUSDWeek: number
+  liquidityUSD: number
 }
 
 interface PairMarketFields {
@@ -408,7 +410,14 @@ const normalizeSwapVolumeChange = (pairSwapVolume: { volumeUSD: number; volumeUS
 
 const normalizeTokenDayVolume = (
   tokenDayVolume:
-    | { volumeUSD: number; volumeUSDChange: number; volumeToken: number; previousVolumeToken: number }
+    | {
+        volumeUSD: number
+        volumeUSDChange: number
+        volumeToken: number
+        previousVolumeToken: number
+        volumeUSDWeek: number
+        volumeTokenWeek: number
+      }
     | undefined,
   priceUSD: number,
   priceUSDOneDay?: number,
@@ -423,15 +432,19 @@ const normalizeTokenDayVolume = (
       ? tokenDayVolume.previousVolumeToken * (priceUSDOneDay || priceUSD)
       : 0
   const volumeUSD = tokenDayVolume.volumeUSD || convertedVolumeUSD
+  const volumeUSDWeek =
+    tokenDayVolume.volumeUSDWeek ||
+    (tokenDayVolume.volumeTokenWeek && priceUSD ? tokenDayVolume.volumeTokenWeek * priceUSD : 0)
 
   return {
     volumeUSD,
+    volumeUSDWeek,
     volumeUSDChange:
       tokenDayVolume.volumeUSDChange || getPercentChange(volumeUSD, convertedPreviousVolumeUSD || undefined),
   }
 }
 
-const fetchTokenDayVolumeData = async (chainName: MultiChainName, tokenAddresses: string[]) => {
+const fetchTokenDayVolumeData = async (chainName: MultiChainName, tokenAddresses: string[], timestamp7dAgo: number) => {
   if (!tokenAddresses.length) {
     return {}
   }
@@ -471,21 +484,40 @@ const fetchTokenDayVolumeData = async (chainName: MultiChainName, tokenAddresses
       (
         accum: Record<
           string,
-          { volumeUSD: number; volumeUSDChange: number; volumeToken: number; previousVolumeToken: number }
+          {
+            volumeUSD: number
+            volumeUSDChange: number
+            volumeToken: number
+            previousVolumeToken: number
+            volumeUSDWeek: number
+            volumeTokenWeek: number
+          }
         >,
         tokenAddress,
       ) => {
-        const [latest, previous] = groupedByToken[tokenAddress].sort((a, b) => b.date - a.date)
+        const sorted = groupedByToken[tokenAddress].sort((a, b) => b.date - a.date)
+        const [latest, previous] = sorted
         const volumeUSD = latest?.dailyVolumeUSD ? parseFloat(latest.dailyVolumeUSD) : 0
         const previousVolumeUSD = previous?.dailyVolumeUSD ? parseFloat(previous.dailyVolumeUSD) : 0
         const volumeToken = latest?.dailyVolumeToken ? parseFloat(latest.dailyVolumeToken) : 0
         const previousVolumeToken = previous?.dailyVolumeToken ? parseFloat(previous.dailyVolumeToken) : 0
+        const lastSevenDays = sorted.filter((dayData) => dayData.date >= timestamp7dAgo)
+        const volumeUSDWeek = lastSevenDays.reduce(
+          (total, dayData) => total + (dayData.dailyVolumeUSD ? parseFloat(dayData.dailyVolumeUSD) : 0),
+          0,
+        )
+        const volumeTokenWeek = lastSevenDays.reduce(
+          (total, dayData) => total + (dayData.dailyVolumeToken ? parseFloat(dayData.dailyVolumeToken) : 0),
+          0,
+        )
 
         accum[tokenAddress] = {
           volumeUSD,
           volumeUSDChange: getPercentChange(volumeUSD, previousVolumeUSD),
           volumeToken,
           previousVolumeToken,
+          volumeUSDWeek,
+          volumeTokenWeek,
         }
 
         return accum
@@ -504,6 +536,7 @@ const fetchTokenMarketDataByAddresses = async (
   block48h: number,
   timestamp24hAgo: number,
   timestamp48hAgo: number,
+  timestamp7dAgo: number,
   tokenAddresses: string[],
 ) => {
   if (!tokenAddresses.length) {
@@ -541,7 +574,7 @@ const fetchTokenMarketDataByAddresses = async (
       timestamp48hAgo,
       bestPairAddresses,
     )
-    const tokenDayVolumeByToken = await fetchTokenDayVolumeData(chainName, tokenAddresses)
+    const tokenDayVolumeByToken = await fetchTokenDayVolumeData(chainName, tokenAddresses, timestamp7dAgo)
 
     const marketDataByAddress = tokenAddresses.reduce((accum: Record<string, TokenChartData>, address) => {
       const normalizedAddress = address.toLowerCase()
@@ -553,6 +586,8 @@ const fetchTokenMarketDataByAddresses = async (
           priceUSDChange: 0,
           volumeUSD: tokenDayVolume?.volumeUSD || 0,
           volumeUSDChange: tokenDayVolume?.volumeUSDChange || 0,
+          volumeUSDWeek: tokenDayVolume?.volumeUSDWeek || 0,
+          liquidityUSD: 0,
         }
         return accum
       }
@@ -566,6 +601,8 @@ const fetchTokenMarketDataByAddresses = async (
             priceUSDChange: 0,
             volumeUSD: tokenDayVolume.volumeUSD,
             volumeUSDChange: tokenDayVolume.volumeUSDChange,
+            volumeUSDWeek: tokenDayVolume.volumeUSDWeek,
+            liquidityUSD: 0,
           }
         }
         return accum
@@ -594,6 +631,8 @@ const fetchTokenMarketDataByAddresses = async (
           pairDayVolume?.volumeUSDChange ||
           tokenDayVolume?.volumeUSDChange ||
           volumeUSDChange,
+        volumeUSDWeek: tokenDayVolume?.volumeUSDWeek || 0,
+        liquidityUSD: parseFloat(currentPair.reserveUSD) || 0,
       }
 
       return accum
@@ -687,6 +726,7 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
           block48h.number,
           t24h,
           t48h,
+          t7d,
           tokenAddresses,
         )
 
@@ -707,17 +747,18 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
           )
           const volumeUSD = marketData?.volumeUSD || volumeUSDRaw || current?.tradeVolumeUSD || 0
           const marketVolumeUSDChange = marketData?.volumeUSDChange || 0
-          const [volumeUSDWeek] = getChangeForPeriod(
+          const [volumeUSDWeekRaw] = getChangeForPeriod(
             current?.tradeVolumeUSD,
             week?.tradeVolumeUSD,
             twoWeeks?.tradeVolumeUSD,
           )
-          const liquidityUSD = current ? current.totalLiquidity * current.derivedUSD : 0
+          const priceUSD = marketData?.priceUSD || (current ? current.derivedUSD : 0)
+          const volumeUSDWeek = marketData?.volumeUSDWeek || volumeUSDWeekRaw
+          const liquidityUSD = current ? current.totalLiquidity * priceUSD || marketData?.liquidityUSD || 0 : 0
           const liquidityUSDOneDayAgo = oneDay ? oneDay.totalLiquidity * oneDay.derivedUSD : 0
           const liquidityUSDChange = getPercentChange(liquidityUSD, liquidityUSDOneDayAgo)
           const liquidityToken = current ? current.totalLiquidity : 0
           // Prices of tokens for now, 24h ago and 7d ago
-          const priceUSD = marketData?.priceUSD || (current ? current.derivedUSD : 0)
           const priceUSDOneDay = oneDay ? oneDay.derivedUSD : 0
           const priceUSDWeek = week ? week.derivedUSD : 0
           const priceUSDChange = marketData?.priceUSDChange || getPercentChange(priceUSD, priceUSDOneDay)
@@ -751,7 +792,7 @@ const useFetchedTokenDatas = (chainName: MultiChainName, tokenAddresses: string[
     if (tokenAddresses.length > 0 && allBlocksAvailable && !blockError) {
       fetch()
     }
-  }, [tokenAddresses, block24h, block48h, block7d, block14d, blockError, chainName, t24h, t48h])
+  }, [tokenAddresses, block24h, block48h, block7d, block14d, blockError, chainName, t24h, t48h, t7d])
 
   return fetchState
 }
@@ -783,6 +824,7 @@ export const fetchAllTokenDataByAddresses = async (
     block48h.number,
     Number(block24h.timestamp),
     Number(block48h.timestamp),
+    Number(block7d.timestamp),
     tokenAddresses,
   )
 
@@ -803,13 +845,14 @@ export const fetchAllTokenDataByAddresses = async (
     )
     const volumeUSD = marketData?.volumeUSD || volumeUSDRaw || current?.tradeVolumeUSD || 0
     const marketVolumeUSDChange = marketData?.volumeUSDChange || 0
-    const [volumeUSDWeek] = getChangeForPeriod(current?.tradeVolumeUSD, week?.tradeVolumeUSD, twoWeeks?.tradeVolumeUSD)
-    const liquidityUSD = current ? current.totalLiquidity * current.derivedUSD : 0
+    const [volumeUSDWeekRaw] = getChangeForPeriod(current?.tradeVolumeUSD, week?.tradeVolumeUSD, twoWeeks?.tradeVolumeUSD)
+    const priceUSD = marketData?.priceUSD || (current ? current.derivedUSD : 0)
+    const volumeUSDWeek = marketData?.volumeUSDWeek || volumeUSDWeekRaw
+    const liquidityUSD = current ? current.totalLiquidity * priceUSD || marketData?.liquidityUSD || 0 : 0
     const liquidityUSDOneDayAgo = oneDay ? oneDay.totalLiquidity * oneDay.derivedUSD : 0
     const liquidityUSDChange = getPercentChange(liquidityUSD, liquidityUSDOneDayAgo)
     const liquidityToken = current ? current.totalLiquidity : 0
     // Prices of tokens for now, 24h ago and 7d ago
-    const priceUSD = marketData?.priceUSD || (current ? current.derivedUSD : 0)
     const decimals = current ? current.decimals : 0
     const priceUSDOneDay = oneDay ? oneDay.derivedUSD : 0
     const priceUSDWeek = week ? week.derivedUSD : 0
