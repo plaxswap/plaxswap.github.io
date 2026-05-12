@@ -217,18 +217,18 @@ const Search = () => {
     const filterStableTokens = (token: BasicTokenData) => !isStableSwapView || isStableSwapInfoTokenSymbol(token.symbol)
 
     if (showWatchlist) {
-      return watchListTokenData.filter((token) => tokenIncludesSearchTerm(token, value)).filter(filterStableTokens)
+      return (watchListTokenData ?? []).filter((token) => tokenIncludesSearchTerm(token, value)).filter(filterStableTokens)
     }
-    return orderBy(tokens.filter(filterStableTokens), (token) => token.volumeUSD, 'desc')
+    return orderBy((tokens ?? []).filter(filterStableTokens), (token) => token.volumeUSD, 'desc')
   }, [isStableSwapView, showWatchlist, tokens, watchListTokenData, value])
 
   const poolForList = useMemo(() => {
     const filterStablePools = (pool: PoolData) => !isStableSwapView || poolHasOnlyStableSwapInfoTokens(pool)
 
     if (showWatchlist) {
-      return watchListPoolData.filter((pool) => poolIncludesSearchTerm(pool, value)).filter(filterStablePools)
+      return (watchListPoolData ?? []).filter((pool) => poolIncludesSearchTerm(pool, value)).filter(filterStablePools)
     }
-    return orderBy(pools.filter(filterStablePools), (pool) => pool.volumeUSD, 'desc')
+    return orderBy((pools ?? []).filter(filterStablePools), (pool) => pool.volumeUSD, 'desc')
   }, [isStableSwapView, pools, showWatchlist, watchListPoolData, value])
 
   const contentUnderTokenList = () => {

@@ -17,7 +17,7 @@ const PoolsOverview: React.FC<React.PropsWithChildren> = () => {
   const watchlistPools = usePoolDatasSWR(savedPools)
   const watchlistPoolsData = useMemo(
     () =>
-      watchlistPools
+      (watchlistPools ?? [])
         .map((pool) => {
           return { ...pool, ...(stableSwapsAprs && { lpApr7d: stableSwapsAprs[pool.address] }) }
         })
@@ -35,7 +35,7 @@ const PoolsOverview: React.FC<React.PropsWithChildren> = () => {
         {t('Your Watchlist')}
       </Heading>
       <Card>
-        {watchlistPools.length > 0 ? (
+        {(watchlistPools ?? []).length > 0 ? (
           <PoolTable poolDatas={watchlistPoolsData} />
         ) : (
           <Text px="24px" py="16px">

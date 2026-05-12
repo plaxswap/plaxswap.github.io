@@ -60,7 +60,7 @@ const Overview: React.FC<React.PropsWithChildren> = () => {
   }, [allTokens, isStableSwapView])
 
   const filteredTransactions = useMemo(() => {
-    return transactions.filter((transaction) => {
+    return (transactions ?? []).filter((transaction) => {
       return (
         !isStableSwapView ||
         (isStableSwapInfoTokenSymbol(transaction.token0Symbol) && isStableSwapInfoTokenSymbol(transaction.token1Symbol))

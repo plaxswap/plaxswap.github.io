@@ -29,9 +29,11 @@ const TokensOverview: React.FC<React.PropsWithChildren> = () => {
       <Heading scale="lg" mb="16px">
         {t('Your Watchlist')}
       </Heading>
-      {watchListTokens.length > 0 ? (
+      {(watchListTokens ?? []).length > 0 ? (
         <TokenTable
-          tokenDatas={watchListTokens.filter((token) => !isStableSwapView || isStableSwapInfoTokenSymbol(token.symbol))}
+          tokenDatas={(watchListTokens ?? []).filter(
+            (token) => !isStableSwapView || isStableSwapInfoTokenSymbol(token.symbol),
+          )}
         />
       ) : (
         <Card>
