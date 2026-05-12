@@ -17,9 +17,11 @@ export const usePoolsData = () => {
   const poolsData = useMemo(() => {
     return Object.values(allPoolData)
       .map((pool) => {
+        const stableSwapApr = stableSwapsAprs?.[pool.data.address]
+
         return {
           ...pool.data,
-          ...(isStableSwap && stableSwapsAprs && { lpApr7d: stableSwapsAprs[pool.data.address] }),
+          ...(isStableSwap && Number.isFinite(stableSwapApr) && stableSwapApr > 0 ? { lpApr7d: stableSwapApr } : {}),
         }
       })
       .filter((pool) => pool.token1.name !== 'unknown' && pool.token0.name !== 'unknown')
