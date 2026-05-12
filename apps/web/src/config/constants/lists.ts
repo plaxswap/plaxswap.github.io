@@ -1,9 +1,9 @@
 export const PANCAKE_EXTENDED = 'https://plaxswap.github.io/tokenlist-json/tokenlist.json'
-export const COINGECKO = 'https://tokens.pancakeswap.finance/coingecko.json'
-export const PANCAKE_ETH_DEFAULT = 'https://tokens.pancakeswap.finance/pancakeswap-eth-default.json'
-export const PANCAKE_ETH_MM = 'https://tokens.pancakeswap.finance/pancakeswap-eth-mm.json'
-export const PANCAKE_BSC_MM = 'https://tokens.pancakeswap.finance/pancakeswap-bnb-mm.json'
-export const COINGECKO_ETH = 'https://tokens.coingecko.com/uniswap/all.json'
+export const COINGECKO = 'https://plaxswap.github.io/tokenlist-json/tokenlist.json'
+export const PANCAKE_ETH_DEFAULT = 'https://plaxswap.github.io/tokenlist-json/tokenlist.json'
+export const PANCAKE_ETH_MM = 'https://plaxswap.github.io/tokenlist-json/tokenlist.json'
+export const PANCAKE_BSC_MM = 'https://plaxswap.github.io/tokenlist-json/tokenlist.json'
+export const COINGECKO_ETH = 'https://plaxswap.github.io/tokenlist-json/tokenlist.json'
 export const CMC = 'https://plaxswap.github.io/tokenlist-json/tokenlist.json'
 
 export const ETH_URLS = [PANCAKE_ETH_DEFAULT, PANCAKE_ETH_MM, COINGECKO_ETH]
