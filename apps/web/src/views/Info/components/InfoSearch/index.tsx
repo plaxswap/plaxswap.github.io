@@ -6,6 +6,7 @@ import orderBy from 'lodash/orderBy'
 import { useRouter } from 'next/router'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useMultiChainPath, usePoolDatasSWR, useTokenDatasSWR, useGetChainName } from 'state/info/hooks'
+import { checkIsStableSwapView, isStableSwapInfoTokenSymbol } from 'state/info/constant'
 import useFetchSearchResults from 'state/info/queries/search'
 import { PoolData } from 'state/info/types'
 import { useWatchlistPools, useWatchlistTokens } from 'state/user/hooks'
@@ -139,6 +140,10 @@ const poolIncludesSearchTerm = (pool: PoolData, value: string) => {
   )
 }
 
+const poolHasOnlyStableSwapInfoTokens = (pool: PoolData) => {
+  return isStableSwapInfoTokenSymbol(pool.token0.symbol) && isStableSwapInfoTokenSymbol(pool.token1.symbol)
+}
+
 const Search = () => {
   const router = useRouter()
   const { isXs, isSm } = useMatchBreakpoints()
@@ -157,6 +162,7 @@ const Search = () => {
 
   const [tokensShown, setTokensShown] = useState(3)
   const [poolsShown, setPoolsShown] = useState(3)
+  const isStableSwapView = checkIsStableSwapView()
 
   useEffect(() => {
     setTokensShown(3)
@@ -208,18 +214,22 @@ const Search = () => {
   // filter on view
   const [showWatchlist, setShowWatchlist] = useState(false)
   const tokensForList = useMemo(() => {
+    const filterStableTokens = (token: BasicTokenData) => !isStableSwapView || isStableSwapInfoTokenSymbol(token.symbol)
+
     if (showWatchlist) {
-      return watchListTokenData.filter((token) => tokenIncludesSearchTerm(token, value))
+      return watchListTokenData.filter((token) => tokenIncludesSearchTerm(token, value)).filter(filterStableTokens)
     }
-    return orderBy(tokens, (token) => token.volumeUSD, 'desc')
-  }, [showWatchlist, tokens, watchListTokenData, value])
+    return orderBy(tokens.filter(filterStableTokens), (token) => token.volumeUSD, 'desc')
+  }, [isStableSwapView, showWatchlist, tokens, watchListTokenData, value])
 
   const poolForList = useMemo(() => {
+    const filterStablePools = (pool: PoolData) => !isStableSwapView || poolHasOnlyStableSwapInfoTokens(pool)
+
     if (showWatchlist) {
-      return watchListPoolData.filter((pool) => poolIncludesSearchTerm(pool, value))
+      return watchListPoolData.filter((pool) => poolIncludesSearchTerm(pool, value)).filter(filterStablePools)
     }
-    return orderBy(pools, (pool) => pool.volumeUSD, 'desc')
-  }, [pools, showWatchlist, watchListPoolData, value])
+    return orderBy(pools.filter(filterStablePools), (pool) => pool.volumeUSD, 'desc')
+  }, [isStableSwapView, pools, showWatchlist, watchListPoolData, value])
 
   const contentUnderTokenList = () => {
     const isLoading = tokensLoading
@@ -258,6 +268,7 @@ const Search = () => {
   }
   const chainPath = useMultiChainPath()
   const chainName = useGetChainName()
+  const stableSwapQuery = isStableSwapView ? '?type=stableSwap' : ''
   return (
     <>
       {showMenu ? <Blackout /> : null}
@@ -309,7 +320,7 @@ const Search = () => {
             {tokensForList.slice(0, tokensShown).map((token) => {
               return (
                 <HoverRowLink
-                  onClick={() => handleItemClick(`/info${chainPath}/tokens/${token.address}`)}
+                  onClick={() => handleItemClick(`/info${chainPath}/tokens/${token.address}${stableSwapQuery}`)}
                   key={`searchTokenResult${token.address}`}
                 >
                   <ResponsiveGrid>
@@ -372,7 +383,7 @@ const Search = () => {
             {poolForList.slice(0, poolsShown).map((p) => {
               return (
                 <HoverRowLink
-                  onClick={() => handleItemClick(`/info${chainPath}/pairs/${p.address}`)}
+                  onClick={() => handleItemClick(`/info${chainPath}/pairs/${p.address}${stableSwapQuery}`)}
                   key={`searchPoolResult${p.address}`}
                 >
                   <ResponsiveGrid>

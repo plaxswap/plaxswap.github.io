@@ -3,6 +3,7 @@ import { Card, Heading, Text } from '@pancakeswap/uikit'
 import Page from 'components/Layout/Page'
 import { useMemo } from 'react'
 import { useAllTokenDataSWR, useTokenDatasSWR } from 'state/info/hooks'
+import { checkIsStableSwapView, isStableSwapInfoTokenSymbol } from 'state/info/constant'
 import { useWatchlistTokens } from 'state/user/hooks'
 import TokenTable from 'views/Info/components/InfoTables/TokensTable'
 import TopTokenMovers from 'views/Info/components/TopTokenMovers'
@@ -11,12 +12,14 @@ const TokensOverview: React.FC<React.PropsWithChildren> = () => {
   const { t } = useTranslation()
 
   const allTokens = useAllTokenDataSWR()
+  const isStableSwapView = checkIsStableSwapView()
 
   const formattedTokens = useMemo(() => {
     return Object.values(allTokens)
       .map((token) => token.data)
       .filter((token) => token)
-  }, [allTokens])
+      .filter((token) => !isStableSwapView || isStableSwapInfoTokenSymbol(token.symbol))
+  }, [allTokens, isStableSwapView])
 
   const [savedTokens] = useWatchlistTokens()
   const watchListTokens = useTokenDatasSWR(savedTokens)
@@ -27,7 +30,9 @@ const TokensOverview: React.FC<React.PropsWithChildren> = () => {
         {t('Your Watchlist')}
       </Heading>
       {watchListTokens.length > 0 ? (
-        <TokenTable tokenDatas={watchListTokens} />
+        <TokenTable
+          tokenDatas={watchListTokens.filter((token) => !isStableSwapView || isStableSwapInfoTokenSymbol(token.symbol))}
+        />
       ) : (
         <Card>
           <Text py="16px" px="24px">

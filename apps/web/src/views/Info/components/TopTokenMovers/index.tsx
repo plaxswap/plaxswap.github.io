@@ -2,6 +2,7 @@ import { useTranslation } from '@pancakeswap/localization'
 import { Box, Card, Flex, Text, NextLinkFromReactRouter } from '@pancakeswap/uikit'
 import { useEffect, useMemo, useRef } from 'react'
 import { useAllTokenDataSWR, useGetChainName, useMultiChainPath } from 'state/info/hooks'
+import { checkIsStableSwapView, isStableSwapInfoTokenSymbol } from 'state/info/constant'
 import { TokenData } from 'state/info/types'
 import styled from 'styled-components'
 import { formatAmount } from 'utils/formatInfoNumbers'
@@ -37,8 +38,9 @@ export const ScrollableRow = styled.div`
 const DataCard = ({ tokenData }: { tokenData: TokenData }) => {
   const chainName = useGetChainName()
   const chainPath = useMultiChainPath()
+  const stableSwapPath = checkIsStableSwapView() ? '?type=stableSwap' : ''
   return (
-    <CardWrapper to={`/info${chainPath}/tokens/${tokenData.address}`}>
+    <CardWrapper to={`/info${chainPath}/tokens/${tokenData.address}${stableSwapPath}`}>
       <TopMoverCard>
         <Flex>
           <Box width="32px" height="32px">
@@ -63,6 +65,7 @@ const DataCard = ({ tokenData }: { tokenData: TokenData }) => {
 const TopTokenMovers: React.FC<React.PropsWithChildren> = () => {
   const allTokens = useAllTokenDataSWR()
   const { t } = useTranslation()
+  const isStableSwapView = checkIsStableSwapView()
 
   const topPriceIncrease = useMemo(() => {
     return Object.values(allTokens)
@@ -72,7 +75,8 @@ const TopTokenMovers: React.FC<React.PropsWithChildren> = () => {
       })
       .slice(0, Math.min(20, Object.values(allTokens).length))
       .filter((d) => d?.data?.exists)
-  }, [allTokens])
+      .filter((d) => !isStableSwapView || isStableSwapInfoTokenSymbol(d.data?.symbol))
+  }, [allTokens, isStableSwapView])
 
   const increaseRef = useRef<HTMLDivElement>(null)
   const moveLeftRef = useRef<boolean>(true)

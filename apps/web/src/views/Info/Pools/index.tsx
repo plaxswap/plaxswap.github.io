@@ -3,6 +3,7 @@ import { Card, Heading, Text } from '@pancakeswap/uikit'
 import Page from 'components/Layout/Page'
 import { useMemo } from 'react'
 import { usePoolDatasSWR } from 'state/info/hooks'
+import { checkIsStableSwapView, isStableSwapInfoTokenSymbol } from 'state/info/constant'
 import { useWatchlistPools } from 'state/user/hooks'
 import PoolTable from 'views/Info/components/InfoTables/PoolsTable'
 import { usePoolsData } from '../hooks/usePoolsData'
@@ -10,15 +11,22 @@ import { usePoolsData } from '../hooks/usePoolsData'
 const PoolsOverview: React.FC<React.PropsWithChildren> = () => {
   const { t } = useTranslation()
   const { poolsData, stableSwapsAprs } = usePoolsData()
+  const isStableSwapView = checkIsStableSwapView()
 
   const [savedPools] = useWatchlistPools()
   const watchlistPools = usePoolDatasSWR(savedPools)
   const watchlistPoolsData = useMemo(
     () =>
-      watchlistPools.map((pool) => {
-        return { ...pool, ...(stableSwapsAprs && { lpApr7d: stableSwapsAprs[pool.address] }) }
-      }),
-    [watchlistPools, stableSwapsAprs],
+      watchlistPools
+        .map((pool) => {
+          return { ...pool, ...(stableSwapsAprs && { lpApr7d: stableSwapsAprs[pool.address] }) }
+        })
+        .filter(
+          (pool) =>
+            !isStableSwapView ||
+            (isStableSwapInfoTokenSymbol(pool.token0.symbol) && isStableSwapInfoTokenSymbol(pool.token1.symbol)),
+        ),
+    [isStableSwapView, watchlistPools, stableSwapsAprs],
   )
 
   return (

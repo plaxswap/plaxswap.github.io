@@ -1,9 +1,10 @@
 import { useMemo } from 'react'
-import { checkIsStableSwap } from 'state/info/constant'
+import { checkIsStableSwap, checkIsStableSwapView, isStableSwapInfoTokenSymbol } from 'state/info/constant'
 import { useAllPoolDataSWR, useStableSwapTopPoolsAPR } from 'state/info/hooks'
 
 export const usePoolsData = () => {
   const isStableSwap = checkIsStableSwap()
+  const isStableSwapView = checkIsStableSwapView()
 
   // get all the pool datas that exist
   const allPoolData = useAllPoolDataSWR()
@@ -25,6 +26,11 @@ export const usePoolsData = () => {
         }
       })
       .filter((pool) => pool.token1.name !== 'unknown' && pool.token0.name !== 'unknown')
-  }, [allPoolData, isStableSwap, stableSwapsAprs])
+      .filter(
+        (pool) =>
+          !isStableSwapView ||
+          (isStableSwapInfoTokenSymbol(pool.token0.symbol) && isStableSwapInfoTokenSymbol(pool.token1.symbol)),
+      )
+  }, [allPoolData, isStableSwap, isStableSwapView, stableSwapsAprs])
   return { poolsData, stableSwapsAprs }
 }

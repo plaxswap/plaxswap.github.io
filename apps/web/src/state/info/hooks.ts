@@ -20,7 +20,7 @@ import useSWRImmutable from 'swr/immutable'
 import { getDeltaTimestamps } from 'utils/getDeltaTimestamps'
 import { getAprsForStableFarm } from 'utils/getAprsForStableFarm'
 import { useBlockFromTimeStampSWR } from 'views/Info/hooks/useBlocksFromTimestamps'
-import { checkIsStableSwap, MultiChainName } from './constant'
+import { checkIsStableSwap, checkIsStableSwapView, MultiChainName } from './constant'
 import { ChartEntry, PoolData, PriceChartEntry, ProtocolData, TokenData } from './types'
 
 // Protocol hooks
@@ -324,5 +324,5 @@ export const useMultiChainPath = () => {
 }
 
 export const useStableSwapPath = () => {
-  return ''
+  return checkIsStableSwapView() ? '?type=stableSwap' : ''
 }

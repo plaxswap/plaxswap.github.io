@@ -79,3 +79,21 @@ export const checkIsStableSwap = () => {
 
   return window.location.pathname.startsWith('/info')
 }
+
+export const checkIsStableSwapView = () => {
+  if (typeof window === 'undefined') {
+    return false
+  }
+
+  return window.location.pathname.startsWith('/info') && window.location.search.includes('type=stableSwap')
+}
+
+const STABLE_SWAP_INFO_TOKEN_SYMBOLS = new Set(['USDT', 'USDC', 'USDC.E', 'DAI', 'IDRT', 'IDRX', 'XSGD'])
+
+export const isStableSwapInfoTokenSymbol = (symbol?: string) => {
+  if (!symbol) {
+    return false
+  }
+
+  return STABLE_SWAP_INFO_TOKEN_SYMBOLS.has(symbol.toUpperCase())
+}

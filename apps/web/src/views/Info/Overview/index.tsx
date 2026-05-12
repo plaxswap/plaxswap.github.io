@@ -8,6 +8,7 @@ import {
   useProtocolDataSWR,
   useProtocolTransactionsSWR,
 } from 'state/info/hooks'
+import { checkIsStableSwapView, isStableSwapInfoTokenSymbol } from 'state/info/constant'
 import styled from 'styled-components'
 import BarChart from 'views/Info/components/InfoCharts/BarChart'
 import LineChart from 'views/Info/components/InfoCharts/LineChart'
@@ -49,12 +50,23 @@ const Overview: React.FC<React.PropsWithChildren> = () => {
   )
 
   const allTokens = useAllTokenDataSWR()
+  const isStableSwapView = checkIsStableSwapView()
 
   const formattedTokens = useMemo(() => {
     return Object.values(allTokens)
       .map((token) => token.data)
       .filter((token): token is NonNullable<typeof token> => Boolean(token) && token.name !== 'unknown')
-  }, [allTokens])
+      .filter((token) => !isStableSwapView || isStableSwapInfoTokenSymbol(token.symbol))
+  }, [allTokens, isStableSwapView])
+
+  const filteredTransactions = useMemo(() => {
+    return transactions.filter((transaction) => {
+      return (
+        !isStableSwapView ||
+        (isStableSwapInfoTokenSymbol(transaction.token0Symbol) && isStableSwapInfoTokenSymbol(transaction.token1Symbol))
+      )
+    })
+  }, [isStableSwapView, transactions])
 
   const protocolDataWithFallback = useMemo(() => {
     const liquidityUSD = formattedTokens.reduce((sum, token) => sum + (token?.liquidityUSD || 0), 0)
@@ -63,14 +75,14 @@ const Overview: React.FC<React.PropsWithChildren> = () => {
     const hasProtocolVolume = protocolData?.volumeUSD && protocolData.volumeUSD > 0
 
     return {
-      volumeUSD: hasProtocolVolume ? protocolData.volumeUSD : volumeUSD,
+      volumeUSD: !isStableSwapView && hasProtocolVolume ? protocolData.volumeUSD : volumeUSD,
       volumeUSDChange: protocolData?.volumeUSDChange ?? 0,
-      liquidityUSD: hasProtocolLiquidity ? protocolData.liquidityUSD : liquidityUSD,
+      liquidityUSD: !isStableSwapView && hasProtocolLiquidity ? protocolData.liquidityUSD : liquidityUSD,
       liquidityUSDChange: protocolData?.liquidityUSDChange ?? 0,
       txCount: protocolData?.txCount ?? 0,
       txCountChange: protocolData?.txCountChange ?? 0,
     }
-  }, [formattedTokens, protocolData])
+  }, [formattedTokens, isStableSwapView, protocolData])
 
   const chartDataWithFallback = useMemo(() => {
     const hasChartData = chartData?.some((entry) => entry.volumeUSD > 0 || entry.liquidityUSD > 0)
@@ -136,7 +148,7 @@ const Overview: React.FC<React.PropsWithChildren> = () => {
       <Heading scale="lg" mt="40px" mb="16px">
         {t('Transactions')}
       </Heading>
-      <TransactionTable transactions={transactions} />
+      <TransactionTable transactions={filteredTransactions} />
     </Page>
   )
 }
