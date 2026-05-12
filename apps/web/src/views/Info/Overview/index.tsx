@@ -53,8 +53,44 @@ const Overview: React.FC<React.PropsWithChildren> = () => {
   const formattedTokens = useMemo(() => {
     return Object.values(allTokens)
       .map((token) => token.data)
-      .filter((token) => token.name !== 'unknown')
+      .filter((token): token is NonNullable<typeof token> => Boolean(token) && token.name !== 'unknown')
   }, [allTokens])
+
+  const protocolDataWithFallback = useMemo(() => {
+    const liquidityUSD = formattedTokens.reduce((sum, token) => sum + (token?.liquidityUSD || 0), 0)
+    const volumeUSD = formattedTokens.reduce((sum, token) => sum + (token?.volumeUSD || 0), 0)
+    const hasProtocolLiquidity = protocolData?.liquidityUSD && protocolData.liquidityUSD > 0
+    const hasProtocolVolume = protocolData?.volumeUSD && protocolData.volumeUSD > 0
+
+    return {
+      volumeUSD: hasProtocolVolume ? protocolData.volumeUSD : volumeUSD,
+      volumeUSDChange: protocolData?.volumeUSDChange ?? 0,
+      liquidityUSD: hasProtocolLiquidity ? protocolData.liquidityUSD : liquidityUSD,
+      liquidityUSDChange: protocolData?.liquidityUSDChange ?? 0,
+      txCount: protocolData?.txCount ?? 0,
+      txCountChange: protocolData?.txCountChange ?? 0,
+    }
+  }, [formattedTokens, protocolData])
+
+  const chartDataWithFallback = useMemo(() => {
+    const hasChartData = chartData?.some((entry) => entry.volumeUSD > 0 || entry.liquidityUSD > 0)
+
+    if (hasChartData) {
+      return chartData
+    }
+
+    if (protocolDataWithFallback.volumeUSD > 0 || protocolDataWithFallback.liquidityUSD > 0) {
+      return [
+        {
+          date: Math.floor(Date.now() / 1000),
+          volumeUSD: protocolDataWithFallback.volumeUSD,
+          liquidityUSD: protocolDataWithFallback.liquidityUSD,
+        },
+      ]
+    }
+
+    return chartData
+  }, [chartData, protocolDataWithFallback])
 
   const { poolsData } = usePoolsData()
 
@@ -70,8 +106,8 @@ const Overview: React.FC<React.PropsWithChildren> = () => {
       <ChartCardsContainer>
         <Card>
           <HoverableChart
-            chartData={chartData}
-            protocolData={protocolData}
+            chartData={chartDataWithFallback}
+            protocolData={protocolDataWithFallback}
             currentDate={currentDate}
             valueProperty="liquidityUSD"
             title={t('Liquidity')}
@@ -80,8 +116,8 @@ const Overview: React.FC<React.PropsWithChildren> = () => {
         </Card>
         <Card>
           <HoverableChart
-            chartData={chartData}
-            protocolData={protocolData}
+            chartData={chartDataWithFallback}
+            protocolData={protocolDataWithFallback}
             currentDate={currentDate}
             valueProperty="volumeUSD"
             title={t('Volume 24H')}

@@ -153,6 +153,26 @@ export const fetchPoolData = async (
   chainName: 'ETH' | 'BSC' = 'BSC',
 ) => {
   try {
+    if (checkIsStableSwap()) {
+      const query = gql`
+        query stablePools {
+          now: ${POOL_AT_BLOCK(null, poolAddresses)}
+        }
+      `
+      const data = await getMultiChainQueryEndPointWithStableSwap(chainName).request<PoolsQueryResponse>(query)
+
+      return {
+        data: {
+          now: data.now,
+          oneDayAgo: [],
+          twoDaysAgo: [],
+          oneWeekAgo: [],
+          twoWeeksAgo: [],
+        },
+        error: false,
+      }
+    }
+
     const query = gql`
       query pools {
         now: ${POOL_AT_BLOCK(null, poolAddresses)}
