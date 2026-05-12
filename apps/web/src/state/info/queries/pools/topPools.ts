@@ -21,6 +21,14 @@ interface TopPairsResponse {
   }[]
 }
 
+interface TopSwapsResponse {
+  swaps: {
+    pair: {
+      id: string
+    }
+  }[]
+}
+
 /**
  * Initial pools to display on the home page
  */
@@ -49,24 +57,45 @@ const fetchTopPools = async (chainName: MultiChainName, timestamp24hAgo: number)
       blacklist: multiChainTokenBlackList[chainName],
     })
     // pairDayDatas id has compound id "0xPOOLADDRESS-NUMBERS", extracting pool address with .split('-')
-    const pairDayAddresses = data.pairDayDatas.map((p) => p.id.split('-')[0])
+    const pairDayAddresses = data.pairDayDatas.map((p) => p.id.split('-')[0].toLowerCase())
 
     if (pairDayAddresses.length > 0 || !isStableSwap) {
       return pairDayAddresses
     }
 
-    const fallbackQuery = gql`
-      query topStablePools {
-        pairs(first: ${firstCount}, orderBy: reserveUSD, orderDirection: desc) {
-          id
+    try {
+      const fallbackQuery = gql`
+        query topStablePools {
+          pairs(first: ${firstCount}, orderBy: reserveUSD, orderDirection: desc) {
+            id
+          }
+        }
+      `
+      const fallbackData = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TopPairsResponse>(
+        fallbackQuery,
+      )
+
+      if (fallbackData.pairs.length > 0) {
+        return fallbackData.pairs.map((p) => p.id.toLowerCase())
+      }
+    } catch (fallbackError) {
+      console.info('Failed to fetch stable pools from pairs, trying swaps fallback', fallbackError)
+    }
+
+    const swapsFallbackQuery = gql`
+      query topStablePoolsFromSwaps {
+        swaps(first: 1000, orderBy: timestamp, orderDirection: desc) {
+          pair {
+            id
+          }
         }
       }
     `
-    const fallbackData = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TopPairsResponse>(
-      fallbackQuery,
+    const swapsFallbackData = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TopSwapsResponse>(
+      swapsFallbackQuery,
     )
 
-    return fallbackData.pairs.map((p) => p.id)
+    return Array.from(new Set(swapsFallbackData.swaps.map((swap) => swap.pair.id.toLowerCase()))).slice(0, firstCount)
   } catch (error) {
     console.error('Failed to fetch top pools', error)
     return []

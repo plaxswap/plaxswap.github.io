@@ -500,13 +500,14 @@ const usePoolDatas = (poolAddresses: string[]): PoolDatas => {
 
         // Calculate data and format
         const formatted = poolAddresses.reduce((accum: { [address: string]: PoolData }, address) => {
+          const poolAddress = address.toLowerCase()
           // Undefined data is possible if pool is brand new and didn't exist one day ago or week ago.
-          const current: FormattedPoolFields | undefined = formattedPoolData[address]
-          const oneDay: FormattedPoolFields | undefined = formattedPoolData24h[address]
-          const twoDays: FormattedPoolFields | undefined = formattedPoolData48h[address]
-          const week: FormattedPoolFields | undefined = formattedPoolData7d[address]
-          const twoWeeks: FormattedPoolFields | undefined = formattedPoolData14d[address]
-          const swapVolume = swapVolumeByPool[address]
+          const current: FormattedPoolFields | undefined = formattedPoolData[poolAddress]
+          const oneDay: FormattedPoolFields | undefined = formattedPoolData24h[poolAddress]
+          const twoDays: FormattedPoolFields | undefined = formattedPoolData48h[poolAddress]
+          const week: FormattedPoolFields | undefined = formattedPoolData7d[poolAddress]
+          const twoWeeks: FormattedPoolFields | undefined = formattedPoolData14d[poolAddress]
+          const swapVolume = swapVolumeByPool[poolAddress]
 
           const [volumeUSDRaw, volumeUSDChangeRaw] = getChangeForPeriod(
             current?.volumeUSD,
@@ -539,8 +540,8 @@ const usePoolDatas = (poolAddresses: string[]): PoolDatas => {
           )
 
           if (current) {
-            accum[address] = {
-              address,
+            accum[poolAddress] = {
+              address: poolAddress,
               token0: {
                 address: current.token0.id,
                 name: current.token0.name,
@@ -617,13 +618,14 @@ export const fetchAllPoolDataWithAddress = async (
 
   // Calculate data and format
   const formatted = poolAddresses.reduce((accum: { [address: string]: { data: PoolData } }, address) => {
+    const poolAddress = address.toLowerCase()
     // Undefined data is possible if pool is brand new and didn't exist one day ago or week ago.
-    const current: FormattedPoolFields | undefined = formattedPoolData[address]
-    const oneDay: FormattedPoolFields | undefined = formattedPoolData24h[address]
-    const twoDays: FormattedPoolFields | undefined = formattedPoolData48h[address]
-    const week: FormattedPoolFields | undefined = formattedPoolData7d[address]
-    const twoWeeks: FormattedPoolFields | undefined = formattedPoolData14d[address]
-    const swapVolume = swapVolumeByPool[address]
+    const current: FormattedPoolFields | undefined = formattedPoolData[poolAddress]
+    const oneDay: FormattedPoolFields | undefined = formattedPoolData24h[poolAddress]
+    const twoDays: FormattedPoolFields | undefined = formattedPoolData48h[poolAddress]
+    const week: FormattedPoolFields | undefined = formattedPoolData7d[poolAddress]
+    const twoWeeks: FormattedPoolFields | undefined = formattedPoolData14d[poolAddress]
+    const swapVolume = swapVolumeByPool[poolAddress]
 
     const [volumeUSDRaw, volumeUSDChangeRaw] = getChangeForPeriod(
       current?.volumeUSD,
@@ -656,9 +658,9 @@ export const fetchAllPoolDataWithAddress = async (
     )
 
     if (current) {
-      accum[address] = {
+      accum[poolAddress] = {
         data: {
-          address,
+          address: poolAddress,
           token0: {
             address: current.token0.id,
             name: current.token0.name,
