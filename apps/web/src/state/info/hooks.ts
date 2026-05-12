@@ -324,5 +324,5 @@ export const useMultiChainPath = () => {
 }
 
 export const useStableSwapPath = () => {
-  return checkIsStableSwap() ? '?type=stableSwap' : ''
+  return ''
 }

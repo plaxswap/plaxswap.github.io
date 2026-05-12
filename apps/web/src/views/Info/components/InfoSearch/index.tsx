@@ -6,7 +6,6 @@ import orderBy from 'lodash/orderBy'
 import { useRouter } from 'next/router'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useMultiChainPath, usePoolDatasSWR, useTokenDatasSWR, useGetChainName } from 'state/info/hooks'
-import { checkIsStableSwap } from 'state/info/constant'
 import useFetchSearchResults from 'state/info/queries/search'
 import { PoolData } from 'state/info/types'
 import { useWatchlistPools, useWatchlistTokens } from 'state/user/hooks'
@@ -259,7 +258,6 @@ const Search = () => {
   }
   const chainPath = useMultiChainPath()
   const chainName = useGetChainName()
-  const stableSwapQuery = checkIsStableSwap() ? '?type=stableSwap' : ''
   return (
     <>
       {showMenu ? <Blackout /> : null}
@@ -311,7 +309,7 @@ const Search = () => {
             {tokensForList.slice(0, tokensShown).map((token) => {
               return (
                 <HoverRowLink
-                  onClick={() => handleItemClick(`/info${chainPath}/tokens/${token.address}${stableSwapQuery}`)}
+                  onClick={() => handleItemClick(`/info${chainPath}/tokens/${token.address}`)}
                   key={`searchTokenResult${token.address}`}
                 >
                   <ResponsiveGrid>
@@ -374,7 +372,7 @@ const Search = () => {
             {poolForList.slice(0, poolsShown).map((p) => {
               return (
                 <HoverRowLink
-                  onClick={() => handleItemClick(`/info${chainPath}/pairs/${p.address}${stableSwapQuery}`)}
+                  onClick={() => handleItemClick(`/info${chainPath}/pairs/${p.address}`)}
                   key={`searchPoolResult${p.address}`}
                 >
                   <ResponsiveGrid>

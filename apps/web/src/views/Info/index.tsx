@@ -14,21 +14,16 @@ export const InfoPageLayout = ({ children }) => {
   const router = useRouter()
   const chainName = useGetChainName()
   const { t } = useTranslation()
-  const isStableSwap = router.query.type === 'stableSwap'
 
   useEffect(() => {
     if (account && chainId === ChainId.BSC && router.query.chainName === 'eth')
       router.replace('/info', undefined, { shallow: true })
     else if (account && chainId === ChainId.ETHEREUM && router.query.chainName !== 'eth')
       router.replace('/info/eth', undefined, { shallow: true })
-    else if (isStableSwap && router.query.chainName) {
-      if (router.query.chainName === 'eth') {
-        router.replace('/info/eth', undefined, { shallow: true })
-      } else {
-        router.replace('/info?type=stableSwap', undefined, { shallow: true })
-      }
+    else if (router.query.type === 'stableSwap') {
+      router.replace(router.query.chainName === 'eth' ? '/info/eth' : '/info', undefined, { shallow: true })
     }
-  }, [isStableSwap, chainId, account, chainName, router])
+  }, [chainId, account, chainName, router])
 
   return (
     <>
@@ -39,16 +34,12 @@ export const InfoPageLayout = ({ children }) => {
               label: t('Swap'),
               href: '/info',
             },
-            {
-              label: t('StableSwap'),
-              href: '/info?type=stableSwap',
-            },
           ]}
-          activeItem={isStableSwap ? '/info?type=stableSwap' : '/info'}
+          activeItem="/info"
         />
       )}
 
-      <InfoNav isStableSwap={isStableSwap} />
+      <InfoNav isStableSwap={false} />
       {children}
     </>
   )
