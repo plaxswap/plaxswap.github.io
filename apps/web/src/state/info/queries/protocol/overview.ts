@@ -19,6 +19,11 @@ interface OverviewResponse {
   pancakeFactories: PancakeFactory[]
   factories?: PancakeFactory[]
 }
+
+const getFactories = (data?: OverviewResponse) => {
+  return checkIsStableSwap() ? data?.factories ?? data?.pancakeFactories : data?.pancakeFactories
+}
+
 /**
  * Latest Liquidity, Volume and Transaction count
  */
@@ -86,9 +91,9 @@ const useFetchProtocolData = (): ProtocolFetchState => {
         getOverviewData(chainName, block48?.number ?? undefined),
       ])
       const anyError = error || error24 || error48
-      const overviewData = formatPancakeFactoryResponse(data?.pancakeFactories)
-      const overviewData24 = formatPancakeFactoryResponse(data24?.pancakeFactories)
-      const overviewData48 = formatPancakeFactoryResponse(data48?.pancakeFactories)
+      const overviewData = formatPancakeFactoryResponse(getFactories(data))
+      const overviewData24 = formatPancakeFactoryResponse(getFactories(data24))
+      const overviewData48 = formatPancakeFactoryResponse(getFactories(data48))
       const allDataAvailable = overviewData && overviewData24 && overviewData48
       if (anyError || !allDataAvailable) {
         setFetchState({
@@ -137,15 +142,15 @@ export const fetchProtocolData = async (chainName: MultiChainName, block24: Bloc
     getOverviewData(chainName, block24?.number ?? undefined),
     getOverviewData(chainName, block48?.number ?? undefined),
   ])
-  if (data.factories && data.factories.length > 0) data.pancakeFactories = data.factories
-  if (data24.factories && data24.factories.length > 0) data24.pancakeFactories = data24.factories
-  if (data48.factories && data48.factories.length > 0) data48.pancakeFactories = data48.factories
-
   // const anyError = error || error24 || error48
-  const overviewData = formatPancakeFactoryResponse(data?.pancakeFactories)
-  const overviewData24 = formatPancakeFactoryResponse(data24?.pancakeFactories)
-  const overviewData48 = formatPancakeFactoryResponse(data48?.pancakeFactories)
+  const overviewData = formatPancakeFactoryResponse(getFactories(data))
+  const overviewData24 = formatPancakeFactoryResponse(getFactories(data24))
+  const overviewData48 = formatPancakeFactoryResponse(getFactories(data48))
   // const allDataAvailable = overviewData && overviewData24 && overviewData48
+
+  if (!overviewData || !overviewData24 || !overviewData48) {
+    return undefined
+  }
 
   const [volumeUSD, volumeUSDChange] = getChangeForPeriod(
     overviewData.totalVolumeUSD,

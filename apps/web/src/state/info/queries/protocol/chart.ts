@@ -3,8 +3,13 @@ import { gql } from 'graphql-request'
 import { useEffect, useState } from 'react'
 import { ChartEntry } from 'state/info/types'
 import { fetchChartData, mapDayData } from '../helpers'
-import { PancakeDayDatasResponse } from '../types'
-import { MultiChainName, getMultiChainQueryEndPointWithStableSwap, multiChainStartTime } from '../../constant'
+import { PancakeDayDatasResponse, PairDayDatasResponse } from '../types'
+import {
+  MultiChainName,
+  checkIsStableSwap,
+  getMultiChainQueryEndPointWithStableSwap,
+  multiChainStartTime,
+} from '../../constant'
 import { useGetChainName } from '../../hooks'
 
 /**
@@ -20,11 +25,50 @@ const PANCAKE_DAY_DATAS = gql`
   }
 `
 
+const STABLE_PAIR_DAY_DATAS = gql`
+  query stableOverviewCharts($startTime: Int!, $skip: Int!) {
+    pairDayDatas(first: 1000, skip: $skip, where: { date_gt: $startTime }, orderBy: date, orderDirection: asc) {
+      date
+      dailyVolumeUSD
+      reserveUSD
+    }
+  }
+`
+
 const getOverviewChartData = async (
   chainName: MultiChainName,
   skip: number,
 ): Promise<{ data?: ChartEntry[]; error: boolean }> => {
   try {
+    if (checkIsStableSwap()) {
+      const { pairDayDatas } = await getMultiChainQueryEndPointWithStableSwap(chainName).request<PairDayDatasResponse>(
+        STABLE_PAIR_DAY_DATAS,
+        {
+          startTime: multiChainStartTime[chainName],
+          skip,
+        },
+      )
+      const dataByDate = pairDayDatas.reduce((accum: Record<number, ChartEntry>, dayData) => {
+        const { date } = dayData
+        const current = accum[date] ?? {
+          date,
+          volumeUSD: 0,
+          liquidityUSD: 0,
+        }
+
+        return {
+          ...accum,
+          [date]: {
+            date,
+            volumeUSD: current.volumeUSD + parseFloat(dayData.dailyVolumeUSD),
+            liquidityUSD: current.liquidityUSD + parseFloat(dayData.reserveUSD),
+          },
+        }
+      }, {})
+
+      return { data: Object.values(dataByDate), error: false }
+    }
+
     const { pancakeDayDatas } = await getMultiChainQueryEndPointWithStableSwap(
       chainName,
     ).request<PancakeDayDatasResponse>(PANCAKE_DAY_DATAS, {

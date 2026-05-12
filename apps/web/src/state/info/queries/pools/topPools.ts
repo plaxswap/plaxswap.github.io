@@ -15,6 +15,12 @@ interface TopPoolsResponse {
   }[]
 }
 
+interface TopPairsResponse {
+  pairs: {
+    id: string
+  }[]
+}
+
 /**
  * Initial pools to display on the home page
  */
@@ -43,7 +49,24 @@ const fetchTopPools = async (chainName: MultiChainName, timestamp24hAgo: number)
       blacklist: multiChainTokenBlackList[chainName],
     })
     // pairDayDatas id has compound id "0xPOOLADDRESS-NUMBERS", extracting pool address with .split('-')
-    return data.pairDayDatas.map((p) => p.id.split('-')[0])
+    const pairDayAddresses = data.pairDayDatas.map((p) => p.id.split('-')[0])
+
+    if (pairDayAddresses.length > 0 || !isStableSwap) {
+      return pairDayAddresses
+    }
+
+    const fallbackQuery = gql`
+      query topStablePools {
+        pairs(first: ${firstCount}, orderBy: reserveUSD, orderDirection: desc) {
+          id
+        }
+      }
+    `
+    const fallbackData = await getMultiChainQueryEndPointWithStableSwap(chainName).request<TopPairsResponse>(
+      fallbackQuery,
+    )
+
+    return fallbackData.pairs.map((p) => p.id)
   } catch (error) {
     console.error('Failed to fetch top pools', error)
     return []

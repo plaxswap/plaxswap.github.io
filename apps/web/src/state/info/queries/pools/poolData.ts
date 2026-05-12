@@ -498,10 +498,12 @@ const usePoolDatas = (poolAddresses: string[]): PoolDatas => {
             week?.volumeUSD,
             twoWeeks?.volumeUSD,
           )
-          const volumeUSD = volumeUSDRaw || swapVolume?.volumeUSD || 0
+          const volumeOutUSD = current?.volumeOutUSD && getAmountChange(current?.volumeOutUSD, oneDay?.volumeOutUSD)
+          const volumeOutUSDWeek = current?.volumeOutUSD && getAmountChange(current?.volumeOutUSD, week?.volumeOutUSD)
+          const volumeUSD = volumeUSDRaw || volumeOutUSD || swapVolume?.volumeUSD || 0
           const volumeUSDChange =
             volumeUSDChangeRaw || getPercentChange(swapVolume?.volumeUSD, swapVolume?.previousVolumeUSD)
-          const volumeUSDWeek = volumeUSDWeekRaw || swapVolume?.volumeUSDWeek || 0
+          const volumeUSDWeek = volumeUSDWeekRaw || volumeOutUSDWeek || swapVolume?.volumeUSDWeek || 0
 
           const liquidityUSD = getPoolLiquidityUSD(current, tokenUsdPrices)
 
@@ -615,10 +617,10 @@ export const fetchAllPoolDataWithAddress = async (
       week?.volumeUSD,
       twoWeeks?.volumeUSD,
     )
-    const volumeUSD = volumeUSDRaw || swapVolume?.volumeUSD || 0
+    const volumeUSD = volumeUSDRaw || volumeOutUSD || swapVolume?.volumeUSD || 0
     const volumeUSDChange =
       volumeUSDChangeRaw || getPercentChange(swapVolume?.volumeUSD, swapVolume?.previousVolumeUSD)
-    const volumeUSDWeek = volumeUSDWeekRaw || swapVolume?.volumeUSDWeek || 0
+    const volumeUSDWeek = volumeUSDWeekRaw || volumeOutUSDWeek || swapVolume?.volumeUSDWeek || 0
 
     const liquidityUSD = getPoolLiquidityUSD(current, tokenUsdPrices)
 

@@ -8,7 +8,7 @@ export const reownProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID |
 export const reownNetworks = [polygon, polygonMumbai] as [typeof polygon, typeof polygonMumbai]
 
 const POLYGON_RPC_URL =
-  process.env.NEXT_PUBLIC_NODE_PRODUCTION || 'https://lb.drpc.live/polygon/AksFlvO-tUQvsJxhLBbmJvCRID1tl_YR8LtMwg8TMB_n'
+  process.env.NEXT_PUBLIC_NODE_PRODUCTION || 'https://polygon.drpc.org'
 
 const POLYGON_MUMBAI_RPC_URL = process.env.NEXT_PUBLIC_NODE_PRODUCTION_TESTNET || polygonMumbai.rpcUrls.default.http[0]
 
