@@ -43,27 +43,35 @@ const ChartCard: React.FC<React.PropsWithChildren<ChartCardProps>> = ({
   const currentDate = new Date().toLocaleString(locale, { month: 'short', year: 'numeric', day: 'numeric' })
 
   const formattedTvlData = useMemo(() => {
-    if (chartData) {
-      return chartData.map((day) => {
+    const data =
+      chartData?.map((day) => {
         return {
           time: fromUnixTime(day.date),
           value: day.liquidityUSD,
         }
-      })
+      }) ?? []
+
+    if (variant === 'token' && tokenData?.liquidityUSD) {
+      return [...data, { time: new Date(), value: tokenData.liquidityUSD }]
     }
-    return []
-  }, [chartData])
+
+    return data
+  }, [chartData, tokenData?.liquidityUSD, variant])
   const formattedVolumeData = useMemo(() => {
-    if (chartData) {
-      return chartData.map((day) => {
+    const data =
+      chartData?.map((day) => {
         return {
           time: fromUnixTime(day.date),
           value: day.volumeUSD,
         }
-      })
+      }) ?? []
+
+    if (variant === 'token' && tokenData?.volumeUSD) {
+      return [...data, { time: new Date(), value: tokenData.volumeUSD }]
     }
-    return []
-  }, [chartData])
+
+    return data
+  }, [chartData, tokenData?.volumeUSD, variant])
 
   const getLatestValueDisplay = () => {
     let valueToDisplay = null
