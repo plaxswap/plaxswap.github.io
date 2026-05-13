@@ -268,6 +268,14 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,  
   },
   {
+    pid: 79,
+    lpSymbol: 'CRV-POL LP',
+    lpAddress: '0xd0840a55c74974e3a663a51a6e26bdda4df6b9a0',
+    token: bscTokens.crv,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,  
+  },
+  {
     pid: 76,
     lpSymbol: 'CRO-POL LP',
     lpAddress: '0x3e9ee8E451B239f19Ff3B80F43e76020267fbD00',
