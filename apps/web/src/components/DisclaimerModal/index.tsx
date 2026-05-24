@@ -1,4 +1,4 @@
-import { useState, useCallback, ReactNode } from 'react'
+import { useState, useCallback, useMemo, ReactNode } from 'react'
 import {
   ModalContainer,
   ModalBody,
@@ -23,7 +23,7 @@ interface CheckType {
 
 interface RiskDisclaimerProps extends InjectedModalProps {
   onSuccess: () => void
-  checks: CheckType[]
+  checks: Array<CheckType | null | undefined>
   header: ReactNode
   modalHeader?: string
   id: string
@@ -50,7 +50,11 @@ const DisclaimerModal: React.FC<React.PropsWithChildren<RiskDisclaimerProps>> = 
   hideConfirm,
   modalHeader,
 }) => {
-  const [checkState, setCheckState] = useState(checks || [])
+  const initialChecks = useMemo(
+    () => (checks || []).filter((check): check is CheckType => Boolean(check?.key && check?.content)),
+    [checks],
+  )
+  const [checkState, setCheckState] = useState(initialChecks)
   const { t } = useTranslation()
 
   const handleSetAcknowledgeRisk = useCallback(
