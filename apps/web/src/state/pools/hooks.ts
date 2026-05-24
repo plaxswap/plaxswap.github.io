@@ -38,7 +38,10 @@ import {
   makeVaultPoolWithKeySelector,
 } from './selectors'
 
-const lPoolAddresses = livePools.filter(({ sousId }) => sousId !== 0).map(({ earningToken }) => earningToken.address)
+const poolTokenAddresses = livePools
+  .filter(({ sousId }) => sousId !== 0)
+  .flatMap(({ earningToken, stakingToken }) => [earningToken.address, stakingToken.address])
+  .map((address) => address.toLowerCase())
 
 // Only fetch farms for live pools
 const getActiveFarms = async (chainId: number) => {
@@ -50,7 +53,8 @@ const getActiveFarms = async (chainId: number) => {
         ((token.symbol === 'PLAX' && quoteToken.symbol === 'WMATIC') ||
           (token.symbol === 'USDT' && quoteToken.symbol === 'WMATIC') ||
           (token.symbol === 'USDC' && quoteToken.symbol === 'USDT') ||
-          lPoolAddresses.find((poolAddress) => poolAddress === token.address)),
+          poolTokenAddresses.includes(token.address.toLowerCase()) ||
+          poolTokenAddresses.includes(quoteToken.address.toLowerCase())),
     )
     .map((farm) => farm.pid)
 }
