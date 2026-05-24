@@ -8,17 +8,13 @@ import get from 'lodash/get'
 import { addBreadcrumb } from '@sentry/nextjs'
 import { GAS_PRICE_GWEI } from '../state/types'
 
-const cleanGasOverrides = (overrides: CallOverrides = {}, gasPrice?: string): CallOverrides => {
+const cleanGasOverrides = (overrides: CallOverrides = {}): CallOverrides => {
   const nextOverrides = { ...overrides }
   const hasEip1559Fee = nextOverrides.maxFeePerGas || nextOverrides.maxPriorityFeePerGas
 
   if (hasEip1559Fee) {
     delete nextOverrides.gasPrice
     return nextOverrides
-  }
-
-  if (!nextOverrides.gasPrice && gasPrice) {
-    nextOverrides.gasPrice = gasPrice
   }
 
   return nextOverrides
@@ -58,7 +54,7 @@ export function useCallWithGasPrice() {
       })
 
       const contractMethod = get(contract, methodName)
-      const tx = await contractMethod(...methodArgs, cleanGasOverrides(overrides ?? {}, gasPrice))
+      const tx = await contractMethod(...methodArgs, cleanGasOverrides(overrides ?? {}))
 
       if (tx) {
         addBreadcrumb({
