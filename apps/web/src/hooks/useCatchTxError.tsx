@@ -36,15 +36,8 @@ const getCallRequest = (tx: TransactionResponse) => {
     data: tx.data,
     value: tx.value,
     gasLimit: tx.gasLimit,
-    gasPrice: tx.gasPrice,
     type: tx.type,
     accessList: tx.accessList,
-    maxFeePerGas: tx.maxFeePerGas,
-    maxPriorityFeePerGas: tx.maxPriorityFeePerGas,
-  }
-
-  if (callRequest.type === 2 || callRequest.maxFeePerGas || callRequest.maxPriorityFeePerGas) {
-    delete callRequest.gasPrice
   }
 
   return callRequest
@@ -120,10 +113,7 @@ export default function useCatchTxError(): CatchTxErrorReturn {
               replayCallRequest: {
                 ...callRequest,
                 gasLimit: callRequest.gasLimit?.toString(),
-                gasPrice: callRequest.gasPrice?.toString(),
                 value: callRequest.value?.toString(),
-                maxFeePerGas: callRequest.maxFeePerGas?.toString(),
-                maxPriorityFeePerGas: callRequest.maxPriorityFeePerGas?.toString(),
               },
             })
             provider
@@ -225,10 +215,7 @@ export default function useCatchTxError(): CatchTxErrorReturn {
               replayCallRequest: {
                 ...callRequest,
                 gasLimit: callRequest.gasLimit?.toString(),
-                gasPrice: callRequest.gasPrice?.toString(),
                 value: callRequest.value?.toString(),
-                maxFeePerGas: callRequest.maxFeePerGas?.toString(),
-                maxPriorityFeePerGas: callRequest.maxPriorityFeePerGas?.toString(),
               },
             })
             provider
