@@ -258,62 +258,62 @@
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x172370d5Cd63279eFa6d502DAB29171933a610AF/logo.png"
     },
-    // {
-      // "name": "RFIDR",
-      // "symbol": "RR",
-      // "address": "0x91Faa9fA243EaF35981f5563ec67e9bF0d8DFAEE",
-      // "chainId": 1,
-      // "decimals": 18,
-      // "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x91Faa9fA243EaF35981f5563ec67e9bF0d8DFAEE/logo.png"
-    // },
-    // {
-      // "name": "RFIDM",
-      // "symbol": "RFC",
-      // "address": "0x04488963B02447B1ba926DBa6AD3a5f57fD855f1",
-      // "chainId": 1,
-      // "decimals": 18,
-      // "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x04488963B02447B1ba926DBa6AD3a5f57fD855f1/logo.png"
-    // },
-    // {
-      // "name": "RFIDC",
-      // "symbol": "RFC",
-      // "address": "0x9947d87c811e6033A1eEAFf3D25f6b4A94A8A1a7",
-      // "chainId": 1,
-      // "decimals": 18,
-      // "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x9947d87c811e6033A1eEAFf3D25f6b4A94A8A1a7/logo.png"
-    // },
-    // {
-      // "name": "RFIDX",
-      // "symbol": "RFX",
-      // "address": "0x8439cc930D330427D8A4BBABC335F5927A52fa87",
-      // "chainId": 1,
-      // "decimals": 18,
-      // "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x8439cc930D330427D8A4BBABC335F5927A52fa87/logo.png"
-    // },
+    {
+      "name": "RFIDR",
+      "symbol": "RR",
+      "address": "0x91Faa9fA243EaF35981f5563ec67e9bF0d8DFAEE",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x91Faa9fA243EaF35981f5563ec67e9bF0d8DFAEE/logo.png"
+    },
+    {
+      "name": "RFIDM",
+      "symbol": "RFC",
+      "address": "0x04488963B02447B1ba926DBa6AD3a5f57fD855f1",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x04488963B02447B1ba926DBa6AD3a5f57fD855f1/logo.png"
+    },
+    {
+      "name": "RFIDC",
+      "symbol": "RFC",
+      "address": "0x9947d87c811e6033A1eEAFf3D25f6b4A94A8A1a7",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x9947d87c811e6033A1eEAFf3D25f6b4A94A8A1a7/logo.png"
+    },
+    {
+      "name": "RFIDX",
+      "symbol": "RFX",
+      "address": "0x8439cc930D330427D8A4BBABC335F5927A52fa87",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x8439cc930D330427D8A4BBABC335F5927A52fa87/logo.png"
+    },
     {
       "name": "Freedom Initial Fund",
       "symbol": "FIF",
       "address": "0xbaEF7137D3cEC6282a83dd954eA6376d464f7780",
-      "chainId": 1,
+      "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xbaEF7137D3cEC6282a83dd954eA6376d464f7780/logo.png"
     },
-    // {
-      // "name": "AroLiex",
-      // "symbol": "ARO",
-      // "address": "0xa7D3aA3206425EeC18D9C8bC7A8b7ee922666bdF",
-      // "chainId": 1,
-      // "decimals": 18,
-      // "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xa7D3aA3206425EeC18D9C8bC7A8b7ee922666bdF/logo.png"
-    // },
-    // {
-      // "name": "Boss Catt",
-      // "symbol": "BCATT",
-      // "address": "0x4A780Bb9D55173426f77D494aA8645273653924E",
-      // "chainId": 1,
-      // "decimals": 18,
-      // "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x4A780Bb9D55173426f77D494aA8645273653924E/logo.png"
-    // },
+    {
+      "name": "AroLiex",
+      "symbol": "ARO",
+      "address": "0xa7D3aA3206425EeC18D9C8bC7A8b7ee922666bdF",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xa7D3aA3206425EeC18D9C8bC7A8b7ee922666bdF/logo.png"
+    },
+    {
+      "name": "Boss Catt",
+      "symbol": "BCATT",
+      "address": "0x4A780Bb9D55173426f77D494aA8645273653924E",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x4A780Bb9D55173426f77D494aA8645273653924E/logo.png"
+    },
     {
       "name": "Bitzaura",
       "symbol": "DAZ",
@@ -374,18 +374,18 @@
       "name": "CLABS REWARD",
       "symbol": "CPOIN",
       "address": "0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367",
-      "chainId": 1,
+      "chainId": 137,
       "decimals": 0,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367/logo.png"
     },
-    // {
-      // "name": "CLABS POOL",
-      // "symbol": "CPOIN-X",
-      // "address": "0xE7A3eEDDd6c4F339D4219aFBAE5605CA3DF9DDD1",
-      // "chainId": 1,
-      // "decimals": 18,
-      // "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xE7A3eEDDd6c4F339D4219aFBAE5605CA3DF9DDD1/logo.png"
-    // },
+    {
+      "name": "CLABS POOL",
+      "symbol": "CPOIN-X",
+      "address": "0xE7A3eEDDd6c4F339D4219aFBAE5605CA3DF9DDD1",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xE7A3eEDDd6c4F339D4219aFBAE5605CA3DF9DDD1/logo.png"
+    },
     {
       "name": "BitFind",
       "symbol": "BTF",
@@ -546,14 +546,14 @@
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x5e4d5A1C3470d38b030af2AeA2ADA046Fc34cac6/logo.png"
     },
-    // {
-      // "name": "BitZyx",
-      // "symbol": "BTZ",
-      // "address": "0x67F9DD41bbc9CECb751Ff28Ea0e9E3c2dd15526c",
-      // "chainId": 1,
-      // "decimals": 18,
-      // "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x67F9DD41bbc9CECb751Ff28Ea0e9E3c2dd15526c/logo.png"
-    // },
+    {
+      "name": "BitZyx",
+      "symbol": "BTZ",
+      "address": "0x67F9DD41bbc9CECb751Ff28Ea0e9E3c2dd15526c",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x67F9DD41bbc9CECb751Ff28Ea0e9E3c2dd15526c/logo.png"
+    },
     {
       "name": "BITFRIX",
       "symbol": "BTFX",
@@ -594,14 +594,14 @@
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x6b7682a9fdA1d482A3779C9489DC62437BB58945/logo.png"
     },
-    // {
-      // "name": "Blockstring",
-      // "symbol": "BRING",
-      // "address": "0x199a1B6528a2F893e7eCe7e1b3Bd7A4E18c76D9A",
-      // "chainId": 1,
-      // "decimals": 18,
-      // "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x199a1B6528a2F893e7eCe7e1b3Bd7A4E18c76D9A/logo.png"
-    // },
+    {
+      "name": "Blockstring",
+      "symbol": "BRING",
+      "address": "0x199a1B6528a2F893e7eCe7e1b3Bd7A4E18c76D9A",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x199a1B6528a2F893e7eCe7e1b3Bd7A4E18c76D9A/logo.png"
+    },
     {
       "name": "AZZURAZZA",
       "symbol": "AURA",
@@ -682,14 +682,14 @@
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x38A33Cf60164EaC333400aB0ee7DeeBe92f968dB/logo.png"
     },
-    // {
-      // "name": "Gold Indonesia Republic",
-      // "symbol": "GIDR",
-      // "address": "0x0a40ff165736f5989e9F40fFbEd24A640c760754",
-      // "chainId": 1,
-      // "decimals": 18,
-      // "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x0a40ff165736f5989e9F40fFbEd24A640c760754/logo.png"
-    // },
+    {
+      "name": "Gold Indonesia Republic",
+      "symbol": "GIDR",
+      "address": "0x0a40ff165736f5989e9F40fFbEd24A640c760754",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x0a40ff165736f5989e9F40fFbEd24A640c760754/logo.png"
+    },
     {
       "name": "COINLUCK",
       "symbol": "CLK",
@@ -770,35 +770,35 @@
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619/logo.png"
     },
-    // {
-      // "name": "Belt",
-      // "symbol": "BELT",
-      // "address": "0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f",
-      // "chainId": 1,
-      // "decimals": 18,
-      // "logoURI": "https://pancakeswap.finance/images/tokens/0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f.png"
-    // },
-    // {
-      // "name": "TokoCrypto",
-      // "symbol": "TKO",
-      // "address": "0x9f589e3eabe42ebC94A44727b3f3531C0c877809",
-      // "chainId": 1,
-      // "decimals": 18,
-      // "logoURI": "https://pancakeswap.finance/images/tokens/0x9f589e3eabe42ebC94A44727b3f3531C0c877809.png"
-    // },
-    // {
-      // "name": "Nerve Finance",
-      // "symbol": "NRV",
-      // "address": "0x42F6f551ae042cBe50C739158b4f0CAC0Edb9096",
-      // "chainId": 1,
-      // "decimals": 18,
-      // "logoURI": "https://pancakeswap.finance/images/tokens/0x42F6f551ae042cBe50C739158b4f0CAC0Edb9096.png"
-    // },
+    {
+      "name": "Belt",
+      "symbol": "BELT",
+      "address": "0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://pancakeswap.finance/images/tokens/0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f.png"
+    },
+    {
+      "name": "TokoCrypto",
+      "symbol": "TKO",
+      "address": "0x9f589e3eabe42ebC94A44727b3f3531C0c877809",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://pancakeswap.finance/images/tokens/0x9f589e3eabe42ebC94A44727b3f3531C0c877809.png"
+    },
+    {
+      "name": "Nerve Finance",
+      "symbol": "NRV",
+      "address": "0x42F6f551ae042cBe50C739158b4f0CAC0Edb9096",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://pancakeswap.finance/images/tokens/0x42F6f551ae042cBe50C739158b4f0CAC0Edb9096.png"
+    },
     {
       "name": "Ellipsis",
       "symbol": "EPS",
       "address": "0xA7f552078dcC247C2684336020c03648500C6d9F",
-      "chainId": 1,
+      "chainId": 56,
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0xA7f552078dcC247C2684336020c03648500C6d9F.png"
     },
@@ -806,7 +806,7 @@
       "name": "PancakeSwap Token",
       "symbol": "CAKE",
       "address": "0xFa60D973F7642B748046464e165A65B7323b0DEE",
-      "chainId": 1,
+      "chainId": 97,
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.png"
     },
@@ -814,7 +814,7 @@
       "name": "BUSD Token",
       "symbol": "BUSD",
       "address": "0xaB1a4d4f1D656d2450692D237fdD6C7f9146e814",
-      "chainId": 1,
+      "chainId": 97,
       "decimals": 18,
       "logoURI": "https://tokens.pancakeswap.finance/images/symbol/busd.png"
     },
@@ -822,7 +822,7 @@
       "name": "BUSD Token",
       "symbol": "BUSD",
       "address": "0x4e2442A6f7AeCE64Ca33d31756B5390860BF973E",
-      "chainId": 1,
+      "chainId": 4,
       "decimals": 18,
       "logoURI": "https://tokens.pancakeswap.finance/images/symbol/busd.png"
     },
@@ -831,7 +831,7 @@
       "address": "0xc778417E063141139Fce010982780140Aa0cD5Ab",
       "symbol": "WETH",
       "decimals": 18,
-      "chainId": 1,
+      "chainId": 4,
       "logoURI": "https://tokens.pancakeswap.finance/images/symbol/weth.png"
     },
     {
@@ -839,7 +839,7 @@
       "address": "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
       "symbol": "WETH",
       "decimals": 18,
-      "chainId": 1,
+      "chainId": 5,
       "logoURI": "https://tokens.pancakeswap.finance/images/symbol/weth.png"
     },
     
