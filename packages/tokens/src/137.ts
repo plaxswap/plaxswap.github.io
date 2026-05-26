@@ -382,7 +382,7 @@ export const bscTokens = {
     18,
     'XPOOL',
     'FIXPOOL',
-    'https://polygonscan.com/token/0x1Dc357e57F491deC226b8Afe476244f678eB739D#code',
+    'https://fairlaunch.vip/getxpool/',
   ),
   dpool: new ERC20Token(
     ChainId.BSC,
@@ -390,7 +390,15 @@ export const bscTokens = {
     18,
     'DPOOL',
     'CrowdPool DAO',
-    'https://polygonscan.com/token/0xc718e7fbaE39Ab1ff94BF9cE12F88C9B5254EfE5#code',
+    'https://fairlaunch.vip/crowdpool/',
+  ),
+  dshare: new ERC20Token(
+    ChainId.BSC,
+    '0x307d68e976FA7E9d6C14119f8989D382FDe028c7',
+    18,
+    'DSHARE',
+    'CrowdShare DAO',
+    'https://fairlaunch.vip/crowdshare/',
   ),
   zap: new ERC20Token(
     ChainId.BSC,
@@ -398,7 +406,7 @@ export const bscTokens = {
     18,
     'ZAP',
     'ZELTSPHY',
-    'https://polygonscan.com/token/0x6b7682a9fdA1d482A3779C9489DC62437BB58945#code',
+    'https://fairlaunch.vip/getgold/',
   ),
   bring: new ERC20Token(
     ChainId.BSC,
@@ -406,7 +414,7 @@ export const bscTokens = {
     18,
     'BRING',
     'Blockstring',
-    'https://polygonscan.com/token/0x199a1B6528a2F893e7eCe7e1b3Bd7A4E18c76D9A#code',
+    'https://fairlaunch.vip/tringme/',
   ),
   aura: new ERC20Token(
     ChainId.BSC,
