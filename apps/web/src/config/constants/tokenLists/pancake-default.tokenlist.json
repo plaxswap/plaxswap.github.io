@@ -262,7 +262,7 @@
       "name": "RFIDR",
       "symbol": "RR",
       "address": "0x91Faa9fA243EaF35981f5563ec67e9bF0d8DFAEE",
-      "chainId": 1,
+      "chainId": 80002,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x91Faa9fA243EaF35981f5563ec67e9bF0d8DFAEE/logo.png"
     },
