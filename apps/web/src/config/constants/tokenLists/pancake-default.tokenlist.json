@@ -582,7 +582,7 @@
       "name": "CrowdShare DAO",
       "symbol": "DSHARE",
       "address": "0x307d68e976FA7E9d6C14119f8989D382FDe028c7",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x307d68e976FA7E9d6C14119f8989D382FDe028c7/logo.png"
     },
