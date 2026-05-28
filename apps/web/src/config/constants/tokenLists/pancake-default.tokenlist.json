@@ -174,7 +174,7 @@
       "name": "1INCH",
       "symbol": "1INCH",
       "address": "0x9c2C5fd7b07E95EE044DDeba0E97a665F142394f",
-      "chainId": 1,
+      "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x9c2C5fd7b07E95EE044DDeba0E97a665F142394f/logo.png"
     },
@@ -718,7 +718,7 @@
       "name": "RECOIN RENT",
       "symbol": "RCR",
       "address": "0xfB70D564b875A9745a956E135D69e70B59C3905B",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xfB70D564b875A9745a956E135D69e70B59C3905B/logo.png"
     },
