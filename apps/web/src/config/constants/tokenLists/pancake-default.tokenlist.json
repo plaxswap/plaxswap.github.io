@@ -262,7 +262,7 @@
       "name": "RFIDR",
       "symbol": "RR",
       "address": "0x91Faa9fA243EaF35981f5563ec67e9bF0d8DFAEE",
-      "chainId": 80002,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x91Faa9fA243EaF35981f5563ec67e9bF0d8DFAEE/logo.png"
     },
@@ -550,7 +550,7 @@
       "name": "BitZyx",
       "symbol": "BTZ",
       "address": "0x67F9DD41bbc9CECb751Ff28Ea0e9E3c2dd15526c",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x67F9DD41bbc9CECb751Ff28Ea0e9E3c2dd15526c/logo.png"
     },
@@ -590,7 +590,7 @@
       "name": "Zeltsphy",
       "symbol": "ZAP",
       "address": "0x6b7682a9fdA1d482A3779C9489DC62437BB58945",
-      "chainId": 1,
+      "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x6b7682a9fdA1d482A3779C9489DC62437BB58945/logo.png"
     },
@@ -702,7 +702,7 @@
       "name": "THUBA",
       "symbol": "TBA",
       "address": "0x25481b64c8733475fD17C57e24082Ef938cc40D5",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x25481b64c8733475fD17C57e24082Ef938cc40D5/logo.png"
     },
