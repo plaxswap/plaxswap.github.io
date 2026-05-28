@@ -4,6 +4,7 @@ export const BSC_RPC_URLS = [
   'https://rpc.ankr.com/polygon',
   'https://1rpc.io/matic',
   'https://polygon.drpc.org',
+  'https://polygon-bor-rpc.publicnode.com',
 ]
 
 export const BSC_TESTNET_RPC_URLS = [

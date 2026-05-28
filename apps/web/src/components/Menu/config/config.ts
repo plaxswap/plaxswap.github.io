@@ -7,6 +7,7 @@ import {
   EarnIcon,
   TrophyIcon,
   TrophyFillIcon,
+  HammerIcon,
   // NftIcon,
   // NftFillIcon,
   MoreIcon,
@@ -93,7 +94,50 @@ const config: (
         {
           label: t('Pools'),
           href: '/pools',
-          supportChainIds: SUPPORT_ONLY_BSC,
+        },
+        {
+          label: t('Mining (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('Smart Pools (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('Smart Farms (Coming Soon)'),
+          href: '#',
+        },
+      ].map((item) => addMenuItemSupported(item, chainId)),
+    },
+    {
+      label: t('Tools'),
+      href: '#',
+      icon: HammerIcon,
+      hideSubNav: true,
+      items: [
+        {
+          label: t('Bridge Token (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('Token Deployer (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('Token Listing (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('DEX Target Sniper (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('DEX New Pair Sniper (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('Token Locker (Coming Soon)'),
+          href: '#',
         },
       ].map((item) => addMenuItemSupported(item, chainId)),
     },
