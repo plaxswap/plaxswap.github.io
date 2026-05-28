@@ -22,7 +22,7 @@
       "name": "BUSD Token",
       "symbol": "BUSD",
       "address": "0x9C9e5fD8bbc25984B178FdCE6117Defa39d2db39",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://tokens.pancakeswap.finance/images/symbol/busd.png"
     },
@@ -374,7 +374,7 @@
       "name": "CLABS REWARD",
       "symbol": "CPOIN",
       "address": "0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 0,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x37aDC8f969b63B8bBD025D10D03900C5cd9DD367/logo.png"
     },
@@ -446,7 +446,7 @@
       "name": "PLAX-USDT LP",
       "symbol": "PLAXusdt",
       "address": "0x8ae534F07f08422d00Ed00a2Be1335e411Fb9DA0",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x8ae534F07f08422d00Ed00a2Be1335e411Fb9DA0/logo.png"
     },
@@ -454,7 +454,7 @@
       "name": "PAY-USDT LP",
       "symbol": "PAYusdt",
       "address": "0x7Fa11bb242CbBa853f634BEF02Fc24A3A13f916d",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x7Fa11bb242CbBa853f634BEF02Fc24A3A13f916d/logo.png"
     },
@@ -462,7 +462,7 @@
       "name": "SME-USDT LP",
       "symbol": "SMEusdt",
       "address": "0xB4C4Cd512d60F0E589fBcC58353C1e6225f9a1BB",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xB4C4Cd512d60F0E589fBcC58353C1e6225f9a1BB/logo.png"
     },
@@ -470,7 +470,7 @@
       "name": "PPS-USDT LP",
       "symbol": "PPSusdt",
       "address": "0x659130cE9097E078bc1DDd03703B7d4ed95EBf57",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x659130cE9097E078bc1DDd03703B7d4ed95EBf57/logo.png"
     },
@@ -478,7 +478,7 @@
       "name": "BTFX-USDT LP",
       "symbol": "BTFXusdt",
       "address": "0xF5551B1Ef3E39Ed913e43b6054da1e86C69BF162",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xF5551B1Ef3E39Ed913e43b6054da1e86C69BF162/logo.png"
     },
@@ -566,7 +566,7 @@
       "name": "FIXPOOL",
       "symbol": "XPOOL",
       "address": "0x1Dc357e57F491deC226b8Afe476244f678eB739D",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x1Dc357e57F491deC226b8Afe476244f678eB739D/logo.png"
     },
@@ -574,7 +574,7 @@
       "name": "CrowdPool DAO",
       "symbol": "DPOOL",
       "address": "0xc718e7fbaE39Ab1ff94BF9cE12F88C9B5254EfE5",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xc718e7fbaE39Ab1ff94BF9cE12F88C9B5254EfE5/logo.png"
     },
@@ -582,7 +582,7 @@
       "name": "CrowdShare DAO",
       "symbol": "DSHARE",
       "address": "0x307d68e976FA7E9d6C14119f8989D382FDe028c7",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x307d68e976FA7E9d6C14119f8989D382FDe028c7/logo.png"
     },
@@ -590,7 +590,7 @@
       "name": "Zeltsphy",
       "symbol": "ZAP",
       "address": "0x6b7682a9fdA1d482A3779C9489DC62437BB58945",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x6b7682a9fdA1d482A3779C9489DC62437BB58945/logo.png"
     },
@@ -606,7 +606,7 @@
       "name": "AZZURAZZA",
       "symbol": "AURA",
       "address": "0x2a12ffDb78Ad627F1a78cA96964eef58b36Dc9c8",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x2a12ffDb78Ad627F1a78cA96964eef58b36Dc9c8/logo.png"
     },
