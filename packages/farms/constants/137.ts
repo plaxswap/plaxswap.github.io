@@ -65,19 +65,19 @@ const farms: SerializedFarmConfig[] = [
     boosted: true,
   },
   {
+    pid: 80,
+    lpSymbol: 'IDRX-POL LP',
+    lpAddress: '0xa9D2F8165963420a0c4bC5B0aE5ac77597Dd1dea',
+    token: bscTokens.idrx,
+    quoteToken: bscTokens.wbnb,
+    boosted: true,
+  },
+  {
     pid: 15,
     lpSymbol: 'IDRT-USDT LP',
     lpAddress: '0x1a96fB8699Bd9e5767aca72E840C17d69BBb7Db1',
     token: bscTokens.idrt,
     quoteToken: bscTokens.usdt,
-    boosted: true,
-  },
-  {
-    pid: 11,
-    lpSymbol: 'IDRT-IDRX LP',
-    lpAddress: '0x73e02e59F522109a52d86B7A791FB818c863B75c',
-    token: bscTokens.idrt,
-    quoteToken: bscTokens.idrx,
     boosted: true,
   },
   {
@@ -94,6 +94,14 @@ const farms: SerializedFarmConfig[] = [
     lpAddress: '0x5a8041FF395a5D1D4ea0aE2EAf8BeCf23b145b09',
     token: bscTokens.idrx,
     quoteToken: bscTokens.usdc,
+    boosted: true,
+  },
+  {
+    pid: 11,
+    lpSymbol: 'IDRT-IDRX LP',
+    lpAddress: '0x73e02e59F522109a52d86B7A791FB818c863B75c',
+    token: bscTokens.idrt,
+    quoteToken: bscTokens.idrx,
     boosted: true,
   },
   {
