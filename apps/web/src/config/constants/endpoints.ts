@@ -17,10 +17,10 @@ export const GRAPH_API_POTTERY = 'https://api.studio.thegraph.com/query/1749035/
  */
 export const GRAPH_API_PREDICTION_V1 = ''
 
-export const INFO_CLIENT = 'https://api.studio.thegraph.com/query/1749035/defites/version/latest'
+export const INFO_CLIENT = 'https://api.goldsky.com/api/public/project_cmpra3m8c0nxv01w1c0uc5xz8/subgraphs/defites/V.0.0.1/gn'
 export const INFO_CLIENT_FALLBACKS = [
   INFO_CLIENT,
-  'https://api.studio.thegraph.com/query/1749771/tesdata/version/latest',
+  'https://api.goldsky.com/api/public/project_cmpra3m8c0nxv01w1c0uc5xz8/subgraphs/defites/V.0.0.1/gn',
   'https://api.studio.thegraph.com/query/1749771/testokendata/version/latest',
   'https://api.studio.thegraph.com/query/1749771/tesvolumedata/version/latest',
 ]
@@ -28,7 +28,7 @@ export const INFO_CLIENT_FALLBACKS = [
 export const INFO_CLIENT_ETH = ''
 export const BLOCKS_CLIENT = 'https://api.goldsky.com/api/public/project_cl8ylkiw00krx0hvza0qw17vn/subgraphs/blocks/matic/gn'
 export const BLOCKS_CLIENT_ETH = ''
-export const STABLESWAP_SUBGRAPH_CLIENT = 'https://api.studio.thegraph.com/query/1749035/defites/version/latest'
+export const STABLESWAP_SUBGRAPH_CLIENT = 'https://api.goldsky.com/api/public/project_cmpra3m8c0nxv01w1c0uc5xz8/subgraphs/defites/V.0.0.1/gn'
 export const GRAPH_API_NFTMARKET = ''
 export const GRAPH_HEALTH = 'https://indexer.upgrade.thegraph.com/status'
 

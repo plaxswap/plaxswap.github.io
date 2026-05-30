@@ -238,28 +238,48 @@ const config: (
     //       type: DropdownMenuItemType.EXTERNAL_LINK,
     //     },
     {
-      label: t('Lottery'),
-      href: '/lottery',
+      label: t('Play'),
+      href: '#',
       icon: TrophyIcon,
       fillIcon: TrophyFillIcon,
-      supportChainIds: SUPPORT_ONLY_BSC,
       showItemsOnMobile: false,
       items: [
-        // {
-        //   label: t('Prediction (Coming Soon)'),
-        //   href: '#',
-        //   image: '/images/decorations/prediction.png',
-        // },
-        // {
-        //   label: t('Lottery'),
-        //   href: '/lottery',
-        //   image: '/images/decorations/lottery.png',
-        // },
-        // {
-        //   label: t('Pottery ((Coming Soon)'),
-        //   href: '#',
-        //   image: '/images/decorations/lottery.png',
-        // },
+        {
+          label: t('Flappy Bird (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('Zombie Shooter (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('Rats Jump (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('Space War (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('PepsiMan (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('Zuma (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('F1 Racing (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('Moto Racer (Coming Soon)'),
+          href: '#',
+        },
+        {
+          label: t('Nascar Rumble (Coming Soon)'),
+          href: '#',
+        },
       ],
     },
     // {
@@ -290,6 +310,10 @@ const config: (
       icon: MoreIcon,
       hideSubNav: true,
       items: [
+        {
+          label: t('Lottery'),
+          href: '/lottery',
+        },
         {
           label: t('IFO'),
           href: '/ifo',

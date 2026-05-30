@@ -14,7 +14,7 @@ interface BlockResponse {
   }[]
 }
 
-const STABLESWAP_SUBGRAPH_ENDPOINT = 'https://api.studio.thegraph.com/query/1749035/defites/version/latest'
+const STABLESWAP_SUBGRAPH_ENDPOINT = 'https://api.goldsky.com/api/public/project_cmpra3m8c0nxv01w1c0uc5xz8/subgraphs/defites/V.0.0.1/gn'
 
 const LP_HOLDERS_FEE = 0.0017
 const WEEKS_IN_A_YEAR = 52.1429
@@ -27,7 +27,7 @@ const BLOCKS_CLIENT_WITH_CHAIN = {
 }
 
 const INFO_CLIENT_WITH_CHAIN = {
-  [ChainId.BSC]: 'https://api.studio.thegraph.com/query/1749035/defites/version/latest',
+  [ChainId.BSC]: 'https://api.goldsky.com/api/public/project_cmpra3m8c0nxv01w1c0uc5xz8/subgraphs/defites/V.0.0.1/gn',
   [ChainId.BSC_TESTNET]: '',
   [ChainId.ETHEREUM]: '',
   [ChainId.GOERLI]: '',
