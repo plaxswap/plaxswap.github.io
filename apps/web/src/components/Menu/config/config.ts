@@ -242,7 +242,6 @@ const config: (
       href: '#',
       icon: TrophyIcon,
       fillIcon: TrophyFillIcon,
-      showItemsOnMobile: false,
       items: [
         {
           label: t('Flappy Bird (Coming Soon)'),
