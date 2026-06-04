@@ -24,6 +24,14 @@ const farms: SerializedFarmConfig[] = [
   //   // boosted: true,
   // },
   {
+    pid: 81,
+    lpSymbol: 'ETH-POL LP',
+    lpAddress: '0x6D8d1e56Ab766420eEe7E2D6d44105C41282DA4a',
+    token: bscTokens.weth,
+    quoteToken: bscTokens.wbnb,
+    boosted: true,
+  },
+  {
     pid: 5,
     v1pid: 4,
     lpSymbol: 'USDT-POL LP',
