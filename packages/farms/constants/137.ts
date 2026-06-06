@@ -57,6 +57,14 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,
   },
   {
+    pid: 83,
+    lpSymbol: 'USDC-POL LP',
+    lpAddress: '0x9125c9BF73cF48908f9e4A80B969429B30af4E09',
+    token: bscTokens.usdcoin,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,
+  },
+  {
     pid: 6,
     lpSymbol: 'USDC.e-POL LP',
     lpAddress: '0xD4bdB68aD7490149587c1117f9AA20D862105D14',
