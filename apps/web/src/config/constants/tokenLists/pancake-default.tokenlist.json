@@ -163,6 +163,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xd93f7E271cB87c23AaA73edC008A79646d1F9912/logo.png"
     },
     {
+      "name": "Avalanche",
+      "symbol": "AVAX",
+      "address": "0x2C89bbc92BD86F8075d1DEcc58C7F4E0107f286b",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x2C89bbc92BD86F8075d1DEcc58C7F4E0107f286b/logo.png"
+    },
+    {
       "name": "ChainLink",
       "symbol": "LINK",
       "address": "0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39",

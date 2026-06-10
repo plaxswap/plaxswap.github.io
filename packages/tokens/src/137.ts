@@ -288,6 +288,14 @@ export const bscTokens = {
     'SOLANA',
     'https://solana.com/',
   ),
+  avax: new ERC20Token(
+    ChainId.BSC,
+    '0x2C89bbc92BD86F8075d1DEcc58C7F4E0107f286b',
+    18,
+    'Avalanche',
+    'AVAX',
+    'https://www.avax.network/',
+  ),
   link: new ERC20Token(
     ChainId.BSC,
     '0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39',
