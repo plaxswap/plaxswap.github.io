@@ -268,7 +268,7 @@ export const bscTokens = {
     ChainId.BSC,
     '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
     8,
-    'WBTC',
+    'BTC',
     'Wrapped BTC',
     'https://www.wbtc.network/',
   ),
