@@ -512,6 +512,14 @@ export const bscTokens = {
     'PAX Gold',
     'https://paxos.com/paxgold/',
   ),
+  xaut: new ERC20Token(
+    ChainId.BSC,
+    '0xF1815bd50389c46847f0Bda824eC8da914045D14',
+    6,
+    'XAUT0',
+    'Tether Gold',
+    'https://usdt0.to/gold',
+  ),
   vnxau: new ERC20Token(
     ChainId.BSC,
     '0xC8bB8eDa94931cA2F20EF43eA7dBD58E68400400',
