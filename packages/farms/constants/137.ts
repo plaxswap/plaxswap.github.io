@@ -51,7 +51,7 @@ const farms: SerializedFarmConfig[] = [
     pid: 75,
     lpSymbol: 'LINK-POL LP',
     lpAddress: '0x198Fbcc47A50715EA667856149d60B6AE943f7eE',
-    token: bscTokens.avax,
+    token: bscTokens.link,
     quoteToken: bscTokens.wbnb,
     boosted: true,  
   },
