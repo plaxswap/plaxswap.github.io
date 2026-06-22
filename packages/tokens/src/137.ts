@@ -292,8 +292,8 @@ export const bscTokens = {
     ChainId.BSC,
     '0x2C89bbc92BD86F8075d1DEcc58C7F4E0107f286b',
     18,
-    'Avalanche',
     'AVAX',
+    'Avalanche',
     'https://www.avax.network/',
   ),
   link: new ERC20Token(
