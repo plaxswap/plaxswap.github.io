@@ -43,7 +43,7 @@ const farms: SerializedFarmConfig[] = [
     pid: 86,
     lpSymbol: 'BNB-POL LP',
     lpAddress: '0xF5C07a60a53fd76b2EEF9c40aC62a44a0623aB8e',
-    token: bscTokens.binance,
+    token: bscTokens.bnb,
     quoteToken: bscTokens.wbnb,
     boosted: true,
   },

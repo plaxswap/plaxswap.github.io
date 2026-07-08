@@ -280,7 +280,7 @@ export const bscTokens = {
     'Wrapped Ether',
     'https://ethereum.org/',
   ),
-  binance: new ERC20Token(
+  wbsc: new ERC20Token(
     ChainId.BSC,
     '0xecdcb5b88f8e3c15f95c720c51c71c9e2080525d',
     18,
