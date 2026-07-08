@@ -280,6 +280,14 @@ export const bscTokens = {
     'Wrapped Ether',
     'https://ethereum.org/',
   ),
+  wbsc: new ERC20Token(
+    ChainId.BSC,
+    '0xecdcb5b88f8e3c15f95c720c51c71c9e2080525d',
+    18,
+    'BNB',
+    'Wrapped BNB',
+    'https://www.bnbchain.org/en',
+  ),
   sol: new ERC20Token(
     ChainId.BSC,
     '0xd93f7E271cB87c23AaA73edC008A79646d1F9912',
