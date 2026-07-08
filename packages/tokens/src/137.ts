@@ -282,7 +282,7 @@ export const bscTokens = {
   ),
   wbsc: new ERC20Token(
     ChainId.BSC,
-    '0xecdcb5b88f8e3c15f95c720c51c71c9e2080525d',
+    '0xeCDCB5B88F8e3C15f95c720C51c71c9E2080525d',
     18,
     'BNB',
     'Wrapped BNB',
