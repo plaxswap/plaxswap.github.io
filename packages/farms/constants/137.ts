@@ -32,6 +32,14 @@ const farms: SerializedFarmConfig[] = [
     boosted: true,
   },
   {
+    pid: 88,
+    lpSymbol: 'tBTC-POL LP',
+    lpAddress: '0x5AB4064b775C028363484D7E15c6c185b0Ebab3a',
+    token: bscTokens.tbtc,
+    quoteToken: bscTokens.wbnb,
+    boosted: true,
+  },
+  {
     pid: 81,
     lpSymbol: 'ETH-POL LP',
     lpAddress: '0x6D8d1e56Ab766420eEe7E2D6d44105C41282DA4a',
