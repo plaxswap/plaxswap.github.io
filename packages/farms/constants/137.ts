@@ -80,6 +80,14 @@ const farms: SerializedFarmConfig[] = [
     boosted: true,  
   },
   {
+    pid: 68,
+    lpSymbol: 'VNXAU-POL LP',
+    lpAddress: '0xd9ED000d4B43f7D2276211c773274E213115d445',
+    token: bscTokens.vnxau,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,  
+  },
+  {
     pid: 5,
     v1pid: 4,
     lpSymbol: 'USDT-POL LP',
@@ -284,12 +292,12 @@ const farms: SerializedFarmConfig[] = [
     boosted: true,
   },
   {
-    pid: 68,
-    lpSymbol: 'VNXAU-POL LP',
-    lpAddress: '0xd9ED000d4B43f7D2276211c773274E213115d445',
-    token: bscTokens.vnxau,
+    pid: 87,
+    lpSymbol: 'AAVE-POL LP',
+    lpAddress: '0xBAd710dff34f5Fa384e1F6779D0Ab1FdECb611FC',
+    token: bscTokens.aave,
     quoteToken: bscTokens.wbnb,
-    // boosted: true,  
+    boosted: true,  
   },
   {
     pid: 77,
