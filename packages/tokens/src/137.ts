@@ -272,6 +272,14 @@ export const bscTokens = {
     'Wrapped BTC',
     'https://www.wbtc.network/',
   ),
+  tbtc: new ERC20Token(
+    ChainId.BSC,
+    '0x236aa50979D5f3De3Bd1Eeb40E81137F22ab794b',
+    18,
+    'tBTC',
+    'tBTC',
+    'https://www.threshold.network/',
+  ),
   weth: new ERC20Token(
     ChainId.BSC,
     '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
