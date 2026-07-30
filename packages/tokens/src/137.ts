@@ -152,6 +152,14 @@ export const bscTokens = {
     'UNISWAP',
     'https://app.uniswap.org/',
   ),
+  sushi: new ERC20Token(
+    ChainId.BSC,
+    '0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a',
+    18,
+    'SUSHI',
+    'SUSHISWAP',
+    'https://www.sushi.com/',
+  ),
   knc: new ERC20Token(
     ChainId.BSC,
     '0x1C954E8fe737F99f68Fa1CCda3e51ebDB291948C',

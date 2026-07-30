@@ -243,12 +243,20 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xCf66EB3D546F0415b368d98A95EAF56DeD7aA752/logo.png"
     },
     {
-      "name": "Uniswap",
+      "name": "UniSwap",
       "symbol": "UNI",
       "address": "0xb33EaAd8d922B1083446DC23f610c2567fB5180f",
       "chainId": 137,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xb33EaAd8d922B1083446DC23f610c2567fB5180f/logo.png"
+    },
+    {
+      "name": "SushiSwap",
+      "symbol": "SUSHI",
+      "address": "0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a",
+      "chainId": 137,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a/logo.png"
     },
     {
       "name": "Kyber Network Crystal",
