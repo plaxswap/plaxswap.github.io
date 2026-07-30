@@ -329,7 +329,15 @@ const farms: SerializedFarmConfig[] = [
     lpAddress: '0xd0840a55c74974e3a663a51a6e26bdda4df6b9a0',
     token: bscTokens.crv,
     quoteToken: bscTokens.wbnb,
-    // boosted: true,  
+    boosted: true,  
+  },
+  {
+    pid: 89,
+    lpSymbol: 'SUSHI-POL LP',
+    lpAddress: '0x2504740CDe3cFbeF629B942F481F99a4f5BDC750',
+    token: bscTokens.sushi,
+    quoteToken: bscTokens.wbnb,
+    boosted: true,  
   },
   {
     pid: 56,
