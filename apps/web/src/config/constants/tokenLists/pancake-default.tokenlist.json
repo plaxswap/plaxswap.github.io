@@ -708,7 +708,7 @@
     },
     {
       "name": "Gold Indonesia Republic",
-      "symbol": "GIDR",
+      "symbol": "GOIDR",
       "address": "0x0a40ff165736f5989e9F40fFbEd24A640c760754",
       "chainId": 1,
       "decimals": 18,
