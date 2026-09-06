@@ -340,6 +340,14 @@ const farms: SerializedFarmConfig[] = [
     boosted: true,  
   },
   {
+    pid: 90,
+    lpSymbol: 'RENDER-POL LP',
+    lpAddress: '0xb2858029529c3B62C7881D08EEa00F236964bD85',
+    token: bscTokens.render,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,  
+  },
+  {
     pid: 56,
     lpSymbol: 'SHIB-POL LP',
     lpAddress: '0x923cd3B86b9dD56b28E28227BaBe5Ea270666ac0',
