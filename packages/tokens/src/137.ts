@@ -160,6 +160,14 @@ export const bscTokens = {
     'SUSHISWAP',
     'https://www.sushi.com/',
   ),
+  render: new ERC20Token(
+    ChainId.BSC,
+    '0x61299774020dA444Af134c82fa83E3810b309991',
+    18,
+    'RENDER',
+    'RENDER',
+    'https://rendernetwork.com/',
+  ),
   knc: new ERC20Token(
     ChainId.BSC,
     '0x1C954E8fe737F99f68Fa1CCda3e51ebDB291948C',
