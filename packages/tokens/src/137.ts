@@ -446,7 +446,7 @@ export const bscTokens = {
     18,
     'POIN',
     'PoinChain',
-    'https://fairlaunch.vip/poinswap/',
+    'https://fairlaunch.vip/posconverter/',
   ),
   pos: new ERC20Token(
     ChainId.BSC,
@@ -454,7 +454,7 @@ export const bscTokens = {
     18,
     'POS',
     'PoinCash',
-    'https://fairlaunch.vip/poinswap/',
+    'https://fairlaunch.vip/posconverter/',
   ),
   zap: new ERC20Token(
     ChainId.BSC,
