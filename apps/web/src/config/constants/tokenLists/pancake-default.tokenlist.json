@@ -622,7 +622,7 @@
       "name": "PoinChain",
       "symbol": "POIN",
       "address": "0x793cD1f33C15dd4d0481ceF4B757517363C9625d",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x793cD1f33C15dd4d0481ceF4B757517363C9625d/logo.png"
     },
@@ -662,7 +662,7 @@
       "name": "EXTRADE",
       "symbol": "ETA",
       "address": "0xD95B9B888aF76Dd918Cc33346B08d461512e4ba3",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xD95B9B888aF76Dd918Cc33346B08d461512e4ba3/logo.png"
     },
@@ -670,7 +670,7 @@
       "name": "TRADE POOL",
       "symbol": "TP",
       "address": "0xB63944e1F1ec6B032475D5Aa542380748e822bD0",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0xB63944e1F1ec6B032475D5Aa542380748e822bD0/logo.png"
     },
@@ -678,7 +678,7 @@
       "name": "GIFT EXTRADE",
       "symbol": "GET",
       "address": "0x4a24F93c4416A5a2A36ce8fA6925198198f4EF79",
-      "chainId": 137,
+      "chainId": 1,
       "decimals": 18,
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x4a24F93c4416A5a2A36ce8fA6925198198f4EF79/logo.png"
     },
