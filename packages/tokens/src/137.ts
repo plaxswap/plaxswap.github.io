@@ -168,6 +168,22 @@ export const bscTokens = {
     'RENDER',
     'https://rendernetwork.com/',
   ),
+  mana: new ERC20Token(
+    ChainId.BSC,
+    '0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4',
+    18,
+    'MANA',
+    'DECENTRALAND',
+    'https://decentraland.org/',
+  ),
+  nexo: new ERC20Token(
+    ChainId.BSC,
+    '0x41b3966B4FF7b427969ddf5da3627d6AEAE9a48E',
+    18,
+    'NEXO',
+    'NEXO',
+    'https://nexo.com/',
+  ),
   knc: new ERC20Token(
     ChainId.BSC,
     '0x1C954E8fe737F99f68Fa1CCda3e51ebDB291948C',
