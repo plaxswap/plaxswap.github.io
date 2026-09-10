@@ -619,6 +619,14 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x307d68e976FA7E9d6C14119f8989D382FDe028c7/logo.png"
     },
     {
+      "name": "PoinChain",
+      "symbol": "POIN",
+      "address": "0x793cD1f33C15dd4d0481ceF4B757517363C9625d",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x793cD1f33C15dd4d0481ceF4B757517363C9625d/logo.png"
+    },
+    {
       "name": "Zeltsphy",
       "symbol": "ZAP",
       "address": "0x6b7682a9fdA1d482A3779C9489DC62437BB58945",

@@ -440,6 +440,14 @@ export const bscTokens = {
     'CrowdShare DAO',
     'https://fairlaunch.vip/crowdshare/',
   ),
+  poin: new ERC20Token(
+    ChainId.BSC,
+    '0x793cD1f33C15dd4d0481ceF4B757517363C9625d',
+    18,
+    'POIN',
+    'PoinChain',
+    'https://fairlaunch.vip/poinswap/',
+  ),
   zap: new ERC20Token(
     ChainId.BSC,
     '0x6b7682a9fdA1d482A3779C9489DC62437BB58945',
