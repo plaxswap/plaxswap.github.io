@@ -348,6 +348,22 @@ const farms: SerializedFarmConfig[] = [
     // boosted: true,  
   },
   {
+    pid: 93,
+    lpSymbol: 'MANA-POL LP',
+    lpAddress: '0x7869bA428269B69772433961CD6073aFEfF041dD',
+    token: bscTokens.mana,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,  
+  },
+  {
+    pid: 94,
+    lpSymbol: 'NEXO-POL LP',
+    lpAddress: '0x0b4269De1F737877f58B4Ae7563c3153dCFAb6AE',
+    token: bscTokens.nexo,
+    quoteToken: bscTokens.wbnb,
+    // boosted: true,  
+  },
+  {
     pid: 56,
     lpSymbol: 'SHIB-POL LP',
     lpAddress: '0x923cd3B86b9dD56b28E28227BaBe5Ea270666ac0',
