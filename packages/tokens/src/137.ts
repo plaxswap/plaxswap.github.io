@@ -430,7 +430,7 @@ export const bscTokens = {
     18,
     'BTFX',
     'BITFRIX',
-    'https://polygonscan.com/token/0x19A16622368cB9E63D6E919ee6C33e42930D563a#code',
+    'https://xpoolcamp.xyz/',
   ),
   xpool: new ERC20Token(
     ChainId.BSC,
@@ -438,7 +438,7 @@ export const bscTokens = {
     18,
     'XPOOL',
     'FIXPOOL',
-    'https://fairlaunch.vip/getxpool/',
+    'https://xpoolcamp.xyz/',
   ),
   dpool: new ERC20Token(
     ChainId.BSC,
@@ -446,7 +446,7 @@ export const bscTokens = {
     18,
     'DPOOL',
     'CrowdPool DAO',
-    'https://fairlaunch.vip/crowdpool/',
+    'https://xpoolcamp.xyz/',
   ),
   dshare: new ERC20Token(
     ChainId.BSC,
@@ -454,7 +454,7 @@ export const bscTokens = {
     18,
     'DSHARE',
     'CrowdShare DAO',
-    'https://fairlaunch.vip/crowdshare/',
+    'https://xpoolcamp.xyz/',
   ),
   poin: new ERC20Token(
     ChainId.BSC,
@@ -702,7 +702,7 @@ export const bscTokens = {
     18,
     'BTFXusdt',
     'BTFX-USDT LP',
-    'https://polygonscan.com/token/0xF5551B1Ef3E39Ed913e43b6054da1e86C69BF162',
+    'https://xpoolcamp.xyz/',
   ),
   doa: new ERC20Token(
     ChainId.BSC,
