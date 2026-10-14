@@ -651,6 +651,22 @@
       "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x15F0921f024011bB881Cf1A95a9D62897fdf102e/logo.png"
     },
     {
+      "name": "Pointy",
+      "symbol": "PIN",
+      "address": "0x32d0eA50bDb94a3D1CAC47DE3cF2De5B324f45a5",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x32d0eA50bDb94a3D1CAC47DE3cF2De5B324f45a5/logo.png"
+    },
+    {
+      "name": "Poin Harvest",
+      "symbol": "POT",
+      "address": "0x1434D2F7F0Ce7D3bC9018bD305fb88a9C0Db06b4",
+      "chainId": 1,
+      "decimals": 18,
+      "logoURI": "https://plaxswap.github.io/blockchain/polygon/assets/0x1434D2F7F0Ce7D3bC9018bD305fb88a9C0Db06b4/logo.png"
+    },
+    {
       "name": "Zeltsphy",
       "symbol": "ZAP",
       "address": "0x6b7682a9fdA1d482A3779C9489DC62437BB58945",

@@ -472,6 +472,22 @@ export const bscTokens = {
     'PoinCash',
     'https://fairlaunch.vip/Poinchain-DePIN/',
   ),
+  pin: new ERC20Token(
+    ChainId.BSC,
+    '0x32d0eA50bDb94a3D1CAC47DE3cF2De5B324f45a5',
+    18,
+    'PIN',
+    'POINTY',
+    'https://fairlaunch.vip/PoinEquity/',
+  ),
+  pot: new ERC20Token(
+    ChainId.BSC,
+    '0x1434D2F7F0Ce7D3bC9018bD305fb88a9C0Db06b4',
+    18,
+    'POT',
+    'POIN HARVEST',
+    'https://fairlaunch.vip/PoinEquity/',
+  ),
   zap: new ERC20Token(
     ChainId.BSC,
     '0x6b7682a9fdA1d482A3779C9489DC62437BB58945',
